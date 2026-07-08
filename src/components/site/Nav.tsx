@@ -1,7 +1,7 @@
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoAsset from "@/assets/orpheus-logo.png.asset.json";
+import logo from "@/assets/orpheus-logo.png";
 
 const links = [
   { to: "/", label: "Inicio" },
@@ -50,7 +50,7 @@ export function Nav() {
           className="flex items-center gap-2.5 group"
         >
           <img
-            src={logoAsset.url}
+            src={logo}
             alt="Orpheus Psicología"
             className="h-8 md:h-9 w-auto opacity-90 group-hover:opacity-100 transition-opacity"
           />

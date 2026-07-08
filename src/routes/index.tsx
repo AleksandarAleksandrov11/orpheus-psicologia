@@ -12,8 +12,8 @@ import {
 } from "lucide-react";
 import { Layout } from "@/components/site/Layout";
 import { Reveal } from "@/components/site/Reveal";
-import melissa1 from "@/assets/melissa-1.png.asset.json";
-import melissa2 from "@/assets/melissa-2.png.asset.json";
+import melissa1 from "@/assets/melissa-1.png";
+import melissa2 from "@/assets/melissa-2.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,8 +31,8 @@ export const Route = createFileRoute("/")({
           "La relación más importante de tu vida es la que tienes contigo. Terapia basada en evidencia, cercana y sofisticada.",
       },
       { property: "og:url", content: "/" },
-      { property: "og:image", content: melissa1.url },
-      { name: "twitter:image", content: melissa1.url },
+      { property: "og:image", content: melissa1 },
+      { name: "twitter:image", content: melissa1 },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -142,7 +142,7 @@ function Home() {
           <div className="relative animate-fade-up delay-200">
             <div className="relative mx-auto aspect-[4/5] max-w-md md:max-w-none overflow-hidden rounded-[2rem] bg-sage-soft/50">
               <img
-                src={melissa1.url}
+                src={melissa1}
                 alt="Melissa González, psicóloga especializada en autoestima"
                 className="h-full w-full object-cover"
                 loading="eager"
@@ -198,7 +198,7 @@ function Home() {
           <Reveal className="relative order-2 lg:order-1">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] max-w-lg mx-auto lg:mx-0">
               <img
-                src={melissa2.url}
+                src={melissa2}
                 alt="Melissa González en consulta"
                 className="h-full w-full object-cover"
                 loading="lazy"

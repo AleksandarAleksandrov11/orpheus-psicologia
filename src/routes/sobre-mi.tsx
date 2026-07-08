@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { Layout } from "@/components/site/Layout";
 import { Reveal } from "@/components/site/Reveal";
-import melissa3 from "@/assets/melissa-3.png.asset.json";
+import melissa3 from "@/assets/melissa-3.png";
 
 export const Route = createFileRoute("/sobre-mi")({
   head: () => ({
@@ -20,8 +20,8 @@ export const Route = createFileRoute("/sobre-mi")({
           "Mi historia, mi forma de entender la psicología y mi compromiso contigo.",
       },
       { property: "og:url", content: "/sobre-mi" },
-      { property: "og:image", content: melissa3.url },
-      { name: "twitter:image", content: melissa3.url },
+      { property: "og:image", content: melissa3 },
+      { name: "twitter:image", content: melissa3 },
     ],
     links: [{ rel: "canonical", href: "/sobre-mi" }],
   }),
@@ -49,7 +49,7 @@ function SobreMi() {
 
           <Reveal delay={120}>
             <div className="relative aspect-[4/5] max-w-md mx-auto overflow-hidden rounded-[2rem] bg-sage-soft/40">
-              <img src={melissa3.url} alt="Retrato de Melissa González" className="h-full w-full object-cover" />
+              <img src={melissa3} alt="Retrato de Melissa González" className="h-full w-full object-cover" />
             </div>
           </Reveal>
         </div>

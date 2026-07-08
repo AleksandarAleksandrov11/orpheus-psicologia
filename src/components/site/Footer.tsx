@@ -1,13 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Mail } from "lucide-react";
-import logoAsset from "@/assets/orpheus-logo.png.asset.json";
+import logo from "@/assets/orpheus-logo.png";
 
 export function Footer() {
   return (
-    <footer className="mt-24 md:mt-40 border-t border-border/70 bg-cream">
+    <footer className="border-t border-border/70 bg-cream">
       <div className="container-editorial py-16 md:py-24 grid gap-12 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
-          <img src={logoAsset.url} alt="Orpheus Psicología" className="h-10 w-auto mb-6 opacity-90" />
+          <img src={logo} alt="Orpheus Psicología" className="h-10 w-auto mb-6 opacity-90" />
           <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
             Un espacio seguro para construir una relación más sana contigo. Terapia
             especializada en autoestima, autoexigencia e inseguridad.
