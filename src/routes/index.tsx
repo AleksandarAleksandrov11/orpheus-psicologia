@@ -1,415 +1,746 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowUpRight,
-  Heart,
-  Sparkles,
-  ShieldCheck,
-  Waves,
-  Compass,
-  Star,
-  Users,
-  Leaf,
-} from "lucide-react";
+import { ArrowDown, BadgeCheck, Star } from "lucide-react";
+
 import { Layout } from "@/components/site/Layout";
-import { Reveal } from "@/components/site/Reveal";
-import melissa1 from "@/assets/melissa-1.png";
-import melissa2 from "@/assets/melissa-2.png";
+import { Contador, LineasReveladas, Marquesina, Parallax, Reveal } from "@/components/site/motion";
+import {
+  Acordeon,
+  Antetitulo,
+  BotonEnlace,
+  Cita,
+  Figura,
+  Lira,
+  Numero,
+  TituloSeccion,
+} from "@/components/site/ui";
+import { DiagramaExpectativaRealidad, RecorridoNoLineal } from "@/components/site/Recorrido";
+import {
+  CTA_FINAL,
+  EMOCIONES,
+  ENGRANAJE,
+  ENFOQUE,
+  ESPACIOS,
+  FAQ,
+  FILOSOFIA,
+  FORMACION,
+  HERO,
+  MARQUESINA,
+  MITO,
+  RECONOCES,
+  RECORRIDO,
+  VALORES,
+} from "@/content/copy";
+import { SITE, esPendiente } from "@/content/site";
+import { RESENAS_PUBLICADAS } from "@/content/resenas";
+import { faqSchema, seo } from "@/lib/seo";
+
+import retrato from "@/assets/melissa-retrato.webp";
+import melissa3 from "@/assets/melissa-3.webp";
+import texNiebla from "@/assets/tex-niebla.webp";
+import texNieblaSm from "@/assets/tex-niebla@sm.webp";
+import texBosque from "@/assets/tex-bosque.webp";
+import texBosqueSm from "@/assets/tex-bosque@sm.webp";
+import texMontanasSm from "@/assets/tex-montanas@sm.webp";
+import texSenderoSm from "@/assets/tex-sendero@sm.webp";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Melissa González · Orpheus Psicología | Especialista en autoestima" },
-      {
-        name: "description",
-        content:
-          "Construye una autoestima que no dependa de la aprobación de los demás. Terapia especializada en autoestima, autoexigencia e inseguridad.",
-      },
-      { property: "og:title", content: "Melissa González · Orpheus Psicología" },
-      {
-        property: "og:description",
-        content:
-          "La relación más importante de tu vida es la que tienes contigo. Terapia basada en evidencia, cercana y sofisticada.",
-      },
-      { property: "og:url", content: "/" },
-      { property: "og:image", content: melissa1 },
-      { name: "twitter:image", content: melissa1 },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
-  component: Home,
+  head: () =>
+    seo({
+      title: "Psicóloga especializada en autoestima y autoexigencia | Orpheus Psicología",
+      description:
+        "No necesitas exigirte más para sentirte suficiente. Terapia integradora para la autoestima, la autoexigencia y la ansiedad. Online y presencial en Madrid.",
+      path: "/",
+      image: "/og/og-default.jpg",
+      imageAlt: "Orpheus Psicología — No necesitas exigirte más para sentirte suficiente",
+      keywords: [
+        "psicóloga online",
+        "terapia autoestima",
+        "autoexigencia",
+        "perfeccionismo",
+        "psicóloga Madrid",
+        "terapia integradora",
+        "gestión emocional",
+        "psicóloga general sanitaria",
+      ],
+      jsonLd: [faqSchema(FAQ.slice(0, 6))],
+    }),
+  component: Inicio,
 });
 
-const helps = [
-  { icon: Heart, title: "Autoestima", text: "Construir una base emocional sólida y estable." },
-  { icon: Compass, title: "Autoexigencia", text: "Aprender a soltar la presión constante." },
-  { icon: ShieldCheck, title: "Inseguridad", text: "Ganar confianza desde dentro." },
-  { icon: Waves, title: "Ansiedad", text: "Regular la respuesta emocional del cuerpo." },
-  { icon: Sparkles, title: "Gestión emocional", text: "Nombrar, entender y acompañar lo que sientes." },
-  { icon: Star, title: "Perfeccionismo", text: "Descubrir el valor de lo suficiente." },
-  { icon: Users, title: "Relaciones personales", text: "Vincularte desde un lugar más sano." },
-  { icon: Leaf, title: "Crecimiento personal", text: "Un camino de retorno hacia ti." },
-];
+function Inicio() {
+  const resenas = RESENAS_PUBLICADAS.slice(0, 3);
+  const hayGoogle = !esPendiente(SITE.social.googleReviews);
 
-const proceso = [
-  { n: "01", t: "Primera sesión", d: "Un espacio para conocernos, comprender qué te trae y qué te gustaría transformar." },
-  { n: "02", t: "Comprender tu historia", d: "Explorar con calma las raíces de aquello que hoy te limita." },
-  { n: "03", t: "Identificar patrones", d: "Reconocer los guiones internos que sostienen la autoexigencia o la inseguridad." },
-  { n: "04", t: "Trabajar nuevas herramientas", d: "Incorporar recursos prácticos, basados en evidencia, para tu día a día." },
-  { n: "05", t: "Consolidar cambios", d: "Integrar lo aprendido para que la nueva relación contigo sea sostenible." },
-];
-
-const beneficios = [
-  { t: "Aprender a poner límites", d: "Con firmeza y sin culpa." },
-  { t: "Mejorar tu autoestima", d: "Desde el respeto, no desde la exigencia." },
-  { t: "Reducir la autoexigencia", d: "Rebajar el volumen del crítico interior." },
-  { t: "Gestionar mejor tus emociones", d: "Regularte con más comprensión." },
-  { t: "Hablarte con más amabilidad", d: "Cambiar tu diálogo interno." },
-  { t: "Ganar seguridad personal", d: "Confiar en tu propio criterio." },
-  { t: "Construir relaciones más sanas", d: "Vincularte desde la tranquilidad." },
-  { t: "Vivir con más calma", d: "Una vida menos ruidosa por dentro." },
-];
-
-const testimonios = [
-  {
-    text: "Melissa tiene una forma muy particular de acompañar. Nunca me sentí juzgada, y por primera vez pude mirar mi historia con comprensión en lugar de dureza.",
-    name: "Laura M.",
-    role: "Proceso de autoestima",
-  },
-  {
-    text: "Aprendí que descansar no es debilidad. Su trabajo con la autoexigencia ha cambiado mi manera de relacionarme conmigo y con los demás.",
-    name: "Andrea R.",
-    role: "Autoexigencia y perfeccionismo",
-  },
-  {
-    text: "Un espacio realmente seguro. Cada sesión es cuidada, profunda y muy humana. Salgo con herramientas concretas y con más claridad.",
-    name: "Clara S.",
-    role: "Ansiedad e inseguridad",
-  },
-];
-
-function Home() {
   return (
     <Layout>
-      {/* HERO */}
-      <section className="relative pt-28 md:pt-36 pb-16 md:pb-28 overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-40 -right-40 h-[520px] w-[520px] rounded-full bg-sage-soft/50 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute top-1/2 -left-40 h-[420px] w-[420px] rounded-full bg-beige/70 blur-3xl"
-        />
-        <div className="container-editorial relative grid gap-12 md:gap-16 lg:grid-cols-[1.05fr_1fr] items-center">
-          <div className="animate-fade-up">
-            <div className="inline-flex items-center gap-2 rounded-full border border-sage/30 bg-white/70 px-3.5 py-1.5 text-[11px] uppercase tracking-[0.22em] text-sage-deep backdrop-blur-sm">
-              <span className="size-1.5 rounded-full bg-sage" /> Melissa González · Psicóloga
-            </div>
-            <h1 className="mt-6 font-serif text-[40px] leading-[1.05] sm:text-5xl md:text-6xl lg:text-[68px] text-foreground text-balance">
-              Construye una autoestima que no dependa de la
-              <span className="italic text-sage-deep"> aprobación </span>
-              de los demás.
-            </h1>
-            <p className="mt-7 max-w-xl text-[15px] md:text-base leading-relaxed text-muted-foreground">
-              Acompaño a personas que viven atrapadas en la autoexigencia, la inseguridad o el
-              perfeccionismo a desarrollar una autoestima sólida, saludable y auténtica desde un
-              enfoque psicológico basado en evidencia.
+      {/* ═══════════════════ HERO ═══════════════════ */}
+      <section className="aurora grain relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+        <Parallax
+          amount={-40}
+          className="pointer-events-none absolute -top-32 -right-40 -z-10 h-[38rem] w-[38rem] rounded-full bg-olive/15 blur-3xl"
+        >
+          <span className="anim-breathe block h-full w-full" />
+        </Parallax>
+
+        <div className="relative z-10 shell grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
+          <div>
+            <p className="eyebrow anim-fade flex items-center gap-3 text-olive">
+              <span aria-hidden="true" className="inline-block h-px w-8 bg-olive/50" />
+              {HERO.eyebrow}
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link
-                to="/contacto"
-                className="group inline-flex items-center gap-2 rounded-full bg-sage-deep px-6 py-3.5 text-sm text-primary-foreground hover:bg-foreground transition-all duration-500"
-              >
-                Reservar una sesión
-                <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-              <Link
-                to="/servicios"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 backdrop-blur px-6 py-3.5 text-sm text-foreground hover:border-sage-deep hover:text-sage-deep transition-colors"
-              >
-                Conocer cómo puedo ayudarte
-              </Link>
+
+            <LineasReveladas
+              lineas={HERO.titulo}
+              cursiva={HERO.cursiva}
+              delay={120}
+              className="display-xl mt-7 text-ink"
+            />
+
+            <p className="lede anim-fade-up d-5 mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
+              {HERO.entradilla}
+            </p>
+
+            <div
+              className="anim-fade-up mt-10 flex flex-wrap gap-3"
+              style={{ animationDelay: "0.68s" }}
+            >
+              <BotonEnlace to={HERO.ctaPrincipal.to}>{HERO.ctaPrincipal.label}</BotonEnlace>
+              <BotonEnlace to={HERO.ctaSecundario.to} variante="outline" flecha={false}>
+                {HERO.ctaSecundario.label}
+              </BotonEnlace>
             </div>
-            <div className="mt-12 flex items-center gap-6 text-xs uppercase tracking-[0.22em] text-muted-foreground">
-              <span>Terapia online</span>
-              <span className="size-1 rounded-full bg-border" />
-              <span>Basada en evidencia</span>
-              <span className="hidden sm:inline size-1 rounded-full bg-border" />
-              <span className="hidden sm:inline">Espacio seguro</span>
-            </div>
+
+            <ul
+              className="anim-fade mt-12 flex flex-wrap items-center gap-x-5 gap-y-3"
+              style={{ animationDelay: "0.85s" }}
+            >
+              {HERO.sellos.map((s) => (
+                <li key={s} className="eyebrow flex items-center gap-2.5 text-ink-faint">
+                  <span aria-hidden="true" className="size-1 rounded-full bg-olive" />
+                  {s}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="relative animate-fade-up delay-200">
-            <div className="relative mx-auto aspect-[4/5] max-w-md md:max-w-none overflow-hidden rounded-[2rem] bg-sage-soft/50">
+          {/* Retrato circular recortado sobre el fondo */}
+          <div className="relative mx-auto w-full max-w-[26rem] lg:max-w-none">
+            <div className="anim-fade relative aspect-square" style={{ animationDelay: "0.35s" }}>
+              <span
+                aria-hidden="true"
+                className="anim-breathe absolute inset-[-8%] rounded-full bg-aloe/45 blur-2xl"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute inset-[-3%] rounded-full border border-cedar/35"
+              />
               <img
-                src={melissa1}
-                alt="Melissa González, psicóloga especializada en autoestima"
-                className="h-full w-full object-cover"
+                src={retrato}
+                alt="Melissa González, psicóloga general sanitaria y fundadora de Orpheus Psicología"
+                width={788}
+                height={788}
                 loading="eager"
+                fetchPriority="high"
+                decoding="sync"
+                className="relative h-full w-full rounded-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -left-4 md:-left-8 max-w-[220px] rounded-2xl bg-background/95 backdrop-blur border border-border p-4 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.15)]">
-              <p className="font-serif italic text-sage-deep text-sm leading-snug">
-                “La relación más importante de tu vida es la que tienes contigo.”
+
+            <Reveal
+              delay={400}
+              className="absolute -bottom-4 -left-2 max-w-[15rem] rounded-2xl border border-rule bg-linen/95 p-5 backdrop-blur-sm md:-left-8"
+            >
+              <Lira className="h-5 w-5 text-olive" />
+              <p className="mt-3 font-display text-[1.05rem] leading-snug text-cypress italic">
+                «{MITO.cita}»
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
-      </section>
 
-      {/* EN QUÉ PUEDO AYUDARTE — BENTO */}
-      <section className="container-editorial py-20 md:py-32">
-        <Reveal className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.28em] text-sage-deep">En qué puedo ayudarte</p>
-          <h2 className="mt-4 font-serif text-3xl md:text-5xl text-balance">
-            Espacios de trabajo donde <span className="italic">acompaño</span>.
-          </h2>
-        </Reveal>
-
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[minmax(160px,auto)]">
-          {helps.map((h, i) => {
-            const Icon = h.icon;
-            const featured = i === 0;
-            return (
-              <Reveal
-                key={h.title}
-                delay={i * 60}
-                className={`group relative overflow-hidden rounded-2xl border border-border/70 bg-cream p-5 md:p-6 transition-all duration-500 hover:border-sage/60 hover:bg-white ${
-                  featured ? "col-span-2 row-span-2 bg-sage-soft/40 border-sage/40" : ""
-                }`}
-              >
-                <Icon className={`${featured ? "size-7" : "size-5"} text-sage-deep`} strokeWidth={1.4} />
-                <h3 className={`mt-auto ${featured ? "mt-14 text-2xl md:text-3xl" : "mt-10 text-lg"} font-serif`}>
-                  {h.title}
-                </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground max-w-xs">
-                  {h.text}
-                </p>
-                <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-sage-soft/30 to-transparent" />
-              </Reveal>
-            );
-          })}
+        <div className="relative z-10 shell mt-16 hidden md:mt-24 md:block">
+          <span className="eyebrow flex items-center gap-3 text-ink-faint">
+            <ArrowDown className="anim-scroll-hint size-3.5" strokeWidth={1.6} aria-hidden="true" />
+            Sigue bajando
+          </span>
         </div>
       </section>
 
-      {/* MI FORMA DE TRABAJAR */}
-      <section className="bg-cream py-24 md:py-36">
-        <div className="container-editorial grid gap-14 md:gap-20 lg:grid-cols-[1fr_1.1fr] items-center">
-          <Reveal className="relative order-2 lg:order-1">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] max-w-lg mx-auto lg:mx-0">
-              <img
-                src={melissa2}
-                alt="Melissa González en consulta"
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
+      {/* ═══════════════════ MARQUESINA ═══════════════════ */}
+      <div className="border-y border-rule bg-paper py-4 md:py-5">
+        <Marquesina
+          items={MARQUESINA}
+          className="font-display text-[1.15rem] text-cypress/80 md:text-[1.5rem]"
+        />
+      </div>
+
+      {/* ═══════════════════ ¿TE RECONOCES? ═══════════════════ */}
+      <section className="section-y relative" aria-labelledby="reconoces-titulo">
+        <div className="shell grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <Reveal>
+              <Antetitulo>{RECONOCES.eyebrow}</Antetitulo>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 id="reconoces-titulo" className="display-md mt-6">
+                {RECONOCES.titulo}
+              </h2>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="prose-body mt-7 max-w-sm">{RECONOCES.cierre}</p>
+            </Reveal>
+            <Reveal delay={240} className="mt-9">
+              <BotonEnlace to="/contacto" variante="outline">
+                Hablemos de ello
+              </BotonEnlace>
+            </Reveal>
+          </div>
+
+          <ul className="grid gap-x-10 sm:grid-cols-2 lg:gap-x-14">
+            {RECONOCES.items.map((item, i) => (
+              <Reveal
+                as="li"
+                key={item}
+                delay={(i % 7) * 55}
+                className="group border-b border-rule py-5"
+              >
+                <span className="flex gap-4">
+                  <span className="eyebrow mt-1.5 shrink-0 text-olive/70 tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[0.98rem] leading-relaxed font-light text-ink transition-colors duration-500 group-hover:text-cypress">
+                    {item}
+                  </span>
+                </span>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ═══════════════════ EL DESCENSO ═══════════════════ */}
+      <section
+        className="relative isolate overflow-hidden bg-moss text-on-dark"
+        aria-labelledby="descenso-titulo"
+      >
+        <Parallax amount={70} className="absolute inset-0 -z-10 scale-110">
+          <img
+            src={texNiebla}
+            srcSet={`${texNieblaSm} 900w, ${texNiebla} 1800w`}
+            sizes="100vw"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            width={1800}
+            height={1012}
+            className="h-full w-full object-cover opacity-30"
+          />
+        </Parallax>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-moss via-moss/85 to-moss"
+        />
+        <div className="grain-dark absolute inset-0 -z-10" aria-hidden="true" />
+
+        <div className="on-dark shell section-y relative">
+          <div className="grid gap-14 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+            <div>
+              <Reveal>
+                <Antetitulo oscuro>{MITO.eyebrow}</Antetitulo>
+              </Reveal>
+              <Reveal delay={80}>
+                <h2 id="descenso-titulo" className="display-lg mt-6 text-on-dark">
+                  Descender para poder <em className="italic">elevarse</em>.
+                </h2>
+              </Reveal>
+              <Reveal delay={200} className="mt-10">
+                <Lira className="h-14 w-14 text-on-dark/25" strokeWidth={7} />
+              </Reveal>
             </div>
-            <div className="hidden md:block absolute -top-6 -right-6 w-40 rotate-3 rounded-2xl border border-border bg-background p-4">
-              <p className="font-serif italic text-sm text-sage-deep leading-snug">
-                Terapia cercana, humana y basada en evidencia.
-              </p>
+
+            <div className="space-y-7">
+              {MITO.cuerpo.map((p, i) => (
+                <Reveal key={p.slice(0, 24)} delay={i * 90}>
+                  <p className="text-[1.02rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.08rem]">
+                    {p}
+                  </p>
+                </Reveal>
+              ))}
+              <Reveal delay={220}>
+                <hr className="rule-fade-dark my-9" />
+              </Reveal>
+              {FILOSOFIA.parrafos.slice(0, 2).map((p, i) => (
+                <Reveal key={p.slice(0, 24)} delay={i * 90}>
+                  <p className="text-[1.02rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.08rem]">
+                    {p}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal variant="curtain" delay={120} className="mt-20 md:mt-28">
+            <Cita oscuro tamano="lg" className="max-w-4xl">
+              {FILOSOFIA.titulo[0]}
+              <br />
+              {FILOSOFIA.titulo[1]}
+            </Cita>
+          </Reveal>
+
+          <div className="mt-16 grid gap-4 sm:grid-cols-3">
+            {FILOSOFIA.sinLista.map((s, i) => (
+              <Reveal
+                key={s}
+                delay={i * 100}
+                className="border-t border-on-dark/15 pt-5 text-[0.95rem] font-light text-on-dark-muted"
+              >
+                {s}
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={320}>
+            <p className="mt-10 font-display text-[1.35rem] text-on-dark italic md:text-[1.6rem]">
+              {FILOSOFIA.remate}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════ ESPACIOS DE TRABAJO ═══════════════════ */}
+      <section className="section-y relative" aria-labelledby="espacios-titulo">
+        <div className="shell">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-20">
+            <div>
+              <Reveal>
+                <Antetitulo>{ENGRANAJE.eyebrow}</Antetitulo>
+              </Reveal>
+              <Reveal delay={80}>
+                <h2 id="espacios-titulo" className="display-md mt-6">
+                  No trabajo los problemas de forma <em className="italic">aislada</em>.
+                </h2>
+              </Reveal>
+            </div>
+            <Reveal delay={160}>
+              <p className="prose-body">{ENGRANAJE.intro}</p>
+            </Reveal>
+          </div>
+
+          <ul className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+            {ESPACIOS.map((e, i) => (
+              <Reveal
+                as="li"
+                key={e.slug}
+                delay={(i % 6) * 60}
+                className="group relative bg-linen p-7 transition-colors duration-600 hover:bg-paper md:p-8"
+              >
+                <Link
+                  to="/servicios"
+                  hash={e.slug}
+                  className="flex h-full flex-col focus-visible:outline-none"
+                >
+                  <span className="eyebrow text-olive/70 tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-7 font-display text-[1.4rem] leading-tight text-ink md:text-[1.6rem]">
+                    {e.titulo}
+                  </h3>
+                  <p className="mt-2.5 flex-1 text-[0.88rem] leading-relaxed font-light text-ink-muted">
+                    {e.breve}
+                  </p>
+                  <span
+                    aria-hidden="true"
+                    className="mt-6 block h-px w-8 bg-olive/40 transition-all duration-600 group-hover:w-16 group-hover:bg-cypress"
+                  />
+                  <span className="sr-only">Ver más sobre {e.titulo}</span>
+                </Link>
+              </Reveal>
+            ))}
+          </ul>
+
+          <Reveal delay={120} className="mt-12">
+            <BotonEnlace to="/servicios" variante="outline">
+              Ver todos los espacios de trabajo
+            </BotonEnlace>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════ ¿CÓMO TRABAJAREMOS? ═══════════════════ */}
+      <section className="relative overflow-hidden bg-paper" aria-labelledby="recorrido-titulo">
+        <div className="grain absolute inset-0" aria-hidden="true" />
+        <div className="relative z-10 shell section-y">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
+            <div>
+              <Reveal>
+                <Antetitulo>{RECORRIDO.eyebrow}</Antetitulo>
+              </Reveal>
+              <Reveal delay={80}>
+                <h2 id="recorrido-titulo" className="display-md mt-6">
+                  La terapia no es una <em className="italic">línea recta</em>.
+                </h2>
+              </Reveal>
+              <Reveal delay={160}>
+                <p className="prose-body mt-7 max-w-lg">{RECORRIDO.intro}</p>
+              </Reveal>
+            </div>
+
+            <Reveal delay={220} variant="mask">
+              <div className="rounded-2xl border border-rule bg-linen/70 p-6 md:p-8">
+                <DiagramaExpectativaRealidad />
+              </div>
+            </Reveal>
+          </div>
+
+          <RecorridoNoLineal />
+
+          <Reveal delay={100} className="mt-20 md:mt-24">
+            <hr className="rule-fade" />
+            <Cita className="mt-12 max-w-3xl" tamano="sm">
+              {RECORRIDO.cita}
+            </Cita>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════ LO QUE ENCONTRARÁS EN MÍ ═══════════════════ */}
+      <section className="section-y" aria-labelledby="valores-titulo">
+        <div className="shell">
+          <TituloSeccion
+            antetitulo={VALORES.eyebrow}
+            descripcion={VALORES.remate}
+            className="max-w-3xl"
+          >
+            <span id="valores-titulo">
+              Cinco cosas que puedes dar por <em className="italic">hechas</em>.
+            </span>
+          </TituloSeccion>
+
+          <ul className="mt-16 border-t border-rule">
+            {VALORES.items.map((v, i) => (
+              <Reveal
+                as="li"
+                key={v.clave}
+                delay={i * 70}
+                className="group grid gap-4 border-b border-rule py-8 transition-colors duration-600 hover:bg-linen md:grid-cols-[5rem_1fr_1.15fr] md:items-baseline md:gap-10 md:px-4"
+              >
+                <Numero>{String(i + 1).padStart(2, "0")}</Numero>
+                <div>
+                  <h3 className="eyebrow text-olive">{v.clave}</h3>
+                  <p className="mt-3 font-display text-[1.5rem] leading-tight text-ink italic md:text-[1.9rem]">
+                    {v.lema}
+                  </p>
+                </div>
+                <p className="prose-body md:pt-2">{v.texto}</p>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ═══════════════════ GESTIÓN EMOCIONAL ═══════════════════ */}
+      <section
+        className="relative isolate overflow-hidden bg-cypress text-on-dark"
+        aria-labelledby="emociones-titulo"
+      >
+        <Parallax amount={60} className="absolute inset-0 -z-10 scale-110">
+          <img
+            src={texBosque}
+            srcSet={`${texBosqueSm} 800w, ${texBosque} 1600w`}
+            sizes="100vw"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            width={1600}
+            height={1000}
+            className="h-full w-full object-cover opacity-25"
+          />
+        </Parallax>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gradient-to-br from-cypress via-cypress/90 to-moss"
+        />
+        <div className="grain-dark absolute inset-0 -z-10" aria-hidden="true" />
+
+        <div className="on-dark shell section-y relative">
+          <Reveal>
+            <Antetitulo oscuro>{EMOCIONES.eyebrow}</Antetitulo>
+          </Reveal>
+          <h2 id="emociones-titulo" className="display-lg mt-7 text-on-dark">
+            {EMOCIONES.titulo.map((t, i) => (
+              <Reveal key={t} delay={i * 130} variant="up" as="span" className="block">
+                <span className={i === 2 ? "italic" : undefined}>{t}</span>
+              </Reveal>
+            ))}
+          </h2>
+
+          <div className="mt-14 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+            <div className="space-y-6">
+              {EMOCIONES.parrafos.map((p, i) => (
+                <Reveal key={p.slice(0, 20)} delay={i * 90}>
+                  <p className="text-[1.02rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.08rem]">
+                    {p}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+
+            <ol className="space-y-px overflow-hidden rounded-2xl border border-on-dark/15">
+              {EMOCIONES.pasos.map((p, i) => (
+                <Reveal
+                  as="li"
+                  key={p.n}
+                  delay={i * 110}
+                  className="border-b border-on-dark/12 bg-on-dark/[0.04] p-6 last:border-b-0 md:p-7"
+                >
+                  <span className="eyebrow text-on-dark-faint tabular-nums">0{i + 1}</span>
+                  <h3 className="mt-4 font-display text-[1.6rem] text-on-dark">{p.n}</h3>
+                  <p className="mt-2 text-[0.9rem] leading-relaxed font-light text-on-dark-muted">
+                    {p.d}
+                  </p>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+
+          <Reveal variant="curtain" delay={140} className="mt-20">
+            <Cita oscuro tamano="md" className="max-w-3xl">
+              {EMOCIONES.cita[0]}
+              <br />
+              {EMOCIONES.cita[1]}
+            </Cita>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════ SOBRE MÍ (avance) ═══════════════════ */}
+      <section className="section-y" aria-labelledby="sobre-titulo">
+        <div className="shell grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <Reveal variant="scale" className="order-2 lg:order-1">
+            <div className="relative">
+              <Figura
+                src={melissa3}
+                alt="Retrato de Melissa González, psicóloga en Madrid"
+                ratio="4 / 5"
+                width={390}
+                height={393}
+                className="arch mx-auto max-w-sm lg:mx-0 lg:max-w-none"
+              />
+              <div className="absolute -right-3 -bottom-6 rounded-2xl border border-rule bg-linen px-6 py-5 md:-right-8">
+                <p className="font-display text-[2.5rem] leading-none text-cypress">
+                  <Contador hasta={FORMACION.items.length} />
+                </p>
+                <p className="eyebrow mt-2 text-ink-faint">Titulaciones y formaciones</p>
+              </div>
             </div>
           </Reveal>
 
           <div className="order-1 lg:order-2">
             <Reveal>
-              <p className="text-xs uppercase tracking-[0.28em] text-sage-deep">Mi forma de trabajar</p>
-              <h2 className="mt-4 font-serif text-3xl md:text-5xl text-balance">
-                Un espacio para <span className="italic">habitarte</span> sin juicio.
+              <Antetitulo>Sobre mí</Antetitulo>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 id="sobre-titulo" className="display-md mt-6">
+                Descubrí la psicología buscando <em className="italic">entenderme</em>.
               </h2>
-              <p className="mt-6 text-muted-foreground leading-relaxed max-w-xl">
-                No creo en la psicología fría ni en las recetas rápidas. Creo en un
-                acompañamiento profundo, cercano y adaptado a ti, donde puedas dejar de
-                exigirte tanto y empezar a construir una relación más sana contigo.
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="prose-body mt-7 max-w-xl">
+                Durante años viví bajo una autoexigencia silenciosa que confundía con
+                responsabilidad. Ese camino personal es el que me llevó a la psicología y el que dio
+                forma a la profesional que soy hoy.
+              </p>
+            </Reveal>
+            <Reveal delay={220}>
+              <p className="mt-6 font-display text-[1.35rem] text-cypress italic md:text-[1.6rem]">
+                {HISTORIA_CITA}
               </p>
             </Reveal>
 
-            <div className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-6">
-              {[
-                ["Terapia personalizada", "Cada proceso se diseña contigo, a tu ritmo."],
-                ["Escucha activa", "Un espacio donde ser realmente escuchada."],
-                ["Evidencia científica", "Herramientas con base clínica sólida."],
-                ["Espacio seguro", "Sin juicio, con confidencialidad total."],
-                ["Comprensión sin juicio", "Mirar tu historia con respeto."],
-                ["Herramientas prácticas", "Recursos que puedes integrar en tu día."],
-                ["Objetivos adaptados", "Metas realistas y sostenibles."],
-                ["Acompañamiento cercano", "Presente en cada paso del camino."],
-              ].map(([t, d], i) => (
-                <Reveal key={t} delay={i * 50} className="border-t border-border/70 pt-4">
-                  <h4 className="font-serif text-lg text-foreground">{t}</h4>
-                  <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{d}</p>
+            <div className="mt-10 grid gap-x-10 gap-y-5 sm:grid-cols-2">
+              {ENFOQUE.modelos.map((m, i) => (
+                <Reveal key={m.t} delay={i * 70} className="border-t border-rule pt-4">
+                  <h3 className="font-display text-[1.1rem] text-ink">{m.t}</h3>
+                  <p className="mt-1.5 text-[0.85rem] leading-relaxed font-light text-ink-muted">
+                    {m.d}
+                  </p>
                 </Reveal>
               ))}
             </div>
+
+            <Reveal delay={200} className="mt-10">
+              <BotonEnlace to="/sobre-mi" variante="outline">
+                Conocer mi historia
+              </BotonEnlace>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* CUANDO LA AUTOEXIGENCIA TOMA EL CONTROL */}
-      <section className="container-editorial py-24 md:py-36">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] items-start">
-          <Reveal>
-            <p className="text-xs uppercase tracking-[0.28em] text-sage-deep">Un momento honesto</p>
-            <h2 className="mt-4 font-serif text-3xl md:text-5xl text-balance">
-              Cuando la autoexigencia toma el <span className="italic">control</span>.
-            </h2>
-          </Reveal>
-          <div className="space-y-6 text-[15px] md:text-base leading-relaxed text-foreground/85">
+      {/* ═══════════════════ RESEÑAS ═══════════════════ */}
+      {resenas.length > 0 ? (
+        <section className="relative overflow-hidden bg-paper" aria-labelledby="resenas-titulo">
+          <div className="grain absolute inset-0" aria-hidden="true" />
+          <div className="relative z-10 shell section-y">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <Reveal>
+                  <Antetitulo>Reseñas</Antetitulo>
+                </Reveal>
+                <Reveal delay={80}>
+                  <h2 id="resenas-titulo" className="display-md mt-6 max-w-xl">
+                    Palabras de quienes han <em className="italic">caminado</em> este proceso.
+                  </h2>
+                </Reveal>
+              </div>
+              {hayGoogle ? (
+                <Reveal delay={160}>
+                  <a
+                    href={SITE.social.googleReviews}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 rounded-full border border-rule bg-linen px-5 py-3 text-[0.78rem] text-ink transition-colors duration-500 hover:border-olive"
+                  >
+                    <BadgeCheck className="size-4 text-cypress" strokeWidth={1.6} />
+                    Reseñas verificadas en Google
+                  </a>
+                </Reveal>
+              ) : null}
+            </div>
+
+            <ul className="mt-14 grid gap-5 md:grid-cols-3">
+              {resenas.map((r, i) => (
+                <Reveal
+                  as="li"
+                  key={r.nombre + i}
+                  delay={i * 110}
+                  className="card-paper card-hover-lift flex flex-col p-7 md:p-8"
+                >
+                  <div className="flex gap-1" aria-label={`${r.estrellas ?? 5} de 5 estrellas`}>
+                    {Array.from({ length: r.estrellas ?? 5 }).map((_, s) => (
+                      <Star key={s} className="size-3.5 fill-olive text-olive" aria-hidden="true" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 flex-1 font-display text-[1.15rem] leading-snug text-ink md:text-[1.3rem]">
+                    «{r.texto}»
+                  </blockquote>
+                  <footer className="mt-7 border-t border-rule pt-5">
+                    <p className="text-[0.85rem] text-ink">{r.nombre}</p>
+                    {r.contexto ? (
+                      <p className="mt-0.5 text-[0.75rem] font-light text-ink-faint">
+                        {r.contexto}
+                      </p>
+                    ) : null}
+                  </footer>
+                </Reveal>
+              ))}
+            </ul>
+
+            <Reveal delay={120} className="mt-12">
+              <Link to="/testimonios" className="link-draw text-[0.85rem] text-cypress">
+                Leer todas las reseñas
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
+      {/* ═══════════════════ PREGUNTAS FRECUENTES ═══════════════════ */}
+      <section className="section-y relative overflow-hidden" aria-labelledby="faq-titulo">
+        {/* Recorte fotográfico girado, al modo de un tablero de inspiración */}
+        <Parallax
+          amount={-34}
+          className="pointer-events-none absolute -top-6 -left-24 hidden w-56 -rotate-6 lg:block"
+        >
+          <img
+            src={texMontanasSm}
+            alt=""
+            aria-hidden="true"
+            width={900}
+            height={506}
+            loading="lazy"
+            className="rounded-lg border border-rule opacity-70"
+          />
+        </Parallax>
+        <Parallax
+          amount={40}
+          className="pointer-events-none absolute -right-20 bottom-16 hidden w-52 rotate-6 lg:block"
+        >
+          <img
+            src={texSenderoSm}
+            alt=""
+            aria-hidden="true"
+            width={640}
+            height={800}
+            loading="lazy"
+            className="rounded-lg border border-rule opacity-60"
+          />
+        </Parallax>
+
+        <div className="relative z-10 shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <Reveal>
+              <Antetitulo>Dudas frecuentes</Antetitulo>
+            </Reveal>
             <Reveal delay={80}>
-              <p>
-                A veces la exigencia se disfraza de responsabilidad, de ambición o de amor.
-                Pero cuando nunca es suficiente, cuando descansar produce culpa, cuando
-                cualquier logro se evapora antes de poder sentirlo, el cuerpo y la mente
-                empiezan a pagar un precio invisible.
-              </p>
+              <h2 id="faq-titulo" className="display-md mt-6">
+                Lo que casi todo el mundo se <em className="italic">pregunta</em>.
+              </h2>
             </Reveal>
-            <Reveal delay={160}>
-              <p>
-                Vivir bajo esa presión constante puede erosionar la autoestima, tensar las
-                relaciones y convertir la vida en una sucesión de metas que nunca alcanzan
-                para calmar la voz interior. No se trata de dejar de esforzarse: se trata de
-                dejar de exigirse desde un lugar que hace daño.
-              </p>
-            </Reveal>
-            <Reveal delay={240}>
-              <p className="pt-2 font-serif italic text-lg text-sage-deep">
-                No necesitas rendir más. Necesitas empezar a relacionarte contigo de otra manera.
-              </p>
+            <Reveal delay={160} className="mt-8">
+              <BotonEnlace to="/servicios" hash="preguntas" variante="outline">
+                Ver todas las preguntas
+              </BotonEnlace>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* PROCESO — TIMELINE */}
-      <section className="bg-moss/60 py-24 md:py-36">
-        <div className="container-editorial">
-          <Reveal className="max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-sage-deep">Cómo es el proceso</p>
-            <h2 className="mt-4 font-serif text-3xl md:text-5xl text-balance">
-              Un camino con <span className="italic">calma</span>, paso a paso.
-            </h2>
+          <Reveal delay={120} className="rounded-2xl border border-rule bg-linen/80 p-6 md:p-9">
+            <Acordeon items={FAQ.slice(0, 6)} abiertoInicial={0} />
           </Reveal>
-
-          <ol className="mt-16 relative">
-            <div aria-hidden className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-sage/30" />
-            {proceso.map((p, i) => (
-              <Reveal
-                key={p.n}
-                delay={i * 80}
-                as="li"
-                className={`relative pl-14 md:pl-0 md:grid md:grid-cols-2 md:gap-16 py-8 md:py-10 ${
-                  i % 2 === 0 ? "md:[&>div:first-child]:text-right md:[&>div:first-child]:pr-16" : "md:[&>div:first-child]:order-2 md:[&>div:first-child]:pl-16"
-                }`}
-              >
-                <div>
-                  <span className="font-serif text-xs tracking-[0.3em] text-sage-deep">{p.n}</span>
-                  <h3 className="mt-2 font-serif text-2xl md:text-3xl">{p.t}</h3>
-                </div>
-                <div className={i % 2 === 0 ? "md:pl-16 md:border-l md:border-sage/20" : "md:pr-16 md:border-r md:border-sage/20 md:order-1 md:text-right"}>
-                  <p className="text-muted-foreground leading-relaxed max-w-md md:max-w-none">{p.d}</p>
-                </div>
-                <span
-                  aria-hidden
-                  className="absolute left-3.5 md:left-1/2 top-10 md:top-12 -translate-x-1/2 size-3 rounded-full bg-background border-2 border-sage-deep"
-                />
-              </Reveal>
-            ))}
-          </ol>
         </div>
       </section>
 
-      {/* BENEFICIOS — BENTO */}
-      <section className="container-editorial py-24 md:py-36">
-        <Reveal className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.28em] text-sage-deep">Beneficios</p>
-          <h2 className="mt-4 font-serif text-3xl md:text-5xl text-balance">
-            Lo que empieza a cambiar <span className="italic">dentro</span>.
-          </h2>
-        </Reveal>
-
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(140px,auto)] gap-3 md:gap-4">
-          {beneficios.map((b, i) => {
-            const big = i === 0 || i === 5;
-            return (
-              <Reveal
-                key={b.t}
-                delay={i * 50}
-                className={`group rounded-2xl border border-border/70 p-6 transition-all duration-500 hover:border-sage/60 ${
-                  big ? "sm:col-span-2 bg-sage-deep text-primary-foreground border-transparent" : "bg-cream hover:bg-white"
-                }`}
-              >
-                <span className={`text-xs tracking-[0.22em] uppercase ${big ? "text-sage-soft" : "text-sage-deep"}`}>
-                  0{i + 1}
-                </span>
-                <h3 className={`mt-8 font-serif ${big ? "text-2xl md:text-3xl" : "text-xl"}`}>{b.t}</h3>
-                <p className={`mt-2 text-[13px] leading-relaxed ${big ? "text-primary-foreground/75" : "text-muted-foreground"}`}>
-                  {b.d}
-                </p>
-              </Reveal>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* TESTIMONIOS */}
-      <section className="bg-cream py-24 md:py-36">
-        <div className="container-editorial">
-          <Reveal className="max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-sage-deep">Testimonios</p>
-            <h2 className="mt-4 font-serif text-3xl md:text-5xl text-balance">
-              Palabras de quienes han <span className="italic">caminado</span> este proceso.
-            </h2>
-          </Reveal>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {testimonios.map((t, i) => (
-              <Reveal
-                key={t.name}
-                delay={i * 100}
-                className="rounded-2xl border border-border/70 bg-background p-7 md:p-8 flex flex-col"
-              >
-                <div className="text-sage-deep font-serif text-4xl leading-none">“</div>
-                <p className="mt-4 font-serif text-lg md:text-xl leading-snug text-foreground/90 text-balance">
-                  {t.text}
-                </p>
-                <div className="mt-8 pt-6 border-t border-border/70">
-                  <p className="text-sm font-medium">{t.name}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{t.role}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <Link
-              to="/testimonios"
-              className="link-underline text-sm text-sage-deep tracking-wide"
-            >
-              Leer más testimonios
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA FINAL */}
-      <section className="container-editorial py-24 md:py-36">
-        <Reveal className="relative overflow-hidden rounded-[2rem] bg-sage-deep text-primary-foreground px-8 md:px-16 py-20 md:py-28 text-center">
-          <div aria-hidden className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-eucalyptus/25 blur-3xl" />
-          <div aria-hidden className="absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-sage-soft/20 blur-3xl" />
-          <p className="relative text-xs uppercase tracking-[0.28em] text-sage-soft">Un nuevo comienzo</p>
-          <h2 className="relative mt-5 font-serif text-3xl md:text-5xl lg:text-6xl max-w-3xl mx-auto text-balance">
-            No necesitas convertirte en otra persona para sentirte suficiente. A veces solo
-            necesitas <span className="italic">aprender a mirarte</span> desde un lugar diferente.
-          </h2>
-          <div className="relative mt-10">
-            <Link
-              to="/contacto"
-              className="inline-flex items-center gap-2 rounded-full bg-background text-foreground px-7 py-4 text-sm hover:bg-cream transition-colors"
-            >
-              Quiero comenzar mi proceso
-              <ArrowUpRight className="size-4" />
-            </Link>
-          </div>
-        </Reveal>
-      </section>
+      {/* ═══════════════════ CTA FINAL ═══════════════════ */}
+      <CtaFinal />
     </Layout>
+  );
+}
+
+const HISTORIA_CITA = "Creo en la psicología como un lugar donde volver a mirarse con respeto.";
+
+export function CtaFinal() {
+  return (
+    <section className="shell pb-20 md:pb-28" aria-labelledby="cta-final-titulo">
+      <Reveal
+        variant="scale"
+        className="aurora-deep grain-dark on-dark relative isolate overflow-hidden rounded-3xl px-7 py-20 text-center md:px-16 md:py-28"
+      >
+        <Lira
+          className="pointer-events-none absolute -top-10 -left-10 h-56 w-56 text-on-dark/[0.06]"
+          strokeWidth={6}
+        />
+        <Lira
+          className="pointer-events-none absolute -right-12 -bottom-14 h-64 w-64 text-on-dark/[0.06]"
+          strokeWidth={6}
+        />
+        <div className="relative z-10">
+          <Antetitulo oscuro className="justify-center">
+            {CTA_FINAL.eyebrow}
+          </Antetitulo>
+          <h2 id="cta-final-titulo" className="display-lg mx-auto mt-7 max-w-3xl text-on-dark">
+            No tienes que tenerlo todo <em className="italic">claro</em> para empezar.
+          </h2>
+          <p className="mx-auto mt-7 max-w-xl text-[1.02rem] leading-relaxed font-light text-on-dark-muted">
+            {CTA_FINAL.texto}
+          </p>
+          <div className="mt-11 flex flex-wrap justify-center gap-3">
+            <BotonEnlace to="/contacto" variante="light">
+              {CTA_FINAL.boton}
+            </BotonEnlace>
+            <BotonEnlace to="/servicios" variante="ghost-dark" flecha={false}>
+              Ver cómo trabajo
+            </BotonEnlace>
+          </div>
+        </div>
+      </Reveal>
+    </section>
   );
 }
