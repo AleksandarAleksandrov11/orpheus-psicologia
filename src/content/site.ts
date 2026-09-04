@@ -60,9 +60,15 @@ export const SITE = {
     instagram: "https://www.instagram.com/orpheus.psicologia/",
     instagramHandle: "@orpheus.psicologia",
     linkedin: "",
-    /** Ficha de Google Business Profile — de aquí salen las reseñas verificadas. */
-    google: PENDIENTE("enlace a la ficha de Google"),
-    googleReviews: PENDIENTE("enlace a las reseñas de Google"),
+    /**
+     * Reseñas públicas en Google. Enlace facilitado por Melissa.
+     * Si algún día dejara de funcionar, el sustituto estable es el enlace
+     * corto «Pedir reseñas» de su perfil de Google Business.
+     */
+    google:
+      "https://www.google.com/search?sca_esv=3c55bf5454ea7bc9&rlz=1C1CHBF_esES1078ES1078&sxsrf=APpeQntwI8PTLc-YNOTitstxxBsvV_Lgfg:1788551795224&q=orpheus+psicologia&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_wQUKsrugIk-GK2TKAx1AuFfRbwP7Eb4sZ1g9hOn_lGKP7oA9yXkpye9QUZj72bprJRldX8%3D&uds=AJ5uw1-YMpuyF7uCL7tivJR8dYckATjsfvSeKr5f9rA8L5FmJhTtUvDWjz1pQfCMZPTsxc8SlFa0eULMeew8RuqpVtuS9KybXs4mF1TTXYhR4Uc8wRcawno&sa=X&ved=2ahUKEwifparT2tWWAxXk9LsIHe_ILwkQ3PALegQIKhAF&biw=1745&bih=835&dpr=1.1#sv=CAESzQEKuQEStgEKd0FKaVQ0dElWdjlKQjhTYkY2RkZDbG5BMlFNVk81YnNwR0RQbFZRYmo0SGJ4VWZ0VHpDWmJSbEZhTWt2NndYc0YxcWdJbk9OMXlmUlJHY2V0Z29FellYdFVLa2R6ZmltREowVzJJNkwwUGZ3LUlTeGRpNUlsc3RVEhdkaUtiYXRDQklweTc5dThQak5xVzBBNBoiQURzcjlmUTZlTjJVdUh3RVpfUHBIXzhDbkFxdGYwVTYwdxIEODA1MRoBMyoAMAA4AUAAGAAgu8KE9Q1KAhAB",
+    googleReviews:
+      "https://www.google.com/search?sca_esv=3c55bf5454ea7bc9&rlz=1C1CHBF_esES1078ES1078&sxsrf=APpeQntwI8PTLc-YNOTitstxxBsvV_Lgfg:1788551795224&q=orpheus+psicologia&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_wQUKsrugIk-GK2TKAx1AuFfRbwP7Eb4sZ1g9hOn_lGKP7oA9yXkpye9QUZj72bprJRldX8%3D&uds=AJ5uw1-YMpuyF7uCL7tivJR8dYckATjsfvSeKr5f9rA8L5FmJhTtUvDWjz1pQfCMZPTsxc8SlFa0eULMeew8RuqpVtuS9KybXs4mF1TTXYhR4Uc8wRcawno&sa=X&ved=2ahUKEwifparT2tWWAxXk9LsIHe_ILwkQ3PALegQIKhAF&biw=1745&bih=835&dpr=1.1#sv=CAESzQEKuQEStgEKd0FKaVQ0dElWdjlKQjhTYkY2RkZDbG5BMlFNVk81YnNwR0RQbFZRYmo0SGJ4VWZ0VHpDWmJSbEZhTWt2NndYc0YxcWdJbk9OMXlmUlJHY2V0Z29FellYdFVLa2R6ZmltREowVzJJNkwwUGZ3LUlTeGRpNUlsc3RVEhdkaUtiYXRDQklweTc5dThQak5xVzBBNBoiQURzcjlmUTZlTjJVdUh3RVpfUHBIXzhDbkFxdGYwVTYwdxIEODA1MRoBMyoAMAA4AUAAGAAgu8KE9Q1KAhAB",
   },
 
   /** Modalidades de atención */

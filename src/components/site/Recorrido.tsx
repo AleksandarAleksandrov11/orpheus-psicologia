@@ -45,6 +45,36 @@ const CURVA = [
   "C 626 1012, 646 1036, 660 1056",
 ].join(" ");
 
+/**
+ * Longitud real del trazo, en píxeles de pantalla.
+ *
+ * `getTotalLength()` devuelve la longitud en unidades del viewBox, pero el
+ * trazo lleva `vector-effect: non-scaling-stroke`, y con esa propiedad el
+ * navegador calcula el patrón de guiones en el espacio de la pantalla. Como
+ * además el SVG se estira con `preserveAspectRatio="none"` (la escala no es
+ * uniforme), ambas magnitudes no coinciden y el último tramo de la curva se
+ * quedaba sin dibujar. Se mide muestreando la curva y llevando cada punto a
+ * coordenadas de pantalla con la matriz del SVG.
+ */
+function largoEnPantalla(path: SVGPathElement): number {
+  const total = path.getTotalLength();
+  const ctm = path.getScreenCTM();
+  if (!ctm) return total;
+
+  const MUESTRAS = 240;
+  let suma = 0;
+  let previo: DOMPoint | null = null;
+  for (let i = 0; i <= MUESTRAS; i++) {
+    const q = path.getPointAtLength((total * i) / MUESTRAS);
+    const punto = new DOMPoint(q.x, q.y).matrixTransform(ctm);
+    if (previo) suma += Math.hypot(punto.x - previo.x, punto.y - previo.y);
+    previo = punto;
+  }
+  // El muestreo por cuerdas se queda algo corto en las curvas: un margen
+  // pequeño garantiza que el trazo llegue siempre hasta el último nodo.
+  return suma * 1.02;
+}
+
 export function RecorridoNoLineal() {
   const { ref, progreso } = useScrollProgress<HTMLDivElement>();
   const pathRef = useRef<SVGPathElement>(null);
@@ -52,8 +82,14 @@ export function RecorridoNoLineal() {
   const maximo = useRef(0);
   const reducido = useReducedMotion();
 
+  // Se remide al cambiar el tamaño: la escala del SVG depende del ancho.
   useEffect(() => {
-    if (pathRef.current) setLargo(pathRef.current.getTotalLength());
+    const medir = () => {
+      if (pathRef.current) setLargo(largoEnPantalla(pathRef.current));
+    };
+    medir();
+    window.addEventListener("resize", medir, { passive: true });
+    return () => window.removeEventListener("resize", medir);
   }, []);
 
   // El trazo empieza a dibujarse cuando la sección entra de verdad en pantalla.

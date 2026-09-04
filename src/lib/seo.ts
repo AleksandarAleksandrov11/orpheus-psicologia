@@ -106,6 +106,10 @@ export function seo({
    DATOS ESTRUCTURADOS
    ══════════════════════════════════════════════════════════════════ */
 
+/** Descarta los perfiles vacíos o aún sin completar antes de publicarlos en `sameAs`. */
+const perfilesPublicos = (urls: readonly string[]): string[] =>
+  urls.filter((u) => Boolean(u) && !esPendiente(u));
+
 const ID = {
   organizacion: `${SITE.url}/#organizacion`,
   web: `${SITE.url}/#website`,
@@ -114,9 +118,11 @@ const ID = {
 
 /** Perfil profesional de Melissa. */
 export function personaSchema() {
-  const sameAs = [SITE.social.instagram, SITE.social.linkedin, SITE.social.google].filter(
-    (u): u is string => Boolean(u) && !esPendiente(u),
-  );
+  const sameAs = perfilesPublicos([
+    SITE.social.instagram,
+    SITE.social.linkedin,
+    SITE.social.google,
+  ]);
   return {
     "@type": "Person",
     "@id": ID.persona,
@@ -164,9 +170,7 @@ export function personaSchema() {
 
 /** Ficha del servicio profesional: lo que Google usa para el knowledge panel local. */
 export function negocioSchema() {
-  const sameAs = [SITE.social.instagram, SITE.social.google].filter(
-    (u): u is string => Boolean(u) && !esPendiente(u),
-  );
+  const sameAs = perfilesPublicos([SITE.social.instagram, SITE.social.google]);
   return {
     "@type": ["ProfessionalService", "MedicalBusiness", "Psychologist"],
     "@id": ID.organizacion,
