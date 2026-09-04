@@ -6,13 +6,11 @@ import { Marca } from "./ui";
 export function Nav() {
   const { pathname } = useLocation();
   const [compacta, setCompacta] = useState(false);
-  const [oculta, setOculta] = useState(false);
   const [menu, setMenu] = useState(false);
   const [progreso, setProgreso] = useState(0);
-  const ultimoY = useRef(0);
   const botonMenu = useRef<HTMLButtonElement>(null);
 
-  /* Barra reactiva: se compacta al bajar y se esconde al seguir bajando. */
+  /* La barra permanece siempre visible; al bajar solo gana fondo y filete. */
   useEffect(() => {
     let ticking = false;
     const actualizar = () => {
@@ -21,8 +19,6 @@ export function Nav() {
       const alto = document.documentElement.scrollHeight - window.innerHeight;
       setProgreso(alto > 0 ? Math.min(1, y / alto) : 0);
       setCompacta(y > 24);
-      setOculta(y > 260 && y > ultimoY.current + 4);
-      ultimoY.current = y;
     };
     const onScroll = () => {
       if (!ticking) {
@@ -68,9 +64,7 @@ export function Nav() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-[70] transition-[transform,background-color,border-color,backdrop-filter] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          oculta && !menu ? "-translate-y-full" : "translate-y-0"
-        } ${
+        className={`fixed inset-x-0 top-0 z-[70] transition-[background-color,border-color,backdrop-filter] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           compacta && !menu
             ? "border-b border-rule/70 bg-bone/85 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent"
@@ -80,7 +74,7 @@ export function Nav() {
           <Link
             to="/"
             onClick={alInicio("/")}
-            aria-label={`${SITE.name} — ir al inicio`}
+            aria-label={`Ir al inicio de ${SITE.name}`}
             className="group text-ink transition-opacity duration-500 hover:opacity-70"
           >
             <Marca />

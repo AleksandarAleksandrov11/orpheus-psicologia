@@ -50,7 +50,7 @@ export const FILOSOFIA = {
     "Orpheus entiende el proceso terapéutico como un descenso hacia aquello que no siempre queremos o sabemos mirar: nuestras heridas, emociones, patrones, miedos, contradicciones y partes desconocidas.",
     "Porque solo cuando somos capaces de descender hacia ellas podemos después elevarnos: vivir con más libertad, coherencia, serenidad y sentido.",
     "Aquí no creemos que haya nada roto en ti que tengas que arreglar. Creemos que muchas veces necesitamos comprender antes de cambiar.",
-    "Por eso mi trabajo no consiste en darte una lista de consejos para que seas una versión «mejor» de ti misma, sino en ayudarte a entender qué hay detrás de lo que sientes, identificar los patrones que hoy te están limitando y construir nuevas formas de relacionarte contigo y con los demás.",
+    "Por eso mi trabajo no consiste en darte una lista de consejos para que seas una versión «mejor» de ti, sino en ayudarte a entender qué hay detrás de lo que sientes, identificar los patrones que hoy te están limitando y construir nuevas formas de relacionarte contigo y con los demás.",
   ],
   sinLista: [
     "Sin etiquetas que te definan.",
@@ -115,7 +115,7 @@ export const RECONOCES = {
     "Sientes que desde fuera todo parece estar bien, pero por dentro algo no termina de encajar.",
   ],
   cierre:
-    "Y quizá estés cansada de saber lo que «deberías» hacer, pero no saber cómo dejar de sentirte así.",
+    "Y quizá lleves tiempo sabiendo lo que «deberías» hacer, sin saber cómo dejar de sentirte así.",
 } as const;
 
 /* ══════════════════════════════════════════════════════════════════
@@ -200,7 +200,7 @@ export const RECORRIDO = {
     "Aprender",
     "Practicar",
     "Fallar",
-    "Sentirse perdida",
+    "Perderse",
     "Entender",
     "Tener problemas",
     "Lograrlo",
@@ -342,7 +342,7 @@ export const ENFOQUE = {
       d: "Para poner en escena lo que cuesta explicar con palabras y verlo desde fuera.",
     },
   ],
-  nota: "La evidencia científica no está aquí para impresionarte, sino para que lo que hagamos juntas tenga sentido y funcione.",
+  nota: "La evidencia científica no está aquí para impresionarte, sino para que el trabajo que hagamos tenga sentido y funcione.",
 } as const;
 
 /* ══════════════════════════════════════════════════════════════════
@@ -400,7 +400,7 @@ export const ESPACIO_SEGURO = {
     },
     {
       t: "Tu ritmo",
-      d: "No hay prisa por llegar a ningún sitio. Miramos lo que duele cuando estás preparada para mirarlo.",
+      d: "No hay prisa por llegar a ningún sitio. Miramos lo que duele cuando te sientes preparado o preparada para mirarlo.",
     },
     {
       t: "Rigor y ética",
@@ -426,7 +426,7 @@ export const SESIONES = [
     duracion: "60 minutos",
     precio: "",
     resumen:
-      "Un espacio para conocernos, contarme qué te trae y decidir juntas si quieres empezar. Sin compromiso de continuidad.",
+      "Un espacio para conocernos, contarme qué te trae y decidir si quieres empezar. Sin compromiso de continuidad.",
     incluye: [
       "Exploración de tu motivo de consulta",
       "Contexto de tu historia y tu momento vital",
@@ -437,7 +437,7 @@ export const SESIONES = [
   {
     slug: "terapia-individual",
     titulo: "Terapia individual",
-    duracion: "50–60 minutos",
+    duracion: "50 a 60 minutos",
     precio: "",
     resumen:
       "El proceso completo. Un acompañamiento continuado y personalizado donde trabajamos aquello que te trajo y aquello que aparece por el camino.",
@@ -452,7 +452,7 @@ export const SESIONES = [
   {
     slug: "online",
     titulo: "Terapia online",
-    duracion: "50–60 minutos",
+    duracion: "50 a 60 minutos",
     precio: "",
     resumen:
       "La misma profundidad, desde donde estés. Videollamada segura y cifrada, con la misma continuidad que la consulta presencial.",
@@ -469,7 +469,7 @@ export const FRECUENCIA = {
   eyebrow: "Ritmo del proceso",
   titulo: "¿Cada cuánto nos veremos?",
   texto:
-    "Al principio solemos vernos cada semana, porque el proceso necesita continuidad para coger tracción. A medida que avanzas, espaciamos las sesiones cada quince días y después una vez al mes, hasta que el acompañamiento deja de ser necesario. La frecuencia la decidimos juntas y se revisa las veces que haga falta.",
+    "Al principio solemos vernos cada semana, porque el proceso necesita continuidad para coger tracción. A medida que avanzas, espaciamos las sesiones cada quince días y después una vez al mes, hasta que el acompañamiento deja de ser necesario. La frecuencia la decidimos contigo y se revisa las veces que haga falta.",
   fases: [
     { t: "Semanal", d: "Fase inicial. Construimos la relación y ordenamos el mapa." },
     { t: "Quincenal", d: "Fase de trabajo. Hay margen para practicar entre sesiones." },
@@ -511,11 +511,11 @@ export const EMPRESAS = {
 export const FAQ = [
   {
     q: "¿Cómo sé si necesito ir a terapia?",
-    a: "No hace falta estar en crisis para pedir ayuda. Si llevas tiempo sintiendo que algo no encaja, si repites patrones que no te hacen bien o si estás agotada de exigirte, eso ya es motivo suficiente. La terapia no es solo para reparar: también sirve para comprenderte y para vivir con más margen.",
+    a: "No hace falta estar en crisis para pedir ayuda. Si llevas tiempo sintiendo que algo no encaja, si repites patrones que no te hacen bien o si estás agotado o agotada de exigirte, eso ya es motivo suficiente. La terapia no es solo para reparar: también sirve para comprenderte y para vivir con más margen.",
   },
   {
     q: "¿Cuánto dura un proceso terapéutico?",
-    a: "Depende de lo que traigas y de tu momento vital. Hay procesos breves y focalizados de dos o tres meses, y procesos más profundos que se sostienen durante más tiempo. Lo revisamos juntas de forma periódica y el objetivo siempre es que puedas seguir por tu cuenta, no que dependas de la terapia.",
+    a: "Depende de lo que traigas y de tu momento vital. Hay procesos breves y focalizados de dos o tres meses, y procesos más profundos que se sostienen durante más tiempo. Lo revisamos contigo de forma periódica y el objetivo siempre es que puedas seguir por tu cuenta, no que dependas de la terapia.",
   },
   {
     q: "¿Con qué frecuencia son las sesiones?",

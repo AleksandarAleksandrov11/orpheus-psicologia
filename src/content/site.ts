@@ -10,7 +10,7 @@
  */
 
 /** Marcador de dato pendiente de confirmar por la clienta. */
-export const PENDIENTE = (etiqueta: string) => `[${etiqueta} — pendiente]`;
+export const PENDIENTE = (etiqueta: string) => `[falta ${etiqueta}]`;
 
 export const SITE = {
   /** Dominio canónico, sin barra final. Configurable en Vercel con VITE_SITE_URL. */
@@ -29,7 +29,7 @@ export const SITE = {
     nombre: "Melissa González",
     titulo: "Psicóloga General Sanitaria",
     // Nº de colegiada: obligatorio mostrarlo públicamente (Ley 44/2003).
-    colegiada: PENDIENTE("Nº de colegiada"),
+    colegiada: "M-39711",
     colegio: "Colegio Oficial de la Psicología de Madrid",
   },
 
@@ -51,7 +51,7 @@ export const SITE = {
     ciudad: "Madrid",
     region: "Comunidad de Madrid",
     direccion: PENDIENTE("dirección de consulta"),
-    horario: "Lunes a viernes, 9:00 – 20:00",
+    horario: "Lunes a viernes, de 9:00 a 20:00",
     respuesta: "Respondo personalmente en un máximo de 48 h laborables.",
   },
 

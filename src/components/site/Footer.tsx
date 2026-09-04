@@ -28,7 +28,7 @@ export function Footer() {
         <div className="md:col-span-5">
           <Link
             to="/"
-            aria-label={`${SITE.name} — inicio`}
+            aria-label={`Ir al inicio de ${SITE.name}`}
             className="inline-flex items-center gap-3"
           >
             <Lira className="h-9 w-9 text-on-dark" />

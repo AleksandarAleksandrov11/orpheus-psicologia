@@ -1,28 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, BadgeCheck, Quote } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 import { Layout } from "@/components/site/Layout";
-import { Contador, LineasReveladas, Marquesina, Parallax, Reveal } from "@/components/site/motion";
-import {
-  Acordeon,
-  Antetitulo,
-  BotonEnlace,
-  Cita,
-  Figura,
-  Lira,
-  Numero,
-  TituloSeccion,
-} from "@/components/site/ui";
+import { LineasReveladas, Marquesina, Parallax, Reveal } from "@/components/site/motion";
+import { Antetitulo, BotonEnlace, Cita, Lira, Numero, TituloSeccion } from "@/components/site/ui";
 import { DiagramaExpectativaRealidad, RecorridoNoLineal } from "@/components/site/Recorrido";
 import {
   CTA_FINAL,
   EMOCIONES,
   ENGRANAJE,
-  ENFOQUE,
   ESPACIOS,
-  FAQ,
   FILOSOFIA,
-  FORMACION,
   HERO,
   MARQUESINA,
   MITO,
@@ -30,18 +18,13 @@ import {
   RECORRIDO,
   VALORES,
 } from "@/content/copy";
-import { SITE, esPendiente } from "@/content/site";
-import { RESENAS_DESTACADAS, TOTAL_RESENAS, mesDeResena } from "@/content/resenas";
-import { faqSchema, seo } from "@/lib/seo";
+import { seo } from "@/lib/seo";
 
 import retrato from "@/assets/melissa-retrato.webp";
-import melissa3 from "@/assets/melissa-3.webp";
 import texNiebla from "@/assets/tex-niebla.webp";
 import texNieblaSm from "@/assets/tex-niebla@sm.webp";
 import texBosque from "@/assets/tex-bosque.webp";
 import texBosqueSm from "@/assets/tex-bosque@sm.webp";
-import texMontanasSm from "@/assets/tex-montanas@sm.webp";
-import texSenderoSm from "@/assets/tex-sendero@sm.webp";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -51,7 +34,7 @@ export const Route = createFileRoute("/")({
         "No necesitas exigirte más para sentirte suficiente. Terapia integradora para la autoestima, la autoexigencia y la ansiedad. Online y presencial en Madrid.",
       path: "/",
       image: "/og/og-default.jpg",
-      imageAlt: "Orpheus Psicología — No necesitas exigirte más para sentirte suficiente",
+      imageAlt: "Orpheus Psicología: no necesitas exigirte más para sentirte suficiente",
       keywords: [
         "psicóloga online",
         "terapia autoestima",
@@ -62,15 +45,11 @@ export const Route = createFileRoute("/")({
         "gestión emocional",
         "psicóloga general sanitaria",
       ],
-      jsonLd: [faqSchema(FAQ.slice(0, 6))],
     }),
   component: Inicio,
 });
 
 function Inicio() {
-  const resenas = RESENAS_DESTACADAS.slice(0, 3);
-  const hayGoogle = !esPendiente(SITE.social.googleReviews);
-
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
@@ -512,214 +491,15 @@ function Inicio() {
         </div>
       </section>
 
-      {/* ═══════════════════ SOBRE MÍ (avance) ═══════════════════ */}
-      <section className="section-y" aria-labelledby="sobre-titulo">
-        <div className="shell grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <Reveal variant="scale" className="order-2 lg:order-1">
-            <div className="relative">
-              <Figura
-                src={melissa3}
-                alt="Retrato de Melissa González, psicóloga en Madrid"
-                ratio="4 / 5"
-                width={390}
-                height={393}
-                className="arch mx-auto max-w-sm lg:mx-0 lg:max-w-none"
-              />
-              <div className="absolute -right-3 -bottom-6 rounded-2xl border border-rule bg-linen px-6 py-5 md:-right-8">
-                <p className="font-display text-[2.5rem] leading-none text-cypress">
-                  <Contador hasta={FORMACION.items.length} />
-                </p>
-                <p className="eyebrow mt-2 text-ink-faint">Titulaciones y formaciones</p>
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="order-1 lg:order-2">
-            <Reveal>
-              <Antetitulo>Sobre mí</Antetitulo>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 id="sobre-titulo" className="display-md mt-6">
-                Descubrí la psicología buscando <em className="italic">entenderme</em>.
-              </h2>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="prose-body mt-7 max-w-xl">
-                Durante años viví bajo una autoexigencia silenciosa que confundía con
-                responsabilidad. Ese camino personal es el que me llevó a la psicología y el que dio
-                forma a la profesional que soy hoy.
-              </p>
-            </Reveal>
-            <Reveal delay={220}>
-              <p className="mt-6 font-display text-[1.35rem] text-cypress italic md:text-[1.6rem]">
-                {HISTORIA_CITA}
-              </p>
-            </Reveal>
-
-            <div className="mt-10 grid gap-x-10 gap-y-5 sm:grid-cols-2">
-              {ENFOQUE.modelos.map((m, i) => (
-                <Reveal key={m.t} delay={i * 70} className="border-t border-rule pt-4">
-                  <h3 className="font-display text-[1.1rem] text-ink">{m.t}</h3>
-                  <p className="mt-1.5 text-[0.85rem] leading-relaxed font-light text-ink-muted">
-                    {m.d}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-
-            <Reveal delay={200} className="mt-10">
-              <BotonEnlace to="/sobre-mi" variante="outline">
-                Conocer mi historia
-              </BotonEnlace>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════ RESEÑAS ═══════════════════ */}
-      {resenas.length > 0 ? (
-        <section className="relative overflow-hidden bg-paper" aria-labelledby="resenas-titulo">
-          <div className="grain absolute inset-0" aria-hidden="true" />
-          <div className="relative z-10 shell section-y">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
-                <Reveal>
-                  <Antetitulo>Reseñas</Antetitulo>
-                </Reveal>
-                <Reveal delay={80}>
-                  <h2 id="resenas-titulo" className="display-md mt-6 max-w-xl">
-                    Palabras de quienes han <em className="italic">caminado</em> este proceso.
-                  </h2>
-                </Reveal>
-              </div>
-              {hayGoogle ? (
-                <Reveal delay={160}>
-                  <a
-                    href={SITE.social.googleReviews}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-full border border-rule bg-linen px-5 py-3 text-[0.78rem] text-ink transition-colors duration-500 hover:border-olive"
-                  >
-                    <BadgeCheck className="size-4 text-cypress" strokeWidth={1.6} />
-                    Reseñas verificadas en Google
-                  </a>
-                </Reveal>
-              ) : null}
-            </div>
-
-            <ul className="mt-14 grid gap-5 md:grid-cols-3">
-              {resenas.map((r, i) => (
-                <Reveal
-                  as="li"
-                  key={r.nombre + i}
-                  delay={i * 110}
-                  className="card-paper card-hover-lift flex flex-col p-7 md:p-8"
-                >
-                  <Quote
-                    aria-hidden="true"
-                    strokeWidth={1}
-                    className="size-7 shrink-0 text-olive/45"
-                  />
-                  <blockquote className="mt-5 flex-1 font-display text-[1.15rem] leading-snug text-ink md:text-[1.3rem]">
-                    «{r.texto}»
-                  </blockquote>
-                  <footer className="mt-7 border-t border-rule pt-5">
-                    <p className="text-[0.85rem] text-ink">{r.nombre}</p>
-                    {r.contexto ? (
-                      <p className="mt-0.5 text-[0.75rem] font-light text-ink-faint">
-                        {r.contexto}
-                      </p>
-                    ) : null}
-                    {mesDeResena(r.fecha) ? (
-                      <p className="mt-0.5 text-[0.75rem] font-light text-ink-faint">
-                        {mesDeResena(r.fecha)}
-                      </p>
-                    ) : null}
-                    {r.verificada ? (
-                      <p className="eyebrow mt-4 flex items-center gap-1.5 text-cypress">
-                        <BadgeCheck className="size-3.5" strokeWidth={1.7} aria-hidden="true" />
-                        Verificada en Google
-                      </p>
-                    ) : null}
-                  </footer>
-                </Reveal>
-              ))}
-            </ul>
-
-            <Reveal delay={120} className="mt-12">
-              <Link to="/testimonios" className="link-draw text-[0.85rem] text-cypress">
-                Leer las {TOTAL_RESENAS} reseñas
-              </Link>
-            </Reveal>
-          </div>
-        </section>
-      ) : null}
-
-      {/* ═══════════════════ PREGUNTAS FRECUENTES ═══════════════════ */}
-      <section className="section-y relative overflow-hidden" aria-labelledby="faq-titulo">
-        {/* Recorte fotográfico girado, al modo de un tablero de inspiración */}
-        <Parallax
-          amount={-34}
-          className="pointer-events-none absolute -top-6 -left-24 hidden w-56 -rotate-6 lg:block"
-        >
-          <img
-            src={texMontanasSm}
-            alt=""
-            aria-hidden="true"
-            width={900}
-            height={506}
-            loading="lazy"
-            className="rounded-lg border border-rule opacity-70"
-          />
-        </Parallax>
-        <Parallax
-          amount={40}
-          className="pointer-events-none absolute -right-20 bottom-16 hidden w-52 rotate-6 lg:block"
-        >
-          <img
-            src={texSenderoSm}
-            alt=""
-            aria-hidden="true"
-            width={640}
-            height={800}
-            loading="lazy"
-            className="rounded-lg border border-rule opacity-60"
-          />
-        </Parallax>
-
-        <div className="relative z-10 shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div className="lg:sticky lg:top-32 lg:self-start">
-            <Reveal>
-              <Antetitulo>Dudas frecuentes</Antetitulo>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 id="faq-titulo" className="display-md mt-6">
-                Lo que casi todo el mundo se <em className="italic">pregunta</em>.
-              </h2>
-            </Reveal>
-            <Reveal delay={160} className="mt-8">
-              <BotonEnlace to="/servicios" hash="preguntas" variante="outline">
-                Ver todas las preguntas
-              </BotonEnlace>
-            </Reveal>
-          </div>
-          <Reveal delay={120} className="rounded-2xl border border-rule bg-linen/80 p-6 md:p-9">
-            <Acordeon items={FAQ.slice(0, 6)} abiertoInicial={0} />
-          </Reveal>
-        </div>
-      </section>
-
       {/* ═══════════════════ CTA FINAL ═══════════════════ */}
       <CtaFinal />
     </Layout>
   );
 }
 
-const HISTORIA_CITA = "Creo en la psicología como un lugar donde volver a mirarse con respeto.";
-
 export function CtaFinal() {
   return (
-    <section className="shell pb-20 md:pb-28" aria-labelledby="cta-final-titulo">
+    <section className="shell pt-24 pb-20 md:pt-32 md:pb-28" aria-labelledby="cta-final-titulo">
       <Reveal
         variant="scale"
         className="aurora-deep grain-dark on-dark relative isolate overflow-hidden rounded-3xl px-7 py-20 text-center md:px-16 md:py-28"

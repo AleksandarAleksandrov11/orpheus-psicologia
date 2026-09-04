@@ -80,7 +80,7 @@ export const ARTICULOS: Articulo[] = [
       {
         tipo: "p",
         texto:
-          "La exigencia no aparece de la nada ni es un defecto de carácter. Casi siempre fue una solución. Un modo de sentirte a salvo en un contexto donde el cariño, la atención o la tranquilidad parecían depender de hacerlo bien. Si rendir era la manera de estar tranquila, tiene todo el sentido que tu sistema aprendiera a rendir.",
+          "La exigencia no aparece de la nada ni es un defecto de carácter. Casi siempre fue una solución. Un modo de sentirte a salvo en un contexto donde el cariño, la atención o la tranquilidad parecían depender de hacerlo bien. Si rendir era la manera de estar en paz, tiene todo el sentido que tu sistema aprendiera a rendir.",
       },
       {
         tipo: "p",
@@ -256,12 +256,12 @@ export const ARTICULOS: Articulo[] = [
       {
         tipo: "p",
         texto:
-          "El objetivo de la terapia no es convertirte en una versión más productiva, más perfecta o más adaptada de ti misma. No se trata de ser más. Se trata de ser más tú.",
+          "El objetivo de la terapia no es convertirte en una versión más productiva, más perfecta o más adaptada de ti. No se trata de ser más. Se trata de ser más tú.",
       },
       {
         tipo: "p",
         texto:
-          "Por eso no encontrarás aquí etiquetas que te definan, recetas universales ni la exigencia de convertirte en otra persona. Encontrarás rigor psicológico y, al mismo tiempo, humanidad. Que son, en el fondo, las dos cosas que hacen falta para bajar acompañada.",
+          "Por eso no encontrarás aquí etiquetas que te definan, recetas universales ni la exigencia de convertirte en otra persona. Encontrarás rigor psicológico y, al mismo tiempo, humanidad. Que son, en el fondo, las dos cosas que hacen falta para bajar acompañado o acompañada.",
       },
     ],
   },
@@ -307,7 +307,7 @@ export const ARTICULOS: Articulo[] = [
       {
         tipo: "p",
         texto:
-          "El trabajo que hago no consiste en darte una lista de consejos para que seas una versión mejor de ti misma. Consiste en ayudarte a entender qué hay detrás de lo que sientes, identificar los patrones que hoy te están limitando y construir nuevas formas de relacionarte contigo y con los demás.",
+          "El trabajo que hago no consiste en darte una lista de consejos para que seas una versión mejor de ti. Consiste en ayudarte a entender qué hay detrás de lo que sientes, identificar los patrones que hoy te están limitando y construir nuevas formas de relacionarte contigo y con los demás.",
       },
       {
         tipo: "p",

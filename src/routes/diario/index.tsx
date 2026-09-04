@@ -47,7 +47,7 @@ export const Route = createFileRoute("/diario/")({
       description: DESCRIPCION,
       path: "/diario",
       image: "/og/og-diario.jpg",
-      imageAlt: "Diario de Orpheus Psicología — artículos de Melissa González",
+      imageAlt: "Diario de Orpheus Psicología: artículos de Melissa González",
       keywords: [
         "blog de psicología",
         "artículos de psicología",
@@ -106,7 +106,7 @@ function Diario() {
           <p className="lede anim-fade-up mt-8 max-w-2xl" style={{ animationDelay: "0.34s" }}>
             Escribo aquí lo que más se repite en consulta: la autoexigencia que se disfraza de
             responsabilidad, las emociones que aprendimos a callar, las etiquetas que acaban
-            decidiendo por nosotras. Son artículos para poner palabras a lo que cuesta explicar, sin
+            decidiendo por nosotros. Son artículos para poner palabras a lo que cuesta explicar, sin
             recetas ni atajos.
           </p>
 
@@ -228,12 +228,7 @@ function Diario() {
 
             <ul className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {resto.map((a, i) => (
-                <Reveal
-                  as="li"
-                  key={a.slug}
-                  delay={i * 90}
-                  className={i === 1 ? "lg:mt-14" : i === 2 ? "lg:mt-7" : undefined}
-                >
+                <Reveal as="li" key={a.slug} delay={i * 90} className="flex">
                   <TarjetaArticulo articulo={a} />
                 </Reveal>
               ))}
@@ -324,7 +319,7 @@ function TarjetaArticulo({ articulo }: { articulo: Articulo }) {
     <Link
       to="/diario/$slug"
       params={{ slug: articulo.slug }}
-      className="card-paper card-hover-lift group flex h-full flex-col overflow-hidden"
+      className="card-paper card-hover-lift group flex h-full w-full flex-col overflow-hidden"
     >
       <div className="photo-frame shrink-0" style={{ aspectRatio: "4 / 3" }}>
         <img
@@ -342,7 +337,7 @@ function TarjetaArticulo({ articulo }: { articulo: Articulo }) {
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-6 md:p-7">
+      <div className="flex flex-1 flex-col p-7 md:p-8">
         <h3 className="font-display text-[1.4rem] leading-tight text-ink transition-colors duration-500 group-hover:text-cypress">
           {articulo.tituloCorto ?? articulo.titulo}
         </h3>

@@ -97,7 +97,13 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /*
+     * Sin desplazamiento suave global: al cambiar de página el navegador
+     * animaba el regreso al principio y se veía subir todo el documento.
+     * Donde interesa que sea suave (el logotipo, «sigue bajando») se pide
+     * explícitamente desde JavaScript.
+     */
+    scroll-behavior: auto;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -736,9 +742,6 @@
    ========================================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {

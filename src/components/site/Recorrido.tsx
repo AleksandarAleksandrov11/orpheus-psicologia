@@ -6,9 +6,10 @@
  * saltando de un lado a otro sobre una línea sinuosa que se dibuja a
  * medida que se hace scroll.
  *
- * La curva y las tarjetas comparten el mismo sistema de coordenadas
- * (porcentajes sobre el mismo contenedor), por lo que siguen alineadas
- * en cualquier tamaño de pantalla.
+ * Geometría: la curva vive siempre dentro de un canal central que va
+ * del 34 % al 66 % del ancho. Las tarjetas se anclan por fuera de ese
+ * canal, de modo que el trazo nunca puede cruzar por encima del texto
+ * por mucho que cambie el tamaño de la pantalla.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -16,22 +17,32 @@ import { RECORRIDO } from "@/content/copy";
 import { Reveal } from "./motion";
 import { useReducedMotion, useScrollProgress } from "@/lib/motion";
 
-/** Nodos en el sistema de coordenadas del SVG (1000 × 1200). */
+/** Bordes del canal central, en porcentaje del ancho del contenedor. */
+const IZQUIERDA = 34;
+const DERECHA = 66;
+
+/** Nodos: alternan lado y bajan por el canal. */
 const NODOS = [
-  { x: 17, y: 10 },
-  { x: 77, y: 33 },
-  { x: 24, y: 61 },
-  { x: 80, y: 87 },
+  { x: IZQUIERDA, y: 9 },
+  { x: DERECHA, y: 34 },
+  { x: IZQUIERDA, y: 61 },
+  { x: DERECHA, y: 88 },
 ] as const;
 
+/**
+ * Trazo en coordenadas del viewBox (1000 × 1200). Serpentea entre los
+ * cuatro nodos sin salirse nunca del canal 340–660.
+ */
 const CURVA = [
-  "M 170 120",
-  "C 320 110, 430 200, 430 300",
-  "C 430 400, 620 292, 770 396",
-  "C 906 490, 880 566, 700 606",
-  "C 520 646, 384 616, 240 732",
-  "C 118 830, 186 902, 386 922",
-  "C 566 940, 622 986, 800 1044",
+  "M 340 108",
+  "C 432 138, 522 182, 562 244",
+  "C 602 306, 620 360, 660 408",
+  "C 638 462, 560 486, 500 516",
+  "C 430 552, 380 606, 400 660",
+  "C 416 700, 352 692, 340 732",
+  "C 332 778, 400 802, 432 844",
+  "C 472 898, 542 942, 592 984",
+  "C 626 1012, 646 1036, 660 1056",
 ].join(" ");
 
 export function RecorridoNoLineal() {
@@ -46,7 +57,9 @@ export function RecorridoNoLineal() {
   }, []);
 
   // El trazo empieza a dibujarse cuando la sección entra de verdad en pantalla.
-  const bruto = reducido ? 1 : Math.min(1, Math.max(0, (progreso - 0.12) / 0.55));
+  // Se completa con holgura antes de que la última fase llegue al centro
+  // de la pantalla: así el trazo nunca se queda a medias en páginas largas.
+  const bruto = reducido ? 1 : Math.min(1, Math.max(0, (progreso - 0.05) / 0.36));
   // El avance no retrocede: lo ya recorrido se queda dibujado aunque se suba.
   maximo.current = Math.max(maximo.current, bruto);
   const avance = maximo.current;
@@ -54,7 +67,7 @@ export function RecorridoNoLineal() {
   return (
     <div ref={ref} className="relative mt-16 md:mt-24">
       {/* ── Versión de escritorio: curva + tarjetas repartidas ── */}
-      <div className="relative hidden h-[74rem] lg:block">
+      <div className="relative hidden h-[78rem] lg:block">
         <svg
           viewBox="0 0 1000 1200"
           preserveAspectRatio="none"
@@ -90,45 +103,47 @@ export function RecorridoNoLineal() {
           />
         </svg>
 
+        {/* Nodos: van justo sobre el borde del canal */}
+        {NODOS.map((nodo, i) => {
+          const activo = avance > (i + 0.35) / NODOS.length;
+          return (
+            <span
+              key={`nodo-${i}`}
+              aria-hidden="true"
+              className={`absolute grid size-4 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border transition-all duration-700 ${
+                activo ? "border-cypress bg-cypress" : "border-cedar/60 bg-bone"
+              }`}
+              style={{ left: `${nodo.x}%`, top: `${nodo.y}%` }}
+            >
+              <span
+                className={`size-1.5 rounded-full bg-bone transition-opacity duration-700 ${
+                  activo ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            </span>
+          );
+        })}
+
+        {/* Tarjetas: siempre por fuera del canal, nunca bajo la curva */}
         {RECORRIDO.pasos.map((paso, i) => {
           const nodo = NODOS[i];
-          const aLaDerecha = nodo.x < 50;
-          const activo = avance > (i + 0.35) / RECORRIDO.pasos.length;
+          const alaIzquierda = nodo.x < 50;
+          const activo = avance > (i + 0.35) / NODOS.length;
           return (
             <div
               key={paso.n}
-              className="absolute w-[23rem] xl:w-[26rem]"
-              style={{
-                left: `${nodo.x}%`,
-                top: `${nodo.y}%`,
-                transform: aLaDerecha ? "translate(1.75rem, -50%)" : "translate(-100%, -50%)",
-                marginLeft: aLaDerecha ? 0 : "-1.75rem",
-              }}
+              className={`absolute max-w-[24rem] -translate-y-1/2 transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                alaIzquierda ? "mr-10 text-right" : "ml-10 text-left"
+              } ${activo ? "translate-y-[-50%] opacity-100" : "opacity-60"}`}
+              style={
+                alaIzquierda
+                  ? { right: `${100 - nodo.x}%`, top: `${nodo.y}%` }
+                  : { left: `${nodo.x}%`, top: `${nodo.y}%` }
+              }
             >
-              {/* Nodo */}
-              <span
-                aria-hidden="true"
-                className={`absolute top-1/2 grid size-4 -translate-y-1/2 place-items-center rounded-full border transition-all duration-700 ${
-                  activo ? "border-cypress bg-cypress" : "border-cedar/60 bg-bone"
-                }`}
-                style={aLaDerecha ? { left: "-1.75rem" } : { right: "-1.75rem" }}
-              >
-                <span
-                  className={`size-1.5 rounded-full bg-bone transition-opacity duration-700 ${
-                    activo ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              </span>
-
-              <div
-                className={`transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                  activo ? "translate-y-0 opacity-100" : "translate-y-3 opacity-60"
-                } ${aLaDerecha ? "text-left" : "text-right"}`}
-              >
-                <p className="eyebrow text-olive">{paso.n}</p>
-                <h3 className="display-sm mt-3">{paso.t}</h3>
-                <p className="prose-body mt-3 text-[0.95rem]">{paso.d}</p>
-              </div>
+              <p className="eyebrow text-olive">{paso.n}</p>
+              <h3 className="display-sm mt-3">{paso.t}</h3>
+              <p className="prose-body mt-3 text-[0.95rem]">{paso.d}</p>
             </div>
           );
         })}
@@ -169,7 +184,7 @@ const HITOS = [
   { x: 128, y: 196, label: "Practicar", arriba: false },
   { x: 76, y: 178, label: "Aprender", arriba: true },
   { x: 108, y: 226, label: "Fallar", arriba: false },
-  { x: 196, y: 214, label: "Sentirse perdida", arriba: false },
+  { x: 196, y: 214, label: "Perderse", arriba: false },
   { x: 250, y: 156, label: "Entender", arriba: true },
   { x: 322, y: 132, label: "Tener problemas", arriba: true },
   { x: 380, y: 178, label: "Lograrlo", arriba: false },
@@ -209,7 +224,7 @@ export function DiagramaExpectativaRealidad({ className = "" }: { className?: st
         viewBox="0 0 430 268"
         className="w-full"
         role="img"
-        aria-label="Esquema comparativo: la expectativa es una línea recta entre definir un objetivo y conseguirlo; la realidad es un camino sinuoso que pasa por empezar, dudar, aprender, practicar, fallar, sentirse perdida, entender, tener problemas y, finalmente, lograrlo."
+        aria-label="Esquema comparativo: la expectativa es una línea recta entre definir un objetivo y conseguirlo; la realidad es un camino sinuoso que pasa por empezar, dudar, aprender, practicar, fallar, perderse, entender, tener problemas y, finalmente, lograrlo."
       >
         {/* ── Expectativa ── */}
         <text x="14" y="18" className="fill-ink font-display" fontSize="15" fontStyle="italic">

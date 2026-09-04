@@ -44,7 +44,7 @@ export const Route = createFileRoute("/servicios")({
         "Terapia integradora para la autoestima, la autoexigencia, la ansiedad, el duelo y las relaciones. Online en toda España y presencial en Madrid.",
       path: "/servicios",
       image: "/og/og-servicios.jpg",
-      imageAlt: "Orpheus Psicología — Terapia para comprenderte y elegirte",
+      imageAlt: "Orpheus Psicología: terapia para comprenderte y elegirte",
       keywords: [
         "terapia autoestima",
         "psicóloga autoexigencia",
@@ -118,7 +118,7 @@ function Servicios() {
               />
 
               <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
-                Doce espacios de trabajo, tres formas de vernos y un ritmo que decidimos juntas.
+                Doce espacios de trabajo, tres formas de vernos y un ritmo que decidimos contigo.
                 Aquí no hay protocolos cerrados: el proceso se adapta a ti y no al revés.
               </p>
 
@@ -137,7 +137,7 @@ function Servicios() {
             <Reveal delay={280} variant="blur" className="lg:pt-3">
               <nav
                 aria-label="Índice de esta página"
-                className="rounded-2xl border border-rule bg-linen/75 p-6 backdrop-blur-sm md:p-7"
+                className="rounded-2xl border border-rule bg-linen/75 p-7 backdrop-blur-sm md:p-9"
               >
                 <p className="eyebrow text-ink-faint">En esta página</p>
                 <ol className="mt-6">
@@ -319,9 +319,9 @@ function Servicios() {
                 key={e.slug}
                 id={e.slug}
                 delay={(i % 4) * 60}
-                className="scroll-mt-28 border-b border-rule transition-colors duration-600 hover:bg-linen"
+                className="-mx-4 scroll-mt-28 rounded-lg border-b border-rule px-4 transition-colors duration-600 hover:bg-linen md:-mx-6 md:px-6"
               >
-                <div className="grid gap-3 py-8 md:grid-cols-[4.5rem_1fr_1.2fr] md:items-baseline md:gap-10 md:px-4">
+                <div className="grid gap-3 py-8 md:grid-cols-[4.5rem_1fr_1.2fr] md:items-baseline md:gap-10">
                   <Numero>{e.n}</Numero>
                   <div>
                     <h3 className="font-display text-[1.5rem] leading-tight text-ink md:text-[1.75rem]">
@@ -340,7 +340,7 @@ function Servicios() {
           <Reveal delay={120} className="mt-12">
             <p className="prose-body max-w-2xl">
               ¿No ves aquí lo que te ocurre? No pasa nada: los motivos de consulta rara vez vienen
-              con etiqueta. Escríbeme y lo miramos juntas.
+              con etiqueta. Escríbeme y lo miramos.
             </p>
             <div className="mt-8">
               <BotonEnlace to="/contacto" variante="outline">
@@ -373,7 +373,7 @@ function Servicios() {
             <Reveal delay={160}>
               <p className="prose-body">
                 La primera sesión no compromete a nada más que a conocernos. A partir de ahí
-                decidimos juntas el formato, la frecuencia y hacia dónde vamos.
+                decidimos contigo el formato, la frecuencia y hacia dónde vamos.
               </p>
             </Reveal>
           </div>
@@ -386,14 +386,14 @@ function Servicios() {
                   as="article"
                   key={s.slug}
                   delay={i * 90}
-                  className={`relative flex flex-col py-9 md:px-8 md:py-11 ${
-                    destacada ? "bg-linen" : ""
-                  } ${i > 0 ? "border-t border-rule md:border-t-0" : ""}`}
+                  className={`relative flex flex-col py-9 md:px-9 md:py-12 ${
+                    destacada ? "rounded-2xl bg-linen px-6 md:px-10 md:py-14" : ""
+                  } ${i > 0 && !destacada ? "border-t border-rule md:border-t-0" : ""}`}
                 >
                   {destacada ? (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-x-0 top-0 h-0.5 bg-cypress md:inset-x-8"
+                      className="absolute inset-x-6 top-0 h-0.5 rounded-full bg-cypress md:inset-x-10"
                     />
                   ) : null}
 
@@ -613,7 +613,7 @@ function Servicios() {
                 <Reveal
                   key={r.nombre}
                   delay={230}
-                  className="mt-10 max-w-md rounded-2xl border border-rule bg-linen p-7"
+                  className="mt-10 max-w-md rounded-2xl border border-rule bg-linen p-7 md:p-9"
                 >
                   <Quote aria-hidden="true" strokeWidth={1} className="size-7 text-olive/45" />
                   <blockquote className="mt-4 font-display text-[1.15rem] leading-snug text-ink md:text-[1.3rem]">

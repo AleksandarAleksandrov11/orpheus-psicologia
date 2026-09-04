@@ -36,7 +36,7 @@ export const Route = createFileRoute("/testimonios")({
         "Lo que cuentan quienes ya han hecho un proceso con Melissa González. Reseñas verificadas, sin puntuaciones infladas: la confidencialidad va primero.",
       path: "/testimonios",
       image: "/og/og-resenas.jpg",
-      imageAlt: "Orpheus Psicología — Reseñas de quienes ya han venido a consulta",
+      imageAlt: "Orpheus Psicología: reseñas de quienes ya han venido a consulta",
       keywords: [
         "reseñas psicóloga",
         "opiniones psicóloga Madrid",
@@ -124,7 +124,7 @@ function Resenas() {
 
             {/* Contrapunto honesto: lo que esta página no hace */}
             <Reveal delay={280} variant="blur">
-              <div className="rounded-2xl border border-rule bg-linen/80 p-7 backdrop-blur-sm">
+              <div className="rounded-2xl border border-rule bg-linen/80 p-7 backdrop-blur-sm md:p-9">
                 <Lira className="h-5 w-5 text-olive" />
                 <p className="eyebrow mt-5 text-ink-faint">Aquí no vas a encontrar</p>
                 <ul className="mt-5 space-y-3">
@@ -195,7 +195,7 @@ function Resenas() {
                 <p className="prose-body mt-4">
                   {HAY_RESENAS_VERIFICADAS
                     ? "Todas las reseñas de esta página proceden de la ficha pública de la consulta en Google y están firmadas desde la cuenta de quien las escribió. Se reproducen con su texto literal, sin editar y sin publicar ninguna nota media."
-                    : "Pedir una reseña dentro de un proceso terapéutico coloca a la persona en un compromiso, así que aquí no se hace. Si has trabajado conmigo y quieres compartir tu experiencia, escríbeme y decidimos juntas cómo hacerlo: con el nombre abreviado o de forma anónima."}
+                    : "Pedir una reseña dentro de un proceso terapéutico coloca a la persona en un compromiso, así que aquí no se hace. Si has trabajado conmigo y quieres compartir tu experiencia, escríbeme y decidimos cómo hacerlo: con el nombre abreviado o de forma anónima."}
                 </p>
               </Reveal>
             </div>

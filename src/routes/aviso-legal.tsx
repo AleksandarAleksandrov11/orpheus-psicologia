@@ -65,7 +65,7 @@ function AvisoLegal() {
               <strong>Titulación:</strong> {SITE.psicologa.titulo}
             </li>
             <li>
-              <strong>Nº de colegiada:</strong> <Dato valor={SITE.psicologa.colegiada} /> —{" "}
+              <strong>Nº de colegiada:</strong> <Dato valor={SITE.psicologa.colegiada} /> del{" "}
               {SITE.psicologa.colegio}
             </li>
             <li>
@@ -137,8 +137,8 @@ function AvisoLegal() {
       contenido: (
         <>
           <p>
-            Todos los contenidos del sitio —textos, artículos, fotografías, marca, logotipo, diseño
-            gráfico, código fuente y estructura de navegación— son titularidad de{" "}
+            Todos los contenidos del sitio (textos, artículos, fotografías, marca, logotipo, diseño
+            gráfico, código fuente y estructura de navegación) son titularidad de{" "}
             {SITE.titular.nombre} o de terceros que han autorizado su uso, y están protegidos por la
             normativa española y europea de propiedad intelectual e industrial.
           </p>

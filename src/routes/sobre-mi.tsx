@@ -324,7 +324,7 @@ function SobreMi() {
                     as="li"
                     key={f.t}
                     delay={(i % 4) * 60}
-                    className="group grid grid-cols-[2.25rem_1fr] items-baseline gap-x-4 border-b border-rule py-6 transition-colors duration-500 hover:bg-linen/70 md:grid-cols-[3.25rem_1fr_auto] md:gap-x-8 md:py-7"
+                    className="group -mx-4 grid grid-cols-[2.25rem_1fr] items-baseline gap-x-4 rounded-lg border-b border-rule px-4 py-6 transition-colors duration-500 hover:bg-linen/70 md:-mx-6 md:grid-cols-[3.25rem_1fr_auto] md:gap-x-8 md:px-6 md:py-7"
                   >
                     <span className="eyebrow tabular-nums text-olive/60 transition-colors duration-500 group-hover:text-cypress">
                       {String(i + 1).padStart(2, "0")}

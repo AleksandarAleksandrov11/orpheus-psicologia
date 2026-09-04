@@ -68,7 +68,7 @@ export const Route = createFileRoute("/contacto")({
         "Escríbeme y te respondo personalmente en un máximo de 48 h laborables. Terapia online en toda España y presencial en Madrid con Melissa González.",
       path: "/contacto",
       image: "/og/og-contacto.jpg",
-      imageAlt: "Orpheus Psicología — No tienes que tenerlo todo claro para empezar",
+      imageAlt: "Orpheus Psicología: no tienes que tenerlo todo claro para empezar",
       keywords: [
         "contactar psicóloga",
         "reservar sesión psicología",
@@ -137,7 +137,7 @@ const PASOS = [
   {
     titulo: "Decides si quieres seguir",
     texto:
-      "Esa primera sesión sirve para contarme qué te trae y para comprobar si te sientes cómoda conmigo. No hay compromiso: si creo que otra profesional puede ayudarte mejor, te lo diré.",
+      "Esa primera sesión sirve para contarme qué te trae y para comprobar si te sientes a gusto conmigo. No hay compromiso: si creo que otra profesional puede ayudarte mejor, te lo diré.",
   },
 ];
 
@@ -167,7 +167,7 @@ function componerMailto(d: Datos): string {
   const motivo = espacio ? espacio.titulo : d.motivo === "otro" ? "Otro" : "Sin especificar";
   const modalidad = MODALIDADES.find((m) => m.valor === d.modalidad)?.etiqueta ?? "Sin especificar";
 
-  const asunto = `Primer contacto — ${d.nombre.trim()}`;
+  const asunto = `Primer contacto de ${d.nombre.trim()}`;
   const ficha = [
     `Nombre: ${d.nombre.trim()}`,
     `Email: ${d.email.trim()}`,
@@ -286,8 +286,8 @@ function Contacto() {
                 <a href="tel:024" className="link-draw text-ink">
                   024
                 </a>
-                , la línea de atención a la conducta suicida —gratuita, confidencial y disponible
-                las 24 horas—, o al{" "}
+                , la línea de atención a la conducta suicida (gratuita, confidencial y disponible
+                las 24 horas), o al{" "}
                 <a href="tel:112" className="link-draw text-ink">
                   112
                 </a>{" "}
@@ -471,7 +471,7 @@ function Contacto() {
 
                   {/* Consentimiento RGPD — requisito legal, no adorno */}
                   <div
-                    className={`mt-9 rounded-2xl border p-5 transition-colors duration-500 md:p-6 ${
+                    className={`mt-9 rounded-2xl border p-6 transition-colors duration-500 md:p-7 ${
                       errores.consentimiento
                         ? "border-destructive/50 bg-paper"
                         : "border-rule bg-paper/60"
@@ -553,7 +553,7 @@ function Contacto() {
           {/* ── Columna lateral ── */}
           <div className="space-y-8 lg:sticky lg:top-32 lg:self-start">
             <Reveal delay={90}>
-              <div className="rounded-2xl border border-rule bg-linen p-7">
+              <div className="rounded-2xl border border-rule bg-linen p-7 md:p-9">
                 <p className="eyebrow text-ink-faint">Directo</p>
                 <a
                   href={`mailto:${SITE.contacto.email}`}
@@ -584,7 +584,7 @@ function Contacto() {
             </Reveal>
 
             <Reveal delay={160}>
-              <div className="rounded-2xl border border-rule bg-linen p-7">
+              <div className="rounded-2xl border border-rule bg-linen p-7 md:p-9">
                 <p className="eyebrow text-ink-faint">Modalidades</p>
                 <ul className="mt-5 space-y-3.5">
                   {SITE.modalidades.map((m, i) => {

@@ -52,8 +52,8 @@ function Cookies() {
         <>
           <p>
             Una cookie es un pequeño fichero que un sitio web guarda en tu dispositivo al visitarlo.
-            La normativa española —artículo 22.2 de la Ley 34/2002 (LSSI-CE)— extiende ese concepto
-            a cualquier tecnología de almacenamiento o recuperación de datos en el terminal, como el{" "}
+            La normativa española (artículo 22.2 de la Ley 34/2002, LSSI-CE) extiende ese concepto a
+            cualquier tecnología de almacenamiento o recuperación de datos en el terminal, como el{" "}
             <em>localStorage</em> del navegador. Esta política cubre todas ellas.
           </p>
           <p>

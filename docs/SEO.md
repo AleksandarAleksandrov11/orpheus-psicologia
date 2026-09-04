@@ -166,8 +166,6 @@ Ordenado por impacto en posicionamiento:
    similares. Hay que crearla o reclamarla, rellenar categoría («Psicólogo»), horario, zona de
    servicio y fotos, y pegar la URL en `SITE.social.google` y `SITE.social.googleReviews`.
    Al hacerlo, la web mostrará automáticamente el bloque de reseñas verificadas.
-2. **Número de colegiada.** En cuanto esté en `SITE.psicologa.colegiada` aparecerá en el pie y
-   podrá añadirse al esquema `Person`. Señal de autoridad decisiva en salud.
 3. **Dominio definitivo** en `VITE_SITE_URL` (variable de entorno en Vercel) antes de publicar:
    de él dependen canónicas, sitemap y datos estructurados.
 4. **Google Search Console**: verificar la propiedad y enviar `https://…/sitemap.xml`.

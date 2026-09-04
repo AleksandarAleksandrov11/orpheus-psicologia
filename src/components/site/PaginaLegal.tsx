@@ -89,8 +89,8 @@ export function PaginaLegal({
       </section>
 
       {/* Cuerpo */}
-      <div className="shell grid gap-12 pb-24 md:pb-32 lg:grid-cols-[16rem_1fr] lg:gap-16">
-        <nav aria-label="Índice de la página" className="min-w-0 lg:sticky lg:top-32 lg:self-start">
+      <div className="shell grid gap-12 pt-10 pb-24 md:pt-16 md:pb-32 lg:grid-cols-[16rem_1fr] lg:gap-16">
+        <nav aria-label="Índice de la página" className="min-w-0 lg:sticky lg:top-36 lg:self-start">
           <h2 className="eyebrow text-olive">Índice</h2>
           <ol className="mt-5 space-y-2.5 border-l border-rule pl-5">
             {secciones.map((s, i) => (
