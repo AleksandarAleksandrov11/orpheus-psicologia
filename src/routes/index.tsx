@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, BadgeCheck, Star } from "lucide-react";
+import { ArrowDown, BadgeCheck, Quote } from "lucide-react";
 
 import { Layout } from "@/components/site/Layout";
 import { Contador, LineasReveladas, Marquesina, Parallax, Reveal } from "@/components/site/motion";
@@ -31,7 +31,7 @@ import {
   VALORES,
 } from "@/content/copy";
 import { SITE, esPendiente } from "@/content/site";
-import { RESENAS_PUBLICADAS } from "@/content/resenas";
+import { RESENAS_DESTACADAS, TOTAL_RESENAS, mesDeResena } from "@/content/resenas";
 import { faqSchema, seo } from "@/lib/seo";
 
 import retrato from "@/assets/melissa-retrato.webp";
@@ -68,7 +68,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Inicio() {
-  const resenas = RESENAS_PUBLICADAS.slice(0, 3);
+  const resenas = RESENAS_DESTACADAS.slice(0, 3);
   const hayGoogle = !esPendiente(SITE.social.googleReviews);
 
   return (
@@ -615,11 +615,11 @@ function Inicio() {
                   delay={i * 110}
                   className="card-paper card-hover-lift flex flex-col p-7 md:p-8"
                 >
-                  <div className="flex gap-1" aria-label={`${r.estrellas ?? 5} de 5 estrellas`}>
-                    {Array.from({ length: r.estrellas ?? 5 }).map((_, s) => (
-                      <Star key={s} className="size-3.5 fill-olive text-olive" aria-hidden="true" />
-                    ))}
-                  </div>
+                  <Quote
+                    aria-hidden="true"
+                    strokeWidth={1}
+                    className="size-7 shrink-0 text-olive/45"
+                  />
                   <blockquote className="mt-5 flex-1 font-display text-[1.15rem] leading-snug text-ink md:text-[1.3rem]">
                     «{r.texto}»
                   </blockquote>
@@ -630,6 +630,17 @@ function Inicio() {
                         {r.contexto}
                       </p>
                     ) : null}
+                    {mesDeResena(r.fecha) ? (
+                      <p className="mt-0.5 text-[0.75rem] font-light text-ink-faint">
+                        {mesDeResena(r.fecha)}
+                      </p>
+                    ) : null}
+                    {r.verificada ? (
+                      <p className="eyebrow mt-4 flex items-center gap-1.5 text-cypress">
+                        <BadgeCheck className="size-3.5" strokeWidth={1.7} aria-hidden="true" />
+                        Verificada en Google
+                      </p>
+                    ) : null}
                   </footer>
                 </Reveal>
               ))}
@@ -637,7 +648,7 @@ function Inicio() {
 
             <Reveal delay={120} className="mt-12">
               <Link to="/testimonios" className="link-draw text-[0.85rem] text-cypress">
-                Leer todas las reseñas
+                Leer las {TOTAL_RESENAS} reseñas
               </Link>
             </Reveal>
           </div>

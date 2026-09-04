@@ -28,12 +28,10 @@ function Dato({ valor }: { valor: string }) {
 }
 
 function AvisoLegal() {
-  const pendientes = [
-    SITE.titular.nif,
-    SITE.titular.domicilio,
-    SITE.psicologa.colegiada,
-    SITE.contacto.telefono,
-  ].filter(esPendiente).length;
+  // Solo se cuentan los datos que esta página muestra realmente.
+  const pendientes = [SITE.titular.nif, SITE.titular.domicilio, SITE.psicologa.colegiada].filter(
+    esPendiente,
+  ).length;
 
   const secciones: SeccionLegal[] = [
     {

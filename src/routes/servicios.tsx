@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check, Clock } from "lucide-react";
+import { BadgeCheck, Check, Clock, Quote } from "lucide-react";
 
 import { Layout } from "@/components/site/Layout";
 import { LineasReveladas, Parallax, Reveal } from "@/components/site/motion";
@@ -26,6 +26,7 @@ import {
   RECORRIDO,
   SESIONES,
 } from "@/content/copy";
+import { RESENAS_EMPRESA } from "@/content/resenas";
 import { faqSchema, migasSchema, seo, servicioSchema } from "@/lib/seo";
 
 import { CtaFinal } from "./index";
@@ -606,6 +607,29 @@ function Servicios() {
               <Reveal delay={160}>
                 <p className="prose-body mt-7 max-w-md">{EMPRESAS.intro}</p>
               </Reveal>
+
+              {/* Reseña real de una empresa que ya ha hecho la intervención. */}
+              {RESENAS_EMPRESA.slice(0, 1).map((r) => (
+                <Reveal
+                  key={r.nombre}
+                  delay={230}
+                  className="mt-10 max-w-md rounded-2xl border border-rule bg-linen p-7"
+                >
+                  <Quote aria-hidden="true" strokeWidth={1} className="size-7 text-olive/45" />
+                  <blockquote className="mt-4 font-display text-[1.15rem] leading-snug text-ink md:text-[1.3rem]">
+                    «{r.texto}»
+                  </blockquote>
+                  <footer className="mt-6 border-t border-rule pt-4">
+                    <p className="text-[0.85rem] text-ink">{r.nombre}</p>
+                    {r.verificada ? (
+                      <p className="eyebrow mt-3 flex items-center gap-1.5 text-cypress">
+                        <BadgeCheck className="size-3.5" strokeWidth={1.7} aria-hidden="true" />
+                        Verificada en Google
+                      </p>
+                    ) : null}
+                  </footer>
+                </Reveal>
+              ))}
             </div>
 
             <ol className="border-t border-rule-strong">

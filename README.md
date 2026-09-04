@@ -25,17 +25,24 @@ publicar sin darse cuenta.
 
 ### Reseñas
 
-`src/content/resenas.ts` contiene los testimonios que ya estaban en la web
-anterior, marcados con `verificada: false`. **Sustitúyelos por las reseñas reales
-de Google Business Profile** (array `RESENAS_GOOGLE`) o elimina los que no cuenten
-con autorización escrita de quien los escribió. El fichero explica el procedimiento.
+`src/content/resenas.ts` contiene las **13 reseñas reales** de la ficha de Google
+Business Profile, con su texto literal y el nombre público de cada persona. Los
+testimonios sin verificar de la web anterior se han eliminado.
+
+Dos detalles a tener en cuenta:
+
+- Las **fechas son aproximadas**: se han calculado a partir de la marca relativa
+  que muestra Google («hace 2 meses»). Por eso solo se publican como mes y año.
+- No se muestran **estrellas ni nota media**, porque la puntuación concreta de
+  cada reseña no se volcó desde Google. Para activarlas basta con añadir
+  `estrellas: 5` a cada entrada; el diseño ya las contempla.
 
 ### Precios
 
-`MOSTRAR_PRECIOS` en `src/content/copy.ts` está en `false`. Ponlo en `true` y
-rellena el campo `precio` de cada entrada de `SESIONES` para que aparezcan las
-tarifas en la página de terapia. Mientras esté desactivado, la web muestra un
-enlace a «Consultar tarifas».
+Por decisión de Melissa **no se publican precios**. `MOSTRAR_PRECIOS` en
+`src/content/copy.ts` está en `false` y la web muestra un enlace a «Consultar
+tarifa». Si algún día quiere publicarlos, basta con ponerlo en `true` y rellenar
+el campo `precio` de cada entrada de `SESIONES`.
 
 ---
 

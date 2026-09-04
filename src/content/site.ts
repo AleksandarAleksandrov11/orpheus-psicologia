@@ -35,15 +35,16 @@ export const SITE = {
 
   /** Identidad del titular de la web (obligatorio en el aviso legal) */
   titular: {
-    nombre: "Melissa González",
-    nif: PENDIENTE("NIF/DNI"),
-    domicilio: PENDIENTE("domicilio profesional"),
+    /** Nombre completo tal y como consta en el DNI. */
+    nombre: "Melissa Milagros González Rodríguez",
+    nif: "50554289J",
+    domicilio: "Calle Camarena 193, 6D, Madrid",
     actividad: "Servicios de psicología clínica y sanitaria",
   },
 
   /** Contacto */
   contacto: {
-    email: "hola@orpheuspsicologia.com",
+    email: "orpheuspsicologia@gmail.com",
     telefono: PENDIENTE("teléfono"),
     telefonoHref: "",
     whatsapp: "",
@@ -69,7 +70,7 @@ export const SITE = {
 
   /** Correo para ejercer derechos RGPD */
   privacidad: {
-    email: "hola@orpheuspsicologia.com",
+    email: "orpheuspsicologia@gmail.com",
     autoridad: "Agencia Española de Protección de Datos (www.aepd.es)",
   },
 } as const;

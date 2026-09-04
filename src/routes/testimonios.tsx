@@ -13,7 +13,13 @@ import {
   Migas,
 } from "@/components/site/ui";
 import { CTA_INTERMEDIO, RECONOCES } from "@/content/copy";
-import { HAY_RESENAS_VERIFICADAS, RESENAS_PUBLICADAS, type Resena } from "@/content/resenas";
+import {
+  HAY_RESENAS_VERIFICADAS,
+  RESENAS_PUBLICADAS,
+  TOTAL_RESENAS,
+  mesDeResena,
+  type Resena,
+} from "@/content/resenas";
 import { SITE, esPendiente } from "@/content/site";
 import { migasSchema, seo } from "@/lib/seo";
 
@@ -51,7 +57,7 @@ export const Route = createFileRoute("/testimonios")({
 /** Lo que deliberadamente no aparece en esta página. */
 const SIN_ESTO = [
   "Puntuaciones medias sin fuente",
-  "Testimonios sin nombre ni contexto",
+  "Testimonios anónimos escritos aquí",
   "Antes y después de nadie",
 ];
 
@@ -76,30 +82,6 @@ const APOYOS = [
     enlace: "Escribir un mensaje",
   },
 ];
-
-const MESES = [
-  "enero",
-  "febrero",
-  "marzo",
-  "abril",
-  "mayo",
-  "junio",
-  "julio",
-  "agosto",
-  "septiembre",
-  "octubre",
-  "noviembre",
-  "diciembre",
-];
-
-/** Formato «mayo de 2026» sin depender de ICU (evita desajustes de hidratación). */
-function mesYAno(iso?: string): string | null {
-  if (!iso) return null;
-  const partes = /^(\d{4})-(\d{2})/.exec(iso);
-  if (!partes) return null;
-  const mes = MESES[Number(partes[2]) - 1];
-  return mes ? `${mes} de ${partes[1]}` : partes[1];
-}
 
 function Resenas() {
   const resenas = RESENAS_PUBLICADAS;
@@ -134,8 +116,9 @@ function Resenas() {
               />
 
               <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
-                Pocas, breves y con nombre abreviado. En una consulta de psicología las palabras de
-                quien ha estado dentro valen justo por eso: porque compartirlas cuesta algo.
+                Todas están escritas en Google, por su cuenta y con su nombre. En una consulta de
+                psicología las palabras de quien ha estado dentro valen justo por eso: porque
+                compartirlas cuesta algo.
               </p>
             </div>
 
@@ -178,7 +161,7 @@ function Resenas() {
                   aria-hidden="true"
                   className="anim-breathe absolute inset-[-14%] rounded-full bg-aloe/50 blur-xl"
                 />
-                {hayGoogle ? (
+                {HAY_RESENAS_VERIFICADAS ? (
                   <BadgeCheck
                     className="relative size-8 text-cypress"
                     strokeWidth={1.4}
@@ -197,7 +180,7 @@ function Resenas() {
             <div className="max-w-2xl">
               <Reveal delay={70}>
                 <h2 id="verificacion-titulo" className="display-sm text-ink">
-                  {hayGoogle ? (
+                  {HAY_RESENAS_VERIFICADAS ? (
                     <>
                       Reseñas verificadas en <em className="italic">Google</em>.
                     </>
@@ -210,9 +193,9 @@ function Resenas() {
               </Reveal>
               <Reveal delay={140}>
                 <p className="prose-body mt-4">
-                  {hayGoogle
-                    ? "El sello indica que la reseña procede de la ficha pública de la consulta y fue escrita desde la cuenta de quien la firma. Puedes leerlas todas, sin intermediarios, en la propia ficha de Google."
-                    : "Pedir una reseña dentro de un proceso terapéutico coloca a la persona en un compromiso, así que aquí no se hace. Cuando la ficha pública esté activa, las reseñas verificadas aparecerán en esta página con su sello. Si has trabajado conmigo y quieres compartir tu experiencia, escríbeme y decidimos juntas cómo hacerlo: con el nombre abreviado o de forma anónima."}
+                  {HAY_RESENAS_VERIFICADAS
+                    ? "Todas las reseñas de esta página proceden de la ficha pública de la consulta en Google y están firmadas desde la cuenta de quien las escribió. Se reproducen con su texto literal, sin editar y sin publicar ninguna nota media."
+                    : "Pedir una reseña dentro de un proceso terapéutico coloca a la persona en un compromiso, así que aquí no se hace. Si has trabajado conmigo y quieres compartir tu experiencia, escríbeme y decidimos juntas cómo hacerlo: con el nombre abreviado o de forma anónima."}
                 </p>
               </Reveal>
             </div>
@@ -255,7 +238,7 @@ function Resenas() {
               <Reveal delay={160}>
                 <p className="max-w-xs text-[0.85rem] leading-relaxed font-light text-ink-faint">
                   {HAY_RESENAS_VERIFICADAS
-                    ? "Las que llevan sello proceden de la ficha de Google. Los nombres aparecen abreviados para preservar la identidad de cada persona."
+                    ? `${TOTAL_RESENAS} reseñas publicadas en Google, reproducidas con el nombre público con el que cada persona decidió firmarlas.`
                     : "Los nombres aparecen abreviados para preservar la identidad de cada persona. Las reseñas verificadas se irán identificando con su sello."}
                 </p>
               </Reveal>
@@ -294,28 +277,26 @@ function Resenas() {
               </Reveal>
               <Reveal delay={80}>
                 <h2 id="pocas-titulo" className="display-md mt-6">
-                  Por qué en psicología hay tan <em className="italic">pocas</em> reseñas.
+                  Lo que una reseña puede y no puede <em className="italic">contar</em>.
                 </h2>
               </Reveal>
 
               <div className="mt-8 space-y-6">
                 <Reveal delay={140}>
                   <p className="prose-body">
-                    En una consulta de psicología hay muchísimas menos reseñas que en cualquier otro
-                    servicio, y no es casualidad. Lo que se habla en sesión está protegido por el
-                    secreto profesional, y la mayoría de las personas que hacen un proceso no
-                    quieren que su nombre quede asociado a él en internet. Es una decisión legítima,
-                    y cuidarla forma parte del trabajo: nadie debería sentir que, para agradecer,
-                    tiene que hacer pública una parte íntima de su vida.
+                    Lo que se habla en sesión está protegido por el secreto profesional, y muchas
+                    personas que hacen un proceso prefieren que su nombre no quede asociado a él en
+                    internet. Es una decisión legítima, y cuidarla forma parte del trabajo: nadie
+                    debería sentir que, para agradecer, tiene que hacer pública una parte íntima de
+                    su vida. Por eso nunca se pide una reseña dentro de un proceso.
                   </p>
                 </Reveal>
                 <Reveal delay={210}>
                   <p className="prose-body">
-                    Por eso aquí no vas a encontrar decenas de testimonios ni una nota media
-                    redonda. Vas a encontrar las palabras de quienes han querido compartirlas, con
-                    el nombre abreviado, y poco más. Elegir psicóloga no debería depender de cuántas
-                    estrellas acumula, sino de si al leerla y al hablar con ella intuyes que ahí
-                    podrías contarlo todo.
+                    Las que hay están aquí porque quien las escribió quiso escribirlas, por su
+                    cuenta y en abierto. No verás una nota media redonda ni un contador inflado:
+                    elegir psicóloga no debería depender de cuántas estrellas acumula, sino de si al
+                    leerla y al hablar con ella intuyes que ahí podrías contarlo todo.
                   </p>
                 </Reveal>
               </div>
@@ -390,7 +371,7 @@ function Resenas() {
  */
 function TarjetaResena({ resena, indice }: { resena: Resena; indice: number }) {
   const destacada = indice % 4 === 0;
-  const fecha = mesYAno(resena.fecha);
+  const fecha = mesDeResena(resena.fecha);
 
   return (
     <li className="mb-5 break-inside-avoid">
