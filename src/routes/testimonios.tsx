@@ -102,7 +102,7 @@ function Resenas() {
 
       {/* ═══════════════════ REJILLA DE RESEÑAS ═══════════════════ */}
       {resenas.length > 0 ? (
-        <section className="pb-20 md:pb-28" aria-labelledby="palabras-titulo">
+        <section className="pt-14 pb-20 md:pt-20 md:pb-28" aria-labelledby="palabras-titulo">
           <div className="shell">
             <h2 id="palabras-titulo" className="sr-only">
               Reseñas de personas que han hecho un proceso
