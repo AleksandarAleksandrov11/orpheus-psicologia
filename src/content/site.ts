@@ -16,7 +16,7 @@ export const SITE = {
   /** Dominio canónico, sin barra final. Configurable en Vercel con VITE_SITE_URL. */
   url:
     (import.meta.env?.VITE_SITE_URL as string | undefined)?.replace(/\/$/, "") ??
-    "https://www.orpheuspsicologia.com",
+    "https://orpheuspsicologia.com",
 
   name: "Orpheus Psicología",
   shortName: "Orpheus",
@@ -42,12 +42,12 @@ export const SITE = {
     actividad: "Servicios de psicología clínica y sanitaria",
   },
 
-  /** Contacto */
+  /** Contacto (datos de la tarjeta de la consulta) */
   contacto: {
     email: "orpheuspsicologia@gmail.com",
-    telefono: PENDIENTE("teléfono"),
-    telefonoHref: "",
-    whatsapp: "",
+    telefono: "+34 624 37 30 87",
+    telefonoHref: "+34624373087",
+    whatsapp: "https://wa.me/34624373087",
     ciudad: "Madrid",
     region: "Comunidad de Madrid",
     direccion: PENDIENTE("dirección de consulta"),
@@ -57,8 +57,8 @@ export const SITE = {
 
   /** Redes y perfiles externos */
   social: {
-    instagram: "https://www.instagram.com/orpheus.psicologia/",
-    instagramHandle: "@orpheus.psicologia",
+    instagram: "https://www.instagram.com/orpheus_psicologia/",
+    instagramHandle: "@orpheus_psicologia",
     linkedin: "",
     /**
      * Reseñas públicas en Google. Enlace facilitado por Melissa.
@@ -71,8 +71,11 @@ export const SITE = {
       "https://www.google.com/search?sca_esv=3c55bf5454ea7bc9&rlz=1C1CHBF_esES1078ES1078&sxsrf=APpeQntwI8PTLc-YNOTitstxxBsvV_Lgfg:1788551795224&q=orpheus+psicologia&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_wQUKsrugIk-GK2TKAx1AuFfRbwP7Eb4sZ1g9hOn_lGKP7oA9yXkpye9QUZj72bprJRldX8%3D&uds=AJ5uw1-YMpuyF7uCL7tivJR8dYckATjsfvSeKr5f9rA8L5FmJhTtUvDWjz1pQfCMZPTsxc8SlFa0eULMeew8RuqpVtuS9KybXs4mF1TTXYhR4Uc8wRcawno&sa=X&ved=2ahUKEwifparT2tWWAxXk9LsIHe_ILwkQ3PALegQIKhAF&biw=1745&bih=835&dpr=1.1#sv=CAESzQEKuQEStgEKd0FKaVQ0dElWdjlKQjhTYkY2RkZDbG5BMlFNVk81YnNwR0RQbFZRYmo0SGJ4VWZ0VHpDWmJSbEZhTWt2NndYc0YxcWdJbk9OMXlmUlJHY2V0Z29FellYdFVLa2R6ZmltREowVzJJNkwwUGZ3LUlTeGRpNUlsc3RVEhdkaUtiYXRDQklweTc5dThQak5xVzBBNBoiQURzcjlmUTZlTjJVdUh3RVpfUHBIXzhDbkFxdGYwVTYwdxIEODA1MRoBMyoAMAA4AUAAGAAgu8KE9Q1KAhAB",
   },
 
-  /** Modalidades de atención */
-  modalidades: ["Terapia online", "Sesiones presenciales en Madrid"],
+  /**
+   * Modalidades de atención. La web está dirigida principalmente a la
+   * terapia online, sin cerrar la puerta a la presencial en Madrid.
+   */
+  modalidades: ["Terapia online en toda España", "Presencial en Madrid según disponibilidad"],
 
   /** Correo para ejercer derechos RGPD */
   privacidad: {
@@ -84,19 +87,75 @@ export const SITE = {
 /** ¿Está un valor todavía sin completar? Útil para ocultar bloques vacíos. */
 export const esPendiente = (v: string) => v.startsWith("[") && v.endsWith("pendiente]");
 
-export type NavLink = { to: string; label: string; descripcion?: string };
+export type NavLink = {
+  to: string;
+  label: string;
+  descripcion?: string;
+  /** Enlaces que cuelgan de esta entrada en el menú desplegable. */
+  hijos?: readonly NavLink[];
+};
 
 /**
  * `as const satisfies` conserva los literales de ruta, que es lo que exige el
  * tipado estricto de `<Link to>` del enrutador.
  */
 export const NAV = [
-  { to: "/", label: "Inicio" },
-  { to: "/sobre-mi", label: "Sobre mí", descripcion: "Mi historia y mi forma de trabajar" },
-  { to: "/servicios", label: "Terapia", descripcion: "Cómo puedo acompañarte" },
-  { to: "/testimonios", label: "Reseñas", descripcion: "Lo que cuentan quienes ya han venido" },
+  { to: "/", label: "Inicio", descripcion: "Volver a la página principal" },
+  {
+    to: "/sobre-mi",
+    label: "Sobre mí",
+    descripcion: "Mi historia y mi forma de trabajar",
+    hijos: [
+      { to: "/sobre-mi", label: "Sobre mí", descripcion: "Mi historia y mi forma de trabajar" },
+      {
+        to: "/por-que-orpheus",
+        label: "Por qué Orpheus",
+        descripcion: "El mito que da nombre al proyecto",
+      },
+    ],
+  },
+  {
+    to: "/servicios",
+    label: "Servicios",
+    descripcion: "Terapia individual y acompañamiento a equipos",
+    hijos: [
+      {
+        to: "/servicios",
+        label: "Terapia individual",
+        descripcion: "Online en toda España, presencial en Madrid",
+      },
+      {
+        to: "/empresas",
+        label: "Para empresas",
+        descripcion: "Bienestar emocional en entornos de trabajo",
+      },
+      {
+        to: "/preguntas-frecuentes",
+        label: "Preguntas frecuentes",
+        descripcion: "Las dudas de siempre, respondidas",
+      },
+    ],
+  },
   { to: "/diario", label: "Diario", descripcion: "Artículos para comprenderte mejor" },
+  { to: "/testimonios", label: "Reseñas", descripcion: "Quienes han caminado este proceso" },
   { to: "/contacto", label: "Contacto", descripcion: "Da el primer paso" },
+] as const satisfies readonly NavLink[];
+
+/**
+ * Mapa del sitio para el pie de página: la navegación completa, ya sin
+ * anidar. Se escribe aparte porque aplanar la tupla de `NAV` haría perder
+ * los literales de ruta que necesita `<Link to>`.
+ */
+export const NAV_PLANO = [
+  { to: "/", label: "Inicio" },
+  { to: "/sobre-mi", label: "Sobre mí" },
+  { to: "/por-que-orpheus", label: "Por qué Orpheus" },
+  { to: "/servicios", label: "Terapia individual" },
+  { to: "/empresas", label: "Para empresas" },
+  { to: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
+  { to: "/diario", label: "Diario" },
+  { to: "/testimonios", label: "Reseñas" },
+  { to: "/contacto", label: "Contacto" },
 ] as const satisfies readonly NavLink[];
 
 export const LEGAL_NAV = [
@@ -106,4 +165,4 @@ export const LEGAL_NAV = [
 ] as const satisfies readonly NavLink[];
 
 /** Fecha de última revisión de los textos legales (formato ISO). */
-export const LEGAL_ACTUALIZADO = "2026-09-04";
+export const LEGAL_ACTUALIZADO = "2026-09-06";

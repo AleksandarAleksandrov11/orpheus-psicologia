@@ -13,8 +13,11 @@ import { Route as TestimoniosRouteImport } from './routes/testimonios'
 import { Route as SobreMiRouteImport } from './routes/sobre-mi'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServiciosRouteImport } from './routes/servicios'
+import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frecuentes'
+import { Route as PorQueOrpheusRouteImport } from './routes/por-que-orpheus'
 import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
+import { Route as EmpresasRouteImport } from './routes/empresas'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
@@ -41,6 +44,16 @@ const ServiciosRoute = ServiciosRouteImport.update({
   path: '/servicios',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PreguntasFrecuentesRoute = PreguntasFrecuentesRouteImport.update({
+  id: '/preguntas-frecuentes',
+  path: '/preguntas-frecuentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PorQueOrpheusRoute = PorQueOrpheusRouteImport.update({
+  id: '/por-que-orpheus',
+  path: '/por-que-orpheus',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PoliticaDePrivacidadRoute = PoliticaDePrivacidadRouteImport.update({
   id: '/politica-de-privacidad',
   path: '/politica-de-privacidad',
@@ -49,6 +62,11 @@ const PoliticaDePrivacidadRoute = PoliticaDePrivacidadRouteImport.update({
 const PoliticaDeCookiesRoute = PoliticaDeCookiesRouteImport.update({
   id: '/politica-de-cookies',
   path: '/politica-de-cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmpresasRoute = EmpresasRouteImport.update({
+  id: '/empresas',
+  path: '/empresas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoRoute = ContactoRouteImport.update({
@@ -81,8 +99,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
   '/contacto': typeof ContactoRoute
+  '/empresas': typeof EmpresasRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/por-que-orpheus': typeof PorQueOrpheusRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/servicios': typeof ServiciosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
@@ -94,8 +115,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
   '/contacto': typeof ContactoRoute
+  '/empresas': typeof EmpresasRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/por-que-orpheus': typeof PorQueOrpheusRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/servicios': typeof ServiciosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
@@ -108,8 +132,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
   '/contacto': typeof ContactoRoute
+  '/empresas': typeof EmpresasRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/por-que-orpheus': typeof PorQueOrpheusRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/servicios': typeof ServiciosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
@@ -123,8 +150,11 @@ export interface FileRouteTypes {
     | '/'
     | '/aviso-legal'
     | '/contacto'
+    | '/empresas'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
+    | '/por-que-orpheus'
+    | '/preguntas-frecuentes'
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-mi'
@@ -136,8 +166,11 @@ export interface FileRouteTypes {
     | '/'
     | '/aviso-legal'
     | '/contacto'
+    | '/empresas'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
+    | '/por-que-orpheus'
+    | '/preguntas-frecuentes'
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-mi'
@@ -149,8 +182,11 @@ export interface FileRouteTypes {
     | '/'
     | '/aviso-legal'
     | '/contacto'
+    | '/empresas'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
+    | '/por-que-orpheus'
+    | '/preguntas-frecuentes'
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-mi'
@@ -163,8 +199,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AvisoLegalRoute: typeof AvisoLegalRoute
   ContactoRoute: typeof ContactoRoute
+  EmpresasRoute: typeof EmpresasRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
+  PorQueOrpheusRoute: typeof PorQueOrpheusRoute
+  PreguntasFrecuentesRoute: typeof PreguntasFrecuentesRoute
   ServiciosRoute: typeof ServiciosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreMiRoute: typeof SobreMiRoute
@@ -203,6 +242,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServiciosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/preguntas-frecuentes': {
+      id: '/preguntas-frecuentes'
+      path: '/preguntas-frecuentes'
+      fullPath: '/preguntas-frecuentes'
+      preLoaderRoute: typeof PreguntasFrecuentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/por-que-orpheus': {
+      id: '/por-que-orpheus'
+      path: '/por-que-orpheus'
+      fullPath: '/por-que-orpheus'
+      preLoaderRoute: typeof PorQueOrpheusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/politica-de-privacidad': {
       id: '/politica-de-privacidad'
       path: '/politica-de-privacidad'
@@ -215,6 +268,13 @@ declare module '@tanstack/react-router' {
       path: '/politica-de-cookies'
       fullPath: '/politica-de-cookies'
       preLoaderRoute: typeof PoliticaDeCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/empresas': {
+      id: '/empresas'
+      path: '/empresas'
+      fullPath: '/empresas'
+      preLoaderRoute: typeof EmpresasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacto': {
@@ -259,8 +319,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AvisoLegalRoute: AvisoLegalRoute,
   ContactoRoute: ContactoRoute,
+  EmpresasRoute: EmpresasRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,
+  PorQueOrpheusRoute: PorQueOrpheusRoute,
+  PreguntasFrecuentesRoute: PreguntasFrecuentesRoute,
   ServiciosRoute: ServiciosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreMiRoute: SobreMiRoute,

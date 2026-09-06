@@ -118,8 +118,8 @@ const INICIAL: Datos = {
 };
 
 const MODALIDADES = [
-  { valor: "online", etiqueta: "Online" },
-  { valor: "presencial", etiqueta: `Presencial en ${SITE.contacto.ciudad}` },
+  { valor: "online", etiqueta: "Online (lo habitual)" },
+  { valor: "presencial", etiqueta: `Presencial en ${SITE.contacto.ciudad}, si hay hueco` },
   { valor: "indiferente", etiqueta: "Me da igual / aún no lo sé" },
 ];
 
@@ -132,7 +132,7 @@ const PASOS = [
   {
     titulo: "Acordamos una primera sesión",
     texto:
-      "Buscamos un hueco que te encaje y elegimos modalidad: online desde donde estés o presencial en Madrid. Te confirmo por correo el día, la hora y cómo conectarnos.",
+      "Buscamos un hueco que te encaje. La consulta trabaja sobre todo online, y si necesitas vernos en Madrid lo valoramos. Te confirmo por correo el día, la hora y cómo conectarnos.",
   },
   {
     titulo: "Decides si quieres seguir",
@@ -261,7 +261,7 @@ function Contacto() {
             />
 
             <p className="lede anim-fade-up mt-8 max-w-2xl" style={{ animationDelay: "0.55s" }}>
-              {CTA_FINAL.texto}
+              Cuéntame qué te trae y decidimos juntos el siguiente paso. Respondo yo misma.
             </p>
           </div>
         </div>
@@ -280,7 +280,7 @@ function Contacto() {
               <h2 id="urgencia-titulo" className="eyebrow text-cypress">
                 Si esto es una urgencia
               </h2>
-              <p className="mt-2 text-[0.9rem] leading-relaxed font-light text-ink-muted">
+              <p className="mt-2 text-[0.95rem] leading-relaxed font-light text-ink-muted">
                 Esta consulta no atiende emergencias. Si estás en riesgo o tienes pensamientos de
                 suicidio, llama al{" "}
                 <a href="tel:024" className="link-draw text-ink">
@@ -308,7 +308,7 @@ function Contacto() {
               <h2 id="formulario-titulo" className="display-sm mt-5 text-ink">
                 Cuéntame qué te <em className="italic">trae</em>.
               </h2>
-              <p className="mt-4 max-w-lg text-[0.92rem] leading-relaxed font-light text-ink-muted">
+              <p className="mt-4 max-w-lg text-[0.96rem] leading-relaxed font-light text-ink-muted">
                 No hace falta que lo tengas ordenado ni que uses las palabras correctas. Con unas
                 líneas basta para empezar.
               </p>
@@ -321,7 +321,7 @@ function Contacto() {
                   <h3 className="mt-6 font-display text-[1.6rem] leading-tight text-ink md:text-[1.9rem]">
                     Tu mensaje está redactado.
                   </h3>
-                  <p className="mt-4 max-w-md text-[0.92rem] leading-relaxed font-light text-ink-muted">
+                  <p className="mt-4 max-w-md text-[0.96rem] leading-relaxed font-light text-ink-muted">
                     Se ha abierto tu programa de correo con todos los datos preparados. Solo queda
                     que lo envíes desde ahí. {SITE.contacto.respuesta}
                   </p>
@@ -341,7 +341,7 @@ function Contacto() {
                       Escribir otro mensaje
                     </Boton>
                   </div>
-                  <p className="mt-6 text-[0.78rem] font-light text-ink-faint">
+                  <p className="mt-6 text-[0.83rem] font-light text-ink-faint">
                     ¿No se ha abierto nada? Escríbeme directamente a{" "}
                     <a href={`mailto:${SITE.contacto.email}`} className="link-draw text-cypress">
                       {SITE.contacto.email}
@@ -435,7 +435,7 @@ function Contacto() {
                       {MODALIDADES.map((m) => (
                         <label
                           key={m.valor}
-                          className="cursor-pointer rounded-full border border-rule-strong px-4 py-2.5 text-[0.82rem] font-light text-ink-muted transition-colors duration-500 hover:border-olive has-[:checked]:border-moss has-[:checked]:bg-moss has-[:checked]:text-bone has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cypress"
+                          className="cursor-pointer rounded-full border border-rule-strong px-4 py-2.5 text-[0.87rem] font-light text-ink-muted transition-colors duration-500 hover:border-olive has-[:checked]:border-moss has-[:checked]:bg-moss has-[:checked]:text-bone has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cypress"
                         >
                           <input
                             type="radio"
@@ -492,7 +492,7 @@ function Contacto() {
                       <div>
                         <label
                           htmlFor="campo-consentimiento"
-                          className="block cursor-pointer text-[0.88rem] leading-relaxed font-light text-ink"
+                          className="block cursor-pointer text-[0.93rem] leading-relaxed font-light text-ink"
                         >
                           He leído la política de privacidad y consiento el tratamiento de mis datos
                           con la única finalidad de responder a esta consulta.
@@ -502,7 +502,7 @@ function Contacto() {
                         </label>
                         <p
                           id="campo-consentimiento-ayuda"
-                          className="mt-2.5 text-[0.78rem] leading-relaxed font-light text-ink-faint"
+                          className="mt-2.5 text-[0.83rem] leading-relaxed font-light text-ink-faint"
                         >
                           Responsable: {SITE.titular.nombre}. Tus datos no se ceden a terceros ni se
                           usan para enviar comunicaciones comerciales, y puedes retirar el
@@ -534,14 +534,14 @@ function Contacto() {
                     <Boton type="submit" flecha>
                       Enviar mensaje
                     </Boton>
-                    <p className="text-[0.78rem] font-light text-ink-faint">
+                    <p className="text-[0.83rem] font-light text-ink-faint">
                       Los campos con <span className="text-olive">*</span> son obligatorios.
                     </p>
                   </div>
 
                   <p
                     role="alert"
-                    className={`text-[0.82rem] text-destructive ${hayErrores ? "mt-4" : "sr-only"}`}
+                    className={`text-[0.87rem] text-destructive ${hayErrores ? "mt-4" : "sr-only"}`}
                   >
                     {hayErrores ? "Revisa los campos marcados antes de enviar." : ""}
                   </p>
@@ -566,7 +566,7 @@ function Contacto() {
                   href={SITE.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 flex items-center gap-3 text-[0.9rem] font-light text-ink-muted transition-colors duration-500 hover:text-cypress"
+                  className="mt-4 flex items-center gap-3 text-[0.95rem] font-light text-ink-muted transition-colors duration-500 hover:text-cypress"
                 >
                   <Instagram className="size-4 shrink-0 text-olive" strokeWidth={1.6} />
                   {SITE.social.instagramHandle}
@@ -574,7 +574,7 @@ function Contacto() {
                 {hayTelefono ? (
                   <a
                     href={`tel:${SITE.contacto.telefono.replace(/\s/g, "")}`}
-                    className="mt-4 flex items-center gap-3 text-[0.9rem] font-light text-ink-muted transition-colors duration-500 hover:text-cypress"
+                    className="mt-4 flex items-center gap-3 text-[0.95rem] font-light text-ink-muted transition-colors duration-500 hover:text-cypress"
                   >
                     <Phone className="size-4 shrink-0 text-olive" strokeWidth={1.6} />
                     {SITE.contacto.telefono}
@@ -592,7 +592,7 @@ function Contacto() {
                     return (
                       <li
                         key={m}
-                        className="flex items-start gap-3 text-[0.9rem] leading-relaxed font-light text-ink-muted"
+                        className="flex items-start gap-3 text-[0.95rem] leading-relaxed font-light text-ink-muted"
                       >
                         <Icono
                           className="mt-0.5 size-4 shrink-0 text-olive"
@@ -605,7 +605,7 @@ function Contacto() {
                   })}
                 </ul>
                 {hayDireccion ? (
-                  <p className="mt-5 border-t border-rule pt-5 text-[0.85rem] leading-relaxed font-light text-ink-faint">
+                  <p className="mt-5 border-t border-rule pt-5 text-[0.9rem] leading-relaxed font-light text-ink-faint">
                     {SITE.contacto.direccion}
                   </p>
                 ) : null}
@@ -615,7 +615,7 @@ function Contacto() {
             <Reveal delay={230}>
               <div className="rounded-2xl border border-rule bg-paper p-7">
                 <p className="eyebrow text-ink-faint">Horario y respuesta</p>
-                <p className="mt-5 flex items-start gap-3 text-[0.9rem] leading-relaxed font-light text-ink-muted">
+                <p className="mt-5 flex items-start gap-3 text-[0.95rem] leading-relaxed font-light text-ink-muted">
                   <Clock
                     className="mt-0.5 size-4 shrink-0 text-olive"
                     strokeWidth={1.6}
@@ -632,8 +632,8 @@ function Contacto() {
 
             <Reveal delay={300}>
               <div className="flex items-center gap-4 px-1">
-                <Lira className="h-7 w-7 shrink-0 text-cedar" />
-                <p className="text-[0.82rem] leading-relaxed font-light text-ink-faint">
+                <Lira className="h-7 w-7 shrink-0 text-cedar" trazo={2.6} />
+                <p className="text-[0.87rem] leading-relaxed font-light text-ink-faint">
                   Todo lo que escribas aquí queda protegido por el secreto profesional.
                 </p>
               </div>
@@ -690,7 +690,7 @@ function Contacto() {
                 <h3 className="mt-6 font-display text-[1.45rem] leading-tight text-on-dark md:text-[1.65rem]">
                   {paso.titulo}
                 </h3>
-                <p className="mt-3 text-[0.92rem] leading-relaxed font-light text-on-dark-muted">
+                <p className="mt-3 text-[0.96rem] leading-relaxed font-light text-on-dark-muted">
                   {paso.texto}
                 </p>
               </Reveal>
@@ -698,7 +698,7 @@ function Contacto() {
           </ol>
 
           <Reveal delay={140} className="mt-12">
-            <p className="max-w-2xl text-[0.92rem] leading-relaxed font-light text-on-dark-faint">
+            <p className="max-w-2xl text-[0.96rem] leading-relaxed font-light text-on-dark-faint">
               Si prefieres saltarte el formulario, escribe directamente a{" "}
               <a href={`mailto:${SITE.contacto.email}`} className="link-draw text-on-dark-muted">
                 {SITE.contacto.email}
@@ -722,7 +722,7 @@ function Contacto() {
               </h2>
             </Reveal>
             <Reveal delay={160} className="mt-8">
-              <BotonEnlace to="/servicios" hash="preguntas" variante="outline">
+              <BotonEnlace to="/preguntas-frecuentes" variante="outline">
                 Ver todas las preguntas
               </BotonEnlace>
             </Reveal>

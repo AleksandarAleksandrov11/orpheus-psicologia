@@ -7,9 +7,13 @@
  * medida que se hace scroll.
  *
  * Geometría: la curva vive siempre dentro de un canal central que va
- * del 34 % al 66 % del ancho. Las tarjetas se anclan por fuera de ese
+ * del 30 % al 70 % del ancho. Las tarjetas se anclan por fuera de ese
  * canal, de modo que el trazo nunca puede cruzar por encima del texto
  * por mucho que cambie el tamaño de la pantalla.
+ *
+ * El alto del bloque se ajustó a la baja tras la segunda revisión: en
+ * escritorio había que bajar demasiado y quedaba mucho vacío entre
+ * fase y fase.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -18,31 +22,31 @@ import { Reveal } from "./motion";
 import { useReducedMotion, useScrollProgress } from "@/lib/motion";
 
 /** Bordes del canal central, en porcentaje del ancho del contenedor. */
-const IZQUIERDA = 34;
-const DERECHA = 66;
+const IZQUIERDA = 30;
+const DERECHA = 70;
 
 /** Nodos: alternan lado y bajan por el canal. */
 const NODOS = [
-  { x: IZQUIERDA, y: 9 },
-  { x: DERECHA, y: 34 },
-  { x: IZQUIERDA, y: 61 },
-  { x: DERECHA, y: 88 },
+  { x: IZQUIERDA, y: 10 },
+  { x: DERECHA, y: 36 },
+  { x: IZQUIERDA, y: 63 },
+  { x: DERECHA, y: 89 },
 ] as const;
 
 /**
  * Trazo en coordenadas del viewBox (1000 × 1200). Serpentea entre los
- * cuatro nodos sin salirse nunca del canal 340–660.
+ * cuatro nodos sin salirse nunca del canal 300–700.
  */
 const CURVA = [
-  "M 340 108",
-  "C 432 138, 522 182, 562 244",
-  "C 602 306, 620 360, 660 408",
-  "C 638 462, 560 486, 500 516",
-  "C 430 552, 380 606, 400 660",
-  "C 416 700, 352 692, 340 732",
-  "C 332 778, 400 802, 432 844",
-  "C 472 898, 542 942, 592 984",
-  "C 626 1012, 646 1036, 660 1056",
+  "M 300 120",
+  "C 396 152, 500 196, 552 264",
+  "C 604 332, 640 386, 700 432",
+  "C 664 490, 574 512, 508 542",
+  "C 434 576, 372 630, 386 686",
+  "C 398 730, 330 726, 300 756",
+  "C 274 802, 344 828, 388 868",
+  "C 442 918, 546 956, 620 996",
+  "C 664 1020, 686 1044, 700 1068",
 ].join(" ");
 
 /**
@@ -101,9 +105,9 @@ export function RecorridoNoLineal() {
   const avance = maximo.current;
 
   return (
-    <div ref={ref} className="relative mt-16 md:mt-24">
+    <div ref={ref} className="relative mt-14 md:mt-20">
       {/* ── Versión de escritorio: curva + tarjetas repartidas ── */}
-      <div className="relative hidden h-[78rem] lg:block">
+      <div className="relative hidden h-[52rem] lg:block xl:h-[56rem]">
         <svg
           viewBox="0 0 1000 1200"
           preserveAspectRatio="none"
@@ -168,8 +172,8 @@ export function RecorridoNoLineal() {
           return (
             <div
               key={paso.n}
-              className={`absolute max-w-[24rem] -translate-y-1/2 transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                alaIzquierda ? "mr-10 text-right" : "ml-10 text-left"
+              className={`absolute max-w-[22rem] -translate-y-1/2 transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                alaIzquierda ? "mr-9 text-right" : "ml-9 text-left"
               } ${activo ? "translate-y-[-50%] opacity-100" : "opacity-60"}`}
               style={
                 alaIzquierda
@@ -178,8 +182,8 @@ export function RecorridoNoLineal() {
               }
             >
               <p className="eyebrow text-olive">{paso.n}</p>
-              <h3 className="display-sm mt-3">{paso.t}</h3>
-              <p className="prose-body mt-3 text-[0.95rem]">{paso.d}</p>
+              <h3 className="display-sm mt-2.5">{paso.t}</h3>
+              <p className="prose-body mt-2.5 text-[0.97rem] leading-[1.7]">{paso.d}</p>
             </div>
           );
         })}
@@ -201,7 +205,7 @@ export function RecorridoNoLineal() {
             </span>
             <p className="eyebrow text-olive">{paso.n}</p>
             <h3 className="display-sm mt-2.5">{paso.t}</h3>
-            <p className="prose-body mt-2.5 text-[0.95rem]">{paso.d}</p>
+            <p className="prose-body mt-2.5 text-[0.99rem]">{paso.d}</p>
           </Reveal>
         ))}
       </ol>

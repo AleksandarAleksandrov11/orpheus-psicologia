@@ -13,15 +13,15 @@ Aparecen marcados con `PENDIENTE("…")` y el sitio los oculta automáticamente 
 muestra con un aviso visible en las páginas legales, para que sea imposible
 publicar sin darse cuenta.
 
-| Dato                        | Dónde                                   | Por qué es obligatorio                   |
-| --------------------------- | --------------------------------------- | ---------------------------------------- |
-| Nº de colegiada y colegio   | `SITE.psicologa.colegiada`              | Ley 44/2003 de profesiones sanitarias    |
-| NIF / DNI del titular       | `SITE.titular.nif`                      | Art. 10 LSSI-CE (aviso legal)            |
-| Domicilio profesional       | `SITE.titular.domicilio`                | Art. 10 LSSI-CE (aviso legal)            |
-| Teléfono de contacto        | `SITE.contacto.telefono`                | Recomendado (confianza y SEO local)      |
-| Dirección de la consulta    | `SITE.contacto.direccion`               | SEO local y ficha de Google              |
-| Enlace a la ficha de Google | `SITE.social.google` / `.googleReviews` | Para mostrar las reseñas verificadas     |
-| Dominio definitivo          | `SITE.url` o variable `VITE_SITE_URL`   | Canónicas, sitemap y datos estructurados |
+| Dato                     | Dónde                      | Estado                                       |
+| ------------------------ | -------------------------- | -------------------------------------------- |
+| Nº de colegiada          | `SITE.psicologa.colegiada` | ✅ M-39711                                   |
+| NIF y domicilio          | `SITE.titular`             | ✅ Completos                                 |
+| Teléfono y correo        | `SITE.contacto`            | ✅ De la tarjeta de la consulta              |
+| Dominio canónico         | `SITE.url`                 | ✅ `https://orpheuspsicologia.com` (sin www) |
+| Instagram y Google       | `SITE.social`              | ✅ `@orpheus_psicologia` y ficha de reseñas  |
+| Dirección de la consulta | `SITE.contacto.direccion`  | ⏳ Solo si se quiere anunciar la presencial  |
+| Tarifas                  | `SESIONES[].precio`        | ⏳ Faltan los importes (ver «Precios»)       |
 
 ### Reseñas
 
@@ -39,10 +39,18 @@ Dos detalles a tener en cuenta:
 
 ### Precios
 
-Por decisión de Melissa **no se publican precios**. `MOSTRAR_PRECIOS` en
-`src/content/copy.ts` está en `false` y la web muestra un enlace a «Consultar
-tarifa». Si algún día quiere publicarlos, basta con ponerlo en `true` y rellenar
-el campo `precio` de cada entrada de `SESIONES`.
+Melissa pidió publicar las tarifas de forma explícita, pero todavía no ha
+facilitado los importes. La maquetación ya los contempla: en cuanto lleguen,
+basta con rellenar `precio` en cada entrada de `SESIONES` y poner
+`MOSTRAR_PRECIOS` a `true` en `src/content/copy.ts`. Mientras tanto la web
+enlaza a «Consultar tarifa» en lugar de inventar una cifra.
+
+### Simulador de presupuesto para empresas
+
+`/empresas` incluye un formulario que recoge los datos del equipo y redacta el
+correo de solicitud. Melissa tiene un simulador de precios propio y va a pasar el
+código: sustituye al bloque `FormularioPresupuesto` de
+`src/routes/empresas.tsx` conservando el ancla `#presupuesto`.
 
 ---
 
@@ -72,7 +80,7 @@ src/
 ├── assets/            Fotos de Melissa y texturas duotono
 ├── components/site/   Layout, Nav, Footer, primitivas de UI y de movimiento
 │   ├── motion.tsx     Reveal, Parallax, Marquesina, Contador, Magnetico…
-│   ├── ui.tsx         Lira (logo SVG), botones, acordeón, migas, figuras
+│   ├── ui.tsx         Lira (logo original en SVG), botones, acordeón, migas
 │   ├── Recorrido.tsx  Diagrama del proceso terapéutico no lineal
 │   ├── CookieConsent  Banner y panel de preferencias de cookies
 │   └── Analytics.tsx  Vercel Analytics, condicionado al consentimiento

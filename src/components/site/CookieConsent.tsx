@@ -100,7 +100,7 @@ export function CookieConsent() {
           <div className="relative z-10 p-6 sm:p-9">
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3">
-                <Lira className="h-7 w-7 text-cypress" />
+                <Lira className="h-7 w-7 text-cypress" trazo={2.6} />
                 <h2 id="cookies-panel-titulo" className="display-sm">
                   Preferencias de cookies
                 </h2>
@@ -118,7 +118,7 @@ export function CookieConsent() {
               </button>
             </div>
 
-            <p className="prose-body mt-5 text-[0.9rem]">
+            <p className="prose-body mt-5 text-[0.95rem]">
               Elige qué se puede utilizar mientras navegas. Puedes cambiar esta decisión cuando
               quieras desde el enlace «Preferencias de cookies» del pie de página.
             </p>
@@ -196,7 +196,7 @@ export function CookieConsent() {
               <Cookie className="size-3.5" strokeWidth={1.6} aria-hidden="true" />
               Aviso de cookies
             </p>
-            <p className="prose-body mt-3 text-[0.875rem] sm:text-[0.9rem]">
+            <p className="prose-body mt-3 text-[0.875rem] sm:text-[0.95rem]">
               Uso cookies propias necesarias para que la web funcione y, solo si lo aceptas,
               analítica anónima para saber qué contenidos resultan útiles. Ninguna cookie sirve para
               crear perfiles publicitarios.{" "}

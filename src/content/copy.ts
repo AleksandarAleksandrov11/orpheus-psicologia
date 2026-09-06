@@ -16,10 +16,10 @@ export const HERO = {
   /** La palabra que va en cursiva dentro del titular (índice de línea). */
   cursiva: 2,
   entradilla:
-    "Una psicología para comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
+    "Terapia online para comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
   ctaPrincipal: { label: "Reservar una primera sesión", to: "/contacto" },
-  ctaSecundario: { label: "Cómo trabajo", to: "/servicios" },
-  sellos: ["Terapia integradora", "Online y presencial", "Espacio sin juicio"],
+  ctaSecundario: { label: "Ver servicios", to: "/servicios" },
+  sellos: ["Terapia integradora", "Online en toda España", "Espacio sin juicio"],
 } as const;
 
 /** Frase alternativa propuesta por la clienta, usada como cierre del hero. */
@@ -45,7 +45,6 @@ export const MITO = {
 
 export const FILOSOFIA = {
   eyebrow: "Una psicología que no quiere corregirte",
-  titulo: ["No se trata de ser más.", "Se trata de ser más tú."],
   parrafos: [
     "Orpheus entiende el proceso terapéutico como un descenso hacia aquello que no siempre queremos o sabemos mirar: nuestras heridas, emociones, patrones, miedos, contradicciones y partes desconocidas.",
     "Porque solo cuando somos capaces de descender hacia ellas podemos después elevarnos: vivir con más libertad, coherencia, serenidad y sentido.",
@@ -70,29 +69,6 @@ export const PROCESO_VIVO = {
 } as const;
 
 /* ══════════════════════════════════════════════════════════════════
-   GESTIÓN EMOCIONAL
-   ══════════════════════════════════════════════════════════════════ */
-
-export const EMOCIONES = {
-  eyebrow: "Gestión emocional",
-  titulo: ["Sentir.", "Comprender.", "Elegir."],
-  parrafos: [
-    "Nuestras emociones no son algo que tengamos que eliminar o controlar a la fuerza. Son información.",
-    "Aprender a reconocerlas, comprender qué las provoca y decidir cómo queremos responder a ellas nos permite recuperar algo fundamental: la capacidad de elegir.",
-    "No siempre podemos controlar lo que ocurre. Pero sí podemos trabajar en cómo nos relacionamos con aquello que ocurre.",
-  ],
-  cita: [
-    "No se trata de controlar lo que sientes.",
-    "Se trata de aprender a relacionarte con ello.",
-  ],
-  pasos: [
-    { n: "Sentir", d: "Permitir que la emoción esté sin taparla ni justificarla." },
-    { n: "Comprender", d: "Entender qué la ha activado y qué necesidad señala." },
-    { n: "Elegir", d: "Decidir cómo quieres responder, en lugar de reaccionar." },
-  ],
-} as const;
-
-/* ══════════════════════════════════════════════════════════════════
    ¿TE RECONOCES?
    ══════════════════════════════════════════════════════════════════ */
 
@@ -108,11 +84,8 @@ export const RECONOCES = {
     "Tu diálogo interno es mucho más duro contigo que con cualquier otra persona.",
     "Sabes racionalmente que deberías confiar más en ti, pero no consigues sentirlo.",
     "Te cuesta parar, descansar o disfrutar sin sentir que deberías estar haciendo algo más.",
-    "Te encuentras repitiendo patrones que sabes que no te hacen bien.",
     "Te cuesta entender qué sientes o poner palabras a lo que te ocurre.",
-    "En tus relaciones, a veces te pierdes intentando no perder al otro.",
     "Estás atravesando una ruptura, un duelo, una crisis o un momento de cambio.",
-    "Sientes que desde fuera todo parece estar bien, pero por dentro algo no termina de encajar.",
   ],
   cierre:
     "Y quizá lleves tiempo sabiendo lo que «deberías» hacer, sin saber cómo dejar de sentirte así.",
@@ -123,8 +96,8 @@ export const RECONOCES = {
    ══════════════════════════════════════════════════════════════════ */
 
 export const VALORES = {
-  eyebrow: "Lo que encontrarás en mí",
-  titulo: "Cinco cosas que puedes dar por hechas.",
+  eyebrow: "En este lugar",
+  titulo: "Lo que encontrarás en este lugar.",
   items: [
     {
       clave: "Compromiso",
@@ -212,10 +185,14 @@ export const RECORRIDO = {
    ══════════════════════════════════════════════════════════════════ */
 
 export const ENGRANAJE = {
-  eyebrow: "Espacios de trabajo",
-  titulo: "No trabajo los problemas de forma aislada.",
+  eyebrow: "Te acompaño en esto",
+  titulo: "Entiendo al ser humano como un engranaje.",
   intro:
-    "Entiendo al ser humano como un engranaje: lo que ocurre en tu autoestima toca tus relaciones, y lo que ocurre en tus relaciones toca tu forma de descansar, de trabajar y de hablarte. Por eso no aplico un protocolo cerrado, sino que adapto el trabajo a lo que tú necesitas en cada momento.",
+    "Lo que ocurre en tu autoestima toca tus relaciones, y lo que ocurre en tus relaciones toca tu forma de descansar, de trabajar y de hablarte. Por eso no aplico un protocolo cerrado: adapto el trabajo a lo que necesitas en cada momento.",
+  /** Encabeza la lista secundaria de áreas de trabajo. */
+  otras: "Otras áreas en las que acompaño",
+  cierre:
+    "¿No ves aquí lo que te ocurre? Los motivos de consulta rara vez vienen con etiqueta. Escríbeme y lo miramos.",
 } as const;
 
 export type Espacio = {
@@ -223,6 +200,7 @@ export type Espacio = {
   titulo: string;
   breve: string;
   detalle: string;
+  /** Áreas principales del nicho: encabezan la sección. */
   destacado?: boolean;
 };
 
@@ -291,6 +269,7 @@ export const ESPACIOS: Espacio[] = [
     breve: "Confiar en tu propio criterio.",
     detalle:
       "Reconocer los detonantes de la duda constante, regular la comparación y aprender a sostener tus decisiones sin necesitar que alguien las apruebe.",
+    destacado: true,
   },
   {
     slug: "fobias",
@@ -321,9 +300,9 @@ export const ESPACIOS: Espacio[] = [
 
 export const ENFOQUE = {
   eyebrow: "Mi enfoque",
-  titulo: "Terapia integradora.",
+  titulo: "Trabajo desde un enfoque integrador.",
   intro:
-    "No me caso con una sola escuela. Trabajo desde un enfoque integrador que combina herramientas de distintos modelos con respaldo científico, y elijo en cada momento las que mejor encajan contigo y con lo que estás atravesando.",
+    "Combino herramientas de distintos modelos con respaldo científico y elijo en cada momento las que mejor encajan contigo y con lo que estás atravesando.",
   modelos: [
     {
       t: "Terapia cognitivo-conductual",
@@ -342,7 +321,6 @@ export const ENFOQUE = {
       d: "Para poner en escena lo que cuesta explicar con palabras y verlo desde fuera.",
     },
   ],
-  nota: "La evidencia científica no está aquí para impresionarte, sino para que el trabajo que hagamos tenga sentido y funcione.",
 } as const;
 
 /* ══════════════════════════════════════════════════════════════════
@@ -362,7 +340,7 @@ export const HISTORIA = {
     "Hoy me apasiona acompañar a personas que se sienten desconectadas de sí mismas, atrapadas en la autoexigencia, la inseguridad, la ansiedad o la dificultad para reconocer su propio valor.",
     "Creo que una de mis mayores fortalezas como psicóloga es transformar el caos en claridad: ayudarte a poner palabras a aquello que quizá todavía no sabes cómo explicar, comprender de dónde viene y encontrar nuevas formas de afrontarlo.",
   ],
-  cita: "Creo en la psicología como un lugar donde volver a mirarse con respeto.",
+  cita: "La psicología, para mí, es un lugar donde volver a mirarse con respeto.",
   frase: "«No puedo.»",
 } as const;
 
@@ -373,13 +351,10 @@ export const FORMACION = {
     { t: "Graduada en Psicología", d: "Universidad Complutense de Madrid" },
     { t: "Máster en Psicología General Sanitaria", d: "Universidad Complutense de Madrid" },
     { t: "Programa avanzado en Inteligencia Emocional y Terapia Infantojuvenil", d: "" },
-    { t: "Formación en Terapia Cognitivo-Conductual", d: "" },
-    { t: "Formación en Terapia de Aceptación y Compromiso (ACT)", d: "" },
-    { t: "Formación en Terapia Psicodramática", d: "" },
     { t: "Formación especializada en autoestima", d: "" },
   ],
   continuo: "Y continúo…",
-  nota: "La formación es un proceso continuo. Por eso sigo ampliando y actualizando mis conocimientos para ofrecer una psicología rigurosa, actualizada y adaptada a cada persona.",
+  nota: "A eso se suma la formación en los modelos con los que trabajo, que integro en un mismo enfoque en lugar de aplicarlos por separado. La formación es un proceso continuo y sigo actualizándola para acompañar mejor a cada persona.",
 } as const;
 
 /* ══════════════════════════════════════════════════════════════════
@@ -390,6 +365,10 @@ export const ESPACIO_SEGURO = {
   eyebrow: "Un espacio seguro. Siempre.",
   titulo: "Lo que sostiene el trabajo.",
   items: [
+    {
+      t: "Enfoque integrador",
+      d: "Un marco teórico que combina los modelos con más respaldo científico y los adapta a ti, en lugar de encajarte en una sola escuela.",
+    },
     {
       t: "Confidencialidad total",
       d: "Todo lo que compartes queda protegido por el secreto profesional y por el código deontológico de la psicología.",
@@ -414,8 +393,12 @@ export const ESPACIO_SEGURO = {
    ══════════════════════════════════════════════════════════════════ */
 
 /**
- * Precios: la clienta dejó abierta la decisión de publicarlos.
- * Cambia MOSTRAR_PRECIOS a true y rellena `precio` para mostrarlos.
+ * Tarifas.
+ * ------------------------------------------------------------------
+ * Melissa pidió publicarlas de forma explícita y transparente. En cuanto
+ * estén los importes, basta con rellenar `precio` en cada modalidad y
+ * poner `MOSTRAR_PRECIOS` a `true`: la maquetación ya los contempla.
+ * Mientras tanto la página remite a consultarlas, sin inventar cifras.
  */
 export const MOSTRAR_PRECIOS = false;
 
@@ -423,7 +406,9 @@ export const SESIONES = [
   {
     slug: "primera-sesion",
     titulo: "Primera sesión",
+    etiqueta: "Punto de partida",
     duracion: "60 minutos",
+    canal: "Online",
     precio: "",
     resumen:
       "Un espacio para conocernos, contarme qué te trae y decidir si quieres empezar. Sin compromiso de continuidad.",
@@ -437,30 +422,34 @@ export const SESIONES = [
   {
     slug: "terapia-individual",
     titulo: "Terapia individual",
+    etiqueta: "Proceso completo",
     duracion: "50 a 60 minutos",
+    canal: "Online, por videollamada cifrada",
     precio: "",
     resumen:
-      "El proceso completo. Un acompañamiento continuado y personalizado donde trabajamos aquello que te trajo y aquello que aparece por el camino.",
+      "El acompañamiento continuado. Trabajamos aquello que te trajo y aquello que aparece por el camino, con la misma profundidad estés donde estés.",
     incluye: [
       "Plan terapéutico adaptado a ti",
       "Herramientas concretas entre sesión y sesión",
       "Revisión periódica de objetivos",
-      "Seguimiento cercano de tu evolución",
+      "Horario flexible y sin desplazamientos",
     ],
     destacado: true,
   },
   {
-    slug: "online",
-    titulo: "Terapia online",
+    slug: "presencial",
+    titulo: "Sesión presencial",
+    etiqueta: "En Madrid",
     duracion: "50 a 60 minutos",
+    canal: "Madrid, según disponibilidad",
     precio: "",
     resumen:
-      "La misma profundidad, desde donde estés. Videollamada segura y cifrada, con la misma continuidad que la consulta presencial.",
+      "La consulta trabaja sobre todo en línea, pero si necesitas vernos en persona lo valoramos: escríbeme y te confirmo disponibilidad y lugar.",
     incluye: [
-      "Horarios flexibles",
-      "Sin desplazamientos",
-      "Plataforma segura y confidencial",
-      "Disponible desde cualquier país",
+      "Mismo proceso y mismo seguimiento",
+      "Días concretos de consulta en Madrid",
+      "Posibilidad de combinar con sesiones online",
+      "Confirmación previa de disponibilidad",
     ],
   },
 ] as const;
@@ -487,6 +476,17 @@ export const EMPRESAS = {
   titulo: "Bienestar emocional en entornos de trabajo.",
   intro:
     "La autoexigencia y el agotamiento no aparecen solo en consulta. También viven en las reuniones, en los correos de las once de la noche y en la sensación de que nunca se ha hecho suficiente. Diseño intervenciones para equipos que quieren cuidar eso de verdad, no solo nombrarlo.",
+  entradilla:
+    "Cuéntame qué necesita tu equipo y preparo una propuesta a medida: formato, duración y presupuesto.",
+  cadaEquipo:
+    "Cada equipo tiene su propio desgaste. La intervención se diseña después de escucharlo.",
+  simulador: {
+    eyebrow: "Presupuesto",
+    titulo: "Calcula lo que costaría para tu equipo.",
+    intro:
+      "Dime cuántas personas sois y qué necesitáis, y te devuelvo una propuesta con el detalle del servicio y su coste.",
+    nota: "Las propuestas se preparan una a una: no hay paquetes cerrados ni mínimos de contratación.",
+  },
   servicios: [
     {
       t: "Talleres y formaciones",
@@ -558,8 +558,6 @@ export const FAQ = [
 export const CTA_FINAL = {
   eyebrow: "Empezar",
   titulo: "No tienes que tenerlo todo claro para empezar.",
-  texto:
-    "A veces, el primer paso no es saber qué necesitas cambiar. Es simplemente encontrar un lugar donde poder empezar a comprenderlo.",
   boton: "Escríbeme",
 } as const;
 
@@ -579,6 +577,5 @@ export const MARQUESINA = [
   "Sin etiquetas que te definan",
   "Sin recetas universales",
   "Descender para poder elevarse",
-  "No se trata de ser más, sino de ser más tú",
   "Tu historia importa",
 ];

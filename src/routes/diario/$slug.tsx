@@ -143,7 +143,7 @@ function BloqueRenderizado({ bloque, indice }: { bloque: Bloque; indice: number 
         <Reveal
           as="h3"
           delay={retardo}
-          className="mt-10 mb-4 font-sans text-[0.78rem] font-medium tracking-[0.16em] text-ink uppercase"
+          className="mt-10 mb-4 font-sans text-[0.83rem] font-medium tracking-[0.16em] text-ink uppercase"
         >
           {bloque.texto}
         </Reveal>
@@ -162,7 +162,7 @@ function BloqueRenderizado({ bloque, indice }: { bloque: Bloque; indice: number 
       return (
         <Reveal as="ul" delay={retardo} className="my-7 grid gap-3.5">
           {bloque.items.map((item) => (
-            <li key={item} className="relative pl-6 text-[1.02rem] leading-[1.8] font-light">
+            <li key={item} className="relative pl-6 text-[1.06rem] leading-[1.8] font-light">
               <span aria-hidden="true" className="absolute top-[0.85em] left-0 h-px w-3 bg-olive" />
               {item}
             </li>
@@ -264,12 +264,12 @@ function ArticuloPagina() {
                 <p className="mt-2.5 font-display text-[1.35rem] text-ink">
                   {SITE.psicologa.nombre}
                 </p>
-                <p className="mt-1 text-[0.85rem] font-light text-ink-muted">
+                <p className="mt-1 text-[0.9rem] font-light text-ink-muted">
                   {SITE.psicologa.titulo} · Fundadora de {SITE.name}
                 </p>
                 <Link
                   to="/sobre-mi"
-                  className="link-draw mt-3 inline-block text-[0.82rem] text-cypress"
+                  className="link-draw mt-3 inline-block text-[0.87rem] text-cypress"
                 >
                   Conocer su historia
                 </Link>
@@ -291,7 +291,7 @@ function ArticuloPagina() {
               <h2 id="seguir-leyendo-titulo" className="display-sm">
                 Seguir <em className="italic">leyendo</em>
               </h2>
-              <Link to="/diario" className="link-draw text-[0.82rem] text-cypress">
+              <Link to="/diario" className="link-draw text-[0.87rem] text-cypress">
                 <span className="inline-flex items-center gap-2">
                   <ArrowLeft className="size-3.5" strokeWidth={1.5} aria-hidden="true" />
                   Volver al Diario
@@ -331,7 +331,7 @@ function ArticuloPagina() {
                         <h3 className="mt-4 font-display text-[1.35rem] leading-tight text-ink md:text-[1.55rem]">
                           {a.titulo}
                         </h3>
-                        <p className="mt-3 flex-1 text-[0.88rem] leading-relaxed font-light text-ink-muted">
+                        <p className="mt-3 flex-1 text-[0.93rem] leading-relaxed font-light text-ink-muted">
                           {a.descripcion}
                         </p>
                         <p className="mt-5 text-[0.72rem] tracking-[0.14em] text-ink-faint uppercase">

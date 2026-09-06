@@ -19,21 +19,55 @@ import { Reveal, Magnetico } from "./motion";
 export type Destino = LinkProps["to"];
 
 /* ══════════════════════════════════════════════════════════════════
-   MARCA — la lira de Orfeo en SVG (nítida a cualquier tamaño)
+   MARCA — la lira lunar de Orpheus
+   ------------------------------------------------------------------
+   Reproducción vectorial del logotipo original (el mismo que aparece
+   en las tarjetas, en la reserva de sesiones y en redes). La geometría
+   se midió sobre el archivo original: la caja es la luna creciente que
+   resulta de restar una elipse a un círculo, y sobre ella descansan el
+   yugo con sus dos remates y las cuatro cuerdas.
    ══════════════════════════════════════════════════════════════════ */
+
+/** Círculo exterior de la luna. */
+const LUNA = { cx: 50, cy: 41.05, r: 44.9 } as const;
+/** Elipse que vacía la luna y forma la curva interior. */
+const HUECO = { cx: 50, cy: 31.85, rx: 34.7, ry: 41.2 } as const;
+/** Yugo: travesaño con un remate redondo en cada extremo. */
+const YUGO = { y: 18.15, x1: 4.4, x2: 95.6, remate: 3 } as const;
+/** Cuerdas, simétricas respecto del eje. */
+const CUERDAS = [32.6, 41.3, 50, 58.7, 67.4] as const;
+
+/** Punto en el que cada cuerda se apoya sobre la curva interior de la luna. */
+function apoyoCuerda(x: number) {
+  const t = (x - HUECO.cx) / HUECO.rx;
+  return HUECO.cy + HUECO.ry * Math.sqrt(Math.max(0, 1 - t * t)) + 0.6;
+}
+
+/** Silueta de la luna: círculo menos elipse, con regla par-impar. */
+const SILUETA = [
+  `M ${LUNA.cx - LUNA.r} ${LUNA.cy}`,
+  `a ${LUNA.r} ${LUNA.r} 0 1 0 ${LUNA.r * 2} 0`,
+  `a ${LUNA.r} ${LUNA.r} 0 1 0 ${-LUNA.r * 2} 0`,
+  "Z",
+  `M ${HUECO.cx - HUECO.rx} ${HUECO.cy}`,
+  `a ${HUECO.rx} ${HUECO.ry} 0 1 0 ${HUECO.rx * 2} 0`,
+  `a ${HUECO.rx} ${HUECO.ry} 0 1 0 ${-HUECO.rx * 2} 0`,
+  "Z",
+].join(" ");
 
 export function Lira({
   className = "",
-  strokeWidth = 9,
+  trazo = 1.8,
   title,
 }: {
   className?: string;
-  strokeWidth?: number;
+  /** Grosor de las cuerdas en unidades del viewBox. */
+  trazo?: number;
   title?: string;
 }) {
   return (
     <svg
-      viewBox="0 0 100 100"
+      viewBox="0 0 100 88"
       fill="none"
       className={className}
       role={title ? "img" : "presentation"}
@@ -41,34 +75,29 @@ export function Lira({
       aria-label={title}
     >
       {title ? <title>{title}</title> : null}
+
+      {/* Caja de resonancia: la luna creciente */}
+      <path d={SILUETA} fill="currentColor" fillRule="evenodd" />
+
       {/* Cuerdas */}
-      <g stroke="currentColor" strokeWidth={strokeWidth * 0.21} strokeLinecap="round">
-        <line x1="33" y1="9" x2="33" y2="73" />
-        <line x1="41.5" y1="9" x2="41.5" y2="73" />
-        <line x1="50" y1="9" x2="50" y2="73" />
-        <line x1="58.5" y1="9" x2="58.5" y2="73" />
-        <line x1="67" y1="9" x2="67" y2="73" />
+      <g stroke="currentColor" strokeWidth={trazo} strokeLinecap="round">
+        {CUERDAS.map((x) => (
+          <line key={x} x1={x} y1={2.2} x2={x} y2={apoyoCuerda(x)} />
+        ))}
       </g>
-      {/* Yugo */}
+
+      {/* Yugo y remates */}
       <line
-        x1="21"
-        y1="36.4"
-        x2="79"
-        y2="36.4"
+        x1={YUGO.x1}
+        y1={YUGO.y}
+        x2={YUGO.x2}
+        y2={YUGO.y}
         stroke="currentColor"
-        strokeWidth={strokeWidth * 0.29}
+        strokeWidth={trazo * 0.86}
         strokeLinecap="round"
       />
-      {/* Caja: arco mayor por debajo */}
-      <path
-        d="M24.4 36.4 A33 33 0 1 0 75.6 36.4"
-        stroke="currentColor"
-        strokeWidth={strokeWidth * 0.94}
-        strokeLinecap="round"
-      />
-      {/* Remates */}
-      <circle cx="22.2" cy="36.4" r={strokeWidth * 0.55} fill="currentColor" />
-      <circle cx="77.8" cy="36.4" r={strokeWidth * 0.55} fill="currentColor" />
+      <circle cx={YUGO.x1} cy={YUGO.y} r={YUGO.remate} fill="currentColor" />
+      <circle cx={YUGO.x2} cy={YUGO.y} r={YUGO.remate} fill="currentColor" />
     </svg>
   );
 }
@@ -84,13 +113,10 @@ export function Marca({
     return <Lira className={className} title="Orpheus Psicología" />;
   }
   return (
-    <span className={`flex items-center gap-2.5 ${className}`}>
-      <Lira className="h-7 w-7 shrink-0 md:h-8 md:w-8" />
-      <span className="flex flex-col leading-none">
-        <span className="font-display text-[1.35rem] leading-none tracking-tight md:text-[1.5rem]">
-          Orpheus
-        </span>
-        <span className="eyebrow mt-1 text-[0.5rem] opacity-70 md:text-[0.55rem]">Psicología</span>
+    <span className={`flex items-center gap-2.5 md:gap-3 ${className}`}>
+      <Lira className="h-8 w-8 shrink-0 md:h-9 md:w-9" trazo={2.4} />
+      <span className="font-display text-[1.28rem] leading-[1.15] whitespace-nowrap md:text-[1.42rem]">
+        Orpheus <span className="text-[0.82em] opacity-80">Psicología</span>
       </span>
     </span>
   );
@@ -340,7 +366,7 @@ export function Acordeon({
             >
               <div className="overflow-hidden">
                 <p
-                  className={`max-w-2xl pb-7 text-[0.95rem] leading-relaxed font-light ${
+                  className={`max-w-2xl pb-7 text-[0.99rem] leading-relaxed font-light ${
                     oscuro ? "text-on-dark-muted" : "text-ink-muted"
                   }`}
                 >

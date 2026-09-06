@@ -59,6 +59,12 @@ function AvisoLegal() {
               <a href={`mailto:${SITE.contacto.email}`}>{SITE.contacto.email}</a>
             </li>
             <li>
+              <strong>Teléfono:</strong>{" "}
+              <a href={`tel:${SITE.contacto.telefonoHref}`}>
+                <Dato valor={SITE.contacto.telefono} />
+              </a>
+            </li>
+            <li>
               <strong>Actividad:</strong> {SITE.titular.actividad}
             </li>
             <li>

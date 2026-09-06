@@ -256,7 +256,7 @@ export const ARTICULOS: Articulo[] = [
       {
         tipo: "p",
         texto:
-          "El objetivo de la terapia no es convertirte en una versión más productiva, más perfecta o más adaptada de ti. No se trata de ser más. Se trata de ser más tú.",
+          "El objetivo de la terapia no es convertirte en una versión más productiva, más perfecta o más adaptada de ti, sino ayudarte a comprender qué hay detrás de lo que sientes y a construir otra forma de relacionarte contigo.",
       },
       {
         tipo: "p",

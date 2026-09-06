@@ -51,8 +51,8 @@ Grafo único e interconectado por `@id`, inyectado en la raíz del sitio:
 | `ProfessionalService` + `MedicalBusiness` + `Psychologist` | Raíz                         | Panel de conocimiento y SEO local                |
 | `Person`                                                   | Raíz + /sobre-mi             | E-E-A-T: titulación, universidad, especialidades |
 | `BreadcrumbList`                                           | Todas las páginas internas   | Migas en resultados de búsqueda                  |
-| `FAQPage`                                                  | Inicio (6) y /servicios (10) | Resultados enriquecidos de preguntas             |
-| `Service`                                                  | /servicios                   | Un nodo por espacio de trabajo                   |
+| `FAQPage`                                                  | /preguntas-frecuentes (10)   | Resultados enriquecidos de preguntas             |
+| `Service`                                                  | /servicios y /empresas       | Un nodo por espacio de trabajo y el servicio B2B |
 | `Article`                                                  | Cada artículo del Diario     | Fecha, autor, sección y recuento de palabras     |
 | `ContactPage`                                              | /contacto                    | Intención de contacto                            |
 
@@ -115,18 +115,23 @@ omiten automáticamente en lugar de publicar una URL falsa).
 ### Arquitectura
 
 ```
-/                    Portada — intención informativa y de marca
-├── /sobre-mi        E-E-A-T: quién, formación, enfoque
-├── /servicios       Página comercial. 12 espacios de trabajo con ancla propia
-│   ├── #autoestima, #autoexigencia, #ansiedad, #duelo…
-│   ├── #empresas    Segmento B2B
-│   └── #preguntas   FAQ completa (FAQPage)
-├── /diario          Blog — autoridad temática y long tail
+/                        Portada — intención informativa y de marca
+├── /sobre-mi            E-E-A-T: quién, formación, enfoque
+│   └── /por-que-orpheus El mito de Orfeo: marca y contenido informativo
+├── /servicios           Página comercial. 12 espacios de trabajo con ancla propia
+│   ├── #autoestima, #autoexigencia, #inseguridad, #ansiedad, #duelo…
+│   └── #modalidades     Servicios y tarifas
+├── /empresas            Segmento B2B con página propia (Service + BusinessAudience)
+├── /preguntas-frecuentes  FAQ completa, único portador de FAQPage
+├── /diario              Blog — autoridad temática y long tail
 │   └── /diario/[slug]
-├── /testimonios     Prueba social
-├── /contacto        Conversión
+├── /testimonios         Prueba social
+├── /contacto            Conversión
 └── /aviso-legal · /politica-de-privacidad · /politica-de-cookies
 ```
+
+La web está orientada principalmente a la **terapia online** en toda España, sin cerrar la
+puerta a la presencial en Madrid: es lo que refleja el copy, las modalidades y el schema.
 
 ### Cobertura de palabras clave
 
@@ -136,15 +141,19 @@ omiten automáticamente en lugar de publicar una URL falsa).
 | Transaccional | terapia autoestima · psicóloga autoestima        | `/servicios#autoestima`                                          |
 | Transaccional | terapia autoexigencia · perfeccionismo           | `/servicios#autoexigencia`                                       |
 | Transaccional | terapia de duelo · terapia ruptura de pareja     | `/servicios#duelo`, `#ruptura-de-pareja`                         |
-| Informativa   | cómo saber si necesito ir a terapia              | FAQ + `/diario`                                                  |
+| Informativa   | cómo saber si necesito ir a terapia              | `/preguntas-frecuentes` + `/diario`                              |
 | Informativa   | qué es la terapia integradora                    | `/servicios#enfoque`                                             |
+| Informativa   | cuánto dura la terapia · terapia online funciona | `/preguntas-frecuentes`                                          |
+| Informativa   | mito de Orfeo y psicoterapia                     | `/por-que-orpheus`                                               |
 | Informativa   | gestión emocional · cómo gestionar las emociones | `/diario/sentir-comprender-elegir`                               |
 | Informativa   | autoexigencia y responsabilidad                  | `/diario/cuando-la-autoexigencia-se-disfraza-de-responsabilidad` |
 | Marca         | orpheus psicología · melissa gonzález psicóloga  | `/` y `/sobre-mi`                                                |
-| B2B           | bienestar emocional empresas                     | `/servicios#empresas`                                            |
+| B2B           | bienestar emocional empresas · psicóloga empresas | `/empresas`                                                     |
 
 Los doce espacios de trabajo con ancla propia, indexados como `Service`, multiplican por
-seis la superficie de aterrizaje frente a las cinco páginas de la web anterior. Los cuatro
+seis la superficie de aterrizaje frente a las cinco páginas de la web anterior. Sacar el
+B2B y las preguntas frecuentes a páginas propias añade dos aterrizajes más, cada uno con
+su propio título, su propia descripción y su propio bloque de datos estructurados. Los cuatro
 artículos del Diario suman unas 4.500 palabras de contenido informativo original, escritas
 a partir del material que Melissa redactó, que es exactamente el tipo de contenido con
 experiencia de primera mano que Google prioriza en YMYL.

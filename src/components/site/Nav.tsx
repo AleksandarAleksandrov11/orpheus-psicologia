@@ -1,14 +1,17 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { NAV, SITE } from "@/content/site";
+import { ChevronDown } from "lucide-react";
+import { NAV, SITE, type NavLink } from "@/content/site";
 import { Marca } from "./ui";
 
 export function Nav() {
   const { pathname } = useLocation();
   const [compacta, setCompacta] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [abierto, setAbierto] = useState<string | null>(null);
   const [progreso, setProgreso] = useState(0);
   const botonMenu = useRef<HTMLButtonElement>(null);
+  const cierre = useRef<number | null>(null);
 
   /* La barra permanece siempre visible; al bajar solo gana fondo y filete. */
   useEffect(() => {
@@ -31,9 +34,10 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* El menú se cierra al navegar y bloquea el scroll mientras está abierto. */
+  /* Los menús se cierran al navegar y el móvil bloquea el scroll de fondo. */
   useEffect(() => {
     setMenu(false);
+    setAbierto(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -53,13 +57,42 @@ export function Nav() {
     };
   }, [menu]);
 
+  useEffect(() => {
+    if (!abierto) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setAbierto(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [abierto]);
+
+  useEffect(
+    () => () => {
+      if (cierre.current) window.clearTimeout(cierre.current);
+    },
+    [],
+  );
+
   const alInicio = (to: string) => (e: React.MouseEvent) => {
     if (pathname === to) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
       setMenu(false);
+      setAbierto(null);
     }
   };
+
+  /* Pequeño margen antes de cerrar: el puntero puede pasar por el hueco. */
+  const abrir = (clave: string) => {
+    if (cierre.current) window.clearTimeout(cierre.current);
+    setAbierto(clave);
+  };
+  const cerrarConMargen = () => {
+    if (cierre.current) window.clearTimeout(cierre.current);
+    cierre.current = window.setTimeout(() => setAbierto(null), 160);
+  };
+
+  const enlacesEscritorio = NAV.slice(0, -1);
 
   return (
     <>
@@ -71,28 +104,86 @@ export function Nav() {
         }`}
       >
         <div className="shell flex h-[var(--nav-h)] items-center justify-between gap-6 md:h-20">
+          {/* Sobre el menú a pantalla completa la marca sigue visible, en claro. */}
           <Link
             to="/"
             onClick={alInicio("/")}
             aria-label={`Ir al inicio de ${SITE.name}`}
-            className="group text-ink transition-opacity duration-500 hover:opacity-70"
+            className={`group relative z-[80] transition-opacity duration-500 hover:opacity-70 ${
+              menu ? "text-on-dark" : "text-ink"
+            }`}
           >
             <Marca />
           </Link>
 
-          <nav aria-label="Navegación principal" className="hidden items-center gap-8 lg:flex">
-            {NAV.slice(1, -1).map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={alInicio(l.to)}
-                className="link-draw text-[0.8rem] font-light tracking-[0.06em] text-ink/80 transition-colors duration-400 hover:text-cypress"
-                activeProps={{ className: "text-cypress" }}
-                activeOptions={{ exact: l.to === "/" }}
-              >
-                {l.label}
-              </Link>
-            ))}
+          <nav aria-label="Navegación principal" className="hidden items-center gap-7 lg:flex">
+            {enlacesEscritorio.map((l) =>
+              "hijos" in l ? (
+                <div
+                  key={l.to}
+                  className="relative"
+                  onMouseEnter={() => abrir(l.to)}
+                  onMouseLeave={cerrarConMargen}
+                >
+                  <Link
+                    to={l.to}
+                    onClick={alInicio(l.to)}
+                    onFocus={() => abrir(l.to)}
+                    aria-expanded={abierto === l.to}
+                    className="link-draw flex items-center gap-1.5 py-2 text-[0.84rem] font-light tracking-[0.06em] text-ink/80 transition-colors duration-400 hover:text-cypress"
+                    activeProps={{ className: "text-cypress" }}
+                  >
+                    {l.label}
+                    <ChevronDown
+                      aria-hidden="true"
+                      strokeWidth={1.5}
+                      className={`size-3.5 transition-transform duration-400 ${
+                        abierto === l.to ? "rotate-180" : ""
+                      }`}
+                    />
+                  </Link>
+
+                  <div
+                    hidden={abierto !== l.to}
+                    className="absolute top-full left-1/2 z-10 w-[19rem] -translate-x-1/2 pt-3"
+                  >
+                    <ul className="anim-fade overflow-hidden rounded-2xl border border-rule bg-bone p-2 shadow-[0_20px_55px_-28px_rgba(44,52,36,0.55)]">
+                      {(l.hijos as readonly NavLink[]).map((h) => (
+                        <li key={h.to}>
+                          <Link
+                            to={h.to}
+                            onClick={alInicio(h.to)}
+                            className="group block rounded-xl px-4 py-3 transition-colors duration-400 hover:bg-linen"
+                            activeProps={{ className: "bg-linen" }}
+                          >
+                            <span className="block text-[0.96rem] text-ink transition-colors duration-400 group-hover:text-cypress">
+                              {h.label}
+                            </span>
+                            {h.descripcion ? (
+                              <span className="mt-1 block text-[0.83rem] leading-snug font-light text-ink-faint">
+                                {h.descripcion}
+                              </span>
+                            ) : null}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={alInicio(l.to)}
+                  onMouseEnter={cerrarConMargen}
+                  className="link-draw py-2 text-[0.84rem] font-light tracking-[0.06em] text-ink/80 transition-colors duration-400 hover:text-cypress"
+                  activeProps={{ className: "text-cypress" }}
+                  activeOptions={{ exact: l.to === "/" }}
+                >
+                  {l.label}
+                </Link>
+              ),
+            )}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -160,7 +251,7 @@ export function Nav() {
                     className="group block border-b border-on-dark/12 py-4"
                     style={{
                       animation: menu
-                        ? `orpheus-clip-up 0.85s cubic-bezier(0.22,1,0.36,1) ${120 + i * 65}ms both`
+                        ? `orpheus-clip-up 0.85s cubic-bezier(0.22,1,0.36,1) ${120 + i * 55}ms both`
                         : undefined,
                     }}
                   >
@@ -168,14 +259,39 @@ export function Nav() {
                       <span className="eyebrow w-6 shrink-0 text-on-dark-faint">0{i + 1}</span>
                       <span className="flex-1">
                         <span className="display-sm block text-on-dark">{l.label}</span>
-                        {"descripcion" in l && l.descripcion ? (
-                          <span className="mt-1 block text-[0.78rem] font-light text-on-dark-muted">
+                        {l.descripcion ? (
+                          <span className="mt-1 block text-[0.87rem] font-light text-on-dark-muted">
                             {l.descripcion}
                           </span>
                         ) : null}
                       </span>
                     </span>
                   </Link>
+
+                  {"hijos" in l ? (
+                    <ul
+                      className="mb-1 flex flex-wrap gap-x-5 gap-y-2 border-b border-on-dark/12 py-3 pl-10"
+                      style={{
+                        animation: menu
+                          ? `orpheus-fade 0.9s cubic-bezier(0.4,0,0.2,1) ${220 + i * 55}ms both`
+                          : undefined,
+                      }}
+                    >
+                      {(l.hijos as readonly NavLink[])
+                        .filter((h) => h.to !== l.to)
+                        .map((h) => (
+                          <li key={h.to}>
+                            <Link
+                              to={h.to}
+                              onClick={alInicio(h.to)}
+                              className="link-undraw text-[0.93rem] font-light text-on-dark-muted"
+                            >
+                              {h.label}
+                            </Link>
+                          </li>
+                        ))}
+                    </ul>
+                  ) : null}
                 </li>
               ))}
             </ul>
@@ -196,9 +312,12 @@ export function Nav() {
             >
               <span className="relative z-10">Reservar primera sesión</span>
             </Link>
-            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.75rem] font-light text-on-dark-muted">
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.83rem] font-light text-on-dark-muted">
               <a href={`mailto:${SITE.contacto.email}`} className="link-undraw">
                 {SITE.contacto.email}
+              </a>
+              <a href={`tel:${SITE.contacto.telefonoHref}`} className="link-undraw">
+                {SITE.contacto.telefono}
               </a>
               <a
                 href={SITE.social.instagram}

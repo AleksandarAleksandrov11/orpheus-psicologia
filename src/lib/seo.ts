@@ -129,7 +129,7 @@ export function personaSchema() {
     name: SITE.psicologa.nombre,
     jobTitle: SITE.psicologa.titulo,
     description:
-      "Psicóloga General Sanitaria especializada en autoestima, autoexigencia, inseguridad y gestión emocional. Terapia integradora online y presencial.",
+      "Psicóloga General Sanitaria especializada en autoestima, autoexigencia e inseguridad. Terapia integradora online en toda España y presencial en Madrid.",
     url: absolute("/sobre-mi"),
     image: absolute("/og/og-sobre-mi.jpg"),
     worksFor: { "@id": ID.organizacion },
@@ -177,11 +177,12 @@ export function negocioSchema() {
     name: SITE.name,
     alternateName: `${SITE.psicologa.nombre} · Psicóloga`,
     description:
-      "Consulta de psicología especializada en autoestima, autoexigencia e inseguridad. Terapia integradora, online y presencial en Madrid.",
+      "Consulta de psicología especializada en autoestima, autoexigencia e inseguridad. Terapia integradora online en toda España y presencial en Madrid.",
     url: SITE.url,
     logo: absolute("/icon-512.png"),
     image: absolute("/og/og-default.jpg"),
     email: SITE.contacto.email,
+    ...(esPendiente(SITE.contacto.telefono) ? {} : { telephone: SITE.contacto.telefonoHref }),
     priceRange: "€€",
     currenciesAccepted: "EUR",
     founder: { "@id": ID.persona },
@@ -202,12 +203,13 @@ export function negocioSchema() {
       "@type": "OfferCatalog",
       name: "Servicios de psicología",
       itemListElement: [
-        "Terapia individual",
-        "Terapia online",
+        "Terapia individual online",
         "Terapia para la autoestima",
         "Terapia para la autoexigencia y el perfeccionismo",
+        "Terapia para la inseguridad",
         "Terapia para la ansiedad",
         "Acompañamiento en duelo y ruptura",
+        "Bienestar emocional para empresas",
       ].map((name) => ({
         "@type": "Offer",
         itemOffered: { "@type": "Service", name, provider: { "@id": ID.organizacion } },

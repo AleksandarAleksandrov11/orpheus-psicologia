@@ -1,9 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Mail } from "lucide-react";
-import { LEGAL_NAV, NAV, SITE, esPendiente } from "@/content/site";
+import { Instagram, Mail, Phone } from "lucide-react";
+import { LEGAL_NAV, NAV_PLANO, SITE, esPendiente } from "@/content/site";
 import { abrirPreferenciasCookies } from "@/lib/consent";
 import { Lira } from "./ui";
-import { Reveal } from "./motion";
 
 export function Footer() {
   const anio = new Date().getFullYear();
@@ -11,18 +10,6 @@ export function Footer() {
 
   return (
     <footer className="aurora-deep grain-dark on-dark relative overflow-hidden text-on-dark">
-      {/* Cierre editorial */}
-      <div className="relative z-10 shell border-b border-on-dark/12 py-16 md:py-24">
-        <Reveal className="flex flex-col items-start gap-8 md:flex-row md:items-end md:justify-between">
-          <p className="display-md max-w-2xl text-on-dark">
-            Cuando quieras empezar a <em className="italic">comprenderlo</em>, aquí estaré.
-          </p>
-          <Link to="/contacto" className="btn-base btn-fill btn-light shrink-0">
-            <span className="relative z-10">Escríbeme</span>
-          </Link>
-        </Reveal>
-      </div>
-
       <div className="relative z-10 shell grid gap-12 py-16 md:grid-cols-12 md:py-20">
         {/* Marca */}
         <div className="md:col-span-5">
@@ -31,17 +18,16 @@ export function Footer() {
             aria-label={`Ir al inicio de ${SITE.name}`}
             className="inline-flex items-center gap-3"
           >
-            <Lira className="h-9 w-9 text-on-dark" />
-            <span className="flex flex-col leading-none">
-              <span className="font-display text-2xl text-on-dark">Orpheus</span>
-              <span className="eyebrow mt-1.5 text-[0.55rem] text-on-dark-faint">Psicología</span>
+            <Lira className="h-9 w-9 text-on-dark" trazo={2.4} />
+            <span className="font-display text-2xl leading-[1.15] text-on-dark">
+              Orpheus <span className="text-[0.82em] text-on-dark-muted">Psicología</span>
             </span>
           </Link>
-          <p className="mt-6 max-w-xs text-[0.85rem] leading-relaxed font-light text-on-dark-muted">
+          <p className="mt-6 max-w-xs text-[0.9rem] leading-relaxed font-light text-on-dark-muted">
             Descender para poder elevarse. Una psicología para comprender lo que te pasa,
             transformar aquello que te limita y construir una relación más amable contigo.
           </p>
-          <p className="mt-6 text-[0.78rem] font-light text-on-dark-faint">
+          <p className="mt-6 text-[0.83rem] font-light text-on-dark-faint">
             {SITE.psicologa.nombre} · {SITE.psicologa.titulo}
             {colegiadaPendiente ? null : (
               <>
@@ -53,14 +39,14 @@ export function Footer() {
         </div>
 
         {/* Navegación */}
-        <nav className="md:col-span-3" aria-label="Mapa del sitio">
+        <nav className="md:col-span-4" aria-label="Mapa del sitio">
           <h2 className="eyebrow text-on-dark-faint">Navegación</h2>
-          <ul className="mt-6 space-y-3">
-            {NAV.map((l) => (
+          <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+            {NAV_PLANO.map((l) => (
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="link-draw text-[0.9rem] font-light text-on-dark-muted transition-colors duration-400 hover:text-on-dark"
+                  className="link-draw text-[0.95rem] font-light text-on-dark-muted transition-colors duration-400 hover:text-on-dark"
                 >
                   {l.label}
                 </Link>
@@ -70,9 +56,9 @@ export function Footer() {
         </nav>
 
         {/* Contacto */}
-        <div className="md:col-span-4">
+        <div className="md:col-span-3">
           <h2 className="eyebrow text-on-dark-faint">Contacto</h2>
-          <ul className="mt-6 space-y-3.5 text-[0.9rem] font-light text-on-dark-muted">
+          <ul className="mt-6 space-y-3.5 text-[0.95rem] font-light text-on-dark-muted">
             <li>
               <a
                 href={`mailto:${SITE.contacto.email}`}
@@ -80,6 +66,15 @@ export function Footer() {
               >
                 <Mail className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
                 {SITE.contacto.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`tel:${SITE.contacto.telefonoHref}`}
+                className="link-draw inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
+              >
+                <Phone className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
+                {SITE.contacto.telefono}
               </a>
             </li>
             <li>
@@ -94,7 +89,7 @@ export function Footer() {
               </a>
             </li>
           </ul>
-          <p className="mt-6 text-[0.78rem] leading-relaxed font-light text-on-dark-faint">
+          <p className="mt-6 text-[0.83rem] leading-relaxed font-light text-on-dark-faint">
             {SITE.modalidades.join(" · ")}
             <br />
             {SITE.contacto.horario}
@@ -135,7 +130,7 @@ export function Footer() {
       {/* Lira gigante de fondo */}
       <Lira
         className="pointer-events-none absolute -right-16 -bottom-24 h-72 w-72 text-on-dark/[0.05] md:h-[26rem] md:w-[26rem]"
-        strokeWidth={6}
+        trazo={1.2}
       />
     </footer>
   );
