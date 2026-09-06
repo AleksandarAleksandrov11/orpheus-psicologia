@@ -62,7 +62,7 @@ function PorQueOrpheus() {
               </p>
 
               <LineasReveladas
-                lineas={["Descender para", "poder", "elevarse."]}
+                lineas={["Descender", "para poder", "elevarse."]}
                 cursiva={2}
                 delay={120}
                 className="display-xl mt-7 text-ink"

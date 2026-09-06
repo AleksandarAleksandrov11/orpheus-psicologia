@@ -19,9 +19,9 @@ publicar sin darse cuenta.
 | NIF y domicilio          | `SITE.titular`             | ✅ Completos                                 |
 | Teléfono y correo        | `SITE.contacto`            | ✅ De la tarjeta de la consulta              |
 | Dominio canónico         | `SITE.url`                 | ✅ `https://orpheuspsicologia.com` (sin www) |
-| Instagram y Google       | `SITE.social`              | ✅ `@orpheus_psicologia` y ficha de reseñas  |
+| Redes y ficha de Google  | `SITE.social`              | ✅ Instagram, LinkedIn, TikTok y reseñas     |
+| Tarifas                  | `SESIONES[].precio`        | ✅ 50 € / 70 € / 240 €                       |
 | Dirección de la consulta | `SITE.contacto.direccion`  | ⏳ Solo si se quiere anunciar la presencial  |
-| Tarifas                  | `SESIONES[].precio`        | ⏳ Faltan los importes (ver «Precios»)       |
 
 ### Reseñas
 
@@ -39,18 +39,37 @@ Dos detalles a tener en cuenta:
 
 ### Precios
 
-Melissa pidió publicar las tarifas de forma explícita, pero todavía no ha
-facilitado los importes. La maquetación ya los contempla: en cuanto lleguen,
-basta con rellenar `precio` en cada entrada de `SESIONES` y poner
-`MOSTRAR_PRECIOS` a `true` en `src/content/copy.ts`. Mientras tanto la web
-enlaza a «Consultar tarifa» en lugar de inventar una cifra.
+Las tarifas están publicadas, tal y como pidió Melissa: primera sesión 50 €,
+sesión individual 70 € y bono de cuatro sesiones 240 €. Viven en `SESIONES`
+(`src/content/copy.ts`) y se marcan además en `schema.org` con `OfferCatalog`,
+para que Google pueda mostrarlas. Para ocultarlas basta con poner
+`MOSTRAR_PRECIOS` a `false`.
 
-### Simulador de presupuesto para empresas
+### Simulador de empresas
 
-`/empresas` incluye un formulario que recoge los datos del equipo y redacta el
-correo de solicitud. Melissa tiene un simulador de precios propio y va a pasar el
-código: sustituye al bloque `FormularioPresupuesto` de
-`src/routes/empresas.tsx` conservando el ancla `#presupuesto`.
+`src/components/site/SimuladorEmpresas.tsx` reproduce el simulador de beneficio
+social que Melissa tiene publicado, con su misma tabla:
+
+| Sesiones contratadas | Precio por sesión |
+| -------------------- | ----------------- |
+| hasta 50             | 60 €              |
+| hasta 100            | 59 €              |
+| hasta 150            | 58 €              |
+| hasta 200            | 57 €              |
+| hasta 250            | 56 €              |
+| hasta 300            | 55 €              |
+| más de 300           | 54 €              |
+
+Sesión de concienciación: 500 €, hasta 30 personas por grupo. Recomendación de
+sesiones de psicoterapia: `nº empleados × 10 % × 8`. Comparativa contra un precio
+de mercado de 70 € por sesión. Todas las constantes están juntas al principio del
+fichero.
+
+Dos cambios respecto al original, a propósito: los resultados **no** se ocultan
+tras un formulario (se ven al instante y la solicitud va después, ya con el
+cálculo hecho) y los datos de contacto **no** se envían a un formulario de Google
+en segundo plano, sino que se redactan en un correo que la persona ve antes de
+enviarlo. Si Melissa prefiere recuperar el muro, es un `useState` más.
 
 ---
 
@@ -113,7 +132,7 @@ public/fonts/          Tipografías autoalojadas (sin peticiones a Google)
 | `bone`            | `#F2F0E7`             | Fondo base (papel)              |
 | `paper` / `linen` | `#EAE7DA` / `#F7F6F0` | Bandas alternas y tarjetas      |
 
-**Tipografía**: Instrument Serif (display) + Jost (interfaz y texto), ambas
+**Tipografía**: Newsreader (display) + Jost (interfaz y texto), ambas
 autoalojadas en `public/fonts` con `font-display: swap` y precarga de los cortes
 críticos.
 

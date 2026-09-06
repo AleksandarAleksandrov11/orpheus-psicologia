@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Mail, Phone } from "lucide-react";
+import { Instagram, Linkedin, Mail, Music2, Phone } from "lucide-react";
 import { LEGAL_NAV, NAV_PLANO, SITE, esPendiente } from "@/content/site";
 import { abrirPreferenciasCookies } from "@/lib/consent";
 import { Lira } from "./ui";
@@ -77,15 +77,36 @@ export function Footer() {
                 {SITE.contacto.telefono}
               </a>
             </li>
-            <li>
+            <li className="flex flex-wrap items-center gap-x-5 gap-y-2.5 pt-1">
               <a
                 href={SITE.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-draw inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
+                aria-label="Instagram de Orpheus Psicología"
+                className="inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
               >
                 <Instagram className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
                 {SITE.social.instagramHandle}
+              </a>
+              <a
+                href={SITE.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn de Orpheus Psicología"
+                className="inline-flex items-center transition-colors duration-400 hover:text-on-dark"
+              >
+                <Linkedin className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+              <a
+                href={SITE.social.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok de Orpheus Psicología"
+                className="inline-flex items-center transition-colors duration-400 hover:text-on-dark"
+              >
+                <Music2 className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
+                <span className="sr-only">TikTok</span>
               </a>
             </li>
           </ul>

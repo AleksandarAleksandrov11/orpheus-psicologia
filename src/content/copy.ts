@@ -12,8 +12,8 @@
 
 export const HERO = {
   eyebrow: "Melissa González · Psicóloga General Sanitaria",
-  titulo: ["No necesitas exigirte", "más para", "sentirte suficiente."],
-  /** La palabra que va en cursiva dentro del titular (índice de línea). */
+  titulo: ["No necesitas", "exigirte más", "para sentirte", "suficiente."],
+  /** Primera línea del titular que va en cursiva. */
   cursiva: 2,
   entradilla:
     "Terapia online para comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
@@ -395,12 +395,11 @@ export const ESPACIO_SEGURO = {
 /**
  * Tarifas.
  * ------------------------------------------------------------------
- * Melissa pidió publicarlas de forma explícita y transparente. En cuanto
- * estén los importes, basta con rellenar `precio` en cada modalidad y
- * poner `MOSTRAR_PRECIOS` a `true`: la maquetación ya los contempla.
- * Mientras tanto la página remite a consultarlas, sin inventar cifras.
+ * Son las mismas que Melissa publica hoy en su web: primera sesión a
+ * precio reducido, sesión suelta y bono de cuatro sesiones. La web se
+ * dirige a la terapia online; la presencial se valora caso por caso.
  */
-export const MOSTRAR_PRECIOS = false;
+export const MOSTRAR_PRECIOS = true;
 
 export const SESIONES = [
   {
@@ -409,7 +408,8 @@ export const SESIONES = [
     etiqueta: "Punto de partida",
     duracion: "60 minutos",
     canal: "Online",
-    precio: "",
+    precio: "50 €",
+    nota: "Precio reducido",
     resumen:
       "Un espacio para conocernos, contarme qué te trae y decidir si quieres empezar. Sin compromiso de continuidad.",
     incluye: [
@@ -420,12 +420,13 @@ export const SESIONES = [
     ],
   },
   {
-    slug: "terapia-individual",
-    titulo: "Terapia individual",
-    etiqueta: "Proceso completo",
+    slug: "sesion-individual",
+    titulo: "Sesión individual",
+    etiqueta: "El proceso",
     duracion: "50 a 60 minutos",
     canal: "Online, por videollamada cifrada",
-    precio: "",
+    precio: "70 €",
+    nota: "Se abona en consulta",
     resumen:
       "El acompañamiento continuado. Trabajamos aquello que te trajo y aquello que aparece por el camino, con la misma profundidad estés donde estés.",
     incluye: [
@@ -437,21 +438,28 @@ export const SESIONES = [
     destacado: true,
   },
   {
-    slug: "presencial",
-    titulo: "Sesión presencial",
-    etiqueta: "En Madrid",
-    duracion: "50 a 60 minutos",
-    canal: "Madrid, según disponibilidad",
-    precio: "",
+    slug: "bono-4-sesiones",
+    titulo: "Bono de 4 sesiones",
+    etiqueta: "Ahorro de 40 €",
+    duracion: "4 × 50 a 60 minutos",
+    canal: "Online, en un solo pago",
+    precio: "240 €",
+    nota: "Un solo pago",
     resumen:
-      "La consulta trabaja sobre todo en línea, pero si necesitas vernos en persona lo valoramos: escríbeme y te confirmo disponibilidad y lugar.",
+      "Cuatro sesiones por adelantado, a 60 € cada una. Para cuando ya sabes que quieres darle continuidad al proceso.",
     incluye: [
-      "Mismo proceso y mismo seguimiento",
-      "Días concretos de consulta en Madrid",
-      "Posibilidad de combinar con sesiones online",
-      "Confirmación previa de disponibilidad",
+      "Las mismas sesiones, a mejor precio",
+      "Sin caducidad marcada: se usan a tu ritmo",
+      "Continuidad asegurada en agenda",
+      "Se puede renovar tantas veces como quieras",
     ],
   },
+] as const;
+
+/** Notas al pie del bloque de tarifas. */
+export const TARIFAS_NOTAS = [
+  "Si prefieres terapia presencial en Madrid, escríbeme y vemos las opciones disponibles.",
+  "Las sesiones se pueden cambiar o anular avisando con 24 horas de antelación.",
 ] as const;
 
 export const FRECUENCIA = {
@@ -477,30 +485,62 @@ export const EMPRESAS = {
   intro:
     "La autoexigencia y el agotamiento no aparecen solo en consulta. También viven en las reuniones, en los correos de las once de la noche y en la sensación de que nunca se ha hecho suficiente. Diseño intervenciones para equipos que quieren cuidar eso de verdad, no solo nombrarlo.",
   entradilla:
-    "Cuéntame qué necesita tu equipo y preparo una propuesta a medida: formato, duración y presupuesto.",
+    "Psicoterapia como beneficio social: sesiones de concienciación para todo el equipo y terapia individual subvencionada para quien la necesite.",
   cadaEquipo:
     "Cada equipo tiene su propio desgaste. La intervención se diseña después de escucharlo.",
-  simulador: {
-    eyebrow: "Presupuesto",
-    titulo: "Calcula lo que costaría para tu equipo.",
-    intro:
-      "Dime cuántas personas sois y qué necesitáis, y te devuelvo una propuesta con el detalle del servicio y su coste.",
-    nota: "Las propuestas se preparan una a una: no hay paquetes cerrados ni mínimos de contratación.",
-  },
+
   servicios: [
     {
-      t: "Talleres y formaciones",
-      d: "Sesiones prácticas sobre gestión emocional, autoexigencia, límites y prevención del desgaste profesional.",
+      t: "Sesiones de concienciación",
+      d: "Cuatro horas de trabajo en grupo sobre salud mental, donde se refuerzan la estabilidad emocional y el bienestar del equipo.",
+      detalle: "500 € por sesión · hasta 30 personas por sesión",
     },
     {
-      t: "Acompañamiento individual",
-      d: "Sesiones confidenciales para personas de la organización, con facturación a empresa.",
-    },
-    {
-      t: "Charlas y jornadas",
-      d: "Intervenciones divulgativas para semanas de bienestar y jornadas internas.",
+      t: "Psicoterapia para empleados",
+      d: "Sesiones de terapia individual subvencionadas por la empresa en el porcentaje que decida, completamente flexibles y adaptadas a cada persona.",
+      detalle: "Desde 54 € por sesión, según el volumen contratado",
     },
   ],
+  contratacion: "Los dos servicios se pueden contratar juntos o por separado.",
+
+  beneficios: [
+    {
+      titulo: "Para la persona",
+      items: [
+        "Acceso a psicoterapia a precio reducido",
+        "Servicio flexible, adaptado y sin listas de espera",
+        "Confidencialidad total",
+        "Mejora de su salud mental",
+        "Mayor rendimiento",
+      ],
+    },
+    {
+      titulo: "Para la empresa",
+      items: [
+        "Reducción potencial del absentismo",
+        "Bienestar del equipo",
+        "Retención del talento",
+        "Employer branding",
+        "Ventajas fiscales",
+        "Más rendimiento",
+      ],
+    },
+  ],
+
+  dosier: {
+    etiqueta: "Descargar el dosier",
+    archivo: "/dosier-orpheus-empresas.pdf",
+    nota: "PDF con la propuesta completa para empresas.",
+  },
+
+  simulador: {
+    eyebrow: "Simulador",
+    titulo: "Calcula lo que costaría para tu equipo.",
+    intro:
+      "Dime cuántas personas sois, cuántas sesiones queréis contratar y qué porcentaje subvenciona la empresa. El cálculo se actualiza solo.",
+    nota: "Es una estimación orientativa con las tarifas vigentes. La propuesta final se cierra después de hablarlo.",
+  },
+
   cta: "Cuéntame qué necesita tu equipo",
 } as const;
 
@@ -512,6 +552,10 @@ export const FAQ = [
   {
     q: "¿Cómo sé si necesito ir a terapia?",
     a: "No hace falta estar en crisis para pedir ayuda. Si llevas tiempo sintiendo que algo no encaja, si repites patrones que no te hacen bien o si estás agotado o agotada de exigirte, eso ya es motivo suficiente. La terapia no es solo para reparar: también sirve para comprenderte y para vivir con más margen.",
+  },
+  {
+    q: "¿Cuánto cuesta una sesión?",
+    a: "La primera sesión cuesta 50 € y dura una hora. A partir de ahí, la sesión individual son 70 €, y hay un bono de cuatro sesiones por 240 €, que sale a 60 € cada una. Los precios están publicados en la página de servicios para que no tengas que preguntarlos.",
   },
   {
     q: "¿Cuánto dura un proceso terapéutico?",

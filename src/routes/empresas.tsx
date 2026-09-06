@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BadgeCheck, Quote, Users } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { BadgeCheck, Check, Quote, Users } from "lucide-react";
 
 import { Layout } from "@/components/site/Layout";
 import { LineasReveladas, Parallax, Reveal } from "@/components/site/motion";
-import { Antetitulo, Boton, BotonEnlace, Cita, Migas, Numero } from "@/components/site/ui";
+import { BloqueSimulador } from "@/components/site/SimuladorEmpresas";
+import { Antetitulo, BotonEnlace, BotonExterno, Cita, Migas, Numero } from "@/components/site/ui";
 import { EMPRESAS } from "@/content/copy";
 import { RESENAS_EMPRESA } from "@/content/resenas";
 import { SITE } from "@/content/site";
@@ -15,7 +15,7 @@ import { CtaFinal } from "./index";
 import texMontanas from "@/assets/tex-montanas.webp";
 import texMontanasSm from "@/assets/tex-montanas@sm.webp";
 
-/** Servicio B2B descrito para los buscadores. */
+/** Servicio B2B descrito para los buscadores, con su horquilla de precios. */
 function servicioEmpresasSchema() {
   return {
     "@context": "https://schema.org",
@@ -23,11 +23,32 @@ function servicioEmpresasSchema() {
     name: "Bienestar emocional para empresas y equipos",
     serviceType: "Psicología organizacional y bienestar emocional",
     description:
-      "Talleres, charlas y acompañamiento psicológico individual para equipos de trabajo, con facturación a empresa.",
+      "Sesiones de concienciación en salud mental y psicoterapia individual subvencionada por la empresa, con facturación a empresa.",
     provider: { "@id": `${SITE.url}/#organizacion` },
     areaServed: { "@type": "Country", name: "España" },
     url: absolute("/empresas"),
     audience: { "@type": "BusinessAudience", name: "Empresas y equipos de trabajo" },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Sesión de concienciación en salud mental",
+        price: "500",
+        priceCurrency: "EUR",
+        description: "Cuatro horas en grupo, hasta 30 personas por sesión.",
+      },
+      {
+        "@type": "Offer",
+        name: "Psicoterapia para empleados",
+        priceCurrency: "EUR",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: "54",
+          maxPrice: "60",
+          priceCurrency: "EUR",
+          description: "Precio por sesión según el volumen contratado.",
+        },
+      },
+    ],
   };
 }
 
@@ -36,16 +57,16 @@ export const Route = createFileRoute("/empresas")({
     seo({
       title: "Bienestar emocional para empresas y equipos",
       description:
-        "Talleres, charlas y acompañamiento psicológico para equipos: gestión emocional, límites y prevención del desgaste profesional. Propuesta y presupuesto a medida.",
+        "Psicoterapia como beneficio social: sesiones de concienciación y terapia individual subvencionada. Calcula el coste para tu equipo con el simulador.",
       path: "/empresas",
       image: "/og/og-empresas.jpg",
       imageAlt: "Orpheus Psicología: bienestar emocional en entornos de trabajo",
       keywords: [
         "bienestar emocional empresas",
         "psicóloga para empresas",
-        "talleres gestión emocional empresa",
+        "psicoterapia beneficio social",
         "prevención burnout equipos",
-        "formación bienestar laboral",
+        "salud mental en el trabajo",
         "psicología organizacional Madrid",
       ],
       jsonLd: [
@@ -58,241 +79,6 @@ export const Route = createFileRoute("/empresas")({
     }),
   component: Empresas,
 });
-
-/* ══════════════════════════════════════════════════════════════════
-   SOLICITUD DE PRESUPUESTO
-   Sin servidor: el formulario redacta el correo con todo el detalle.
-   Cuando Melissa facilite el código de su simulador, sustituye a este
-   bloque conservando el mismo ancla (#presupuesto).
-   ══════════════════════════════════════════════════════════════════ */
-
-const SERVICIOS_B2B = [
-  { valor: "taller", etiqueta: "Taller o formación práctica" },
-  { valor: "acompanamiento", etiqueta: "Acompañamiento individual para el equipo" },
-  { valor: "charla", etiqueta: "Charla o jornada de bienestar" },
-  { valor: "mixto", etiqueta: "Una combinación de varios" },
-  { valor: "no-lo-se", etiqueta: "Todavía no lo tengo claro" },
-] as const;
-
-const TAMANOS = [
-  { valor: "1-10", etiqueta: "Hasta 10 personas" },
-  { valor: "11-30", etiqueta: "Entre 11 y 30" },
-  { valor: "31-75", etiqueta: "Entre 31 y 75" },
-  { valor: "76+", etiqueta: "Más de 75" },
-] as const;
-
-type Solicitud = {
-  empresa: string;
-  contacto: string;
-  email: string;
-  tamano: string;
-  servicio: string;
-  detalle: string;
-};
-
-const INICIAL: Solicitud = {
-  empresa: "",
-  contacto: "",
-  email: "",
-  tamano: TAMANOS[1].valor,
-  servicio: SERVICIOS_B2B[0].valor,
-  detalle: "",
-};
-
-function componerMailto(d: Solicitud): string {
-  const servicio = SERVICIOS_B2B.find((s) => s.valor === d.servicio)?.etiqueta ?? d.servicio;
-  const tamano = TAMANOS.find((t) => t.valor === d.tamano)?.etiqueta ?? d.tamano;
-  const cuerpo = [
-    `Empresa: ${d.empresa.trim()}`,
-    `Persona de contacto: ${d.contacto.trim()}`,
-    `Email: ${d.email.trim()}`,
-    `Tamaño del equipo: ${tamano}`,
-    `Servicio de interés: ${servicio}`,
-    "",
-    `Qué necesita el equipo:\n${d.detalle.trim() || "(sin detallar)"}`,
-  ].join("\n");
-
-  return `mailto:${SITE.contacto.email}?subject=${encodeURIComponent(
-    `Presupuesto para equipos · ${d.empresa.trim() || "empresa"}`,
-  )}&body=${encodeURIComponent(cuerpo)}`;
-}
-
-function FormularioPresupuesto() {
-  const [datos, setDatos] = useState<Solicitud>(INICIAL);
-  const [errores, setErrores] = useState<Partial<Record<keyof Solicitud, string>>>({});
-  const [enlace, setEnlace] = useState("");
-
-  const actualizar = <K extends keyof Solicitud>(clave: K, valor: Solicitud[K]) => {
-    setDatos((previo) => ({ ...previo, [clave]: valor }));
-    setErrores((previo) => {
-      if (!(clave in previo)) return previo;
-      const siguiente = { ...previo };
-      delete siguiente[clave];
-      return siguiente;
-    });
-  };
-
-  const enviar = (evento: FormEvent<HTMLFormElement>) => {
-    evento.preventDefault();
-    const fallos: Partial<Record<keyof Solicitud, string>> = {};
-    if (!datos.empresa.trim()) fallos.empresa = "Dime el nombre de la empresa o del equipo.";
-    if (!datos.email.trim()) {
-      fallos.email = "Necesito un correo para enviarte la propuesta.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(datos.email.trim())) {
-      fallos.email = "Revisa el correo: parece que le falta algo.";
-    }
-    setErrores(fallos);
-
-    const primero = (["empresa", "email"] as const).find((c) => fallos[c]);
-    if (primero) {
-      document.getElementById(`b2b-${primero}`)?.focus();
-      return;
-    }
-
-    const href = componerMailto(datos);
-    setEnlace(href);
-    window.location.href = href;
-  };
-
-  return (
-    <form onSubmit={enviar} noValidate className="mt-10">
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div>
-          <label htmlFor="b2b-empresa" className="eyebrow text-ink-faint">
-            Empresa o equipo
-          </label>
-          <input
-            id="b2b-empresa"
-            name="empresa"
-            type="text"
-            autoComplete="organization"
-            value={datos.empresa}
-            onChange={(e) => actualizar("empresa", e.target.value)}
-            aria-invalid={errores.empresa ? true : undefined}
-            aria-describedby={errores.empresa ? "b2b-empresa-error" : undefined}
-            className="field mt-3"
-          />
-          {errores.empresa ? (
-            <p id="b2b-empresa-error" className="mt-2 text-[0.87rem] text-destructive">
-              {errores.empresa}
-            </p>
-          ) : null}
-        </div>
-
-        <div>
-          <label htmlFor="b2b-contacto" className="eyebrow text-ink-faint">
-            Tu nombre
-          </label>
-          <input
-            id="b2b-contacto"
-            name="contacto"
-            type="text"
-            autoComplete="name"
-            value={datos.contacto}
-            onChange={(e) => actualizar("contacto", e.target.value)}
-            className="field mt-3"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="b2b-email" className="eyebrow text-ink-faint">
-            Correo de contacto
-          </label>
-          <input
-            id="b2b-email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            value={datos.email}
-            onChange={(e) => actualizar("email", e.target.value)}
-            aria-invalid={errores.email ? true : undefined}
-            aria-describedby={errores.email ? "b2b-email-error" : undefined}
-            className="field mt-3"
-          />
-          {errores.email ? (
-            <p id="b2b-email-error" className="mt-2 text-[0.87rem] text-destructive">
-              {errores.email}
-            </p>
-          ) : null}
-        </div>
-
-        <div>
-          <label htmlFor="b2b-tamano" className="eyebrow text-ink-faint">
-            Tamaño del equipo
-          </label>
-          <select
-            id="b2b-tamano"
-            name="tamano"
-            value={datos.tamano}
-            onChange={(e) => actualizar("tamano", e.target.value)}
-            className="field mt-3 appearance-none"
-          >
-            {TAMANOS.map((t) => (
-              <option key={t.valor} value={t.valor}>
-                {t.etiqueta}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="sm:col-span-2">
-          <label htmlFor="b2b-servicio" className="eyebrow text-ink-faint">
-            Qué os interesa
-          </label>
-          <select
-            id="b2b-servicio"
-            name="servicio"
-            value={datos.servicio}
-            onChange={(e) => actualizar("servicio", e.target.value)}
-            className="field mt-3 appearance-none"
-          >
-            {SERVICIOS_B2B.map((s) => (
-              <option key={s.valor} value={s.valor}>
-                {s.etiqueta}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="sm:col-span-2">
-          <label htmlFor="b2b-detalle" className="eyebrow text-ink-faint">
-            Qué necesita tu equipo
-          </label>
-          <textarea
-            id="b2b-detalle"
-            name="detalle"
-            rows={4}
-            value={datos.detalle}
-            onChange={(e) => actualizar("detalle", e.target.value)}
-            className="field mt-3 resize-none"
-            placeholder="Carga de trabajo, rotación, conflictos, agotamiento, una semana de bienestar…"
-          />
-        </div>
-      </div>
-
-      <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-        <Boton type="submit">Pedir propuesta</Boton>
-        <p className="max-w-sm text-[0.9rem] leading-relaxed font-light text-ink-faint">
-          {EMPRESAS.simulador.nota}
-        </p>
-      </div>
-
-      {enlace ? (
-        <p className="mt-6 text-[0.93rem] font-light text-ink-muted">
-          Si tu gestor de correo no se ha abierto,{" "}
-          <a href={enlace} className="link-undraw text-cypress">
-            pulsa aquí para enviarlo
-          </a>
-          .
-        </p>
-      ) : null}
-    </form>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   PÁGINA
-   ══════════════════════════════════════════════════════════════════ */
 
 function Empresas() {
   return (
@@ -317,8 +103,8 @@ function Empresas() {
               </p>
 
               <LineasReveladas
-                lineas={["Bienestar emocional", "en entornos", "de trabajo."]}
-                cursiva={2}
+                lineas={["Bienestar", "emocional en", "entornos de", "trabajo."]}
+                cursiva={3}
                 delay={120}
                 className="display-xl mt-7 text-ink"
               />
@@ -331,9 +117,17 @@ function Empresas() {
                 className="anim-fade-up mt-10 flex flex-wrap gap-3"
                 style={{ animationDelay: "0.68s" }}
               >
-                <BotonEnlace to="/empresas" hash="presupuesto">
-                  {EMPRESAS.cta}
+                <BotonEnlace to="/empresas" hash="simulador">
+                  Calcular el coste
                 </BotonEnlace>
+                <BotonExterno
+                  href={EMPRESAS.dosier.archivo}
+                  download
+                  variante="outline"
+                  flecha={false}
+                >
+                  {EMPRESAS.dosier.etiqueta}
+                </BotonExterno>
               </div>
             </div>
 
@@ -404,16 +198,16 @@ function Empresas() {
         </div>
       </section>
 
-      {/* ═══════════════════ SERVICIOS ═══════════════════ */}
+      {/* ═══════════════════ QUÉ INCLUYE ═══════════════════ */}
       <section className="section-y" aria-labelledby="servicios-b2b-titulo">
         <div className="shell">
           <div className="max-w-3xl">
             <Reveal>
-              <Antetitulo>Qué puedo hacer</Antetitulo>
+              <Antetitulo>Qué incluye</Antetitulo>
             </Reveal>
             <Reveal delay={80}>
               <h2 id="servicios-b2b-titulo" className="display-md mt-6">
-                Tres formas de <em className="italic">intervenir</em>.
+                Dos servicios que <em className="italic">encajan</em>.
               </h2>
             </Reveal>
           </div>
@@ -424,18 +218,64 @@ function Empresas() {
                 as="li"
                 key={s.t}
                 delay={i * 90}
-                className="grid gap-3 border-b border-rule-strong py-8 md:grid-cols-[4rem_1fr_1.2fr] md:items-baseline md:gap-10"
+                className="grid gap-3 border-b border-rule-strong py-9 md:grid-cols-[4rem_1fr_1.2fr] md:items-baseline md:gap-10"
               >
                 <Numero>{String(i + 1).padStart(2, "0")}</Numero>
-                <h3 className="font-display text-[1.5rem] leading-tight text-ink md:text-[1.9rem]">
-                  {s.t}
-                </h3>
+                <div>
+                  <h3 className="font-display text-[1.55rem] leading-tight text-ink md:text-[1.95rem]">
+                    {s.t}
+                  </h3>
+                  <p className="mt-2.5 text-[0.95rem] leading-snug font-light text-cypress italic">
+                    {s.detalle}
+                  </p>
+                </div>
                 <p className="prose-body md:pt-1">{s.d}</p>
               </Reveal>
             ))}
           </ol>
 
-          <Reveal variant="mask" delay={120} className="mt-14">
+          <Reveal delay={140}>
+            <p className="mt-8 text-[0.95rem] font-light text-ink-faint">{EMPRESAS.contratacion}</p>
+          </Reveal>
+
+          {/* Beneficios, en dos columnas enfrentadas */}
+          <div className="mt-16 grid gap-5 md:mt-20 md:grid-cols-2">
+            {EMPRESAS.beneficios.map((b, i) => (
+              <Reveal
+                key={b.titulo}
+                variant="scale"
+                delay={i * 110}
+                className={`flex flex-col rounded-3xl p-8 md:p-10 ${
+                  i === 0
+                    ? "card-paper"
+                    : "on-dark grain-dark relative isolate overflow-hidden bg-cypress"
+                }`}
+              >
+                <p className={`eyebrow ${i === 0 ? "text-olive" : "text-on-dark-faint"}`}>
+                  {b.titulo}
+                </p>
+                <ul className="mt-8 space-y-4">
+                  {b.items.map((item) => (
+                    <li
+                      key={item}
+                      className={`flex gap-3.5 text-[1.01rem] font-light ${
+                        i === 0 ? "text-ink" : "text-on-dark-muted"
+                      }`}
+                    >
+                      <Check
+                        className={`mt-1.5 size-3.5 shrink-0 ${i === 0 ? "text-olive" : "text-aloe"}`}
+                        strokeWidth={2}
+                        aria-hidden="true"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal variant="mask" delay={120} className="mt-16">
             <Cita tamano="sm" className="max-w-3xl">
               {EMPRESAS.cadaEquipo}
             </Cita>
@@ -443,33 +283,33 @@ function Empresas() {
         </div>
       </section>
 
-      {/* ═══════════════════ PRESUPUESTO ═══════════════════ */}
+      {/* ═══════════════════ SIMULADOR ═══════════════════ */}
       <section
-        id="presupuesto"
+        id="simulador"
         className="relative scroll-mt-28 overflow-hidden border-y border-rule bg-paper"
-        aria-labelledby="presupuesto-titulo"
+        aria-labelledby="simulador-titulo"
       >
         <div className="grain absolute inset-0" aria-hidden="true" />
-        <div className="relative z-10 shell section-y grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div className="lg:sticky lg:top-32 lg:self-start">
-            <Reveal>
-              <Antetitulo>{EMPRESAS.simulador.eyebrow}</Antetitulo>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 id="presupuesto-titulo" className="display-md mt-6">
-                Calcula lo que costaría para tu <em className="italic">equipo</em>.
-              </h2>
-            </Reveal>
+        <div className="relative z-10 shell section-y">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-20">
+            <div>
+              <Reveal>
+                <Antetitulo>{EMPRESAS.simulador.eyebrow}</Antetitulo>
+              </Reveal>
+              <Reveal delay={80}>
+                <h2 id="simulador-titulo" className="display-md mt-6">
+                  Calcula lo que costaría para tu <em className="italic">equipo</em>.
+                </h2>
+              </Reveal>
+            </div>
             <Reveal delay={160}>
-              <p className="prose-body mt-7 max-w-md">{EMPRESAS.simulador.intro}</p>
+              <p className="prose-body">{EMPRESAS.simulador.intro}</p>
             </Reveal>
           </div>
 
-          <Reveal delay={140}>
-            <div className="rounded-3xl border border-rule bg-linen p-8 md:p-11">
-              <FormularioPresupuesto />
-            </div>
-          </Reveal>
+          <div className="mt-14">
+            <BloqueSimulador />
+          </div>
         </div>
       </section>
 

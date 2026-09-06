@@ -53,6 +53,8 @@ Grafo único e interconectado por `@id`, inyectado en la raíz del sitio:
 | `BreadcrumbList`                                           | Todas las páginas internas   | Migas en resultados de búsqueda                  |
 | `FAQPage`                                                  | /preguntas-frecuentes (10)   | Resultados enriquecidos de preguntas             |
 | `Service`                                                  | /servicios y /empresas       | Un nodo por espacio de trabajo y el servicio B2B |
+| `OfferCatalog` + `Offer`                                   | /servicios                   | Tarifas de las tres modalidades, con importe     |
+| `OfferCatalog` + `Offer`                                   | /servicios                   | Tarifas de las tres modalidades, con importe     |
 | `Article`                                                  | Cada artículo del Diario     | Fecha, autor, sección y recuento de palabras     |
 | `ContactPage`                                              | /contacto                    | Intención de contacto                            |
 
@@ -149,6 +151,8 @@ puerta a la presencial en Madrid: es lo que refleja el copy, las modalidades y e
 | Informativa   | autoexigencia y responsabilidad                  | `/diario/cuando-la-autoexigencia-se-disfraza-de-responsabilidad` |
 | Marca         | orpheus psicología · melissa gonzález psicóloga  | `/` y `/sobre-mi`                                                |
 | B2B           | bienestar emocional empresas · psicóloga empresas | `/empresas`                                                     |
+| Transaccional | precio sesión psicólogo · cuánto cuesta la terapia | `/servicios#modalidades` y `/preguntas-frecuentes`             |
+| Transaccional | precio sesión psicólogo · cuánto cuesta terapia  | `/servicios#modalidades` y `/preguntas-frecuentes`               |
 
 Los doce espacios de trabajo con ancla propia, indexados como `Service`, multiplican por
 seis la superficie de aterrizaje frente a las cinco páginas de la web anterior. Sacar el

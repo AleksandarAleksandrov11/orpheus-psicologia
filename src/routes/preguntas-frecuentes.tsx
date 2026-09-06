@@ -40,8 +40,8 @@ export const Route = createFileRoute("/preguntas-frecuentes")({
 /** Atajos temáticos: la lista es larga y conviene poder orientarse. */
 const BLOQUES = [
   { titulo: "Antes de empezar", desde: 0, hasta: 2 },
-  { titulo: "Cómo funciona el proceso", desde: 2, hasta: 6 },
-  { titulo: "Lo práctico", desde: 6, hasta: FAQ.length },
+  { titulo: "Cómo funciona el proceso", desde: 2, hasta: 7 },
+  { titulo: "Lo práctico", desde: 7, hasta: FAQ.length },
 ];
 
 function Preguntas() {

@@ -121,6 +121,7 @@ export function personaSchema() {
   const sameAs = perfilesPublicos([
     SITE.social.instagram,
     SITE.social.linkedin,
+    SITE.social.tiktok,
     SITE.social.google,
   ]);
   return {
@@ -170,7 +171,12 @@ export function personaSchema() {
 
 /** Ficha del servicio profesional: lo que Google usa para el knowledge panel local. */
 export function negocioSchema() {
-  const sameAs = perfilesPublicos([SITE.social.instagram, SITE.social.google]);
+  const sameAs = perfilesPublicos([
+    SITE.social.instagram,
+    SITE.social.linkedin,
+    SITE.social.tiktok,
+    SITE.social.google,
+  ]);
   return {
     "@type": ["ProfessionalService", "MedicalBusiness", "Psychologist"],
     "@id": ID.organizacion,
@@ -289,6 +295,40 @@ export function articuloSchema(a: {
     publisher: { "@id": ID.organizacion },
     isPartOf: { "@id": ID.web },
     mainEntityOfPage: { "@type": "WebPage", "@id": absolute(`/diario/${a.slug}`) },
+  };
+}
+
+/**
+ * Tarifas de la consulta. Publicarlas en el marcado permite que Google
+ * las muestre en el resultado y evita que el precio quede solo en la
+ * imagen de una tarjeta.
+ */
+export function tarifasSchema(
+  sesiones: readonly { titulo: string; precio: string; resumen: string; duracion: string }[],
+) {
+  const conPrecio = sesiones.filter((s) => s.precio);
+  return {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: "Tarifas de terapia individual",
+    url: absolute("/servicios#modalidades"),
+    provider: { "@id": ID.organizacion },
+    itemListElement: conPrecio.map((s, i) => ({
+      "@type": "Offer",
+      position: i + 1,
+      name: s.titulo,
+      description: s.resumen,
+      price: s.precio.replace(/[^\d]/g, ""),
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      category: "Psicoterapia",
+      itemOffered: {
+        "@type": "Service",
+        name: s.titulo,
+        serviceType: "Psicoterapia individual online",
+        provider: { "@id": ID.organizacion },
+      },
+    })),
   };
 }
 

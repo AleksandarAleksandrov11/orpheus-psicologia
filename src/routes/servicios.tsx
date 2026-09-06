@@ -23,8 +23,9 @@ import {
   MOSTRAR_PRECIOS,
   RECORRIDO,
   SESIONES,
+  TARIFAS_NOTAS,
 } from "@/content/copy";
-import { migasSchema, seo, servicioSchema } from "@/lib/seo";
+import { migasSchema, seo, servicioSchema, tarifasSchema } from "@/lib/seo";
 
 import { CtaFinal } from "./index";
 
@@ -61,6 +62,7 @@ export const Route = createFileRoute("/servicios")({
         ...ESPACIOS.slice(0, 6).map((e) =>
           servicioSchema({ nombre: e.titulo, descripcion: e.detalle, slug: e.slug }),
         ),
+        ...(MOSTRAR_PRECIOS && SESIONES.some((s) => s.precio) ? [tarifasSchema(SESIONES)] : []),
       ],
     }),
   component: Servicios,
@@ -396,7 +398,17 @@ function Servicios() {
 
                   <p className="eyebrow text-olive">{s.etiqueta}</p>
                   <h3 className="display-sm mt-5">{s.titulo}</h3>
-                  <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[0.9rem] font-light text-ink-faint">
+
+                  {MOSTRAR_PRECIOS && s.precio ? (
+                    <p className="mt-5 flex items-baseline gap-3">
+                      <span className="font-display text-[2.6rem] leading-none text-cypress md:text-[3.1rem]">
+                        {s.precio}
+                      </span>
+                      <span className="text-[0.87rem] font-light text-ink-faint">{s.nota}</span>
+                    </p>
+                  ) : null}
+
+                  <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[0.9rem] font-light text-ink-faint">
                     <span className="flex items-center gap-2">
                       <Clock className="size-3.5" strokeWidth={1.6} aria-hidden="true" />
                       {s.duracion}
@@ -423,26 +435,31 @@ function Servicios() {
                   </ul>
 
                   <div className="mt-9 border-t border-rule pt-6">
-                    {MOSTRAR_PRECIOS && s.precio ? (
-                      <p className="font-display text-[2rem] leading-none text-cypress">
-                        {s.precio}
-                      </p>
-                    ) : (
-                      <Link to="/contacto" className="link-draw text-[0.93rem] text-cypress">
-                        Consultar tarifa
-                      </Link>
-                    )}
+                    <Link to="/contacto" className="link-draw text-[0.93rem] text-cypress">
+                      {s.slug === "primera-sesion" ? "Reservar esta sesión" : "Reservar"}
+                    </Link>
                   </div>
                 </Reveal>
               );
             })}
           </div>
 
-          <Reveal delay={140} className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <Reveal
+            delay={140}
+            className="mt-12 grid gap-8 md:grid-cols-[auto_1fr] md:items-start md:gap-12"
+          >
             <BotonEnlace to="/contacto">Reservar una primera sesión</BotonEnlace>
-            <p className="text-[0.93rem] font-light text-ink-faint">
-              Las sesiones se pueden cambiar o anular avisando con 24 horas de antelación.
-            </p>
+            <ul className="space-y-2.5">
+              {TARIFAS_NOTAS.map((n) => (
+                <li
+                  key={n}
+                  className="flex gap-3 text-[0.93rem] leading-relaxed font-light text-ink-faint"
+                >
+                  <span aria-hidden="true" className="mt-2.5 h-px w-4 shrink-0 bg-cedar" />
+                  {n}
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>

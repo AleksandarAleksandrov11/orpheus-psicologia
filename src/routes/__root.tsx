@@ -52,7 +52,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       // a Google Fonts (mejor LCP y sin transferencia de IP a terceros).
       {
         rel: "preload",
-        href: "/fonts/instrument-serif-normal-400-latin.woff2",
+        href: "/fonts/newsreader-normal-400-600-latin.woff2",
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous",
@@ -66,7 +66,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "preload",
-        href: "/fonts/instrument-serif-italic-400-latin.woff2",
+        href: "/fonts/newsreader-italic-400-600-latin.woff2",
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous",

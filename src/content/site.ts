@@ -51,7 +51,7 @@ export const SITE = {
     ciudad: "Madrid",
     region: "Comunidad de Madrid",
     direccion: PENDIENTE("dirección de consulta"),
-    horario: "Lunes a viernes, de 9:00 a 20:00",
+    horario: "Lunes a viernes, de 10:00 a 20:00 · Sábados, de 10:00 a 14:00",
     respuesta: "Respondo personalmente en un máximo de 48 h laborables.",
   },
 
@@ -59,7 +59,9 @@ export const SITE = {
   social: {
     instagram: "https://www.instagram.com/orpheus_psicologia/",
     instagramHandle: "@orpheus_psicologia",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/company/orpheus-psicolog%C3%ADa/",
+    tiktok: "https://www.tiktok.com/@orpheus_psicologia",
+    tiktokHandle: "@orpheus_psicologia",
     /**
      * Reseñas públicas en Google. Enlace facilitado por Melissa.
      * Si algún día dejara de funcionar, el sustituto estable es el enlace

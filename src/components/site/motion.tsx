@@ -82,7 +82,7 @@ export function LineasReveladas({
   lineas: readonly string[];
   className?: string;
   lineaClassName?: string;
-  /** Índice de la línea que va en cursiva. */
+  /** Primera línea que va en cursiva; de ahí en adelante también. */
   cursiva?: number;
   delay?: number;
   as?: ElementType;
@@ -94,7 +94,7 @@ export function LineasReveladas({
         <span key={linea + i} className={`clip-line ${lineaClassName}`}>
           <span
             style={{ animationDelay: `${delay + i * 110}ms` }}
-            className={i === cursiva ? "italic" : undefined}
+            className={cursiva !== undefined && i >= cursiva ? "italic" : undefined}
           >
             {linea}
           </span>
