@@ -137,7 +137,7 @@ function Paso({
       <div className="flex items-start gap-4">
         <span
           aria-hidden="true"
-          className="grid size-8 shrink-0 place-items-center rounded-full border border-on-dark/25 bg-on-dark/10 text-[0.82rem] text-on-dark"
+          className="grid size-8 shrink-0 place-items-center rounded-full border border-on-dark/25 bg-on-dark/10 text-[0.88rem] text-on-dark"
         >
           {n}
         </span>
@@ -145,7 +145,7 @@ function Paso({
           <h3 className="font-display text-[1.32rem] leading-tight text-on-dark md:text-[1.5rem]">
             {titulo}
           </h3>
-          <p className="mt-1.5 text-[0.9rem] leading-relaxed font-light text-on-dark-muted">
+          <p className="mt-1.5 text-[0.96rem] leading-relaxed font-light text-on-dark-muted">
             {sub}
           </p>
         </div>
@@ -173,7 +173,7 @@ function Campo({
       </label>
       <div className="mt-3">{children}</div>
       {ayuda ? (
-        <p className="mt-2.5 text-[0.82rem] leading-relaxed font-light text-on-dark-faint">
+        <p className="mt-2.5 text-[0.88rem] leading-relaxed font-light text-on-dark-faint">
           {ayuda}
         </p>
       ) : null}
@@ -193,7 +193,7 @@ function Kpi({ titulo, valor, detalle }: { titulo: string; valor: string; detall
       <p className="mt-4 font-display text-[2.1rem] leading-none text-on-dark md:text-[2.5rem]">
         {valor}
       </p>
-      <p className="mt-3 text-[0.85rem] leading-relaxed font-light text-on-dark-muted">{detalle}</p>
+      <p className="mt-3 text-[0.91rem] leading-relaxed font-light text-on-dark-muted">{detalle}</p>
     </div>
   );
 }
@@ -487,7 +487,7 @@ export function SimuladorEmpresas() {
                     key={etiqueta}
                     className="flex items-baseline justify-between gap-6 border-b border-on-dark/12 pb-4 last:border-b-0 last:pb-0"
                   >
-                    <dt className="text-[0.93rem] font-light text-on-dark-muted">{etiqueta}</dt>
+                    <dt className="text-[0.99rem] font-light text-on-dark-muted">{etiqueta}</dt>
                     <dd className="font-display text-[1.35rem] text-on-dark">{valor}</dd>
                   </div>
                 ))}
@@ -495,7 +495,7 @@ export function SimuladorEmpresas() {
             </div>
 
             <div className="flex flex-col justify-center rounded-2xl border border-aloe/30 bg-aloe/10 p-6 md:p-7">
-              <p className="font-display text-[1.35rem] leading-snug text-on-dark italic md:text-[1.55rem]">
+              <p className="cita-menor text-[1.35rem] leading-snug text-on-dark md:text-[1.55rem]">
                 {!hayCalculo || !Number.isFinite(r.masBarato)
                   ? "Completa los tres pasos y aquí verás cuánto cuesta al día."
                   : r.gratisParaEmpleado
@@ -505,7 +505,7 @@ export function SimuladorEmpresas() {
             </div>
           </div>
 
-          <p className="mt-6 text-[0.85rem] leading-relaxed font-light text-on-dark-faint">
+          <p className="mt-6 text-[0.91rem] leading-relaxed font-light text-on-dark-faint">
             {EMPRESAS.simulador.nota}
           </p>
         </div>
@@ -515,7 +515,7 @@ export function SimuladorEmpresas() {
           <h3 className="font-display text-[1.5rem] leading-tight text-on-dark md:text-[1.8rem]">
             ¿Te encaja? Te preparo la propuesta.
           </h3>
-          <p className="mt-3 max-w-xl text-[0.95rem] leading-relaxed font-light text-on-dark-muted">
+          <p className="mt-3 max-w-xl text-[1.01rem] leading-relaxed font-light text-on-dark-muted">
             Al enviarla se adjunta la simulación que acabas de hacer, para no repetir números.
           </p>
 

@@ -118,7 +118,7 @@ export function CookieConsent() {
               </button>
             </div>
 
-            <p className="prose-body mt-5 text-[0.95rem]">
+            <p className="prose-body mt-5 text-[1.01rem]">
               Elige qué se puede utilizar mientras navegas. Puedes cambiar esta decisión cuando
               quieras desde el enlace «Preferencias de cookies» del pie de página.
             </p>
@@ -196,7 +196,7 @@ export function CookieConsent() {
               <Cookie className="size-3.5" strokeWidth={1.6} aria-hidden="true" />
               Aviso de cookies
             </p>
-            <p className="prose-body mt-3 text-[0.875rem] sm:text-[0.95rem]">
+            <p className="prose-body mt-3 text-[0.875rem] sm:text-[1.01rem]">
               Uso cookies propias necesarias para que la web funcione y, solo si lo aceptas,
               analítica anónima para saber qué contenidos resultan útiles. Ninguna cookie sirve para
               crear perfiles publicitarios.{" "}
@@ -253,10 +253,10 @@ function Categoria({
   return (
     <div className="flex items-start justify-between gap-5 rounded-xl border border-rule bg-bone/70 p-4">
       <div>
-        <h3 className="font-sans text-[0.8rem] font-medium tracking-wide text-ink uppercase">
+        <h3 className="font-sans text-[0.86rem] font-medium tracking-wide text-ink uppercase">
           {titulo}
         </h3>
-        <p className="mt-1.5 text-[0.8rem] leading-relaxed font-light text-ink-muted">
+        <p className="mt-1.5 text-[0.86rem] leading-relaxed font-light text-ink-muted">
           {descripcion}
         </p>
       </div>

@@ -384,7 +384,7 @@ export function Acordeon({
             >
               <div className="overflow-hidden">
                 <p
-                  className={`max-w-2xl pb-7 text-[0.99rem] leading-relaxed font-light ${
+                  className={`max-w-2xl pb-7 text-[1.05rem] leading-relaxed font-light ${
                     oscuro ? "text-on-dark-muted" : "text-ink-muted"
                   }`}
                 >
@@ -502,14 +502,16 @@ export function Cita({
   className?: string;
   tamano?: "sm" | "md" | "lg";
 }) {
+  // En tamaño pequeño la cursiva de Playfair Display pierde legibilidad, así
+  // que ahí manda la serif de texto.
   const escala = {
-    sm: "display-sm",
-    md: "display-md",
-    lg: "display-lg",
+    sm: "display-sm cita-menor",
+    md: "display-md italic",
+    lg: "display-lg italic",
   }[tamano];
   return (
     <figure className={className}>
-      <blockquote className={`${escala} italic ${oscuro ? "text-on-dark" : "text-cypress"}`}>
+      <blockquote className={`${escala} ${oscuro ? "text-on-dark" : "text-cypress"}`}>
         {children}
       </blockquote>
       {autor ? (

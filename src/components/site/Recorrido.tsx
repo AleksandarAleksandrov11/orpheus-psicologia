@@ -172,7 +172,7 @@ export function RecorridoNoLineal() {
             >
               <p className="eyebrow text-olive">{paso.n}</p>
               <h3 className="display-sm mt-2.5">{paso.t}</h3>
-              <p className="prose-body mt-2.5 text-[0.95rem] leading-[1.65]">{paso.d}</p>
+              <p className="prose-body mt-2.5 text-[1.01rem] leading-[1.65]">{paso.d}</p>
             </div>
           );
         })}
@@ -194,7 +194,7 @@ export function RecorridoNoLineal() {
             </span>
             <p className="eyebrow text-olive">{paso.n}</p>
             <h3 className="display-sm mt-2.5">{paso.t}</h3>
-            <p className="prose-body mt-2.5 text-[0.99rem]">{paso.d}</p>
+            <p className="prose-body mt-2.5 text-[1.05rem]">{paso.d}</p>
           </Reveal>
         ))}
       </ol>

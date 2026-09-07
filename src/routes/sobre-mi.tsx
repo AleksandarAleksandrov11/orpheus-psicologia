@@ -44,7 +44,7 @@ export const Route = createFileRoute("/sobre-mi")({
 });
 
 /** Ritmo de lectura del ensayo: columna estrecha, línea alta. */
-const PARRAFO = "text-[1.08rem] leading-[1.85] font-light text-ink-muted md:text-[1.14rem]";
+const PARRAFO = "text-[1.14rem] leading-[1.85] font-light text-ink-muted md:text-[1.2rem]";
 
 const ICONOS_SEGURO = [Layers, Lock, Feather, Hourglass, Compass];
 
@@ -105,7 +105,7 @@ function SobreMi() {
                 {ficha.map((f) => (
                   <div key={f.t}>
                     <dt className="eyebrow text-ink-faint">{f.t}</dt>
-                    <dd className="mt-2.5 max-w-xs text-[1.01rem] leading-snug font-light text-ink">
+                    <dd className="mt-2.5 max-w-xs text-[1.07rem] leading-snug font-light text-ink">
                       {f.d}
                     </dd>
                   </div>
@@ -171,7 +171,7 @@ function SobreMi() {
                 style={{ transform: `scaleY(${progreso.toFixed(3)})` }}
               />
             </div>
-            <p className="mt-7 hidden text-[0.8rem] leading-relaxed font-light text-ink-faint lg:block">
+            <p className="mt-7 hidden text-[0.86rem] leading-relaxed font-light text-ink-faint lg:block">
               {SITE.psicologa.nombre}
               <br />
               {SITE.psicologa.titulo}
@@ -180,7 +180,7 @@ function SobreMi() {
 
           <div ref={ensayoRef} className="max-w-2xl">
             <Reveal>
-              <p className="text-[1.14rem] leading-[1.8] font-light text-ink md:text-[1.22rem]">
+              <p className="text-[1.2rem] leading-[1.8] font-light text-ink md:text-[1.22rem]">
                 <span className="float-left mt-2 mr-3.5 font-display text-[3.6rem] leading-[0.7] text-cypress">
                   {HISTORIA.parrafos[1].charAt(0)}
                 </span>
@@ -192,8 +192,8 @@ function SobreMi() {
               <p className={PARRAFO}>{HISTORIA.parrafos[2]}</p>
             </Reveal>
 
-            {/* La frase que enterró: tachada y desvanecida */}
-            <Reveal variant="up" delay={60} className="my-16 md:my-24 lg:-ml-20">
+            {/* La frase que enterró: tachada, desvanecida y centrada */}
+            <Reveal variant="up" delay={60} className="my-16 text-center md:my-24">
               <span className="relative inline-block">
                 <span
                   className="display-lg block text-cypress/30 italic"
@@ -278,9 +278,8 @@ function SobreMi() {
                 ))}
               </ol>
 
-              <Reveal delay={140} className="mt-10 flex items-baseline gap-6">
-                <span aria-hidden="true" className="mt-3 h-px w-12 shrink-0 bg-olive/50" />
-                <p className="font-display text-[1.3rem] leading-snug text-cypress italic md:text-[1.55rem]">
+              <Reveal delay={140} className="mt-12">
+                <p className="cita-menor mx-auto max-w-2xl text-center text-[1.32rem] leading-snug text-cypress md:text-[1.5rem]">
                   {FORMACION.nota}
                 </p>
               </Reveal>
@@ -342,7 +341,7 @@ function SobreMi() {
                     <h3 className="mt-5 font-display text-[1.28rem] text-ink md:text-[1.42rem]">
                       {item.t}
                     </h3>
-                    <p className="mt-2.5 text-[0.94rem] leading-relaxed font-light text-ink-muted">
+                    <p className="mt-2.5 text-[1rem] leading-relaxed font-light text-ink-muted">
                       {item.d}
                     </p>
                   </Reveal>
@@ -352,7 +351,7 @@ function SobreMi() {
 
             <Reveal delay={200} className="mt-12 flex items-start gap-6 border-t border-rule pt-9">
               <Lira className="mt-1 size-8 shrink-0 text-olive/60" trazo={2.4} />
-              <p className="font-display text-[1.3rem] leading-snug text-cypress italic md:text-[1.5rem]">
+              <p className="cita-menor text-[1.32rem] leading-snug text-cypress md:text-[1.5rem]">
                 No hay nada roto en ti que haya que arreglar. Solo una historia por comprender.
               </p>
             </Reveal>

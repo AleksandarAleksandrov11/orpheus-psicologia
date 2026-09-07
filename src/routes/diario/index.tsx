@@ -126,7 +126,7 @@ function Diario() {
               {CATEGORIAS.map((c) => (
                 <li
                   key={c}
-                  className="rounded-full border border-rule bg-linen/70 px-4 py-2 text-[0.83rem] font-light text-ink-muted"
+                  className="rounded-full border border-rule bg-linen/70 px-4 py-2 text-[0.89rem] font-light text-ink-muted"
                 >
                   {c}
                 </li>
@@ -179,7 +179,7 @@ function Diario() {
                 </h2>
                 <p className="prose-body mt-5">{destacado.entradilla}</p>
 
-                <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.8rem] font-light text-ink-faint">
+                <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.86rem] font-light text-ink-faint">
                   <time dateTime={destacado.fecha}>{fechaLarga(destacado.fecha)}</time>
                   <span aria-hidden="true" className="h-px w-6 bg-rule-strong" />
                   <span className="flex items-center gap-2">
@@ -188,7 +188,7 @@ function Diario() {
                   </span>
                 </div>
 
-                <span className="mt-8 inline-flex items-center gap-2 text-[0.87rem] tracking-[0.09em] text-cypress uppercase">
+                <span className="mt-8 inline-flex items-center gap-2 text-[0.93rem] tracking-[0.09em] text-cypress uppercase">
                   Leer el artículo
                   <ArrowUpRight
                     className="size-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
@@ -341,7 +341,7 @@ function TarjetaArticulo({ articulo }: { articulo: Articulo }) {
         <h3 className="font-display text-[1.4rem] leading-tight text-ink transition-colors duration-500 group-hover:text-cypress">
           {articulo.tituloCorto ?? articulo.titulo}
         </h3>
-        <p className="mt-3 line-clamp-3 flex-1 text-[0.95rem] leading-relaxed font-light text-ink-muted">
+        <p className="mt-3 line-clamp-3 flex-1 text-[1.01rem] leading-relaxed font-light text-ink-muted">
           {articulo.entradilla}
         </p>
         <div className="mt-6 flex items-center justify-between border-t border-rule pt-4 text-[0.75rem] font-light text-ink-faint">

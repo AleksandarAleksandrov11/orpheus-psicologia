@@ -59,9 +59,11 @@ function Inicio() {
           <span className="anim-breathe block h-full w-full" />
         </Parallax>
 
-        <div className="relative z-10 shell grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
-          <div>
-            <p className="eyebrow anim-fade flex items-center gap-3 text-olive">
+        {/* En móvil manda el retrato: primero la foto y el titular justo
+            debajo. En escritorio vuelve el orden de siempre. */}
+        <div className="relative z-10 shell grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
+          <div className="order-2 flex flex-col lg:order-1 lg:block">
+            <p className="eyebrow anim-fade order-2 mt-6 flex items-center gap-3 text-olive lg:order-none lg:mt-0">
               <span aria-hidden="true" className="inline-block h-px w-8 bg-olive/50" />
               {HERO.eyebrow}
             </p>
@@ -70,15 +72,18 @@ function Inicio() {
               lineas={HERO.titulo}
               cursiva={HERO.cursiva}
               delay={120}
-              className="display-xl mt-7 text-ink"
+              className="display-xl order-1 text-ink lg:order-none lg:mt-7"
             />
 
-            <p className="lede anim-fade-up d-5 mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
+            <p
+              className="lede anim-fade-up d-5 order-3 mt-8 max-w-xl lg:order-none"
+              style={{ animationDelay: "0.55s" }}
+            >
               {HERO.entradilla}
             </p>
 
             <div
-              className="anim-fade-up mt-10 flex flex-wrap gap-3"
+              className="anim-fade-up order-4 mt-10 flex flex-wrap gap-3 lg:order-none"
               style={{ animationDelay: "0.68s" }}
             >
               <BotonEnlace to={HERO.ctaPrincipal.to}>{HERO.ctaPrincipal.label}</BotonEnlace>
@@ -88,7 +93,7 @@ function Inicio() {
             </div>
 
             <ul
-              className="anim-fade mt-12 flex flex-wrap items-center gap-x-5 gap-y-3"
+              className="anim-fade order-5 mt-12 flex flex-wrap items-center gap-x-5 gap-y-3 lg:order-none"
               style={{ animationDelay: "0.85s" }}
             >
               {HERO.sellos.map((s) => (
@@ -101,7 +106,7 @@ function Inicio() {
           </div>
 
           {/* Retrato circular recortado sobre el fondo */}
-          <div className="relative mx-auto w-full max-w-[26rem] lg:max-w-none">
+          <div className="order-1 relative mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:order-2 lg:max-w-none">
             <div className="anim-fade relative aspect-square" style={{ animationDelay: "0.35s" }}>
               <span
                 aria-hidden="true"
@@ -123,17 +128,19 @@ function Inicio() {
               />
             </div>
 
+            {/* La cita se apoya en el retrato. En móvil se encoge y baja a la
+                esquina para tapar lo menos posible de la fotografía. */}
             <Reveal
               delay={400}
-              className="absolute -bottom-4 -left-2 max-w-[15rem] rounded-2xl border border-rule bg-linen/95 p-5 backdrop-blur-sm md:-left-8"
+              className="absolute -bottom-6 -left-1 max-w-[12.5rem] rounded-2xl border border-rule bg-linen/95 p-4 backdrop-blur-sm sm:max-w-[15rem] sm:p-5 md:-bottom-4 md:-left-8"
             >
               <Lira className="h-5 w-5 text-olive" trazo={3} />
-              <p className="mt-3 font-display text-[1.08rem] leading-snug text-cypress italic">
+              <p className="cita-menor mt-3 text-[1.02rem] leading-snug text-cypress sm:text-[1.2rem]">
                 «{MITO.cita}»
               </p>
               <Link
                 to="/por-que-orpheus"
-                className="link-draw mt-3 inline-block text-[0.83rem] text-olive"
+                className="link-draw mt-3 inline-block text-[0.86rem] text-olive sm:text-[0.89rem]"
               >
                 Por qué Orpheus
               </Link>
@@ -191,7 +198,7 @@ function Inicio() {
                   <span className="eyebrow mt-1.5 shrink-0 text-olive/70 tabular-nums">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-[1.06rem] leading-relaxed font-light text-ink transition-colors duration-500 group-hover:text-cypress">
+                  <span className="text-[1.12rem] leading-relaxed font-light text-ink transition-colors duration-500 group-hover:text-cypress">
                     {item}
                   </span>
                 </span>
@@ -202,10 +209,8 @@ function Inicio() {
             <Reveal as="li" delay={180} className="group border-b border-rule py-5">
               <span className="flex gap-4">
                 <span className="eyebrow mt-1.5 shrink-0 text-olive/70 tabular-nums">08</span>
-                <span className="text-[1.06rem] leading-relaxed font-light text-ink transition-colors duration-500 group-hover:text-cypress">
-                  <em className="block font-display text-[1.02rem] text-cypress not-italic">
-                    {RECONOCES.ademas.entrada}
-                  </em>
+                <span className="text-[1.12rem] leading-relaxed font-light text-ink transition-colors duration-500 group-hover:text-cypress">
+                  <span className="text-cypress">{RECONOCES.ademas.entrada}</span>
                   {RECONOCES.ademas.texto}
                 </span>
               </span>
@@ -221,19 +226,19 @@ function Inicio() {
       >
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 shell section-y">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-20">
-            <div>
-              <Reveal>
-                <Antetitulo>{ENGRANAJE.eyebrow}</Antetitulo>
-              </Reveal>
-              <Reveal delay={80}>
-                <h2 id="espacios-titulo" className="display-md mt-6">
-                  Entiendo al ser humano como un <em className="italic">engranaje</em>.
-                </h2>
-              </Reveal>
-            </div>
+          {/* Una sola columna: a dos, el párrafo corto dejaba un hueco
+              grande arriba a la derecha. */}
+          <div className="max-w-3xl">
+            <Reveal>
+              <Antetitulo>{ENGRANAJE.eyebrow}</Antetitulo>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 id="espacios-titulo" className="display-md mt-6">
+                Entiendo al ser humano como un <em className="italic">engranaje</em>.
+              </h2>
+            </Reveal>
             <Reveal delay={160}>
-              <p className="prose-body">{ENGRANAJE.intro}</p>
+              <p className="prose-body mt-7">{ENGRANAJE.intro}</p>
             </Reveal>
           </div>
 
@@ -255,16 +260,16 @@ function Inicio() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="display-sm relative mt-8 text-on-dark">{e.titulo}</h3>
-                <p className="relative mt-4 font-display text-[1.25rem] leading-snug text-aloe italic">
+                <p className="cita-menor relative mt-4 text-[1.3rem] leading-snug text-aloe">
                   {e.breve}
                 </p>
-                <p className="relative mt-6 flex-1 text-[1.01rem] leading-[1.75] font-light text-on-dark-muted">
+                <p className="relative mt-6 flex-1 text-[1.07rem] leading-[1.75] font-light text-on-dark-muted">
                   {e.detalle}
                 </p>
                 <Link
                   to="/servicios"
                   hash={e.slug}
-                  className="link-draw relative mt-8 self-start text-[0.9rem] text-aloe"
+                  className="link-draw relative mt-8 self-start text-[0.96rem] text-aloe"
                 >
                   Trabajar esto en terapia
                 </Link>
@@ -283,7 +288,7 @@ function Inicio() {
                   <Link
                     to="/servicios"
                     hash={e.slug}
-                    className="inline-flex rounded-full border border-rule-strong bg-linen px-5 py-2.5 text-[0.96rem] font-light text-ink transition-colors duration-500 hover:border-cypress hover:bg-bone hover:text-cypress"
+                    className="inline-flex rounded-full border border-rule-strong bg-linen px-5 py-2.5 text-[1.02rem] font-light text-ink transition-colors duration-500 hover:border-cypress hover:bg-bone hover:text-cypress"
                   >
                     {e.titulo}
                   </Link>
@@ -362,7 +367,7 @@ function Inicio() {
               >
                 <Numero>{String(i + 1).padStart(2, "0")}</Numero>
                 <div>
-                  <h3 className="eyebrow text-[0.83rem] font-semibold text-olive">{v.clave}</h3>
+                  <h3 className="eyebrow text-[0.89rem] font-semibold text-olive">{v.clave}</h3>
                   <p className="mt-3 font-display text-[1.5rem] leading-tight text-ink italic md:text-[1.9rem]">
                     {v.lema}
                   </p>

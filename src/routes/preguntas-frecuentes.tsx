@@ -82,7 +82,7 @@ function Preguntas() {
             <Reveal delay={260} variant="blur">
               <div className="rounded-2xl border border-rule bg-linen/80 p-7 backdrop-blur-sm md:p-9">
                 <p className="eyebrow text-ink-faint">Tu duda no está aquí</p>
-                <p className="mt-5 text-[1.01rem] leading-relaxed font-light text-ink-muted">
+                <p className="mt-5 text-[1.07rem] leading-relaxed font-light text-ink-muted">
                   Escríbeme y te respondo yo misma. {SITE.contacto.respuesta}
                 </p>
                 <div className="mt-7">
@@ -111,7 +111,7 @@ function Preguntas() {
                   <li key={b.titulo}>
                     <a
                       href={`#bloque-${i}`}
-                      className="link-draw text-[0.99rem] font-light text-ink-muted transition-colors duration-400 hover:text-cypress"
+                      className="link-draw text-[1.05rem] font-light text-ink-muted transition-colors duration-400 hover:text-cypress"
                     >
                       {b.titulo}
                     </a>

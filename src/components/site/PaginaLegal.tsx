@@ -35,7 +35,7 @@ export function AvisoPendientes({ cuantos }: { cuantos: number }) {
   return (
     <div
       role="note"
-      className="mt-10 rounded-xl border border-cedar bg-paper/70 p-5 text-[0.9rem] leading-relaxed font-light text-ink-muted"
+      className="mt-10 rounded-xl border border-cedar bg-paper/70 p-5 text-[0.96rem] leading-relaxed font-light text-ink-muted"
     >
       <p className="font-sans text-[0.7rem] font-medium tracking-[0.2em] text-cypress uppercase">
         Antes de publicar
@@ -97,7 +97,7 @@ export function PaginaLegal({
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="link-draw text-[0.87rem] leading-snug font-light text-ink-muted transition-colors duration-400 hover:text-cypress"
+                  className="link-draw text-[0.93rem] leading-snug font-light text-ink-muted transition-colors duration-400 hover:text-cypress"
                 >
                   <span className="tabular-nums text-ink-faint">
                     {String(i + 1).padStart(2, "0")}.
@@ -125,7 +125,7 @@ export function PaginaLegal({
                 </span>
                 {s.titulo}
               </h2>
-              <div className="legal mt-6 text-[1.06rem] leading-[1.8] font-light text-ink-muted">
+              <div className="legal mt-6 text-[1.12rem] leading-[1.8] font-light text-ink-muted">
                 {s.contenido}
               </div>
             </Reveal>

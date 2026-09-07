@@ -88,8 +88,8 @@ export const RECONOCES = {
    * se presenta aparte, con su propia entrada.
    */
   ademas: {
-    entrada: "Y quizá también esto:",
-    texto: "Estás atravesando una ruptura, un duelo o un momento de cambio.",
+    entrada: "Y quizá también esto: ",
+    texto: "estás atravesando una ruptura, un duelo o un momento de cambio.",
   },
   cierre:
     "Y quizá lleves tiempo sabiendo lo que «deberías» hacer, sin saber cómo dejar de sentirte así.",
@@ -217,7 +217,7 @@ export const ESPACIOS: Espacio[] = [
     titulo: "Autoestima",
     breve: "Construir una relación sólida y coherente contigo.",
     detalle:
-      "Entiendo la autoestima como la valoración afectiva que hacemos de aquello que conocemos de nosotros mismos. Trabajaremos en autoconocimiento y autoconcepto para construir una imagen de ti más sólida, realista y coherente, desde la que puedas valorarte sin depender de la aprobación externa, la comparación o del rendimiento, y que puedas sostener incluso cuando dudes.",
+      "Trabajaremos en tu autoconcepto y autoconocimiento para construir una imagen sólida y realista de ti. El objetivo es que aprendas a valorarte sin depender de la valoración externa o del rendimiento, pudiendo sostenerte incluso cuando dudes.",
     destacado: true,
   },
   {
@@ -367,7 +367,7 @@ export const FORMACION = {
       d: "Escuela de Psicoterapia y Psicodrama, Madrid",
     },
   ],
-  nota: "La formación es un proceso continuo y sigo actualizándome ahora para acompañar mejor a cada persona.",
+  nota: "La formación es un proceso continuo y sigo actualizándome para acompañar mejor a cada persona.",
 } as const;
 
 /* ══════════════════════════════════════════════════════════════════

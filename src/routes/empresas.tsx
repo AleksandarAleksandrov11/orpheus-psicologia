@@ -140,7 +140,7 @@ function Empresas() {
                     «{r.texto}»
                   </blockquote>
                   <footer className="mt-6 border-t border-rule pt-4">
-                    <p className="text-[0.93rem] text-ink">{r.nombre}</p>
+                    <p className="text-[0.99rem] text-ink">{r.nombre}</p>
                     {r.verificada ? (
                       <p className="eyebrow mt-3 flex items-center gap-1.5 text-cypress">
                         <BadgeCheck className="size-3.5" strokeWidth={1.7} aria-hidden="true" />
@@ -191,7 +191,7 @@ function Empresas() {
             </Reveal>
           </div>
           <Reveal delay={160}>
-            <p className="text-[1.06rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.12rem]">
+            <p className="text-[1.12rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.18rem]">
               {EMPRESAS.intro}
             </p>
           </Reveal>
@@ -225,7 +225,7 @@ function Empresas() {
                   <h3 className="font-display text-[1.55rem] leading-tight text-ink md:text-[1.95rem]">
                     {s.t}
                   </h3>
-                  <p className="mt-2.5 text-[0.95rem] leading-snug font-light text-cypress italic">
+                  <p className="mt-2.5 text-[1.01rem] leading-snug font-light text-cypress italic">
                     {s.detalle}
                   </p>
                 </div>
@@ -235,7 +235,7 @@ function Empresas() {
           </ol>
 
           <Reveal delay={140}>
-            <p className="mt-8 text-[0.95rem] font-light text-ink-faint">{EMPRESAS.contratacion}</p>
+            <p className="mt-8 text-[1.01rem] font-light text-ink-faint">{EMPRESAS.contratacion}</p>
           </Reveal>
 
           {/* Beneficios, en dos columnas enfrentadas */}
@@ -248,7 +248,7 @@ function Empresas() {
                 className={`flex flex-col rounded-3xl p-8 md:p-10 ${
                   i === 0
                     ? "card-paper"
-                    : "on-dark grain-dark relative isolate overflow-hidden bg-cypress"
+                    : "on-dark grain-dark relative isolate overflow-hidden bg-moss"
                 }`}
               >
                 <p className={`eyebrow ${i === 0 ? "text-olive" : "text-on-dark-faint"}`}>
@@ -258,7 +258,7 @@ function Empresas() {
                   {b.items.map((item) => (
                     <li
                       key={item}
-                      className={`flex gap-3.5 text-[1.01rem] font-light ${
+                      className={`flex gap-3.5 text-[1.07rem] font-light ${
                         i === 0 ? "text-ink" : "text-on-dark-muted"
                       }`}
                     >
@@ -291,19 +291,17 @@ function Empresas() {
       >
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 shell section-y">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-20">
-            <div>
-              <Reveal>
-                <Antetitulo>{EMPRESAS.simulador.eyebrow}</Antetitulo>
-              </Reveal>
-              <Reveal delay={80}>
-                <h2 id="simulador-titulo" className="display-md mt-6">
-                  Calcula lo que costaría para tu <em className="italic">equipo</em>.
-                </h2>
-              </Reveal>
-            </div>
+          <div className="max-w-3xl">
+            <Reveal>
+              <Antetitulo>{EMPRESAS.simulador.eyebrow}</Antetitulo>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 id="simulador-titulo" className="display-md mt-6">
+                Calcula lo que costaría para tu <em className="italic">equipo</em>.
+              </h2>
+            </Reveal>
             <Reveal delay={160}>
-              <p className="prose-body">{EMPRESAS.simulador.intro}</p>
+              <p className="prose-body mt-7">{EMPRESAS.simulador.intro}</p>
             </Reveal>
           </div>
 

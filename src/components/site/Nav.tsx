@@ -156,11 +156,11 @@ export function Nav() {
                             className="group block rounded-xl px-4 py-3 transition-colors duration-400 hover:bg-linen"
                             activeProps={{ className: "bg-linen" }}
                           >
-                            <span className="block text-[0.96rem] text-ink transition-colors duration-400 group-hover:text-cypress">
+                            <span className="block text-[1.02rem] text-ink transition-colors duration-400 group-hover:text-cypress">
                               {h.label}
                             </span>
                             {h.descripcion ? (
-                              <span className="mt-1 block text-[0.83rem] leading-snug font-light text-ink-faint">
+                              <span className="mt-1 block text-[0.89rem] leading-snug font-light text-ink-faint">
                                 {h.descripcion}
                               </span>
                             ) : null}
@@ -260,7 +260,7 @@ export function Nav() {
                       <span className="flex-1">
                         <span className="display-sm block text-on-dark">{l.label}</span>
                         {l.descripcion ? (
-                          <span className="mt-1 block text-[0.87rem] font-light text-on-dark-muted">
+                          <span className="mt-1 block text-[0.93rem] font-light text-on-dark-muted">
                             {l.descripcion}
                           </span>
                         ) : null}
@@ -284,7 +284,7 @@ export function Nav() {
                             <Link
                               to={h.to}
                               onClick={alInicio(h.to)}
-                              className="link-undraw text-[0.93rem] font-light text-on-dark-muted"
+                              className="link-undraw text-[0.99rem] font-light text-on-dark-muted"
                             >
                               {h.label}
                             </Link>
@@ -312,7 +312,7 @@ export function Nav() {
             >
               <span className="relative z-10">Reservar primera sesión</span>
             </Link>
-            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.83rem] font-light text-on-dark-muted">
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.89rem] font-light text-on-dark-muted">
               <a href={`mailto:${SITE.contacto.email}`} className="link-undraw">
                 {SITE.contacto.email}
               </a>

@@ -124,15 +124,16 @@ public/fonts/          Tipografías autoalojadas (sin peticiones a Google)
 
 | Token             | Hex                   | Uso                             |
 | ----------------- | --------------------- | ------------------------------- |
-| `moss`            | `#2C3424`             | Fondos oscuros, texto principal |
-| `cypress`         | `#4C583E`             | Acento, enlaces, trazos         |
-| `olive`           | `#768064`             | Antetítulos, detalles           |
+| `moss`            | `#364030`             | Fondos oscuros, texto principal |
+| `cypress`         | `#545F45`             | Acento, enlaces, trazos         |
+| `olive`           | `#5A6146`             | Antetítulos, detalles           |
 | `cedar`           | `#959581`             | Filetes y elementos secundarios |
 | `aloe`            | `#DADED8`             | Fondos suaves sobre oscuro      |
 | `bone`            | `#F2F0E7`             | Fondo base (papel)              |
 | `paper` / `linen` | `#EAE7DA` / `#F7F6F0` | Bandas alternas y tarjetas      |
 
-**Tipografía**: Playfair Display (display) + Jost (interfaz y texto), ambas
+**Tipografía**: Playfair Display (titulares) + Newsreader (cursivas breves) +
+Jost (interfaz y texto), todas
 autoalojadas en `public/fonts` con `font-display: swap` y precarga de los cortes
 críticos.
 

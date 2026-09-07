@@ -23,11 +23,11 @@ export function Footer() {
               Orpheus <span className="text-[0.82em] text-on-dark-muted">Psicología</span>
             </span>
           </Link>
-          <p className="mt-6 max-w-xs text-[0.9rem] leading-relaxed font-light text-on-dark-muted">
+          <p className="mt-6 max-w-xs text-[0.96rem] leading-relaxed font-light text-on-dark-muted">
             Descender para poder elevarse. Una psicología para comprender lo que te pasa,
             transformar aquello que te limita y construir una relación más amable contigo.
           </p>
-          <p className="mt-6 text-[0.83rem] font-light text-on-dark-faint">
+          <p className="mt-6 text-[0.89rem] font-light text-on-dark-faint">
             {SITE.psicologa.nombre} · {SITE.psicologa.titulo}
             {colegiadaPendiente ? null : (
               <>
@@ -46,7 +46,7 @@ export function Footer() {
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="link-draw text-[0.95rem] font-light text-on-dark-muted transition-colors duration-400 hover:text-on-dark"
+                  className="link-draw text-[1.01rem] font-light text-on-dark-muted transition-colors duration-400 hover:text-on-dark"
                 >
                   {l.label}
                 </Link>
@@ -58,7 +58,7 @@ export function Footer() {
         {/* Contacto */}
         <div className="md:col-span-3">
           <h2 className="eyebrow text-on-dark-faint">Contacto</h2>
-          <ul className="mt-6 space-y-3.5 text-[0.95rem] font-light text-on-dark-muted">
+          <ul className="mt-6 space-y-3.5 text-[1.01rem] font-light text-on-dark-muted">
             <li>
               <a
                 href={`mailto:${SITE.contacto.email}`}
@@ -110,7 +110,7 @@ export function Footer() {
               </a>
             </li>
           </ul>
-          <p className="mt-6 text-[0.83rem] leading-relaxed font-light text-on-dark-faint">
+          <p className="mt-6 text-[0.89rem] leading-relaxed font-light text-on-dark-faint">
             {SITE.modalidades.join(" · ")}
             <br />
             {SITE.contacto.horario}

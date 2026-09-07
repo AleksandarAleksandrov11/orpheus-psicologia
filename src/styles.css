@@ -5,18 +5,24 @@
 /* =========================================================================
    ORPHEUS PSICOLOGÍA — SISTEMA DE DISEÑO
    Paleta: Moss · Cypress · Olive · Cedar · Aloe sobre papel hueso.
-   Tipografía: Playfair Display (display) + Jost (interfaz y texto).
+   Tipografía: Playfair Display (titulares) + Newsreader (cursivas breves)
+                + Jost (interfaz y texto).
    ========================================================================= */
 
 @theme {
   /* ---- Tipografía ---- */
   --font-display: "Playfair Display", "Iowan Old Style", Palatino, Georgia, serif;
+  /* Serif de texto, solo para las cursivas en cuerpo pequeño. */
+  --font-cita: "Newsreader", "Iowan Old Style", Palatino, Georgia, serif;
   --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* ---- Paleta base (referencia de marca) ---- */
-  --color-moss: #2c3424;
-  --color-cypress: #4c583e;
-  --color-olive: #768064;
+  /* ---- Paleta base (referencia de marca) ----
+     El verde principal se rebajó un tono a petición de Melissa. Sigue en
+     9,5:1 contra el papel, así que el contraste no se resiente. */
+  --color-moss: #364030;
+  --color-cypress: #545f45;
+  /* Baja de #768064: los antetítulos a 12 px no llegaban a 4,5:1. */
+  --color-olive: #5a6146;
   --color-cedar: #959581;
   --color-aloe: #daded8;
 
@@ -27,16 +33,18 @@
   --color-linen: #f7f6f0;
 
   /* ---- Tokens semánticos (sobre claro) ---- */
-  --color-ink: #2c3424;
+  --color-ink: #364030;
   --color-ink-muted: #5c6350;
-  --color-ink-faint: #7d8271;
+  /* Sube de #7d8271: los pies y las fechas no llegaban a 4,5:1. */
+  --color-ink-faint: #5f6552;
   --color-rule: #d3d0c1;
   --color-rule-strong: #b9b7a4;
 
   /* ---- Tokens semánticos (sobre oscuro) ---- */
   --color-on-dark: #f2f0e7;
-  --color-on-dark-muted: #c3c8bc;
-  --color-on-dark-faint: #8f9a86;
+  --color-on-dark-muted: #d2d7cc;
+  /* Sube de #8f9a86 por el mismo motivo, ya sobre el verde nuevo. */
+  --color-on-dark-faint: #adb8a4;
 
   /* ---- Compatibilidad shadcn/ui ---- */
   --color-background: var(--color-bone);
@@ -244,17 +252,29 @@
   line-height: 1.4;
 }
 
+/**
+ * Cursivas breves: citas de tarjeta, subtítulos y remates. Playfair Display
+ * adelgaza demasiado por debajo de ~1,6 rem, así que aquí manda Newsreader.
+ */
+@utility cita-menor {
+  font-family: var(--font-cita);
+  font-style: italic;
+  font-weight: 450;
+  letter-spacing: 0;
+}
+
 @utility lede {
-  font-size: clamp(1.125rem, 0.99rem + 0.55vw, 1.375rem);
-  line-height: 1.62;
+  font-size: clamp(1.1875rem, 1.04rem + 0.6vw, 1.4375rem);
+  line-height: 1.6;
   color: var(--color-ink-muted);
   font-weight: 300;
 }
 
-/* Melissa pidió subir el cuerpo de texto: la letra pequeña costaba de leer. */
+/* Melissa pidió subir el cuerpo de texto dos veces: la letra pequeña
+   costaba de leer. Esta es la segunda subida. */
 @utility prose-body {
-  font-size: 1.0938rem;
-  line-height: 1.75;
+  font-size: 1.15rem;
+  line-height: 1.72;
   font-weight: 300;
   color: var(--color-ink-muted);
 }
@@ -615,7 +635,10 @@
 @utility clip-line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.06em;
+  /* Playfair Display baja mucho las descendentes: con 0.06em la «g» salía
+     cortada. El margen negativo devuelve el ritmo vertical original. */
+  padding-bottom: 0.22em;
+  margin-bottom: -0.16em;
   > span {
     display: block;
     animation: orpheus-clip-up 1.15s var(--ease-orpheus) both;
@@ -693,7 +716,7 @@
   background: transparent;
   padding: 0.875rem 0;
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 300;
   color: var(--color-ink);
   border-radius: 0;

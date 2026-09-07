@@ -103,8 +103,8 @@ export function CarruselResenas() {
 
               <footer className="mt-8 flex flex-wrap items-end justify-between gap-6 border-t border-rule pt-6">
                 <div>
-                  <p className="text-[0.95rem] text-ink">{r.nombre}</p>
-                  <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.83rem] font-light text-ink-faint">
+                  <p className="text-[1.01rem] text-ink">{r.nombre}</p>
+                  <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.89rem] font-light text-ink-faint">
                     {fecha ? <span>{fecha}</span> : null}
                     {r.verificada ? (
                       <span className="inline-flex items-center gap-1.5 text-cypress">
@@ -124,7 +124,7 @@ export function CarruselResenas() {
                   >
                     <ChevronLeft className="size-4" strokeWidth={1.6} aria-hidden="true" />
                   </button>
-                  <span className="tabular-nums px-1 text-[0.83rem] font-light text-ink-faint">
+                  <span className="tabular-nums px-1 text-[0.89rem] font-light text-ink-faint">
                     {activa + 1} / {total}
                   </span>
                   <button

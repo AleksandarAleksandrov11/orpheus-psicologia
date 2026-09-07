@@ -119,7 +119,7 @@ function PorQueOrpheus() {
 
             <div className="space-y-7">
               <Reveal>
-                <p className="text-[1.06rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.12rem]">
+                <p className="text-[1.12rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.18rem]">
                   {MITO.cuerpo[1]}
                 </p>
               </Reveal>
@@ -128,7 +128,7 @@ function PorQueOrpheus() {
               </Reveal>
               {FILOSOFIA.parrafos.slice(0, 2).map((p, i) => (
                 <Reveal key={p.slice(0, 24)} delay={i * 90}>
-                  <p className="text-[1.06rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.12rem]">
+                  <p className="text-[1.12rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.18rem]">
                     {p}
                   </p>
                 </Reveal>
@@ -147,7 +147,7 @@ function PorQueOrpheus() {
               <Reveal
                 key={s}
                 delay={i * 100}
-                className="border-t border-on-dark/15 pt-5 text-[1.01rem] font-light text-on-dark-muted"
+                className="border-t border-on-dark/15 pt-5 text-[1.07rem] font-light text-on-dark-muted"
               >
                 {s}
               </Reveal>
@@ -174,7 +174,7 @@ function PorQueOrpheus() {
               </BotonEnlace>
             </Reveal>
             <Reveal delay={260}>
-              <p className="mt-8 max-w-sm text-[0.95rem] leading-relaxed font-light text-ink-faint">
+              <p className="mt-8 max-w-sm text-[1.01rem] leading-relaxed font-light text-ink-faint">
                 El mito da para más de lo que cabe aquí.{" "}
                 <Link
                   to="/diario/$slug"
@@ -191,7 +191,7 @@ function PorQueOrpheus() {
           <div className="space-y-7">
             {FILOSOFIA.parrafos.slice(2).map((p, i) => (
               <Reveal key={p.slice(0, 24)} delay={i * 90}>
-                <p className="text-[1.06rem] leading-[1.85] font-light text-ink-muted md:text-[1.12rem]">
+                <p className="text-[1.12rem] leading-[1.85] font-light text-ink-muted md:text-[1.18rem]">
                   {p}
                 </p>
               </Reveal>
@@ -241,7 +241,7 @@ function PorQueOrpheus() {
           <div className="mt-16 grid gap-9 border-t border-on-dark/15 pt-10 md:mt-20 md:grid-cols-2 md:gap-16">
             {PROCESO_VIVO.parrafos.map((p, i) => (
               <Reveal key={p.slice(0, 24)} delay={i * 110}>
-                <p className="text-[1.06rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.12rem]">
+                <p className="text-[1.12rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.18rem]">
                   {p}
                 </p>
               </Reveal>

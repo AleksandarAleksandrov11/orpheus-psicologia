@@ -18,12 +18,12 @@ export function renderErrorPage(): string {
       body {
         margin: 0; min-height: 100vh; padding: 1.5rem;
         display: grid; place-items: center;
-        background: #f2f0e7; color: #2c3424;
+        background: #f2f0e7; color: #364030;
         font: 300 15px/1.7 "Jost", ui-sans-serif, system-ui, -apple-system, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
       .card { max-width: 32rem; width: 100%; text-align: center; padding: 2rem 1rem; }
-      svg { width: 48px; height: 48px; color: #4c583e; opacity: .6; }
+      svg { width: 48px; height: 48px; color: #545f45; opacity: .6; }
       .eyebrow {
         margin: 2rem 0 0; font-size: .6875rem; font-weight: 500;
         letter-spacing: .26em; text-transform: uppercase; color: #768064;
@@ -43,12 +43,12 @@ export function renderErrorPage(): string {
         text-decoration: none; border: 1px solid transparent;
         transition: background-color .4s ease, color .4s ease, border-color .4s ease;
       }
-      .primary { background: #2c3424; color: #f2f0e7; }
-      .primary:hover { background: #4c583e; }
-      .secondary { background: transparent; color: #2c3424; border-color: #b9b7a4; }
-      .secondary:hover { background: #2c3424; color: #f2f0e7; border-color: #2c3424; }
+      .primary { background: #364030; color: #f2f0e7; }
+      .primary:hover { background: #545f45; }
+      .secondary { background: transparent; color: #364030; border-color: #b9b7a4; }
+      .secondary:hover { background: #364030; color: #f2f0e7; border-color: #364030; }
       .contacto { margin-top: 2.5rem; font-size: .8rem; color: #7d8271; }
-      .contacto a { all: unset; color: #4c583e; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+      .contacto a { all: unset; color: #545f45; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
     </style>
   </head>
   <body>

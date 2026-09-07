@@ -80,7 +80,7 @@ function Resenas() {
                 >
                   Ver las reseñas en Google
                 </BotonExterno>
-                <p className="mt-4 flex items-center gap-2 text-[0.9rem] font-light text-ink-faint">
+                <p className="mt-4 flex items-center gap-2 text-[0.96rem] font-light text-ink-faint">
                   <BadgeCheck
                     className="size-4 text-cypress"
                     strokeWidth={1.6}
@@ -132,7 +132,7 @@ function Resenas() {
             </Cita>
           </Reveal>
           <Reveal delay={170}>
-            <p className="mx-auto mt-8 max-w-xl text-[1.06rem] leading-relaxed font-light text-ink-muted">
+            <p className="mx-auto mt-8 max-w-xl text-[1.12rem] leading-relaxed font-light text-ink-muted">
               {CTA_INTERMEDIO.texto}
             </p>
           </Reveal>
@@ -190,19 +190,19 @@ function TarjetaResena({ resena, indice }: { resena: Resena; indice: number }) {
             className={
               destacada
                 ? "font-display text-[1.4rem] leading-snug text-ink md:text-[1.7rem]"
-                : "text-[1.01rem] leading-[1.75] font-light text-ink-muted"
+                : "text-[1.07rem] leading-[1.75] font-light text-ink-muted"
             }
           >
             «{resena.texto}»
           </blockquote>
 
           <footer className="mt-7 border-t border-rule pt-5">
-            <p className="text-[0.93rem] text-ink">{resena.nombre}</p>
+            <p className="text-[0.99rem] text-ink">{resena.nombre}</p>
             {resena.contexto ? (
-              <p className="mt-0.5 text-[0.83rem] font-light text-ink-faint">{resena.contexto}</p>
+              <p className="mt-0.5 text-[0.89rem] font-light text-ink-faint">{resena.contexto}</p>
             ) : null}
             {fecha ? (
-              <p className="mt-0.5 text-[0.83rem] font-light text-ink-faint">{fecha}</p>
+              <p className="mt-0.5 text-[0.89rem] font-light text-ink-faint">{fecha}</p>
             ) : null}
           </footer>
         </div>

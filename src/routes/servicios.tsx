@@ -153,7 +153,7 @@ function Servicios() {
                         <span className="eyebrow text-olive/70 tabular-nums">
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        <span className="flex-1 text-[1.01rem] font-light text-ink transition-colors duration-500 group-hover:text-cypress">
+                        <span className="flex-1 text-[1.07rem] font-light text-ink transition-colors duration-500 group-hover:text-cypress">
                           {s.label}
                         </span>
                         <span
@@ -173,19 +173,17 @@ function Servicios() {
       {/* ═══════════════════ ENFOQUE ═══════════════════ */}
       <section id="enfoque" className="section-y scroll-mt-28" aria-labelledby="enfoque-titulo">
         <div className="shell">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-20">
-            <div>
-              <Reveal>
-                <Antetitulo>{ENFOQUE.eyebrow}</Antetitulo>
-              </Reveal>
-              <Reveal delay={80}>
-                <h2 id="enfoque-titulo" className="display-md mt-6">
-                  Trabajo desde un enfoque <em className="italic">integrador</em>.
-                </h2>
-              </Reveal>
-            </div>
+          <div className="max-w-3xl">
+            <Reveal>
+              <Antetitulo>{ENFOQUE.eyebrow}</Antetitulo>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 id="enfoque-titulo" className="display-md mt-6">
+                Trabajo desde un enfoque <em className="italic">integrador</em>.
+              </h2>
+            </Reveal>
             <Reveal delay={160}>
-              <p className="prose-body">{ENFOQUE.intro}</p>
+              <p className="prose-body mt-7">{ENFOQUE.intro}</p>
             </Reveal>
           </div>
 
@@ -211,7 +209,7 @@ function Servicios() {
                   <h3 className="mt-6 font-display text-[1.45rem] leading-tight text-ink md:text-[1.7rem]">
                     {m.t}
                   </h3>
-                  <p className="mt-3 max-w-sm text-[1.01rem] leading-relaxed font-light text-ink-muted">
+                  <p className="mt-3 max-w-sm text-[1.07rem] leading-relaxed font-light text-ink-muted">
                     {m.d}
                   </p>
                 </Reveal>
@@ -257,7 +255,7 @@ function Servicios() {
                 </Reveal>
               </div>
               <Reveal delay={160}>
-                <p className="text-[1.06rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.12rem]">
+                <p className="text-[1.12rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.18rem]">
                   {ENGRANAJE.introBreve}
                 </p>
               </Reveal>
@@ -289,7 +287,7 @@ function Servicios() {
                     </span>
                   </div>
                   <h3 className="display-sm mt-9 text-on-dark">{e.titulo}</h3>
-                  <p className="mt-4 font-display text-[1.28rem] leading-snug text-aloe italic md:text-[1.45rem]">
+                  <p className="cita-menor mt-4 text-[1.3rem] leading-snug text-aloe md:text-[1.45rem]">
                     {e.breve}
                   </p>
                   <p className="mt-6 flex-1 text-[1rem] leading-[1.75] font-light text-on-dark-muted">
@@ -298,7 +296,7 @@ function Servicios() {
                   <hr className="rule-fade-dark mt-9" />
                   <Link
                     to="/contacto"
-                    className="link-draw mt-6 self-start text-[0.93rem] text-aloe"
+                    className="link-draw mt-6 self-start text-[0.99rem] text-aloe"
                   >
                     Trabajar esto en terapia
                   </Link>
@@ -327,7 +325,7 @@ function Servicios() {
                       <h3 className="font-display text-[1.5rem] leading-tight text-ink md:text-[1.75rem]">
                         {e.titulo}
                       </h3>
-                      <p className="mt-2 text-[1.01rem] leading-snug font-light text-cypress italic">
+                      <p className="mt-2 text-[1.07rem] leading-snug font-light text-cypress italic">
                         {e.breve}
                       </p>
                     </div>
@@ -404,11 +402,11 @@ function Servicios() {
                       <span className="font-display text-[2.6rem] leading-none text-cypress md:text-[3.1rem]">
                         {s.precio}
                       </span>
-                      <span className="text-[0.87rem] font-light text-ink-faint">{s.nota}</span>
+                      <span className="text-[0.93rem] font-light text-ink-faint">{s.nota}</span>
                     </p>
                   ) : null}
 
-                  <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[0.9rem] font-light text-ink-faint">
+                  <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[0.96rem] font-light text-ink-faint">
                     <span className="flex items-center gap-2">
                       <Clock className="size-3.5" strokeWidth={1.6} aria-hidden="true" />
                       {s.duracion}
@@ -418,12 +416,12 @@ function Servicios() {
                       {s.canal}
                     </span>
                   </div>
-                  <p className="prose-body mt-5 text-[1.01rem]">{s.resumen}</p>
+                  <p className="prose-body mt-5 text-[1.07rem]">{s.resumen}</p>
 
                   <p className="eyebrow mt-8 text-ink-faint">Incluye</p>
                   <ul className="mt-4 flex-1 space-y-3">
                     {s.incluye.map((item) => (
-                      <li key={item} className="flex gap-3 text-[0.97rem] font-light text-ink">
+                      <li key={item} className="flex gap-3 text-[1.03rem] font-light text-ink">
                         <Check
                           className="mt-1 size-3.5 shrink-0 text-olive"
                           strokeWidth={2}
@@ -435,7 +433,7 @@ function Servicios() {
                   </ul>
 
                   <div className="mt-9 border-t border-rule pt-6">
-                    <Link to="/contacto" className="link-draw text-[0.93rem] text-cypress">
+                    <Link to="/contacto" className="link-draw text-[0.99rem] text-cypress">
                       {s.slug === "primera-sesion" ? "Reservar esta sesión" : "Reservar"}
                     </Link>
                   </div>
@@ -453,7 +451,7 @@ function Servicios() {
               {TARIFAS_NOTAS.map((n) => (
                 <li
                   key={n}
-                  className="flex gap-3 text-[0.93rem] leading-relaxed font-light text-ink-faint"
+                  className="flex gap-3 text-[0.99rem] leading-relaxed font-light text-ink-faint"
                 >
                   <span aria-hidden="true" className="mt-2.5 h-px w-4 shrink-0 bg-cedar" />
                   {n}
@@ -481,7 +479,7 @@ function Servicios() {
             <h2 id="interludio-titulo" className="display-md mt-8 text-on-dark">
               ¿Quieres saber si <em className="italic">encajamos</em>?
             </h2>
-            <p className="mt-7 max-w-lg text-[1.06rem] leading-[1.8] font-light text-on-dark-muted">
+            <p className="mt-7 max-w-lg text-[1.12rem] leading-[1.8] font-light text-on-dark-muted">
               {CTA_INTERMEDIO.texto}
             </p>
             <div className="mt-10">
@@ -564,14 +562,14 @@ function Servicios() {
                       {String(i + 1).padStart(2, "0")}
                     </p>
                     <h3 className="display-sm mt-4">{f.t}</h3>
-                    <p className="prose-body mt-3 text-[1.01rem]">{f.d}</p>
+                    <p className="prose-body mt-3 text-[1.07rem]">{f.d}</p>
                   </Reveal>
                 );
               })}
             </ol>
 
             <Reveal delay={200} className="mt-14">
-              <p className="text-[0.93rem] font-light text-ink-faint">
+              <p className="text-[0.99rem] font-light text-ink-faint">
                 El acompañamiento se va espaciando a propósito: el objetivo es que deje de hacer
                 falta.
               </p>
