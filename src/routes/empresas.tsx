@@ -84,7 +84,7 @@ function Empresas() {
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="aurora grain relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
         <Parallax
           amount={-32}
           className="pointer-events-none absolute -top-40 -right-36 -z-10 h-[34rem] w-[34rem] rounded-full bg-cedar/25 blur-3xl"

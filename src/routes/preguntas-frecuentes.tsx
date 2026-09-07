@@ -48,7 +48,7 @@ function Preguntas() {
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="aurora grain relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
         <Parallax
           amount={-30}
           className="pointer-events-none absolute -top-40 -left-36 -z-10 h-[32rem] w-[32rem] rounded-full bg-aloe/50 blur-3xl"

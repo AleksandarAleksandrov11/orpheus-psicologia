@@ -56,7 +56,6 @@ export const FILOSOFIA = {
     "Sin recetas universales.",
     "Sin exigirte convertirte en otra persona.",
   ],
-  remate: "Con rigor psicológico, pero también con humanidad.",
 } as const;
 
 export const PROCESO_VIVO = {
@@ -76,17 +75,22 @@ export const RECONOCES = {
   eyebrow: "¿Te reconoces?",
   titulo: "Quizá llevas tiempo sintiendo que…",
   items: [
-    "Te exiges muchísimo y, aun así, sientes que nunca es suficiente.",
-    "Dudas de ti incluso cuando objetivamente las cosas van bien.",
-    "Necesitas la aprobación de los demás para sentir que tienes valor.",
-    "Te comparas constantemente y siempre encuentras algo que mejorar.",
+    "Te exiges muchísimo y, aun así, nunca es suficiente.",
+    "Dudas de ti incluso cuando las cosas van bien.",
+    "Te comparas y siempre encuentras algo que mejorar.",
     "Te cuesta poner límites o elegirte sin sentir culpa.",
-    "Tu diálogo interno es mucho más duro contigo que con cualquier otra persona.",
-    "Sabes racionalmente que deberías confiar más en ti, pero no consigues sentirlo.",
-    "Te cuesta parar, descansar o disfrutar sin sentir que deberías estar haciendo algo más.",
-    "Te cuesta entender qué sientes o poner palabras a lo que te ocurre.",
-    "Estás atravesando una ruptura, un duelo, una crisis o un momento de cambio.",
+    "Te hablas con una dureza que no usarías con nadie más.",
+    "Sabes que deberías confiar más en ti, pero no lo sientes.",
+    "Te cuesta parar y descansar sin sentir que deberías hacer más.",
   ],
+  /**
+   * El octavo punto no encaja en la frase que encabeza la lista, así que
+   * se presenta aparte, con su propia entrada.
+   */
+  ademas: {
+    entrada: "Y quizá también esto:",
+    texto: "Estás atravesando una ruptura, un duelo o un momento de cambio.",
+  },
   cierre:
     "Y quizá lleves tiempo sabiendo lo que «deberías» hacer, sin saber cómo dejar de sentirte así.",
 } as const;
@@ -140,27 +144,27 @@ export const RECORRIDO = {
   eyebrow: "¿Cómo trabajaremos?",
   titulo: "La terapia no es una línea recta.",
   intro:
-    "Hay avances, retrocesos, mesetas y descubrimientos que llegan cuando menos los esperas. Esos vaivenes no son un fallo del proceso: son el proceso.",
+    "Hay avances, retrocesos y descubrimientos que llegan cuando menos los esperas. Esos vaivenes no son un fallo del proceso: son el proceso.",
   pasos: [
     {
       n: "01",
       t: "Comprender",
-      d: "Antes de intentar cambiar nada, necesitamos entender qué te está pasando y por qué.",
+      d: "Entender qué te está pasando y por qué, antes de intentar cambiar nada.",
     },
     {
       n: "02",
       t: "Dar sentido",
-      d: "Exploraremos tu historia, tus experiencias y los patrones que has ido construyendo para comprender cómo has llegado hasta aquí.",
+      d: "Explorar tu historia y los patrones que te han traído hasta aquí.",
     },
     {
       n: "03",
       t: "Transformar",
-      d: "Iremos incorporando nuevas herramientas y formas de relacionarte contigo, con tus emociones y con los demás.",
+      d: "Incorporar nuevas herramientas y formas de relacionarte contigo y con los demás.",
     },
     {
       n: "04",
       t: "Integrar",
-      d: "El objetivo no es que dependas eternamente de la terapia, sino que puedas llevarte contigo lo aprendido y seguir avanzando por tu cuenta.",
+      d: "Llevarte contigo lo aprendido y seguir avanzando por tu cuenta.",
     },
   ],
   cita: "No hay dos procesos iguales. Tu terapia tampoco debería serlo.",
@@ -189,6 +193,9 @@ export const ENGRANAJE = {
   titulo: "Entiendo al ser humano como un engranaje.",
   intro:
     "Lo que ocurre en tu autoestima toca tus relaciones, y lo que ocurre en tus relaciones toca tu forma de descansar, de trabajar y de hablarte. Por eso no aplico un protocolo cerrado: adapto el trabajo a lo que necesitas en cada momento.",
+  /** Versión breve, para no repetir la entradilla larga en dos páginas. */
+  introBreve:
+    "Lo que ocurre en tu autoestima toca tus relaciones, tu descanso y tu forma de hablarte. Por eso el trabajo se adapta a ti y no al revés.",
   /** Encabeza la lista secundaria de áreas de trabajo. */
   otras: "Otras áreas en las que acompaño",
   cierre:
@@ -208,9 +215,9 @@ export const ESPACIOS: Espacio[] = [
   {
     slug: "autoestima",
     titulo: "Autoestima",
-    breve: "Construir una base que no dependa de la validación externa.",
+    breve: "Construir una relación sólida y coherente contigo.",
     detalle:
-      "Comprender el origen de tu autoconcepto, rebajar el volumen del crítico interior y sostener una imagen de ti realista y amable, también los días en que nada sale bien.",
+      "Entiendo la autoestima como la valoración afectiva que hacemos de aquello que conocemos de nosotros mismos. Trabajaremos en autoconocimiento y autoconcepto para construir una imagen de ti más sólida, realista y coherente, desde la que puedas valorarte sin depender de la aprobación externa, la comparación o del rendimiento, y que puedas sostener incluso cuando dudes.",
     destacado: true,
   },
   {
@@ -218,7 +225,7 @@ export const ESPACIOS: Espacio[] = [
     titulo: "Autoexigencia y perfeccionismo",
     breve: "Bajar la presión sin perder tus valores.",
     detalle:
-      "Identificar de dónde viene la exigencia, trabajar la culpa asociada al descanso y redefinir el éxito desde tu propio criterio y no desde el listón heredado.",
+      "Identificar de dónde viene la exigencia, trabajar la culpa social al descanso y redefinir el éxito desde tu propio criterio y no desde expectativas externas.",
     destacado: true,
   },
   {
@@ -268,7 +275,7 @@ export const ESPACIOS: Espacio[] = [
     titulo: "Inseguridad",
     breve: "Confiar en tu propio criterio.",
     detalle:
-      "Reconocer los detonantes de la duda constante, regular la comparación y aprender a sostener tus decisiones sin necesitar que alguien las apruebe.",
+      "Reconocer qué alimenta la duda constante, reducir el peso de la comparación y aprender a confiar en tu propio criterio incluso cuando no tengas la certeza o la validación que buscas.",
     destacado: true,
   },
   {
@@ -350,11 +357,17 @@ export const FORMACION = {
   items: [
     { t: "Graduada en Psicología", d: "Universidad Complutense de Madrid" },
     { t: "Máster en Psicología General Sanitaria", d: "Universidad Complutense de Madrid" },
-    { t: "Programa avanzado en Inteligencia Emocional y Terapia Infantojuvenil", d: "" },
-    { t: "Formación especializada en autoestima", d: "" },
+    {
+      t: "Programa avanzado en Inteligencia Emocional y Terapia Infantojuvenil",
+      d: "UNIR · Universidad Internacional de La Rioja",
+    },
+    { t: "Formación especializada en autoestima", d: "Universidad Complutense de Madrid" },
+    {
+      t: "Formación en Psicoterapia Psicodramática",
+      d: "Escuela de Psicoterapia y Psicodrama, Madrid",
+    },
   ],
-  continuo: "Y continúo…",
-  nota: "A eso se suma la formación en los modelos con los que trabajo, que integro en un mismo enfoque en lugar de aplicarlos por separado. La formación es un proceso continuo y sigo actualizándola para acompañar mejor a cada persona.",
+  nota: "La formación es un proceso continuo y sigo actualizándome ahora para acompañar mejor a cada persona.",
 } as const;
 
 /* ══════════════════════════════════════════════════════════════════
@@ -367,7 +380,7 @@ export const ESPACIO_SEGURO = {
   items: [
     {
       t: "Enfoque integrador",
-      d: "Un marco teórico que combina los modelos con más respaldo científico y los adapta a ti, en lugar de encajarte en una sola escuela.",
+      d: "Respaldamos la evidencia y la combinamos con un trato humano para adaptarnos a ti, en lugar de encajarte en una sola corriente.",
     },
     {
       t: "Confidencialidad total",
@@ -425,7 +438,7 @@ export const SESIONES = [
     etiqueta: "El proceso",
     duracion: "50 a 60 minutos",
     canal: "Online, por videollamada cifrada",
-    precio: "70 €",
+    precio: "65 €",
     nota: "Se abona en consulta",
     resumen:
       "El acompañamiento continuado. Trabajamos aquello que te trajo y aquello que aparece por el camino, con la misma profundidad estés donde estés.",
@@ -440,37 +453,41 @@ export const SESIONES = [
   {
     slug: "bono-4-sesiones",
     titulo: "Bono de 4 sesiones",
-    etiqueta: "Ahorro de 40 €",
+    etiqueta: "Continuidad",
     duracion: "4 × 50 a 60 minutos",
     canal: "Online, en un solo pago",
     precio: "240 €",
-    nota: "Un solo pago",
+    nota: "60 € por sesión",
     resumen:
-      "Cuatro sesiones por adelantado, a 60 € cada una. Para cuando ya sabes que quieres darle continuidad al proceso.",
+      "Cuatro sesiones por adelantado. Para cuando ya sabes que quieres darle continuidad al proceso.",
     incluye: [
-      "Las mismas sesiones, a mejor precio",
-      "Sin caducidad marcada: se usan a tu ritmo",
-      "Continuidad asegurada en agenda",
+      "Cuatro sesiones a 60 € cada una",
+      "Se abonan en un solo pago",
+      "Se usan a tu ritmo, sin caducidad marcada",
       "Se puede renovar tantas veces como quieras",
     ],
   },
 ] as const;
 
+/** Política de cancelación, literal. Se usa en tarifas y en las FAQ. */
+export const CANCELACION =
+  "Las sesiones se pueden cambiar o anular avisando con 24 horas de antelación. De no ser así, la sesión se considerará realizada y deberá abonarse por respeto al tiempo del profesional, la gestión de agenda y a otras personas que necesitan ser acompañadas.";
+
 /** Notas al pie del bloque de tarifas. */
 export const TARIFAS_NOTAS = [
   "Si prefieres terapia presencial en Madrid, escríbeme y vemos las opciones disponibles.",
-  "Las sesiones se pueden cambiar o anular avisando con 24 horas de antelación.",
+  CANCELACION,
 ] as const;
 
 export const FRECUENCIA = {
   eyebrow: "Ritmo del proceso",
   titulo: "¿Cada cuánto nos veremos?",
   texto:
-    "Al principio solemos vernos cada semana, porque el proceso necesita continuidad para coger tracción. A medida que avanzas, espaciamos las sesiones cada quince días y después una vez al mes, hasta que el acompañamiento deja de ser necesario. La frecuencia la decidimos contigo y se revisa las veces que haga falta.",
+    "La frecuencia se adapta a tus necesidades y a la disponibilidad de agenda. Lo recomendable es empezar con sesiones semanales, para que el proceso se sostenga con continuidad, e ir espaciándolas según avance. Como mínimo conviene mantener una sesión cada quince días para que el trabajo conserve su sentido.",
   fases: [
     { t: "Semanal", d: "Fase inicial. Construimos la relación y ordenamos el mapa." },
     { t: "Quincenal", d: "Fase de trabajo. Hay margen para practicar entre sesiones." },
-    { t: "Mensual", d: "Fase de consolidación. Afianzas los cambios por tu cuenta." },
+    { t: "Mensual", d: "Solo en la fase final, cuando ya afianzas los cambios por tu cuenta." },
     { t: "Alta", d: "Te llevas contigo lo aprendido. La puerta queda abierta." },
   ],
 } as const;
@@ -555,19 +572,19 @@ export const FAQ = [
   },
   {
     q: "¿Cuánto cuesta una sesión?",
-    a: "La primera sesión cuesta 50 € y dura una hora. A partir de ahí, la sesión individual son 70 €, y hay un bono de cuatro sesiones por 240 €, que sale a 60 € cada una. Los precios están publicados en la página de servicios para que no tengas que preguntarlos.",
+    a: "Los precios están publicados en la página de servicios.",
   },
   {
     q: "¿Cuánto dura un proceso terapéutico?",
-    a: "Depende de lo que traigas y de tu momento vital. Hay procesos breves y focalizados de dos o tres meses, y procesos más profundos que se sostienen durante más tiempo. Lo revisamos contigo de forma periódica y el objetivo siempre es que puedas seguir por tu cuenta, no que dependas de la terapia.",
+    a: "La duración del proceso depende de tus necesidades, de tu forma de afrontar lo que te ocurre y del momento vital en el que te encuentres. Algunos procesos son breves y focalizados, centrados en una dificultad concreta. Otros requieren un trabajo más profundo, en el que exploramos diferentes aspectos de tu historia y de tu forma de relacionarte contigo y con los demás. No hay una duración predeterminada: el proceso se adapta a ti.",
   },
   {
     q: "¿Con qué frecuencia son las sesiones?",
-    a: "Al principio solemos vernos cada semana para dar continuidad al trabajo. Después espaciamos a quincenal y mensual conforme avanzas. La frecuencia se decide contigo y se ajusta las veces que haga falta.",
+    a: "La frecuencia se adapta a tus necesidades y a la disponibilidad de agenda. Para que el proceso pueda sostenerse con continuidad y coherencia, lo recomendable es comenzar con sesiones semanales. En función de cómo avance, podremos espaciarlas. Como mínimo, sería conveniente mantener una sesión cada quince días para que el trabajo terapéutico conserve su sentido y su continuidad.",
   },
   {
     q: "¿La terapia online funciona igual que la presencial?",
-    a: "La investigación disponible muestra resultados equivalentes en la mayoría de los motivos de consulta. Lo importante es la calidad del vínculo y la continuidad, no el canal. La sesión online se hace por videollamada cifrada y en un espacio donde puedas hablar con intimidad.",
+    a: "La evidencia disponible indica que la terapia online es eficaz para muchos de los motivos de consulta habituales. Si considero que necesitas otro tipo de atención, te lo diré con honestidad y te orientaré sobre las opciones más convenientes.",
   },
   {
     q: "¿Qué pasa con la confidencialidad?",
@@ -578,12 +595,8 @@ export const FAQ = [
     a: "Es habitual que, al mirar de frente lo que llevabas tiempo evitando, aparezca malestar en las primeras semanas. No es un mal signo: es lo que ocurre cuando algo empieza a moverse. Trabajamos ese momento con cuidado y a tu ritmo, y lo hablamos abiertamente cuando aparece.",
   },
   {
-    q: "¿Qué diferencia hay entre psicóloga, psiquiatra y coach?",
-    a: "La psicóloga general sanitaria trabaja con psicoterapia y evaluación psicológica; la psiquiatra es médica y puede prescribir medicación; el coaching no es una profesión sanitaria ni trata malestar clínico. En ocasiones el trabajo conjunto con psiquiatría es lo más recomendable, y si es tu caso te lo diré.",
-  },
-  {
     q: "¿Qué pasa si tengo que cancelar una sesión?",
-    a: "Se puede cambiar o anular avisando con al menos 24 horas de antelación. Las cancelaciones con menos margen se consideran sesión realizada, porque ese hueco quedó reservado para ti.",
+    a: CANCELACION,
   },
   {
     q: "¿Trabajas con adolescentes?",
@@ -618,8 +631,10 @@ export const CTA_INTERMEDIO = {
 
 export const MARQUESINA = [
   "Comprender antes de cambiar",
-  "Sin etiquetas que te definan",
-  "Sin recetas universales",
-  "Descender para poder elevarse",
+  "Implicación",
+  "Respeto",
+  "Escucha",
+  "Calidez",
+  "Empatía",
   "Tu historia importa",
 ];

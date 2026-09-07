@@ -258,7 +258,7 @@ function Servicios() {
               </div>
               <Reveal delay={160}>
                 <p className="text-[1.06rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.12rem]">
-                  {ENGRANAJE.intro}
+                  {ENGRANAJE.introBreve}
                 </p>
               </Reveal>
             </div>
@@ -588,12 +588,7 @@ function Servicios() {
       >
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 shell section-y">
-          <TituloSeccion
-            antetitulo={RECORRIDO.eyebrow}
-            descripcion={RECORRIDO.intro}
-            centrado
-            className="mx-auto"
-          >
+          <TituloSeccion antetitulo={RECORRIDO.eyebrow} centrado className="mx-auto">
             <span id="recorrido-titulo">
               La terapia no es una <em className="italic">línea recta</em>.
             </span>

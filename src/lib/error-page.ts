@@ -29,7 +29,7 @@ export function renderErrorPage(): string {
         letter-spacing: .26em; text-transform: uppercase; color: #768064;
       }
       h1 {
-        font-family: "Newsreader", Georgia, serif; font-weight: 400;
+        font-family: "Playfair Display", Georgia, serif; font-weight: 400;
         font-size: clamp(1.9rem, 1.2rem + 3vw, 2.75rem); line-height: 1.05;
         letter-spacing: -.02em; margin: 1rem 0 0;
       }

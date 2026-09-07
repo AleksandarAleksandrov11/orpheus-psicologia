@@ -43,7 +43,7 @@ function PorQueOrpheus() {
   return (
     <Layout>
       {/* ═══════════════════ APERTURA ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="aurora grain relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
         <Parallax
           amount={-34}
           className="pointer-events-none absolute -top-40 -right-36 -z-10 h-[34rem] w-[34rem] rounded-full bg-olive/15 blur-3xl"
@@ -153,11 +153,6 @@ function PorQueOrpheus() {
               </Reveal>
             ))}
           </div>
-          <Reveal delay={320}>
-            <p className="mt-10 font-display text-[1.35rem] text-on-dark italic md:text-[1.6rem]">
-              {FILOSOFIA.remate}
-            </p>
-          </Reveal>
         </div>
       </section>
 

@@ -278,13 +278,11 @@ function SobreMi() {
                 ))}
               </ol>
 
-              <Reveal delay={100} className="mt-10 flex items-baseline gap-6">
-                <span aria-hidden="true" className="h-px w-12 shrink-0 bg-olive/50" />
-                <p className="display-sm text-cypress italic">{FORMACION.continuo}</p>
-              </Reveal>
-
-              <Reveal delay={170}>
-                <p className="prose-body mt-8 max-w-xl">{FORMACION.nota}</p>
+              <Reveal delay={140} className="mt-10 flex items-baseline gap-6">
+                <span aria-hidden="true" className="mt-3 h-px w-12 shrink-0 bg-olive/50" />
+                <p className="font-display text-[1.3rem] leading-snug text-cypress italic md:text-[1.55rem]">
+                  {FORMACION.nota}
+                </p>
               </Reveal>
             </div>
           </div>

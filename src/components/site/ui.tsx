@@ -43,15 +43,33 @@ function apoyoCuerda(x: number) {
   return HUECO.cy + HUECO.ry * Math.sqrt(Math.max(0, 1 - t * t)) + 0.6;
 }
 
-/** Silueta de la luna: círculo menos elipse, con regla par-impar. */
+/**
+ * Puntas de la luna: donde se cortan el círculo y la elipse.
+ *
+ * Se calculan en lugar de escribirse a mano porque de ahí salen los dos
+ * extremos del arco. Restar la elipse con `fill-rule="evenodd"` no vale:
+ * la elipse es más alta que el círculo y su casquete superior quedaba
+ * fuera de él, así que se pintaba, y el viewBox lo recortaba en plano.
+ * Era el «redondel oscuro» que asomaba por encima del logotipo.
+ */
+const PUNTAS = (() => {
+  const { cx, cy, r } = LUNA;
+  const { ry, rx } = HUECO;
+  // Igualando ambas cónicas queda una ecuación de segundo grado en y.
+  const k = 1 - (rx * rx) / (ry * ry);
+  const a = k;
+  const b = -2 * cy + (2 * HUECO.cy * rx * rx) / (ry * ry);
+  const c = cy * cy - r * r + rx * rx - (HUECO.cy * HUECO.cy * rx * rx) / (ry * ry);
+  const y = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+  const dx = Math.sqrt(Math.max(0, r * r - (y - cy) * (y - cy)));
+  return { y, izq: cx - dx, der: cx + dx };
+})();
+
+/** Silueta de la luna: arco exterior por abajo y curva interior de vuelta. */
 const SILUETA = [
-  `M ${LUNA.cx - LUNA.r} ${LUNA.cy}`,
-  `a ${LUNA.r} ${LUNA.r} 0 1 0 ${LUNA.r * 2} 0`,
-  `a ${LUNA.r} ${LUNA.r} 0 1 0 ${-LUNA.r * 2} 0`,
-  "Z",
-  `M ${HUECO.cx - HUECO.rx} ${HUECO.cy}`,
-  `a ${HUECO.rx} ${HUECO.ry} 0 1 0 ${HUECO.rx * 2} 0`,
-  `a ${HUECO.rx} ${HUECO.ry} 0 1 0 ${-HUECO.rx * 2} 0`,
+  `M ${PUNTAS.izq.toFixed(3)} ${PUNTAS.y.toFixed(3)}`,
+  `A ${LUNA.r} ${LUNA.r} 0 1 0 ${PUNTAS.der.toFixed(3)} ${PUNTAS.y.toFixed(3)}`,
+  `A ${HUECO.rx} ${HUECO.ry} 0 1 1 ${PUNTAS.izq.toFixed(3)} ${PUNTAS.y.toFixed(3)}`,
   "Z",
 ].join(" ");
 
@@ -77,7 +95,7 @@ export function Lira({
       {title ? <title>{title}</title> : null}
 
       {/* Caja de resonancia: la luna creciente */}
-      <path d={SILUETA} fill="currentColor" fillRule="evenodd" />
+      <path d={SILUETA} fill="currentColor" />
 
       {/* Cuerdas */}
       <g stroke="currentColor" strokeWidth={trazo} strokeLinecap="round">
@@ -114,8 +132,8 @@ export function Marca({
   }
   return (
     <span className={`flex items-center gap-2.5 md:gap-3 ${className}`}>
-      <Lira className="h-8 w-8 shrink-0 md:h-9 md:w-9" trazo={2.4} />
-      <span className="font-display text-[1.28rem] leading-[1.15] whitespace-nowrap md:text-[1.42rem]">
+      <Lira className="h-8 w-8 shrink-0 md:h-10 md:w-10" trazo={2.4} />
+      <span className="font-display text-[1.3rem] leading-[1.15] whitespace-nowrap md:text-[1.62rem]">
         Orpheus <span className="text-[0.82em] opacity-80">Psicología</span>
       </span>
     </span>

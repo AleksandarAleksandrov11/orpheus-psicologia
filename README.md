@@ -132,9 +132,15 @@ public/fonts/          Tipografías autoalojadas (sin peticiones a Google)
 | `bone`            | `#F2F0E7`             | Fondo base (papel)              |
 | `paper` / `linen` | `#EAE7DA` / `#F7F6F0` | Bandas alternas y tarjetas      |
 
-**Tipografía**: Newsreader (display) + Jost (interfaz y texto), ambas
+**Tipografía**: Playfair Display (display) + Jost (interfaz y texto), ambas
 autoalojadas en `public/fonts` con `font-display: swap` y precarga de los cortes
 críticos.
+
+Para probar otra tipografía de titulares basta con sustituir los cuatro
+`.woff2` de `public/fonts`, cambiar el nombre en `src/fonts.css`, en
+`--font-display` (`src/styles.css`) y en las dos precargas de
+`src/routes/__root.tsx`. Después conviene volver a medir los cortes de línea
+de los titulares con `.qa`, porque cada familia tiene un ancho distinto.
 
 **Movimiento**: sin librerías externas. Todo se basa en `IntersectionObserver` y
 transformaciones CSS, y respeta `prefers-reduced-motion`. El contenido solo se

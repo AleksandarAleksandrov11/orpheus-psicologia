@@ -5,12 +5,12 @@
 /* =========================================================================
    ORPHEUS PSICOLOGÍA — SISTEMA DE DISEÑO
    Paleta: Moss · Cypress · Olive · Cedar · Aloe sobre papel hueso.
-   Tipografía: Newsreader (display) + Jost (interfaz y texto).
+   Tipografía: Playfair Display (display) + Jost (interfaz y texto).
    ========================================================================= */
 
 @theme {
   /* ---- Tipografía ---- */
-  --font-display: "Newsreader", "Iowan Old Style", Palatino, Georgia, serif;
+  --font-display: "Playfair Display", "Iowan Old Style", Palatino, Georgia, serif;
   --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* ---- Paleta base (referencia de marca) ---- */
@@ -236,8 +236,8 @@
 /* Antetítulo: versalita muy tracada, el sello editorial del sitio */
 @utility eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.7188rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   /* 1 recortaba las tildes de las mayúsculas (Á, Ñ, Ó) al pasar a versalita. */

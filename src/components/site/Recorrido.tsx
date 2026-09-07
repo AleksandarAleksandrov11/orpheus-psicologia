@@ -1,19 +1,14 @@
 /**
- * ¿CÓMO TRABAJAREMOS? — recorrido terapéutico no lineal
+ * ¿CÓMO TRABAJAREMOS? — recorrido terapéutico en olas
  * ------------------------------------------------------------------
- * Melissa pidió expresamente que esta sección dejase de parecer una
- * escalera: «la terapia nunca es lineal». Las cuatro fases se colocan
- * saltando de un lado a otro sobre una línea sinuosa que se dibuja a
- * medida que se hace scroll.
+ * Melissa pidió dos cosas en dos revisiones seguidas: que la sección
+ * dejara de parecer una escalera («la terapia nunca es lineal») y que
+ * dejara de ser una columna vertical estática. Así que las cuatro fases
+ * se reparten ahora a lo largo de una ola horizontal que baja y sube,
+ * y que se dibuja sola a medida que se hace scroll.
  *
- * Geometría: la curva vive siempre dentro de un canal central que va
- * del 30 % al 70 % del ancho. Las tarjetas se anclan por fuera de ese
- * canal, de modo que el trazo nunca puede cruzar por encima del texto
- * por mucho que cambie el tamaño de la pantalla.
- *
- * El alto del bloque se ajustó a la baja tras la segunda revisión: en
- * escritorio había que bajar demasiado y quedaba mucho vacío entre
- * fase y fase.
+ * La ola arranca hacia abajo y termina arriba, que es justo el gesto
+ * del proyecto: descender para poder elevarse.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -21,32 +16,27 @@ import { RECORRIDO } from "@/content/copy";
 import { Reveal } from "./motion";
 import { useReducedMotion, useScrollProgress } from "@/lib/motion";
 
-/** Bordes del canal central, en porcentaje del ancho del contenedor. */
-const IZQUIERDA = 30;
-const DERECHA = 70;
-
-/** Nodos: alternan lado y bajan por el canal. */
+/** Posición de cada fase, en porcentaje de la caja. Alterna valle y cresta. */
 const NODOS = [
-  { x: IZQUIERDA, y: 10 },
-  { x: DERECHA, y: 36 },
-  { x: IZQUIERDA, y: 63 },
-  { x: DERECHA, y: 89 },
+  { x: 12.5, y: 67, arriba: false },
+  { x: 37.5, y: 33, arriba: true },
+  { x: 62.5, y: 67, arriba: false },
+  { x: 87.5, y: 33, arriba: true },
 ] as const;
 
 /**
- * Trazo en coordenadas del viewBox (1000 × 1200). Serpentea entre los
- * cuatro nodos sin salirse nunca del canal 300–700.
+ * La ola, en coordenadas del viewBox (1200 × 400). Cada nodo cae en un
+ * extremo de la curva, con las tangentes horizontales, para que la
+ * ondulación sea suave y las fases queden en el punto más alto o más
+ * bajo de cada tramo.
  */
-const CURVA = [
-  "M 300 120",
-  "C 396 152, 500 196, 552 264",
-  "C 604 332, 640 386, 700 432",
-  "C 664 490, 574 512, 508 542",
-  "C 434 576, 372 630, 386 686",
-  "C 398 730, 330 726, 300 756",
-  "C 274 802, 344 828, 388 868",
-  "C 442 918, 546 956, 620 996",
-  "C 664 1020, 686 1044, 700 1068",
+const OLA = [
+  "M 0 200",
+  "C 50 200, 100 268, 150 268",
+  "C 225 268, 375 132, 450 132",
+  "C 525 132, 675 268, 750 268",
+  "C 825 268, 975 132, 1050 132",
+  "C 1100 132, 1150 200, 1200 200",
 ].join(" ");
 
 /**
@@ -96,31 +86,30 @@ export function RecorridoNoLineal() {
     return () => window.removeEventListener("resize", medir);
   }, []);
 
-  // El trazo empieza a dibujarse cuando la sección entra de verdad en pantalla.
-  // Se completa con holgura antes de que la última fase llegue al centro
-  // de la pantalla: así el trazo nunca se queda a medias en páginas largas.
-  const bruto = reducido ? 1 : Math.min(1, Math.max(0, (progreso - 0.05) / 0.36));
+  // El trazo empieza a dibujarse cuando la sección entra de verdad en pantalla
+  // y se completa con holgura, para que nunca se quede a medias.
+  const bruto = reducido ? 1 : Math.min(1, Math.max(0, (progreso - 0.08) / 0.4));
   // El avance no retrocede: lo ya recorrido se queda dibujado aunque se suba.
   maximo.current = Math.max(maximo.current, bruto);
   const avance = maximo.current;
 
   return (
     <div ref={ref} className="relative mt-14 md:mt-20">
-      {/* ── Versión de escritorio: curva + tarjetas repartidas ── */}
-      <div className="relative hidden h-[52rem] lg:block xl:h-[56rem]">
+      {/* ── Escritorio: la ola horizontal con las fases repartidas ── */}
+      <div className="relative hidden h-[34rem] lg:block xl:h-[36rem]">
         <svg
-          viewBox="0 0 1000 1200"
+          viewBox="0 0 1200 400"
           preserveAspectRatio="none"
           className="absolute inset-0 h-full w-full"
           aria-hidden="true"
           focusable="false"
         >
-          {/* Trazo fantasma: el camino completo, tenue */}
+          {/* Trazo fantasma: la ola completa, tenue */}
           <path
-            d={CURVA}
+            d={OLA}
             fill="none"
             stroke="var(--color-cedar)"
-            strokeOpacity="0.32"
+            strokeOpacity="0.34"
             strokeWidth="1.5"
             strokeDasharray="2 7"
             strokeLinecap="round"
@@ -129,7 +118,7 @@ export function RecorridoNoLineal() {
           {/* Trazo que se dibuja con el scroll */}
           <path
             ref={pathRef}
-            d={CURVA}
+            d={OLA}
             fill="none"
             stroke="var(--color-cypress)"
             strokeWidth="2"
@@ -143,9 +132,9 @@ export function RecorridoNoLineal() {
           />
         </svg>
 
-        {/* Nodos: van justo sobre el borde del canal */}
+        {/* Nodos sobre la cresta o el valle de cada tramo */}
         {NODOS.map((nodo, i) => {
-          const activo = avance > (i + 0.35) / NODOS.length;
+          const activo = avance > (i + 0.4) / NODOS.length;
           return (
             <span
               key={`nodo-${i}`}
@@ -164,32 +153,32 @@ export function RecorridoNoLineal() {
           );
         })}
 
-        {/* Tarjetas: siempre por fuera del canal, nunca bajo la curva */}
+        {/* Cada fase, por el lado libre de la ola: arriba en las crestas,
+            abajo en los valles. Así el texto nunca cae sobre el trazo. */}
         {RECORRIDO.pasos.map((paso, i) => {
           const nodo = NODOS[i];
-          const alaIzquierda = nodo.x < 50;
-          const activo = avance > (i + 0.35) / NODOS.length;
+          const activo = avance > (i + 0.4) / NODOS.length;
           return (
             <div
               key={paso.n}
-              className={`absolute max-w-[22rem] -translate-y-1/2 transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                alaIzquierda ? "mr-9 text-right" : "ml-9 text-left"
-              } ${activo ? "translate-y-[-50%] opacity-100" : "opacity-60"}`}
+              className={`absolute w-[15.5rem] -translate-x-1/2 text-center transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] xl:w-[17rem] ${
+                activo ? "translate-y-0 opacity-100" : "translate-y-2 opacity-50"
+              }`}
               style={
-                alaIzquierda
-                  ? { right: `${100 - nodo.x}%`, top: `${nodo.y}%` }
-                  : { left: `${nodo.x}%`, top: `${nodo.y}%` }
+                nodo.arriba
+                  ? { left: `${nodo.x}%`, bottom: `${100 - nodo.y + 5}%` }
+                  : { left: `${nodo.x}%`, top: `${nodo.y + 5}%` }
               }
             >
               <p className="eyebrow text-olive">{paso.n}</p>
               <h3 className="display-sm mt-2.5">{paso.t}</h3>
-              <p className="prose-body mt-2.5 text-[0.97rem] leading-[1.7]">{paso.d}</p>
+              <p className="prose-body mt-2.5 text-[0.95rem] leading-[1.65]">{paso.d}</p>
             </div>
           );
         })}
       </div>
 
-      {/* ── Versión móvil y tableta: columna con conector sinuoso ── */}
+      {/* ── Móvil y tableta: columna con conector ── */}
       <ol className="relative space-y-10 lg:hidden">
         <span
           aria-hidden="true"

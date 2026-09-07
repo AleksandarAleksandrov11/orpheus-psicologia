@@ -5,6 +5,7 @@ import { Layout } from "@/components/site/Layout";
 import { LineasReveladas, Marquesina, Parallax, Reveal } from "@/components/site/motion";
 import { Antetitulo, BotonEnlace, Cita, Lira, Numero, TituloSeccion } from "@/components/site/ui";
 import { DiagramaExpectativaRealidad, RecorridoNoLineal } from "@/components/site/Recorrido";
+import { CarruselResenas } from "@/components/site/CarruselResenas";
 import {
   CTA_FINAL,
   ENGRANAJE,
@@ -183,7 +184,7 @@ function Inicio() {
               <Reveal
                 as="li"
                 key={item}
-                delay={(i % 5) * 55}
+                delay={(i % 4) * 60}
                 className="group border-b border-rule py-5"
               >
                 <span className="flex gap-4">
@@ -196,6 +197,19 @@ function Inicio() {
                 </span>
               </Reveal>
             ))}
+
+            {/* El octavo punto no sigue la frase del encabezado: lleva la suya. */}
+            <Reveal as="li" delay={180} className="group border-b border-rule py-5">
+              <span className="flex gap-4">
+                <span className="eyebrow mt-1.5 shrink-0 text-olive/70 tabular-nums">08</span>
+                <span className="text-[1.06rem] leading-relaxed font-light text-ink transition-colors duration-500 group-hover:text-cypress">
+                  <em className="block font-display text-[1.02rem] text-cypress not-italic">
+                    {RECONOCES.ademas.entrada}
+                  </em>
+                  {RECONOCES.ademas.texto}
+                </span>
+              </span>
+            </Reveal>
           </ul>
         </div>
       </section>
@@ -348,7 +362,7 @@ function Inicio() {
               >
                 <Numero>{String(i + 1).padStart(2, "0")}</Numero>
                 <div>
-                  <h3 className="eyebrow text-olive">{v.clave}</h3>
+                  <h3 className="eyebrow text-[0.83rem] font-semibold text-olive">{v.clave}</h3>
                   <p className="mt-3 font-display text-[1.5rem] leading-tight text-ink italic md:text-[1.9rem]">
                     {v.lema}
                   </p>
@@ -359,6 +373,9 @@ function Inicio() {
           </ul>
         </div>
       </section>
+
+      {/* ═══════════════════ RESEÑAS ═══════════════════ */}
+      <CarruselResenas />
 
       {/* ═══════════════════ CTA FINAL ═══════════════════ */}
       <CtaFinal />
