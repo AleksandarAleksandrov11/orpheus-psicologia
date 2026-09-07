@@ -78,11 +78,13 @@ export function CarruselResenas() {
           onBlurCapture={() => setPausa(false)}
         >
           <Reveal variant="mask" delay={100}>
-            <div className="relative rounded-3xl border border-rule bg-linen px-7 py-10 md:px-14 md:py-14">
+            <div className="relative overflow-hidden rounded-3xl border border-rule bg-linen px-8 py-12 md:px-16 md:py-16">
+              {/* Las comillas son solo textura: van al ángulo opuesto al que
+                  arranca la cita, para no cruzarse nunca con el texto. */}
               <Quote
                 aria-hidden="true"
                 strokeWidth={1}
-                className="pointer-events-none absolute -top-3 left-6 size-20 text-olive/[0.09] md:left-10 md:size-28"
+                className="pointer-events-none absolute -top-5 -right-4 size-24 text-olive/[0.07] md:size-32"
               />
 
               {/* Se reserva alto para que el bloque no dé saltos al rotar, y la
@@ -93,7 +95,7 @@ export function CarruselResenas() {
               >
                 <blockquote
                   key={activa}
-                  className="anim-fade font-display text-[1.35rem] leading-snug text-ink md:text-[1.75rem]"
+                  className="anim-fade max-w-[46rem] font-display text-[1.35rem] leading-snug text-ink md:pr-10 md:text-[1.75rem]"
                 >
                   «{r.texto}»
                 </blockquote>
