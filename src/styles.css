@@ -587,30 +587,6 @@
   }
 }
 
-/* Entrada de cada reseña del carrusel: llega desde la derecha, para que se
-   vea que la tarjeta cambia sola. */
-@keyframes orpheus-desliza {
-  from {
-    opacity: 0;
-    transform: translate3d(2.5rem, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Barra de tiempo del carrusel de reseñas: deja ver que la tarjeta se mueve
-   sola y cuánto queda para la siguiente. */
-@keyframes orpheus-progreso {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
 @keyframes orpheus-draw {
   to {
     stroke-dashoffset: 0;
@@ -675,6 +651,14 @@
   width: max-content;
   animation: orpheus-marquee 46s linear infinite;
   will-change: transform;
+}
+
+/* La cinta de reseñas se para mientras se lee: al pasar el ratón o al entrar
+   el foco en algo de dentro. Va como regla propia y no como variante suelta
+   para que quede junto a la cinta que gobierna. */
+.marquee-pausable:hover .marquee-track,
+.marquee-pausable:focus-within .marquee-track {
+  animation-play-state: paused;
 }
 
 /* Retardos escalonados reutilizables */

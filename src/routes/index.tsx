@@ -13,7 +13,7 @@ import {
   TituloSeccion,
 } from "@/components/site/ui";
 import { DiagramaExpectativaRealidad, RecorridoNoLineal } from "@/components/site/Recorrido";
-import { CarruselResenas } from "@/components/site/CarruselResenas";
+import { MarquesinaResenas } from "@/components/site/MarquesinaResenas";
 import {
   CTA_FINAL,
   ENGRANAJE,
@@ -389,7 +389,7 @@ function Inicio() {
       </section>
 
       {/* ═══════════════════ RESEÑAS ═══════════════════ */}
-      <CarruselResenas />
+      <MarquesinaResenas />
 
       {/* ═══════════════════ CTA FINAL ═══════════════════ */}
       <CtaFinal />

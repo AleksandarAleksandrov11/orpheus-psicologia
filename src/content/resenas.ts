@@ -175,23 +175,6 @@ export const RESENAS_DESTACADAS: Resena[] = RESENAS_PUBLICADAS.filter(
 /** Reseñas del servicio para equipos. */
 export const RESENAS_EMPRESA: Resena[] = RESENAS_PUBLICADAS.filter((r) => r.empresa);
 
-/**
- * Las que entran en el carrusel del inicio. El carrusel enseña una cada vez
- * sobre un alto fijo (si no, la página daría un salto cada cinco segundos),
- * así que aquí van las de largo parecido: las de diez líneas obligarían a
- * reservar ese alto para todas y las de tres palabras dejarían un hueco.
- * Ninguna se pierde: /testimonios las publica todas y enteras, y el enlace
- * está en la misma sección.
- */
-const LARGO_CARRUSEL = { minimo: 60, maximo: 220 } as const;
-
-export const RESENAS_CARRUSEL: Resena[] = RESENAS_PUBLICADAS.filter(
-  (r) =>
-    !r.empresa &&
-    r.texto.length >= LARGO_CARRUSEL.minimo &&
-    r.texto.length <= LARGO_CARRUSEL.maximo,
-);
-
 export const HAY_RESENAS_VERIFICADAS = RESENAS_PUBLICADAS.some((r) => r.verificada);
 
 /** Número de reseñas publicadas. Es un recuento real, no una media inventada. */
