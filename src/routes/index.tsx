@@ -3,7 +3,15 @@ import { ArrowDown } from "lucide-react";
 
 import { Layout } from "@/components/site/Layout";
 import { LineasReveladas, Marquesina, Parallax, Reveal } from "@/components/site/motion";
-import { Antetitulo, BotonEnlace, Cita, Lira, Numero, TituloSeccion } from "@/components/site/ui";
+import {
+  Antetitulo,
+  BotonEnlace,
+  BotonExterno,
+  Cita,
+  Lira,
+  Numero,
+  TituloSeccion,
+} from "@/components/site/ui";
 import { DiagramaExpectativaRealidad, RecorridoNoLineal } from "@/components/site/Recorrido";
 import { CarruselResenas } from "@/components/site/CarruselResenas";
 import {
@@ -17,6 +25,7 @@ import {
   RECORRIDO,
   VALORES,
 } from "@/content/copy";
+import { SITE } from "@/content/site";
 import { seo } from "@/lib/seo";
 
 import retrato from "@/assets/melissa-retrato.webp";
@@ -368,7 +377,7 @@ function Inicio() {
                 <Numero>{String(i + 1).padStart(2, "0")}</Numero>
                 <div>
                   <h3 className="eyebrow text-[0.89rem] font-semibold text-olive">{v.clave}</h3>
-                  <p className="mt-3 font-display text-[1.5rem] leading-tight text-ink italic md:text-[1.9rem]">
+                  <p className="cita-menor mt-3 text-[1.5rem] leading-tight text-ink md:text-[1.9rem]">
                     {v.lema}
                   </p>
                 </div>
@@ -390,7 +399,11 @@ function Inicio() {
 
 export function CtaFinal() {
   return (
-    <section className="shell pt-24 pb-20 md:pt-32 md:pb-28" aria-labelledby="cta-final-titulo">
+    <section
+      data-cierre
+      className="shell pt-24 pb-20 md:pt-32 md:pb-28"
+      aria-labelledby="cta-final-titulo"
+    >
       <Reveal
         variant="scale"
         className="aurora-deep grain-dark on-dark relative isolate overflow-hidden rounded-3xl px-7 py-20 text-center md:px-16 md:py-24"
@@ -410,12 +423,19 @@ export function CtaFinal() {
           <h2 id="cta-final-titulo" className="display-lg mx-auto mt-7 max-w-3xl text-on-dark">
             No tienes que tenerlo todo <em className="italic">claro</em> para empezar.
           </h2>
+          {/* Melissa pidió que este botón salga de la web y abra un canal
+              directo: va a su WhatsApp, no a otra sección. */}
           <div className="mt-11 flex flex-wrap justify-center gap-3">
-            <BotonEnlace to="/contacto" variante="light">
+            <BotonExterno
+              href={SITE.contacto.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              variante="light"
+            >
               {CTA_FINAL.boton}
-            </BotonEnlace>
-            <BotonEnlace to="/servicios" variante="ghost-dark" flecha={false}>
-              Ver servicios
+            </BotonExterno>
+            <BotonEnlace to="/contacto" variante="ghost-dark" flecha={false}>
+              Otras formas de contacto
             </BotonEnlace>
           </div>
         </div>

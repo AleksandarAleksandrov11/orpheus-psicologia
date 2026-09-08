@@ -325,7 +325,7 @@ function Servicios() {
                       <h3 className="font-display text-[1.5rem] leading-tight text-ink md:text-[1.75rem]">
                         {e.titulo}
                       </h3>
-                      <p className="mt-2 text-[1.07rem] leading-snug font-light text-cypress italic">
+                      <p className="cita-menor mt-2 text-[1.09rem] leading-snug text-cypress">
                         {e.breve}
                       </p>
                     </div>

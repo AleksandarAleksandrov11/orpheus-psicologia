@@ -284,7 +284,7 @@ export function Nav() {
                             <Link
                               to={h.to}
                               onClick={alInicio(h.to)}
-                              className="link-undraw text-[0.99rem] font-light text-on-dark-muted"
+                              className="text-[0.99rem] font-light text-on-dark-muted transition-colors duration-400 hover:text-on-dark"
                             >
                               {h.label}
                             </Link>

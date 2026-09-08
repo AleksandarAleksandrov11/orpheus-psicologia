@@ -246,11 +246,11 @@ export function Antetitulo({
 }) {
   return (
     <p
-      className={`eyebrow flex items-center gap-3 ${oscuro ? "text-on-dark-faint" : "text-olive"} ${className}`}
+      className={`eyebrow flex items-center gap-3 ${oscuro ? "text-on-dark-muted" : "text-olive"} ${className}`}
     >
       <span
         aria-hidden="true"
-        className={`inline-block h-px w-7 ${oscuro ? "bg-on-dark-faint/60" : "bg-olive/50"}`}
+        className={`inline-block h-px w-7 ${oscuro ? "bg-on-dark-muted/60" : "bg-olive/50"}`}
       />
       {children}
     </p>
@@ -502,12 +502,12 @@ export function Cita({
   className?: string;
   tamano?: "sm" | "md" | "lg";
 }) {
-  // En tamaño pequeño la cursiva de Playfair Display pierde legibilidad, así
-  // que ahí manda la serif de texto.
+  // En tamaño pequeño Playfair Display pierde legibilidad, así que ahí manda
+  // la serif de texto, y en redonda: la cursiva se quitó a petición de Melissa.
   const escala = {
     sm: "display-sm cita-menor",
-    md: "display-md italic",
-    lg: "display-lg italic",
+    md: "display-md cita-menor",
+    lg: "display-lg cita-menor",
   }[tamano];
   return (
     <figure className={className}>

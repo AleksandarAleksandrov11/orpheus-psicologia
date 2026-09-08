@@ -256,7 +256,7 @@ export function DiagramaExpectativaRealidad({ className = "" }: { className?: st
         aria-label="Esquema comparativo: la expectativa es una línea recta entre definir un objetivo y conseguirlo; la realidad es un camino sinuoso que pasa por empezar, dudar, aprender, practicar, fallar, perderse, entender, tener problemas y, finalmente, lograrlo."
       >
         {/* ── Expectativa ── */}
-        <text x="14" y="18" className="fill-ink font-display" fontSize="15" fontStyle="italic">
+        <text x="14" y="18" className="fill-ink font-cita" fontSize="16">
           Expectativa
         </text>
         <line
@@ -325,7 +325,7 @@ export function DiagramaExpectativaRealidad({ className = "" }: { className?: st
           );
         })}
 
-        <text x="14" y="262" className="fill-ink font-display" fontSize="15" fontStyle="italic">
+        <text x="14" y="262" className="fill-ink font-cita" fontSize="16">
           Realidad
         </text>
       </svg>

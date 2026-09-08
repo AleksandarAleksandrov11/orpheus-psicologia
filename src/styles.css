@@ -5,14 +5,14 @@
 /* =========================================================================
    ORPHEUS PSICOLOGÍA — SISTEMA DE DISEÑO
    Paleta: Moss · Cypress · Olive · Cedar · Aloe sobre papel hueso.
-   Tipografía: Playfair Display (titulares) + Newsreader (cursivas breves)
+   Tipografía: Playfair Display (titulares) + Newsreader (citas breves)
                 + Jost (interfaz y texto).
    ========================================================================= */
 
 @theme {
   /* ---- Tipografía ---- */
   --font-display: "Playfair Display", "Iowan Old Style", Palatino, Georgia, serif;
-  /* Serif de texto, solo para las cursivas en cuerpo pequeño. */
+  /* Serif de texto, para las citas breves en redonda. */
   --font-cita: "Newsreader", "Iowan Old Style", Palatino, Georgia, serif;
   --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
@@ -253,14 +253,15 @@
 }
 
 /**
- * Cursivas breves: citas de tarjeta, subtítulos y remates. Playfair Display
- * adelgaza demasiado por debajo de ~1,6 rem, así que aquí manda Newsreader.
+ * Citas breves: citas de tarjeta, subtítulos y remates. Iban en cursiva y
+ * Melissa pidió quitarla porque costaba leerlas; ahora van en redonda con
+ * Newsreader, una serif de imprenta pensada para este cuerpo.
  */
 @utility cita-menor {
   font-family: var(--font-cita);
-  font-style: italic;
-  font-weight: 450;
-  letter-spacing: 0;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.004em;
 }
 
 @utility lede {
@@ -583,6 +584,30 @@
   }
   to {
     transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Entrada de cada reseña del carrusel: llega desde la derecha, para que se
+   vea que la tarjeta cambia sola. */
+@keyframes orpheus-desliza {
+  from {
+    opacity: 0;
+    transform: translate3d(2.5rem, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Barra de tiempo del carrusel de reseñas: deja ver que la tarjeta se mueve
+   sola y cuánto queda para la siguiente. */
+@keyframes orpheus-progreso {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 

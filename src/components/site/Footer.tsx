@@ -9,7 +9,10 @@ export function Footer() {
   const colegiadaPendiente = esPendiente(SITE.psicologa.colegiada);
 
   return (
-    <footer className="aurora-deep grain-dark on-dark relative overflow-hidden text-on-dark">
+    <footer
+      data-fin
+      className="aurora-deep grain-dark on-dark relative overflow-hidden text-on-dark"
+    >
       <div className="relative z-10 shell grid gap-12 py-16 md:grid-cols-12 md:py-20">
         {/* Marca */}
         <div className="md:col-span-5">

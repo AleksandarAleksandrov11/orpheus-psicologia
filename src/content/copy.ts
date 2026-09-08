@@ -615,7 +615,7 @@ export const FAQ = [
 export const CTA_FINAL = {
   eyebrow: "Empezar",
   titulo: "No tienes que tenerlo todo claro para empezar.",
-  boton: "Escríbeme",
+  boton: "Escríbeme por WhatsApp",
 } as const;
 
 export const CTA_INTERMEDIO = {

@@ -71,6 +71,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
+      // Las dos caras que solo aportan la «g» (ver fonts.css). Pesan 3 KB
+      // entre las dos y van precargadas para que no se vea un instante la
+      // ge de la tipografía de reserva dentro de un titular en Playfair.
+      {
+        rel: "preload",
+        href: "/fonts/g-prata-normal.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        href: "/fonts/g-newsreader-italic.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
     ],
     scripts: [
       { children: SCRIPT_JS },

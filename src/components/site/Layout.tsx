@@ -3,6 +3,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { CookieConsent } from "./CookieConsent";
+import { BarraReserva } from "./BarraReserva";
 import { Analitica } from "./Analytics";
 import { useRevealScanner } from "@/lib/motion";
 
@@ -47,6 +48,7 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
+      <BarraReserva />
       <CookieConsent />
       <Analitica />
     </div>

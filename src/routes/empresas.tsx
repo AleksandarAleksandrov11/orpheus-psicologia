@@ -225,7 +225,7 @@ function Empresas() {
                   <h3 className="font-display text-[1.55rem] leading-tight text-ink md:text-[1.95rem]">
                     {s.t}
                   </h3>
-                  <p className="mt-2.5 text-[1.01rem] leading-snug font-light text-cypress italic">
+                  <p className="cita-menor mt-2.5 text-[1.03rem] leading-snug text-cypress">
                     {s.detalle}
                   </p>
                 </div>
