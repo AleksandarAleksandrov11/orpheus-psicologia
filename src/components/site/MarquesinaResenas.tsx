@@ -37,7 +37,7 @@ export function MarquesinaResenas() {
 
   return (
     <section
-      className="relative overflow-hidden border-y border-rule bg-paper"
+      className="relative overflow-hidden border-y border-rule bg-sage"
       aria-labelledby="resenas-titulo"
     >
       <div className="grain absolute inset-0" aria-hidden="true" />
@@ -82,7 +82,9 @@ export function MarquesinaResenas() {
           <BotonEnlace to="/testimonios" variante="outline">
             Leer las {TOTAL_RESENAS} reseñas
           </BotonEnlace>
-          <p className="text-[0.96rem] font-light text-ink-faint">
+          {/* Cypress y no ink-faint: sobre la banda sage el gris claro se
+              quedaba en 4,35:1. */}
+          <p className="text-[0.96rem] font-light text-cypress">
             Publicadas con su texto literal y verificadas en Google.
           </p>
         </Reveal>

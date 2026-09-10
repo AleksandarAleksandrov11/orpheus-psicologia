@@ -25,6 +25,10 @@
   --color-olive: #5a6146;
   --color-cedar: #959581;
   --color-aloe: #daded8;
+  /* Verde claro para bandas enteras. Melissa pidió más contraste bajo las
+     tarjetas de reseñas: sobre papel apenas se despegaban. Es el tono más
+     oscuro que deja el antetítulo olive por encima de 4,5:1. */
+  --color-sage: #dde0d2;
 
   /* ---- Papel / neutros cálidos ---- */
   --color-bone: #f2f0e7;

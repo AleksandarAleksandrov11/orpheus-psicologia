@@ -435,18 +435,18 @@ export const SESIONES = [
   {
     slug: "sesion-individual",
     titulo: "Sesión individual",
-    etiqueta: "El proceso",
+    etiqueta: "Acompañamiento",
     duracion: "50 a 60 minutos",
     canal: "Online, por videollamada cifrada",
     precio: "65 €",
     nota: "Se abona en consulta",
     resumen:
-      "El acompañamiento continuado. Trabajamos aquello que te trajo y aquello que aparece por el camino, con la misma profundidad estés donde estés.",
+      "Trabajamos aquello que te trajo a terapia y aquello que pueda aparecer por el camino, con la misma profundidad, estés donde estés en tu proceso.",
     incluye: [
       "Plan terapéutico adaptado a ti",
-      "Herramientas concretas entre sesión y sesión",
-      "Revisión periódica de objetivos",
-      "Horario flexible y sin desplazamientos",
+      "Revisión de objetivos a lo largo del proceso",
+      "Un trabajo personal guiado, no una lista de técnicas",
+      "Sesión a sesión, sin permanencia",
     ],
     destacado: true,
   },
@@ -459,15 +459,23 @@ export const SESIONES = [
     precio: "240 €",
     nota: "60 € por sesión",
     resumen:
-      "Cuatro sesiones por adelantado. Para cuando ya sabes que quieres darle continuidad al proceso.",
+      "El mismo proceso y el mismo trabajo, con la continuidad ya decidida. Para cuando sabes que quieres seguir y prefieres reservarte el camino.",
     incluye: [
-      "Cuatro sesiones a 60 € cada una",
-      "Se abonan en un solo pago",
+      "El mismo plan terapéutico y la misma revisión de objetivos",
+      "Cuatro sesiones a 60 € cada una, en un solo pago",
       "Se usan a tu ritmo, sin caducidad marcada",
-      "Se puede renovar tantas veces como quieras",
+      "Se renueva tantas veces como quieras",
     ],
   },
 ] as const;
+
+/**
+ * Aclaración sobre las dos formas de la misma terapia. Melissa no quería que
+ * la sesión suelta y el bono se leyeran como dos procesos distintos: es el
+ * mismo trabajo y cambia solo la forma de reservarlo y pagarlo.
+ */
+export const TARIFAS_ACLARACION =
+  "La sesión individual y el bono no son dos terapias distintas: son la misma, con el mismo plan y la misma revisión de objetivos. Lo único que cambia es si reservas sesión a sesión o dejas ya reservado el camino.";
 
 /** Política de cancelación, literal. Se usa en tarifas y en las FAQ. */
 export const CANCELACION =

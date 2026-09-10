@@ -23,6 +23,7 @@ import {
   MOSTRAR_PRECIOS,
   RECORRIDO,
   SESIONES,
+  TARIFAS_ACLARACION,
   TARIFAS_NOTAS,
 } from "@/content/copy";
 import { migasSchema, seo, servicioSchema, tarifasSchema } from "@/lib/seo";
@@ -375,7 +376,13 @@ function Servicios() {
             </Reveal>
           </div>
 
-          <div className="mt-14 grid border-y border-rule md:grid-cols-3 md:divide-x md:divide-rule">
+          <Reveal delay={220} className="mt-10 border-l-2 border-cypress/40 pl-5 md:mt-12 md:pl-6">
+            <p className="max-w-3xl text-[1.05rem] leading-relaxed font-light text-ink-muted">
+              {TARIFAS_ACLARACION}
+            </p>
+          </Reveal>
+
+          <div className="mt-10 grid border-y border-rule md:mt-12 md:grid-cols-3 md:divide-x md:divide-rule">
             {SESIONES.map((s, i) => {
               const destacada = "destacado" in s && s.destacado;
               return (

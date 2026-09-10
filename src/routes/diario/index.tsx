@@ -83,8 +83,10 @@ function Diario() {
         >
           <span className="anim-breathe block h-full w-full" />
         </Parallax>
+        {/* La lira de fondo salía cortada por la derecha: ahora entra entera
+            y centrada en el alto del hero. */}
         <Lira
-          className="pointer-events-none absolute -right-16 top-28 -z-10 hidden h-[28rem] w-[28rem] text-cypress/[0.07] lg:block"
+          className="pointer-events-none absolute top-1/2 right-6 -z-10 hidden h-[24rem] w-[24rem] -translate-y-1/2 text-cypress/[0.07] lg:block xl:right-16 xl:h-[27rem] xl:w-[27rem]"
           trazo={1.2}
         />
 

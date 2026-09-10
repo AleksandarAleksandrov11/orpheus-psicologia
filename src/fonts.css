@@ -74,9 +74,12 @@
    «lugar» y en «Rigor». Estas dos caras cubren solo el punto U+0067, así que
    la familia sigue siendo Playfair en todo lo demás y solo la ge viene de otra
    fuente: Prata en redonda (misma altura de x, mismo contraste, 2 KB) y la
-   cursiva de Newsreader, la serif que ya usan las citas, ajustada al 115 %
-   para que la x y el avance coincidan con los de Playfair. Van al final a
-   propósito: entre dos caras que cubren el mismo punto gana la última.
+   cursiva de Spectral, ajustada al 114,8 % para igualar la altura de la x.
+   La cursiva se probó antes con Newsreader y Melissa la seguía viendo rara:
+   su bucle es ancho y plano y se metía debajo de las letras vecinas. El de
+   Spectral es un óvalo cerrado y compacto que cabe bajo su propia letra.
+   Van al final a propósito: entre dos caras que cubren el mismo punto gana
+   la última.
    Ojo: si algún día se cambia la tipografía de titulares, esto sobra. */
 @font-face {
   font-family: "Playfair Display";
@@ -91,9 +94,9 @@
   font-style: italic;
   font-weight: 400 600;
   font-display: swap;
-  src: url("/fonts/g-newsreader-italic.woff2") format("woff2");
+  src: url("/fonts/g-spectral-italic.woff2") format("woff2");
   unicode-range: U+0067;
-  size-adjust: 115%;
+  size-adjust: 114.8%;
 }
 
 @font-face {

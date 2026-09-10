@@ -9,7 +9,6 @@ import {
   BotonExterno,
   Cita,
   Lira,
-  Numero,
   TituloSeccion,
 } from "@/components/site/ui";
 import { DiagramaExpectativaRealidad, RecorridoNoLineal } from "@/components/site/Recorrido";
@@ -372,9 +371,14 @@ function Inicio() {
                 as="li"
                 key={v.clave}
                 delay={i * 70}
-                className="group grid gap-4 border-b border-rule py-8 transition-colors duration-600 hover:bg-linen md:grid-cols-[5rem_1fr_1.15fr] md:items-baseline md:gap-10 md:px-4"
+                className="group grid gap-4 border-b border-rule py-8 transition-colors duration-600 hover:bg-linen md:grid-cols-[3rem_1fr_1.15fr] md:items-baseline md:gap-10 md:px-4"
               >
-                <Numero>{String(i + 1).padStart(2, "0")}</Numero>
+                {/* Sin numerar: no son pasos ordenados sino cinco cosas que
+                    conviven. El filete hace de viñeta. */}
+                <span
+                  aria-hidden="true"
+                  className="mt-1 inline-block h-px w-9 bg-olive/45 md:mt-[0.7rem] md:w-full"
+                />
                 <div>
                   <h3 className="eyebrow text-[0.89rem] font-semibold text-olive">{v.clave}</h3>
                   <p className="cita-menor mt-3 text-[1.5rem] leading-tight text-ink md:text-[1.9rem]">

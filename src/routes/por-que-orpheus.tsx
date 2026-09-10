@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Layout } from "@/components/site/Layout";
 import { LineasReveladas, Parallax, Reveal } from "@/components/site/motion";
-import { Antetitulo, BotonEnlace, Cita, Lira, Migas } from "@/components/site/ui";
+import { Antetitulo, BotonEnlace, Figura, Lira, Migas } from "@/components/site/ui";
 import { FILOSOFIA, MITO, PROCESO_VIVO } from "@/content/copy";
 import { migasSchema, seo } from "@/lib/seo";
 
@@ -73,8 +73,32 @@ function PorQueOrpheus() {
               </p>
             </div>
 
-            <Reveal delay={240} variant="scale" className="lg:justify-self-end">
-              <Lira className="mx-auto h-28 w-28 text-cedar md:h-36 md:w-36" trazo={1.6} />
+            {/* La lira sola dejaba medio hero vacío en escritorio. Va dentro
+                de un arco con la niebla del descenso, el mismo recurso que el
+                retrato de Sobre mí, y la marca encima. */}
+            <Reveal delay={240} variant="scale" className="lg:justify-self-end lg:pb-2">
+              <div className="relative mx-auto w-full max-w-[19rem] sm:max-w-[22rem] lg:max-w-[24rem]">
+                <span
+                  aria-hidden="true"
+                  className="arch absolute inset-0 translate-x-4 translate-y-5 border border-cedar/45"
+                />
+                <Figura
+                  src={texNiebla}
+                  srcSet={`${texNieblaSm} 900w, ${texNiebla} 1800w`}
+                  sizes="(min-width: 1024px) 24rem, 22rem"
+                  alt="Niebla entre los árboles, la imagen del descenso que da nombre a Orpheus"
+                  ratio="4 / 5"
+                  width={1800}
+                  height={1012}
+                  eager
+                  className="arch relative"
+                  imgClassName="brightness-[0.92]"
+                />
+                <Lira
+                  className="absolute top-1/2 left-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-bone/90 md:h-28 md:w-28"
+                  trazo={1.5}
+                />
+              </div>
             </Reveal>
           </div>
         </div>
@@ -111,9 +135,22 @@ function PorQueOrpheus() {
                 <Antetitulo oscuro>El viaje hacia dentro</Antetitulo>
               </Reveal>
               <Reveal delay={80}>
-                <h2 id="descenso-titulo" className="display-lg mt-6 text-on-dark">
-                  Atravesar la oscuridad y <em className="italic">regresar</em>.
+                {/* Los cortes van a mano: al aire, la tercera línea quedaba
+                    en «y regresar.» detrás de una «y» suelta. */}
+                <h2 id="descenso-titulo" className="display-lg mt-6 text-balance text-on-dark">
+                  <span className="block">Atravesar</span>
+                  <span className="block">la oscuridad</span>
+                  <span className="block">
+                    y <em className="italic">regresar</em>.
+                  </span>
                 </h2>
+              </Reveal>
+              {/* Melissa la veía demasiado grande y suelta al final de la
+                  sección: aquí funciona como remate del propio titular. */}
+              <Reveal delay={160}>
+                <p className="cita-menor mt-8 max-w-sm text-[1.18rem] leading-snug text-on-dark-muted md:text-[1.3rem]">
+                  {MITO.cita}
+                </p>
               </Reveal>
             </div>
 
@@ -135,12 +172,6 @@ function PorQueOrpheus() {
               ))}
             </div>
           </div>
-
-          <Reveal variant="curtain" delay={120} className="mt-20 md:mt-24">
-            <Cita oscuro tamano="lg" className="max-w-4xl">
-              {MITO.cita}
-            </Cita>
-          </Reveal>
 
           <div className="mt-16 grid gap-4 sm:grid-cols-3">
             {FILOSOFIA.sinLista.map((s, i) => (

@@ -246,11 +246,11 @@ export function Antetitulo({
 }) {
   return (
     <p
-      className={`eyebrow flex items-center gap-3 ${oscuro ? "text-on-dark-muted" : "text-olive"} ${className}`}
+      className={`eyebrow flex items-center gap-3 ${oscuro ? "text-on-dark" : "text-olive"} ${className}`}
     >
       <span
         aria-hidden="true"
-        className={`inline-block h-px w-7 ${oscuro ? "bg-on-dark-muted/60" : "bg-olive/50"}`}
+        className={`inline-block h-px w-7 ${oscuro ? "bg-on-dark/55" : "bg-olive/50"}`}
       />
       {children}
     </p>
