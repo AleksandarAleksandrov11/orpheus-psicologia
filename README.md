@@ -20,7 +20,7 @@ publicar sin darse cuenta.
 | Teléfono y correo        | `SITE.contacto`            | ✅ De la tarjeta de la consulta              |
 | Dominio canónico         | `SITE.url`                 | ✅ `https://orpheuspsicologia.com` (sin www) |
 | Redes y ficha de Google  | `SITE.social`              | ✅ Instagram, LinkedIn, TikTok y reseñas     |
-| Tarifas                  | `SESIONES[].precio`        | ✅ 50 € / 70 € / 240 €                       |
+| Tarifas                  | `SESIONES[].precio`        | ✅ 50 € / 65 € / 240 €                       |
 | Dirección de la consulta | `SITE.contacto.direccion`  | ⏳ Solo si se quiere anunciar la presencial  |
 
 ### Reseñas
@@ -40,7 +40,7 @@ Dos detalles a tener en cuenta:
 ### Precios
 
 Las tarifas están publicadas, tal y como pidió Melissa: primera sesión 50 €,
-sesión individual 70 € y bono de cuatro sesiones 240 €. Viven en `SESIONES`
+sesión individual 65 € y bono de cuatro sesiones 240 €. Viven en `SESIONES`
 (`src/content/copy.ts`) y se marcan además en `schema.org` con `OfferCatalog`,
 para que Google pueda mostrarlas. Para ocultarlas basta con poner
 `MOSTRAR_PRECIOS` a `false`.
@@ -129,19 +129,27 @@ public/fonts/          Tipografías autoalojadas (sin peticiones a Google)
 | `olive`           | `#5A6146`             | Antetítulos, detalles           |
 | `cedar`           | `#959581`             | Filetes y elementos secundarios |
 | `aloe`            | `#DADED8`             | Fondos suaves sobre oscuro      |
+| `sage`            | `#DDE0D2`             | Banda verde de las reseñas      |
 | `bone`            | `#F2F0E7`             | Fondo base (papel)              |
 | `paper` / `linen` | `#EAE7DA` / `#F7F6F0` | Bandas alternas y tarjetas      |
 
-**Tipografía**: Playfair Display (titulares) + Newsreader (cursivas breves) +
-Jost (interfaz y texto), todas
-autoalojadas en `public/fonts` con `font-display: swap` y precarga de los cortes
-críticos.
+**Tipografía**: Playfair Display (titulares) + Newsreader en redonda (citas
+breves) + Jost (interfaz y texto), todas autoalojadas en `public/fonts` con
+`font-display: swap` y precarga de los cortes críticos.
 
-Para probar otra tipografía de titulares basta con sustituir los cuatro
-`.woff2` de `public/fonts`, cambiar el nombre en `src/fonts.css`, en
-`--font-display` (`src/styles.css`) y en las dos precargas de
-`src/routes/__root.tsx`. Después conviene volver a medir los cortes de línea
-de los titulares con `.qa`, porque cada familia tiene un ancho distinto.
+**La «g» viene de otra fuente, a propósito.** La de Playfair Display lleva el
+bucle inferior abierto y en titulares grandes se lee como un trazo roto; la
+familia no trae ninguna alternativa. `src/fonts.css` declara al final dos caras
+de un solo glifo que cubren únicamente el punto `U+0067`: Prata en redonda y la
+cursiva de Spectral al 114,8 %, ambas elegidas midiendo altura de x y avance
+contra las de Playfair. Pesan 5 KB entre las dos y van precargadas. **Si algún
+día se cambia la tipografía de titulares, hay que quitarlas.**
+
+Para probar otra tipografía de titulares basta con sustituir los `.woff2` de
+`public/fonts`, cambiar el nombre en `src/fonts.css`, en `--font-display`
+(`src/styles.css`) y en las precargas de `src/routes/__root.tsx`. Después
+conviene volver a medir los cortes de línea de los titulares con `.qa`, porque
+cada familia tiene un ancho distinto.
 
 **Movimiento**: sin librerías externas. Todo se basa en `IntersectionObserver` y
 transformaciones CSS, y respeta `prefers-reduced-motion`. El contenido solo se
