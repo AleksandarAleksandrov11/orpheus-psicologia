@@ -235,7 +235,7 @@ function Contacto() {
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="aurora grain relative overflow-hidden pt-28 pb-12 md:pt-40 md:pb-24">
         <Parallax
           amount={-30}
           className="pointer-events-none absolute -top-44 -left-36 -z-10 h-[34rem] w-[34rem] rounded-full bg-olive/15 blur-3xl"

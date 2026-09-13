@@ -59,7 +59,7 @@ function Inicio() {
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+      <section className="aurora grain relative overflow-hidden pt-28 pb-14 md:pt-40 md:pb-28">
         <Parallax
           amount={-40}
           className="pointer-events-none absolute -top-32 -right-40 -z-10 h-[38rem] w-[38rem] rounded-full bg-olive/15 blur-3xl"
@@ -136,22 +136,23 @@ function Inicio() {
               />
             </div>
 
-            {/* La cita se apoya en el retrato. En móvil se encoge y baja a la
-                esquina para tapar lo menos posible de la fotografía. */}
+            {/* La frase del mito, que es la que Melissa quería ver en portada.
+                En escritorio se apoya en la esquina del retrato; en móvil baja
+                debajo, porque encima tapaba la fotografía y empujaba el
+                titular fuera de la primera pantalla. */}
             <Reveal
               delay={400}
-              className="absolute -bottom-6 -left-1 max-w-[12.5rem] rounded-2xl border border-rule bg-linen/95 p-4 backdrop-blur-sm sm:max-w-[15rem] sm:p-5 md:-bottom-4 md:-left-8"
+              className="relative mx-auto mt-6 max-w-[20rem] rounded-2xl border border-rule bg-linen/95 p-4 backdrop-blur-sm sm:max-w-[22rem] lg:absolute lg:-bottom-4 lg:-left-8 lg:mt-0 lg:max-w-[15.5rem] lg:p-5"
             >
-              <Lira className="h-5 w-5 text-olive" trazo={3} />
-              <p className="cita-menor mt-3 text-[1.02rem] leading-snug text-cypress sm:text-[1.2rem]">
-                «{MITO.cita}»
+              <span className="flex items-center gap-2.5">
+                <Lira className="h-5 w-5 shrink-0 text-olive" trazo={3} />
+                <Link to="/por-que-orpheus" className="link-draw text-[0.85rem] text-olive">
+                  Por qué Orpheus
+                </Link>
+              </span>
+              <p className="cita-menor mt-2.5 text-[1.15rem] leading-snug text-cypress lg:mt-3 lg:text-[1.2rem]">
+                {MITO.titulo}
               </p>
-              <Link
-                to="/por-que-orpheus"
-                className="link-draw mt-3 inline-block text-[0.86rem] text-olive sm:text-[0.89rem]"
-              >
-                Por qué Orpheus
-              </Link>
             </Reveal>
           </div>
         </div>
@@ -343,7 +344,7 @@ function Inicio() {
 
           <RecorridoNoLineal />
 
-          <Reveal delay={100} className="mt-16 md:mt-20">
+          <Reveal delay={100} className="mt-11 md:mt-20">
             <hr className="rule-fade" />
             <Cita className="mt-12 max-w-3xl" tamano="sm">
               {RECORRIDO.cita}
@@ -365,22 +366,22 @@ function Inicio() {
             </span>
           </TituloSeccion>
 
-          <ul className="mt-16 border-t border-rule">
+          <ul className="mt-11 md:mt-16 border-t border-rule">
             {VALORES.items.map((v, i) => (
               <Reveal
                 as="li"
                 key={v.clave}
                 delay={i * 70}
-                className="group grid gap-4 border-b border-rule py-8 transition-colors duration-600 hover:bg-linen md:grid-cols-[3rem_1fr_1.15fr] md:items-baseline md:gap-10 md:px-4"
+                className="group grid gap-4 border-b border-rule py-7 transition-colors duration-600 hover:bg-linen md:grid-cols-[1fr_1.15fr] md:items-baseline md:gap-10 md:px-4 md:py-8"
               >
-                {/* Sin numerar: no son pasos ordenados sino cinco cosas que
-                    conviven. El filete hace de viñeta. */}
-                <span
-                  aria-hidden="true"
-                  className="mt-1 inline-block h-px w-9 bg-olive/45 md:mt-[0.7rem] md:w-full"
-                />
                 <div>
-                  <h3 className="eyebrow text-[0.89rem] font-semibold text-olive">{v.clave}</h3>
+                  {/* Sin numerar: no son pasos ordenados sino cinco cosas que
+                      conviven. El punto hace de viñeta, pegado a la clave, que
+                      es lo que ordena la fila. */}
+                  <h3 className="eyebrow flex items-center gap-2.5 text-[1rem] tracking-[0.2em] text-olive">
+                    <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-olive" />
+                    {v.clave}
+                  </h3>
                   <p className="cita-menor mt-3 text-[1.5rem] leading-tight text-ink md:text-[1.9rem]">
                     {v.lema}
                   </p>
@@ -405,12 +406,12 @@ export function CtaFinal() {
   return (
     <section
       data-cierre
-      className="shell pt-24 pb-20 md:pt-32 md:pb-28"
+      className="shell pt-16 pb-14 md:pt-32 md:pb-28"
       aria-labelledby="cta-final-titulo"
     >
       <Reveal
         variant="scale"
-        className="aurora-deep grain-dark on-dark relative isolate overflow-hidden rounded-3xl px-7 py-20 text-center md:px-16 md:py-24"
+        className="aurora-deep grain-dark on-dark relative isolate overflow-hidden rounded-3xl px-7 py-14 text-center md:px-16 md:py-24"
       >
         <Lira
           className="pointer-events-none absolute -top-10 -left-10 h-56 w-56 text-on-dark/[0.06]"

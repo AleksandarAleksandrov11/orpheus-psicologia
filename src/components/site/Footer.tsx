@@ -13,7 +13,7 @@ export function Footer() {
       data-fin
       className="aurora-deep grain-dark on-dark relative overflow-hidden text-on-dark"
     >
-      <div className="relative z-10 shell grid gap-12 py-16 md:grid-cols-12 md:py-20">
+      <div className="relative z-10 shell grid gap-10 py-12 md:grid-cols-12 md:gap-12 md:py-20">
         {/* Marca */}
         <div className="md:col-span-5">
           <Link

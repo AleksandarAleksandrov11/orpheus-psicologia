@@ -76,7 +76,7 @@ function Diario() {
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="aurora grain relative overflow-hidden pt-28 pb-12 md:pt-40 md:pb-24">
         <Parallax
           amount={-34}
           className="pointer-events-none absolute -top-40 -right-36 -z-10 h-[34rem] w-[34rem] rounded-full bg-olive/15 blur-3xl"
@@ -113,7 +113,7 @@ function Diario() {
           </p>
 
           <div
-            className="anim-fade mt-14 grid gap-7 border-t border-rule pt-7 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-12"
+            className="anim-fade mt-10 md:mt-14 grid gap-7 border-t border-rule pt-7 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-12"
             style={{ animationDelay: "0.55s" }}
           >
             <p className="flex items-baseline gap-3">
@@ -228,7 +228,7 @@ function Diario() {
               </Reveal>
             </div>
 
-            <ul className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            <ul className="mt-10 md:mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {resto.map((a, i) => (
                 <Reveal as="li" key={a.slug} delay={i * 90} className="flex">
                   <TarjetaArticulo articulo={a} />

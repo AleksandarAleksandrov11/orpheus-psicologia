@@ -240,7 +240,7 @@ export function Nav() {
         aria-label="Menú de navegación"
       >
         <div className="aurora-deep grain-dark absolute inset-0" aria-hidden="true" />
-        <div className="on-dark relative z-10 flex h-full flex-col justify-between overflow-y-auto px-6 pt-24 pb-10">
+        <div className="on-dark relative z-10 flex h-full flex-col justify-between overflow-y-auto px-6 pt-16 md:pt-24 pb-10">
           <nav aria-label="Navegación móvil">
             <ul className="space-y-1">
               {NAV.map((l, i) => (

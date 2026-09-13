@@ -66,7 +66,7 @@ function SobreMi() {
           La reserva va justo debajo del retrato: de ahí en adelante
           la página es ya el relato personal, sin cortes. */}
       <section
-        className="aurora grain relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24"
+        className="aurora grain relative overflow-hidden pt-28 pb-12 md:pt-36 md:pb-24"
         aria-labelledby="sobre-titulo"
       >
         <Parallax
@@ -194,7 +194,7 @@ function SobreMi() {
             </Reveal>
 
             {/* La frase que enterró: tachada, desvanecida y centrada */}
-            <Reveal variant="up" delay={60} className="my-16 text-center md:my-24">
+            <Reveal variant="up" delay={60} className="my-12 text-center md:my-24">
               <span className="relative inline-block">
                 <span
                   className="display-lg block text-cypress/30 italic"

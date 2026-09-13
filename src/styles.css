@@ -201,8 +201,11 @@
   }
 }
 
+/* El aire entre secciones se calculó para escritorio y en un móvil dejaba
+   casi 150 px muertos entre bloque y bloque. La recta pasa ahora por 48 px a
+   390 px de ancho y por los mismos 149 px a 1440: el escritorio no cambia. */
 @utility section-y {
-  padding-block: clamp(4.5rem, 3rem + 7vw, 9.5rem);
+  padding-block: clamp(3rem, 0.66rem + 9.6vw, 9.5rem);
 }
 
 @utility section-y-sm {
@@ -860,12 +863,26 @@ html.js [data-reveal="mask"] {
   opacity: 1;
 }
 
+/* Al terminar la entrada no se recorta nada. Recortar a la caja (que es lo
+   que hacía `inset(0)`) cortaba en seco la cola de la «g» de cualquier
+   titular: la tipografía sobresale unos píxeles por debajo de la caja de
+   línea y ahí es justo donde vive la descendente. Era el corte que Melissa
+   señaló en «lugar», «engranaje» y «Rigor». */
 html.js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
   filter: none;
-  clip-path: inset(0 0 0 0);
+  clip-path: none;
   will-change: auto;
+}
+
+/* Las dos variantes que sí barren con recorte terminan con holgura de sobra
+   alrededor de la caja, para que la descendente no vuelva a tocarlo. Va
+   después de la regla general a propósito: tienen la misma especificidad y
+   manda el orden. */
+html.js [data-reveal="curtain"].is-visible,
+html.js [data-reveal="mask"].is-visible {
+  clip-path: inset(-2rem -1rem);
 }
 
 @media (prefers-reduced-motion: reduce) {

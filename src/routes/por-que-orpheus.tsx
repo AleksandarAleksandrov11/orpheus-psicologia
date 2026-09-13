@@ -43,7 +43,7 @@ function PorQueOrpheus() {
   return (
     <Layout>
       {/* ═══════════════════ APERTURA ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+      <section className="aurora grain relative overflow-hidden pt-28 pb-14 md:pt-40 md:pb-28">
         <Parallax
           amount={-34}
           className="pointer-events-none absolute -top-40 -right-36 -z-10 h-[34rem] w-[34rem] rounded-full bg-olive/15 blur-3xl"
@@ -173,7 +173,7 @@ function PorQueOrpheus() {
             </div>
           </div>
 
-          <div className="mt-16 grid gap-4 sm:grid-cols-3">
+          <div className="mt-11 md:mt-16 grid gap-4 sm:grid-cols-3">
             {FILOSOFIA.sinLista.map((s, i) => (
               <Reveal
                 key={s}
@@ -269,7 +269,7 @@ function PorQueOrpheus() {
             </Reveal>
           </h2>
 
-          <div className="mt-16 grid gap-9 border-t border-on-dark/15 pt-10 md:mt-20 md:grid-cols-2 md:gap-16">
+          <div className="mt-11 grid gap-9 border-t border-on-dark/15 pt-8 md:mt-20 md:grid-cols-2 md:gap-16 md:pt-10">
             {PROCESO_VIVO.parrafos.map((p, i) => (
               <Reveal key={p.slice(0, 24)} delay={i * 110}>
                 <p className="text-[1.12rem] leading-[1.8] font-light text-on-dark-muted md:text-[1.18rem]">

@@ -73,7 +73,7 @@ export function PaginaLegal({
   return (
     <>
       {/* Cabecera */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-14 md:pt-40 md:pb-20">
+      <section className="aurora grain relative overflow-hidden pt-28 pb-12 md:pt-40 md:pb-20">
         <div className="relative z-10 shell max-w-4xl">
           <Migas items={[{ nombre: "Inicio", path: "/" }, { nombre: antetitulo }]} />
           <Antetitulo>{antetitulo}</Antetitulo>
@@ -89,7 +89,7 @@ export function PaginaLegal({
       </section>
 
       {/* Cuerpo */}
-      <div className="shell grid gap-12 pt-10 pb-24 md:pt-16 md:pb-32 lg:grid-cols-[16rem_1fr] lg:gap-16">
+      <div className="shell grid gap-12 pt-10 pb-16 md:pt-16 md:pb-32 lg:grid-cols-[16rem_1fr] lg:gap-16">
         <nav aria-label="Índice de la página" className="min-w-0 lg:sticky lg:top-36 lg:self-start">
           <h2 className="eyebrow text-olive">Índice</h2>
           <ol className="mt-5 space-y-2.5 border-l border-rule pl-5">

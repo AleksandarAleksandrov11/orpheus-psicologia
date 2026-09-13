@@ -84,7 +84,7 @@ function Empresas() {
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+      <section className="aurora grain relative overflow-hidden pt-28 pb-14 md:pt-40 md:pb-28">
         <Parallax
           amount={-32}
           className="pointer-events-none absolute -top-40 -right-36 -z-10 h-[34rem] w-[34rem] rounded-full bg-cedar/25 blur-3xl"
@@ -239,7 +239,7 @@ function Empresas() {
           </Reveal>
 
           {/* Beneficios, en dos columnas enfrentadas */}
-          <div className="mt-16 grid gap-5 md:mt-20 md:grid-cols-2">
+          <div className="mt-11 grid gap-5 md:mt-20 md:grid-cols-2">
             {EMPRESAS.beneficios.map((b, i) => (
               <Reveal
                 key={b.titulo}
@@ -275,7 +275,7 @@ function Empresas() {
             ))}
           </div>
 
-          <Reveal variant="mask" delay={120} className="mt-16">
+          <Reveal variant="mask" delay={120} className="mt-11 md:mt-16">
             <Cita tamano="sm" className="max-w-3xl">
               {EMPRESAS.cadaEquipo}
             </Cita>
@@ -305,7 +305,7 @@ function Empresas() {
             </Reveal>
           </div>
 
-          <div className="mt-14">
+          <div className="mt-10 md:mt-14">
             <BloqueSimulador />
           </div>
         </div>

@@ -44,7 +44,7 @@ function Resenas() {
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="aurora grain relative overflow-hidden pt-28 pb-12 md:pt-40 md:pb-24">
         <Parallax
           amount={-32}
           className="pointer-events-none absolute -top-40 -right-32 -z-10 h-[32rem] w-[32rem] rounded-full bg-aloe/50 blur-3xl"
@@ -102,7 +102,7 @@ function Resenas() {
 
       {/* ═══════════════════ REJILLA DE RESEÑAS ═══════════════════ */}
       {resenas.length > 0 ? (
-        <section className="pt-14 pb-20 md:pt-20 md:pb-28" aria-labelledby="palabras-titulo">
+        <section className="pt-12 pb-14 md:pt-20 md:pb-28" aria-labelledby="palabras-titulo">
           <div className="shell">
             <h2 id="palabras-titulo" className="sr-only">
               Reseñas de personas que han hecho un proceso

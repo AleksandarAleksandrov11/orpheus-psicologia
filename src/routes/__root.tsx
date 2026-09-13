@@ -139,7 +139,7 @@ function PaginaMensaje({
   acciones: ReactNode;
 }) {
   return (
-    <div className="aurora grain flex min-h-[75vh] items-center justify-center px-6 py-28">
+    <div className="aurora grain flex min-h-[75vh] items-center justify-center px-6 py-18 md:py-28">
       <div className="relative z-10 max-w-lg text-center">
         <Lira className="mx-auto h-12 w-12 text-cypress/50" />
         <p className="eyebrow mt-8 text-olive">{codigo}</p>

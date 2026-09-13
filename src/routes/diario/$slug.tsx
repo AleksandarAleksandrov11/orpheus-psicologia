@@ -134,7 +134,11 @@ function BloqueRenderizado({ bloque, indice }: { bloque: Bloque; indice: number 
   switch (bloque.tipo) {
     case "h2":
       return (
-        <Reveal as="h2" delay={retardo} className="display-sm mt-14 mb-5 text-ink first:mt-0">
+        <Reveal
+          as="h2"
+          delay={retardo}
+          className="display-sm mt-10 md:mt-14 mb-5 text-ink first:mt-0"
+        >
           {bloque.texto}
         </Reveal>
       );
@@ -194,7 +198,7 @@ function ArticuloPagina() {
 
       {/* ── Portada ── */}
       <article>
-        <header className="relative isolate overflow-hidden bg-moss pt-32 pb-16 text-on-dark md:pt-40 md:pb-24">
+        <header className="relative isolate overflow-hidden bg-moss pt-28 pb-12 text-on-dark md:pt-40 md:pb-24">
           <Parallax amount={60} className="absolute inset-0 -z-10 scale-110">
             <img
               src={portada.src}
@@ -244,13 +248,13 @@ function ArticuloPagina() {
 
         {/* ── Cuerpo ── */}
         <div className="shell">
-          <div className="mx-auto max-w-[46rem] py-16 text-ink-muted md:py-24">
+          <div className="mx-auto max-w-[46rem] py-12 text-ink-muted md:py-24">
             {articulo.bloques.map((bloque, i) => (
               <BloqueRenderizado key={i} bloque={bloque} indice={i} />
             ))}
 
             {/* Firma */}
-            <Reveal className="mt-16 flex flex-col gap-6 border-t border-rule pt-10 sm:flex-row sm:items-center">
+            <Reveal className="mt-11 md:mt-16 flex flex-col gap-6 border-t border-rule pt-10 sm:flex-row sm:items-center">
               <img
                 src={retrato}
                 alt={`Retrato de ${SITE.psicologa.nombre}`}
@@ -286,7 +290,7 @@ function ArticuloPagina() {
           aria-labelledby="seguir-leyendo-titulo"
         >
           <div className="grain absolute inset-0" aria-hidden="true" />
-          <div className="relative z-10 shell section-y-sm py-16 md:py-24">
+          <div className="relative z-10 shell section-y-sm py-12 md:py-24">
             <div className="flex flex-wrap items-end justify-between gap-5">
               <h2 id="seguir-leyendo-titulo" className="display-sm">
                 Seguir <em className="italic">leyendo</em>
@@ -356,7 +360,7 @@ function NoEncontrado() {
   return (
     <Layout>
       <section className="aurora grain relative overflow-hidden">
-        <div className="relative z-10 shell section-y flex min-h-[60vh] flex-col items-center justify-center pt-32 text-center">
+        <div className="relative z-10 shell section-y flex min-h-[60vh] flex-col items-center justify-center pt-20 md:pt-32 text-center">
           <Lira className="h-12 w-12 text-cypress/50" />
           <p className="eyebrow mt-8 text-olive">Diario</p>
           <h1 className="display-lg mt-5 max-w-2xl">

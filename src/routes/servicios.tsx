@@ -95,7 +95,7 @@ function Servicios() {
   return (
     <Layout>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="aurora grain relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+      <section className="aurora grain relative overflow-hidden pt-28 pb-14 md:pt-40 md:pb-28">
         <Parallax
           amount={-34}
           className="pointer-events-none absolute -top-36 -left-40 -z-10 h-[34rem] w-[34rem] rounded-full bg-cedar/25 blur-3xl"
@@ -189,7 +189,7 @@ function Servicios() {
           </div>
 
           {/* Cuatro modelos que convergen en un mismo centro */}
-          <div className="relative mt-16 border-b border-rule md:mt-20">
+          <div className="relative mt-11 border-b border-rule md:mt-20">
             <span
               aria-hidden="true"
               className="pointer-events-none absolute top-1/2 left-1/2 z-10 hidden size-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-rule bg-bone sm:grid"
@@ -537,7 +537,7 @@ function Servicios() {
           </div>
 
           {/* Progresión horizontal: el filete se apaga a medida que avanza */}
-          <div className="relative mt-16 md:mt-24">
+          <div className="relative mt-11 md:mt-24">
             <span
               aria-hidden="true"
               className="absolute top-2 bottom-6 left-[0.4375rem] w-px bg-gradient-to-b from-cypress via-olive/50 to-transparent md:hidden"
@@ -575,7 +575,7 @@ function Servicios() {
               })}
             </ol>
 
-            <Reveal delay={200} className="mt-14">
+            <Reveal delay={200} className="mt-10 md:mt-14">
               <p className="text-[0.99rem] font-light text-ink-faint">
                 El acompañamiento se va espaciando a propósito: el objetivo es que deje de hacer
                 falta.
@@ -601,7 +601,7 @@ function Servicios() {
 
           <RecorridoNoLineal />
 
-          <Reveal delay={100} className="mt-16 md:mt-20">
+          <Reveal delay={100} className="mt-11 md:mt-20">
             <hr className="rule-fade" />
             <Cita className="mx-auto mt-12 max-w-3xl text-center" tamano="sm">
               {RECORRIDO.cita}
