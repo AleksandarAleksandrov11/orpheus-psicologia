@@ -1,0 +1,9 @@
+# Orpheus Psicología — https://orpheuspsicologia.com
+User-agent: *
+Allow: /
+
+# Recursos internos sin valor de indexación
+Disallow: /_build/
+Disallow: /api/
+
+Sitemap: https://orpheuspsicologia.com/sitemap.xml

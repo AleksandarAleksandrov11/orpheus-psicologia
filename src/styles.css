@@ -1,0 +1,987 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "./fonts.css";
+
+/* =========================================================================
+   ORPHEUS PSICOLOGÍA — SISTEMA DE DISEÑO
+   Paleta: Moss · Cypress · Olive · Cedar · Aloe sobre papel hueso.
+   Tipografía: Playfair Display (titulares) + Newsreader (citas breves)
+                + Jost (interfaz y texto).
+   ========================================================================= */
+
+@theme {
+  /* ---- Tipografía ---- */
+  --font-display: "Playfair Display", "Iowan Old Style", Palatino, Georgia, serif;
+  /* Serif de texto, para las citas breves en redonda. */
+  --font-cita: "Newsreader", "Iowan Old Style", Palatino, Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* ---- Paleta base (referencia de marca) ----
+     El verde principal va un tono por debajo del original y sigue en 9,5:1
+     contra el papel, así que el contraste no se resiente. */
+  --color-moss: #364030;
+  --color-cypress: #545f45;
+  /* Baja de #768064: los antetítulos a 12 px no llegaban a 4,5:1. */
+  --color-olive: #5a6146;
+  --color-cedar: #959581;
+  --color-aloe: #daded8;
+  /* Verde claro para bandas enteras. Sobre papel las tarjetas de reseñas
+     apenas se despegaban del fondo. Es el tono más oscuro que deja el
+     antetítulo olive por encima de 4,5:1. */
+  --color-sage: #dde0d2;
+
+  /* ---- Papel / neutros cálidos ---- */
+  --color-bone: #f2f0e7;
+  --color-paper: #eae7da;
+  --color-paper-deep: #e0dccb;
+  --color-linen: #f7f6f0;
+
+  /* ---- Tokens semánticos (sobre claro) ---- */
+  --color-ink: #364030;
+  --color-ink-muted: #5c6350;
+  /* Sube de #7d8271: los pies y las fechas no llegaban a 4,5:1. */
+  --color-ink-faint: #5f6552;
+  --color-rule: #d3d0c1;
+  --color-rule-strong: #b9b7a4;
+
+  /* ---- Tokens semánticos (sobre oscuro) ---- */
+  --color-on-dark: #f2f0e7;
+  --color-on-dark-muted: #d2d7cc;
+  /* Sube de #8f9a86 por el mismo motivo, ya sobre el verde nuevo. */
+  --color-on-dark-faint: #adb8a4;
+
+  /* ---- Compatibilidad shadcn/ui ---- */
+  --color-background: var(--color-bone);
+  --color-foreground: var(--color-ink);
+  --color-card: var(--color-linen);
+  --color-card-foreground: var(--color-ink);
+  --color-popover: var(--color-linen);
+  --color-popover-foreground: var(--color-ink);
+  --color-primary: var(--color-moss);
+  --color-primary-foreground: var(--color-bone);
+  --color-secondary: var(--color-paper);
+  --color-secondary-foreground: var(--color-moss);
+  --color-muted: var(--color-paper);
+  --color-muted-foreground: var(--color-ink-muted);
+  --color-accent: var(--color-aloe);
+  --color-accent-foreground: var(--color-moss);
+  --color-destructive: #9a3412;
+  --color-destructive-foreground: #f7f6f0;
+  --color-border: var(--color-rule);
+  --color-input: var(--color-rule);
+  --color-ring: var(--color-cypress);
+
+  /* ---- Radios ---- */
+  --radius: 0.875rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.5rem;
+
+  /* ---- Curvas de animación ---- */
+  --ease-orpheus: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---- Escala tipográfica fluida ---- */
+  --text-display-xl: clamp(2.35rem, 1.05rem + 4.1vw, 5.25rem);
+  --text-display-lg: clamp(2.15rem, 1.15rem + 4.5vw, 4.5rem);
+  --text-display-md: clamp(1.85rem, 1.2rem + 3vw, 3.35rem);
+  --text-display-sm: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+}
+
+/* =========================================================================
+   BASE
+   ========================================================================= */
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-rule);
+  }
+
+  :root {
+    color-scheme: light;
+    --nav-h: 4.5rem;
+    scroll-padding-top: 6rem;
+  }
+
+  html {
+    /*
+     * Sin desplazamiento suave global: al cambiar de página el navegador
+     * animaba el regreso al principio y se veía subir todo el documento.
+     * Donde interesa que sea suave (el logotipo, «sigue bajando») se pide
+     * explícitamente desde JavaScript.
+     */
+    scroll-behavior: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-moss);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cypress);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* La barra sobre fondos oscuros invierte el color de foco */
+  .on-dark :focus-visible {
+    outline-color: var(--color-aloe);
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* =========================================================================
+   UTILIDADES DE LAYOUT
+   ========================================================================= */
+
+@utility shell {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1.375rem;
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
+  @media (min-width: 1280px) {
+    padding-inline: 3.5rem;
+  }
+}
+
+@utility shell-wide {
+  width: 100%;
+  max-width: 96rem;
+  margin-inline: auto;
+  padding-inline: 1.375rem;
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
+  @media (min-width: 1280px) {
+    padding-inline: 3.5rem;
+  }
+}
+
+/* El aire entre secciones se calculó para escritorio y en un móvil dejaba
+   casi 150 px muertos entre bloque y bloque. La recta pasa ahora por 48 px a
+   390 px de ancho y por los mismos 149 px a 1440: el escritorio no cambia. */
+@utility section-y {
+  padding-block: clamp(3rem, 0.66rem + 9.6vw, 9.5rem);
+}
+
+@utility section-y-sm {
+  padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+/* =========================================================================
+   TIPOGRAFÍA
+   ========================================================================= */
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-display-xl);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.019em;
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-size: var(--text-display-md);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.016em;
+}
+
+@utility display-sm {
+  font-family: var(--font-display);
+  font-size: var(--text-display-sm);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+}
+
+/* Antetítulo: versalita muy tracada, el sello editorial del sitio */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  /* 1 recortaba las tildes de las mayúsculas (Á, Ñ, Ó) al pasar a versalita. */
+  line-height: 1.4;
+}
+
+/**
+ * Citas breves: citas de tarjeta, subtítulos y remates. En redonda y con
+ * Newsreader, una serif de imprenta pensada para este cuerpo: en cursiva
+ * costaban de leer.
+ */
+@utility cita-menor {
+  font-family: var(--font-cita);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.004em;
+}
+
+@utility lede {
+  font-size: clamp(1.1875rem, 1.04rem + 0.6vw, 1.4375rem);
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+  font-weight: 300;
+}
+
+/* Cuerpo de texto generoso: por debajo de esto la letra costaba de leer. */
+@utility prose-body {
+  font-size: 1.15rem;
+  line-height: 1.72;
+  font-weight: 300;
+  color: var(--color-ink-muted);
+}
+
+/* =========================================================================
+   TEXTURA DE PAPEL
+   Grano fino generado por SVG (≈1 KB, nítido en cualquier densidad).
+   ========================================================================= */
+
+@utility grain {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.42;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+}
+
+@utility grain-dark {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+}
+
+/* Fondo "aurora": manchas orgánicas de color que respiran despacio */
+@utility aurora {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--color-bone);
+  background-image:
+    radial-gradient(58rem 32rem at 12% -8%, rgba(118, 128, 100, 0.28), transparent 62%),
+    radial-gradient(46rem 34rem at 92% 6%, rgba(218, 222, 216, 0.85), transparent 58%),
+    radial-gradient(40rem 40rem at 76% 92%, rgba(76, 88, 62, 0.16), transparent 60%);
+}
+
+@utility aurora-deep {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--color-moss);
+  background-image:
+    radial-gradient(52rem 34rem at 8% 0%, rgba(118, 128, 100, 0.45), transparent 62%),
+    radial-gradient(42rem 30rem at 96% 18%, rgba(76, 88, 62, 0.75), transparent 60%),
+    radial-gradient(48rem 36rem at 50% 116%, rgba(149, 149, 129, 0.22), transparent 60%);
+}
+
+/* =========================================================================
+   FILETES Y ADORNOS
+   ========================================================================= */
+
+@utility rule-fade {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(to right, transparent, var(--color-rule-strong), transparent);
+}
+
+@utility rule-fade-dark {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(to right, transparent, rgba(218, 222, 216, 0.35), transparent);
+}
+
+/* Enlace con subrayado que se dibuja de izquierda a derecha */
+@utility link-draw {
+  position: relative;
+  display: inline-block;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.55s var(--ease-orpheus);
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Enlace con subrayado permanente que se repliega al pasar */
+@utility link-undraw {
+  position: relative;
+  display: inline-block;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left;
+    transition: transform 0.55s var(--ease-orpheus);
+  }
+  &:hover::after {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+/* =========================================================================
+   BOTONES
+   ========================================================================= */
+
+@utility btn-base {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 1.0625rem 1.875rem;
+  overflow: hidden;
+  isolation: isolate;
+  max-width: 100%;
+  transition:
+    color 0.5s var(--ease-orpheus),
+    border-color 0.5s var(--ease-orpheus),
+    transform 0.5s var(--ease-orpheus);
+  white-space: nowrap;
+
+  /* En pantallas estrechas el botón se ajusta en lugar de desbordar. */
+  @media (max-width: 420px) {
+    padding: 0.9375rem 1.375rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    gap: 0.5rem;
+  }
+  @media (max-width: 340px) {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* Relleno que sube desde abajo al pasar el cursor */
+@utility btn-fill {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: translateY(101%);
+    transition: transform 0.6s var(--ease-orpheus);
+  }
+  &:hover::before,
+  &:focus-visible::before {
+    transform: translateY(0);
+  }
+}
+
+@utility btn-solid {
+  background: var(--color-moss);
+  color: var(--color-bone);
+  &::before {
+    background: var(--color-olive);
+  }
+  &:hover {
+    color: var(--color-moss);
+  }
+}
+
+@utility btn-outline {
+  background: transparent;
+  color: var(--color-moss);
+  border: 1px solid var(--color-rule-strong);
+  &::before {
+    background: var(--color-moss);
+  }
+  &:hover {
+    color: var(--color-bone);
+    border-color: var(--color-moss);
+  }
+}
+
+@utility btn-light {
+  background: var(--color-bone);
+  color: var(--color-moss);
+  &::before {
+    background: var(--color-aloe);
+  }
+  &:hover {
+    color: var(--color-moss);
+  }
+}
+
+@utility btn-ghost-dark {
+  background: transparent;
+  color: var(--color-on-dark);
+  border: 1px solid rgba(218, 222, 216, 0.34);
+  &::before {
+    background: var(--color-bone);
+  }
+  &:hover {
+    color: var(--color-moss);
+    border-color: var(--color-bone);
+  }
+}
+
+/* =========================================================================
+   TARJETAS
+   ========================================================================= */
+
+@utility card-paper {
+  background: var(--color-linen);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-xl);
+  transition:
+    border-color 0.6s var(--ease-orpheus),
+    background-color 0.6s var(--ease-orpheus),
+    transform 0.6s var(--ease-orpheus);
+}
+
+@utility card-hover-lift {
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-olive);
+  }
+}
+
+/* =========================================================================
+   ANIMACIONES
+   ========================================================================= */
+
+@keyframes orpheus-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orpheus-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes orpheus-clip-up {
+  from {
+    opacity: 0;
+    transform: translateY(120%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orpheus-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes orpheus-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.8;
+  }
+}
+
+@keyframes orpheus-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes orpheus-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes orpheus-scroll-hint {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@utility anim-fade-up {
+  animation: orpheus-fade-up 1s var(--ease-orpheus) both;
+}
+
+@utility anim-fade {
+  animation: orpheus-fade 1.4s var(--ease-soft) both;
+}
+
+@utility anim-float {
+  animation: orpheus-float 9s ease-in-out infinite;
+}
+
+@utility anim-breathe {
+  animation: orpheus-breathe 14s ease-in-out infinite;
+}
+
+@utility anim-scroll-hint {
+  animation: orpheus-scroll-hint 2.6s var(--ease-soft) infinite;
+}
+
+/* Máscara de recorte para titulares que "suben" línea a línea */
+@utility clip-line {
+  display: block;
+  overflow: hidden;
+  /* Playfair Display baja mucho las descendentes: con 0.06em la «g» salía
+     cortada. El margen negativo devuelve el ritmo vertical original. */
+  padding-bottom: 0.22em;
+  margin-bottom: -0.16em;
+  > span {
+    display: block;
+    animation: orpheus-clip-up 1.15s var(--ease-orpheus) both;
+  }
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: orpheus-marquee 46s linear infinite;
+  will-change: transform;
+}
+
+/* La cinta de reseñas se para mientras se lee: al pasar el ratón o al entrar
+   el foco en algo de dentro. Va como regla propia y no como variante suelta
+   para que quede junto a la cinta que gobierna. */
+.marquee-pausable:hover .marquee-track,
+.marquee-pausable:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Retardos escalonados reutilizables */
+.d-1 {
+  animation-delay: 0.08s;
+}
+.d-2 {
+  animation-delay: 0.16s;
+}
+.d-3 {
+  animation-delay: 0.24s;
+}
+.d-4 {
+  animation-delay: 0.34s;
+}
+.d-5 {
+  animation-delay: 0.44s;
+}
+.d-6 {
+  animation-delay: 0.56s;
+}
+.d-7 {
+  animation-delay: 0.68s;
+}
+
+/* =========================================================================
+   IMÁGENES
+   ========================================================================= */
+
+@utility img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Ficha fotográfica con viñeta y grano, une fotos de orígenes distintos */
+@utility photo-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-paper);
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 6rem rgba(44, 52, 36, 0.16);
+  }
+}
+
+@utility arch {
+  border-radius: 999px 999px var(--radius-md) var(--radius-md);
+}
+
+/* =========================================================================
+   FORMULARIOS
+   ========================================================================= */
+
+@utility field {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule-strong);
+  background: transparent;
+  padding: 0.875rem 0;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 300;
+  color: var(--color-ink);
+  border-radius: 0;
+  transition:
+    border-color 0.4s var(--ease-orpheus),
+    background-color 0.4s var(--ease-orpheus);
+  &::placeholder {
+    color: var(--color-ink-faint);
+  }
+  &:focus {
+    outline: none;
+    border-color: var(--color-moss);
+  }
+}
+
+/* =========================================================================
+   ACCESIBILIDAD
+   ========================================================================= */
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -6rem;
+  z-index: 100;
+  background: var(--color-moss);
+  color: var(--color-bone);
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: top 0.3s var(--ease-orpheus);
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================================
+   MOVIMIENTO REDUCIDO
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* Barra de desplazamiento discreta acorde a la marca */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-cedar);
+    border-radius: 999px;
+    border: 3px solid var(--color-paper);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-olive);
+  }
+}
+
+/* =========================================================================
+   REVELADO AL HACER SCROLL
+   Solo se oculta el contenido si JavaScript está activo (html.js), de modo
+   que sin JS —y para los rastreadores— todo el texto se ve desde el inicio.
+   ========================================================================= */
+
+html.js [data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.95s var(--ease-orpheus) var(--reveal-delay, 0ms),
+    transform 0.95s var(--ease-orpheus) var(--reveal-delay, 0ms),
+    filter 0.95s var(--ease-orpheus) var(--reveal-delay, 0ms),
+    clip-path 1.05s var(--ease-orpheus) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.js [data-reveal="up"] {
+  transform: translate3d(0, 28px, 0);
+}
+html.js [data-reveal="down"] {
+  transform: translate3d(0, -22px, 0);
+}
+html.js [data-reveal="left"] {
+  transform: translate3d(-32px, 0, 0);
+}
+html.js [data-reveal="right"] {
+  transform: translate3d(32px, 0, 0);
+}
+html.js [data-reveal="scale"] {
+  transform: scale(0.94);
+}
+html.js [data-reveal="blur"] {
+  filter: blur(10px);
+  transform: translate3d(0, 14px, 0);
+}
+html.js [data-reveal="curtain"] {
+  clip-path: inset(0 0 100% 0);
+  opacity: 1;
+}
+html.js [data-reveal="mask"] {
+  clip-path: inset(0 100% 0 0);
+  opacity: 1;
+}
+
+/* Al terminar la entrada no se recorta nada. Recortar a la caja (que es lo
+   que hacía `inset(0)`) cortaba en seco la cola de la «g» de cualquier
+   titular: la tipografía sobresale unos píxeles por debajo de la caja de
+   línea y ahí es justo donde vive la descendente. Era el corte que Melissa
+   señaló en «lugar», «engranaje» y «Rigor». */
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: none;
+  will-change: auto;
+}
+
+/* Las dos variantes que sí barren con recorte terminan con holgura de sobra
+   alrededor de la caja, para que la descendente no vuelva a tocarlo. Va
+   después de la regla general a propósito: tienen la misma especificidad y
+   manda el orden. */
+html.js [data-reveal="curtain"].is-visible,
+html.js [data-reveal="mask"].is-visible {
+  clip-path: inset(-2rem -1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+}
+
+/* =========================================================================
+   TEXTOS LEGALES
+   ========================================================================= */
+
+.legal p + p {
+  margin-top: 1rem;
+}
+.legal h3 {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.legal ul,
+.legal ol {
+  margin-top: 1rem;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.legal ul {
+  list-style: none;
+  padding-left: 0;
+}
+.legal ul > li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+.legal ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  top: 0.75em;
+  width: 0.3rem;
+  height: 1px;
+  background: var(--color-olive);
+}
+.legal ol {
+  list-style: decimal;
+}
+.legal ol::marker,
+.legal li::marker {
+  color: var(--color-olive);
+}
+.legal a {
+  color: var(--color-cypress);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.4s var(--ease-orpheus);
+}
+.legal a:hover {
+  color: var(--color-moss);
+}
+.legal strong {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.legal table {
+  width: 100%;
+  margin-top: 1.25rem;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  text-align: left;
+}
+.legal th,
+.legal td {
+  border: 1px solid var(--color-rule);
+  padding: 0.7rem 0.85rem;
+  vertical-align: top;
+}
+.legal th {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  color: var(--color-ink);
+  background: var(--color-paper);
+}
+.legal .tabla-scroll {
+  overflow-x: auto;
+  margin-top: 1.25rem;
+}
+.legal .tabla-scroll table {
+  margin-top: 0;
+  min-width: 34rem;
+}
