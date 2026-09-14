@@ -4,7 +4,6 @@ import {
   ChevronDown,
   Clock,
   Instagram,
-  LifeBuoy,
   Mail,
   MapPin,
   Phone,
@@ -263,37 +262,6 @@ function Contacto() {
             <p className="lede anim-fade-up mt-8 max-w-2xl" style={{ animationDelay: "0.55s" }}>
               Cuéntame qué te trae y decidimos juntos el siguiente paso. Respondo yo misma.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════ AVISO DE URGENCIA ═══════════════════ */}
-      <section className="border-y border-rule-strong bg-linen" aria-labelledby="urgencia-titulo">
-        <div className="shell py-6 md:py-7">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <LifeBuoy
-              className="size-6 shrink-0 text-cypress"
-              strokeWidth={1.5}
-              aria-hidden="true"
-            />
-            <div>
-              <h2 id="urgencia-titulo" className="eyebrow text-cypress">
-                Si esto es una urgencia
-              </h2>
-              <p className="mt-2 text-[1.01rem] leading-relaxed font-light text-ink-muted">
-                Esta consulta no atiende emergencias. Si estás en riesgo o tienes pensamientos de
-                suicidio, llama al{" "}
-                <a href="tel:024" className="link-draw text-ink">
-                  024
-                </a>
-                , la línea de atención a la conducta suicida (gratuita, confidencial y disponible
-                las 24 horas), o al{" "}
-                <a href="tel:112" className="link-draw text-ink">
-                  112
-                </a>{" "}
-                si hay peligro inmediato.
-              </p>
-            </div>
           </div>
         </div>
       </section>

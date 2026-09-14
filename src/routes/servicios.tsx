@@ -121,8 +121,9 @@ function Servicios() {
               />
 
               <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
-                Aquí no hay protocolos cerrados. El proceso se adapta a ti y no al revés, y el ritmo
-                lo decidimos entre los dos.
+                Aquí no hay una forma correcta de hacerlo. Te acompaño a construir un proceso que
+                tenga sentido para ti, respetando tus tiempos, tus necesidades y todo lo que vaya
+                surgiendo por el camino.
               </p>
 
               <div
