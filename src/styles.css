@@ -17,17 +17,17 @@
   --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* ---- Paleta base (referencia de marca) ----
-     El verde principal se rebajó un tono a petición de Melissa. Sigue en
-     9,5:1 contra el papel, así que el contraste no se resiente. */
+     El verde principal va un tono por debajo del original y sigue en 9,5:1
+     contra el papel, así que el contraste no se resiente. */
   --color-moss: #364030;
   --color-cypress: #545f45;
   /* Baja de #768064: los antetítulos a 12 px no llegaban a 4,5:1. */
   --color-olive: #5a6146;
   --color-cedar: #959581;
   --color-aloe: #daded8;
-  /* Verde claro para bandas enteras. Melissa pidió más contraste bajo las
-     tarjetas de reseñas: sobre papel apenas se despegaban. Es el tono más
-     oscuro que deja el antetítulo olive por encima de 4,5:1. */
+  /* Verde claro para bandas enteras. Sobre papel las tarjetas de reseñas
+     apenas se despegaban del fondo. Es el tono más oscuro que deja el
+     antetítulo olive por encima de 4,5:1. */
   --color-sage: #dde0d2;
 
   /* ---- Papel / neutros cálidos ---- */
@@ -260,9 +260,9 @@
 }
 
 /**
- * Citas breves: citas de tarjeta, subtítulos y remates. Iban en cursiva y
- * Melissa pidió quitarla porque costaba leerlas; ahora van en redonda con
- * Newsreader, una serif de imprenta pensada para este cuerpo.
+ * Citas breves: citas de tarjeta, subtítulos y remates. En redonda y con
+ * Newsreader, una serif de imprenta pensada para este cuerpo: en cursiva
+ * costaban de leer.
  */
 @utility cita-menor {
   font-family: var(--font-cita);
@@ -278,8 +278,7 @@
   font-weight: 300;
 }
 
-/* Melissa pidió subir el cuerpo de texto dos veces: la letra pequeña
-   costaba de leer. Esta es la segunda subida. */
+/* Cuerpo de texto generoso: por debajo de esto la letra costaba de leer. */
 @utility prose-body {
   font-size: 1.15rem;
   line-height: 1.72;

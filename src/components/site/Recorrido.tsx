@@ -1,11 +1,10 @@
 /**
  * ¿CÓMO TRABAJAREMOS? — recorrido terapéutico en olas
  * ------------------------------------------------------------------
- * Melissa pidió dos cosas en dos revisiones seguidas: que la sección
- * dejara de parecer una escalera («la terapia nunca es lineal») y que
- * dejara de ser una columna vertical estática. Así que las cuatro fases
- * se reparten ahora a lo largo de una ola horizontal que baja y sube,
- * y que se dibuja sola a medida que se hace scroll.
+ * La terapia nunca es lineal, así que la sección no puede parecer una
+ * escalera ni una columna vertical estática. Las cuatro fases se reparten
+ * a lo largo de una ola horizontal que baja y sube, y que se dibuja sola
+ * a medida que se hace scroll.
  *
  * La ola arranca hacia abajo y termina arriba, que es justo el gesto
  * del proyecto: descender para poder elevarse.

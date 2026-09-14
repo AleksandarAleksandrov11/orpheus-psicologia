@@ -1,9 +1,9 @@
 /**
  * BARRA DE RESERVA EN MÓVIL
  * ------------------------------------------------------------------
- * Melissa pidió que «Reservar primera sesión» quede siempre a un toque
- * mientras se recorre la lista de «¿Te reconoces?», que es larga y deja
- * el botón del hero muy arriba. Es una barra fija al pie, solo en móvil.
+ * «Reservar primera sesión» siempre a un toque mientras se recorre la
+ * lista de «¿Te reconoces?», que es larga y deja el botón del hero muy
+ * arriba. Es una barra fija al pie, solo en móvil.
  *
  * Reglas de convivencia con el resto de capas fijas:
  *   · aparece cuando el hero ya se ha pasado;

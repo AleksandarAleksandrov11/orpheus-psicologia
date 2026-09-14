@@ -70,14 +70,13 @@
 }
 
 /* La «g» de Playfair Display lleva el bucle inferior abierto y en titulares
-   grandes se lee como un trazo roto, que es justo lo que nos señaló Melissa en
-   «lugar» y en «Rigor». Estas dos caras cubren solo el punto U+0067, así que
-   la familia sigue siendo Playfair en todo lo demás y solo la ge viene de otra
-   fuente: Prata en redonda (misma altura de x, mismo contraste, 2 KB) y la
-   cursiva de Spectral, ajustada al 114,8 % para igualar la altura de la x.
-   La cursiva se probó antes con Newsreader y Melissa la seguía viendo rara:
-   su bucle es ancho y plano y se metía debajo de las letras vecinas. El de
-   Spectral es un óvalo cerrado y compacto que cabe bajo su propia letra.
+   grandes se lee como un trazo roto; la familia no trae ninguna alternativa.
+   Estas dos caras cubren solo el punto U+0067, así que todo lo demás sigue
+   siendo Playfair y únicamente la ge viene de otra fuente: Prata en redonda
+   (misma altura de x, mismo contraste, 2 KB) y la cursiva de Spectral al
+   114,8 %, que iguala la altura de la x y deja un óvalo cerrado y compacto
+   bajo su propia letra. Se descartó la cursiva de Newsreader: su bucle es
+   ancho y plano y se metía debajo de las letras vecinas.
    Van al final a propósito: entre dos caras que cubren el mismo punto gana
    la última.
    Ojo: si algún día se cambia la tipografía de titulares, esto sobra. */

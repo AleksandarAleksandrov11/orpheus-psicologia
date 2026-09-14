@@ -502,8 +502,8 @@ export function Cita({
   className?: string;
   tamano?: "sm" | "md" | "lg";
 }) {
-  // En tamaño pequeño Playfair Display pierde legibilidad, así que ahí manda
-  // la serif de texto, y en redonda: la cursiva se quitó a petición de Melissa.
+  // En tamaño pequeño Playfair Display pierde legibilidad: aquí manda la
+  // serif de texto, y en redonda, que se lee mejor que la cursiva.
   const escala = {
     sm: "display-sm cita-menor",
     md: "display-md cita-menor",

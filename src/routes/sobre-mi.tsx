@@ -81,7 +81,6 @@ function SobreMi() {
 
           <div className="grid items-center gap-14 lg:grid-cols-[1.06fr_0.94fr] lg:gap-20">
             <div>
-              {/* Melissa pidió más cuerpo en la línea de arriba del todo. */}
               <p className="eyebrow anim-fade flex items-center gap-3 text-[0.88rem] tracking-[0.17em] text-cypress">
                 <span aria-hidden="true" className="inline-block h-px w-8 bg-cypress/50" />
                 {SITE.psicologa.nombre} · {SITE.psicologa.titulo}

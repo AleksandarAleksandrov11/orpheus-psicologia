@@ -2,9 +2,8 @@
  * MARQUESINA DE RESEÑAS
  * ------------------------------------------------------------------
  * Muro de reseñas que se desplaza solo hacia la izquierda, igual que la
- * marquesina de palabras que hay bajo el hero. Sustituye al carrusel de
- * una en una: Melissa lo quería en movimiento continuo y con todas las
- * reseñas a la vista, no de una en una.
+ * marquesina de palabras que hay bajo el hero: movimiento continuo y todas
+ * las reseñas a la vista, en lugar de una cada vez.
  *
  * Cómo se mueve: la lista se pinta dos veces seguidas y la cinta viaja
  * de 0 a -50 %, así que al terminar la primera copia la segunda está
@@ -107,9 +106,8 @@ function TarjetaResena({ resena, copia = false }: { resena: Resena; copia?: bool
       aria-hidden={copia || undefined}
       className="relative mr-5 flex h-[22.5rem] w-[18rem] shrink-0 flex-col overflow-hidden rounded-2xl border border-rule bg-linen p-7 md:mr-6 md:h-[24rem] md:w-[25rem] md:p-8"
     >
-      {/* Filete superior: la seña de la tarjeta. Va aquí y no una comilla de
-          fondo porque Melissa ya pidió una vez que nada se cruzara con el
-          texto de la reseña. */}
+      {/* Filete superior: la seña de la tarjeta. Va aquí y no como comilla de
+          fondo para que nada se cruce con el texto de la reseña. */}
       <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[3px] bg-olive/40" />
 
       <blockquote className="line-clamp-[8] font-display text-[1.09rem] leading-[1.5] text-ink">

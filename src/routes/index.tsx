@@ -136,8 +136,8 @@ function Inicio() {
               />
             </div>
 
-            {/* La frase del mito, que es la que Melissa quería ver en portada.
-                En escritorio se apoya en la esquina del retrato; en móvil baja
+            {/* La frase del mito, que es la puerta a Por qué Orpheus. En
+                escritorio se apoya en la esquina del retrato; en móvil baja
                 debajo, porque encima tapaba la fotografía y empujaba el
                 titular fuera de la primera pantalla. */}
             <Reveal
@@ -428,8 +428,8 @@ export function CtaFinal() {
           <h2 id="cta-final-titulo" className="display-lg mx-auto mt-7 max-w-3xl text-on-dark">
             No tienes que tenerlo todo <em className="italic">claro</em> para empezar.
           </h2>
-          {/* Melissa pidió que este botón salga de la web y abra un canal
-              directo: va a su WhatsApp, no a otra sección. */}
+          {/* El botón sale de la web y abre un canal directo: va a WhatsApp,
+              no a otra sección. */}
           <div className="mt-11 flex flex-wrap justify-center gap-3">
             <BotonExterno
               href={SITE.contacto.whatsapp}
