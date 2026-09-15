@@ -28,13 +28,14 @@ import { SITE } from "@/content/site";
 import { seo } from "@/lib/seo";
 
 import retrato from "@/assets/melissa-retrato.webp";
+import retratoSm from "@/assets/melissa-retrato@sm.webp";
 
 export const Route = createFileRoute("/")({
   head: () =>
     seo({
       title: "Psicóloga online para la autoestima",
       description:
-        "No necesitas exigirte más para sentirte suficiente. Terapia online en toda España para la autoestima, la autoexigencia y la inseguridad.",
+        "No necesitas exigirte más para sentirte suficiente. Psicóloga online en toda España: terapia para la autoestima, la autoexigencia, la inseguridad y la ansiedad.",
       path: "/",
       image: "/og/og-default.jpg",
       imageAlt: "Orpheus Psicología: no necesitas exigirte más para sentirte suficiente",
@@ -124,8 +125,13 @@ function Inicio() {
                 aria-hidden="true"
                 className="absolute inset-[-3%] rounded-full border border-cedar/35"
               />
+              {/* Dos tamaños: en un móvil sin pantalla de alta densidad el
+                  retrato se ve a 352 px y servirle los 788 px del original
+                  era mandar el doble de píxeles de los que se pintan. */}
               <img
                 src={retrato}
+                srcSet={`${retratoSm} 420w, ${retrato} 788w`}
+                sizes="(min-width: 1024px) 30rem, (min-width: 640px) 26rem, 22rem"
                 alt="Melissa González, psicóloga general sanitaria y fundadora de Orpheus Psicología"
                 width={788}
                 height={788}

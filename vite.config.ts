@@ -37,7 +37,8 @@ export default defineConfig({
         "/og/**": {
           headers: { ...CABECERAS_SEGURIDAD, "Cache-Control": "public, max-age=604800" },
         },
-        "/_build/assets/**": { headers: { ...CABECERAS_SEGURIDAD, "Cache-Control": INMUTABLE } },
+        // Los assets llevan el hash en el nombre, así que caducan solos.
+        "/assets/**": { headers: { ...CABECERAS_SEGURIDAD, "Cache-Control": INMUTABLE } },
         "/favicon.ico": {
           headers: { ...CABECERAS_SEGURIDAD, "Cache-Control": "public, max-age=604800" },
         },
@@ -54,5 +55,13 @@ export default defineConfig({
   ],
   build: {
     cssMinify: "lightningcss",
+    /**
+     * Lightning CSS reescribe `@media (min-width: 768px)` como
+     * `@media (width >= 768px)` salvo que se le diga que apunte a
+     * navegadores anteriores a esa sintaxis (Safari 16.4, Chrome 104).
+     * Con la forma moderna hay analizadores y auditores que no reconocen
+     * ninguna media query y dan la web por no responsive.
+     */
+    cssTarget: ["chrome100", "edge100", "firefox100", "safari15.4"],
   },
 });
