@@ -18,7 +18,7 @@ export const Route = createFileRoute("/sobre-mi")({
     seo({
       title: "Sobre mí · Psicóloga general sanitaria",
       description:
-        "Mi historia, mi formación y mi manera de entender la terapia. Melissa González, psicóloga general sanitaria especializada en autoestima, autoexigencia e inseguridad.",
+        "Mi historia, mi formación y mi forma de entender la terapia. Melissa González, psicóloga online especializada en autoestima e inseguridad.",
       path: "/sobre-mi",
       image: "/og/og-sobre-mi.jpg",
       imageAlt: "Melissa González, psicóloga general sanitaria y fundadora de Orpheus Psicología",

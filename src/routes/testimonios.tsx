@@ -14,7 +14,7 @@ import { CtaFinal } from "./index";
 export const Route = createFileRoute("/testimonios")({
   head: () =>
     seo({
-      title: "Reseñas",
+      title: "Opiniones de quienes han hecho terapia",
       description:
         "Lo que cuentan quienes ya han hecho un proceso con Melissa González. Reseñas publicadas y verificadas en Google, reproducidas con su texto literal.",
       path: "/testimonios",
@@ -105,7 +105,7 @@ function Resenas() {
         <section className="pt-12 pb-14 md:pt-20 md:pb-28" aria-labelledby="palabras-titulo">
           <div className="shell">
             <h2 id="palabras-titulo" className="sr-only">
-              Reseñas de personas que han hecho un proceso
+              Opiniones y reseñas de personas que han hecho un proceso
             </h2>
             <ul className="columns-1 gap-5 md:columns-2 lg:columns-3">
               {resenas.map((r, i) => (

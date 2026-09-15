@@ -16,7 +16,7 @@ export const HERO = {
   /** Primera línea del titular que va en cursiva. */
   cursiva: 2,
   entradilla:
-    "Terapia online para comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
+    "Psicóloga online para la autoestima y la autoexigencia. Comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
   ctaPrincipal: { label: "Reservar una primera sesión", to: "/contacto" },
   ctaSecundario: { label: "Ver servicios", to: "/servicios" },
   sellos: ["Terapia integradora", "Online en toda España", "Espacio sin juicio"],
@@ -209,6 +209,13 @@ export type Espacio = {
   detalle: string;
   /** Áreas principales del nicho: encabezan la sección. */
   destacado?: boolean;
+  /**
+   * Texto del enlace a la ficha del área en /servicios. Cada destacada
+   * lleva el suyo: tres enlaces con el mismo rótulo apuntando a tres
+   * destinos distintos no se distinguen ni leídos en voz alta ni en el
+   * informe de enlaces internos.
+   */
+  enlace?: string;
 };
 
 export const ESPACIOS: Espacio[] = [
@@ -218,6 +225,7 @@ export const ESPACIOS: Espacio[] = [
     breve: "Construir una relación sólida y coherente contigo.",
     detalle:
       "Trabajaremos en tu autoconcepto y autoconocimiento para construir una imagen sólida y realista de ti. El objetivo es que aprendas a valorarte sin depender de la valoración externa o del rendimiento, pudiendo sostenerte incluso cuando dudes.",
+    enlace: "Trabajar la autoestima en terapia",
     destacado: true,
   },
   {
@@ -225,7 +233,8 @@ export const ESPACIOS: Espacio[] = [
     titulo: "Autoexigencia y perfeccionismo",
     breve: "Bajar la presión sin perder tus valores.",
     detalle:
-      "Identificar de dónde viene la exigencia, trabajar la culpa social al descanso y redefinir el éxito desde tu propio criterio y no desde expectativas externas.",
+      "Identificar de dónde viene la autoexigencia, trabajar la culpa social al descanso y redefinir el éxito desde tu propio criterio y no desde expectativas externas.",
+    enlace: "Trabajar la autoexigencia en terapia",
     destacado: true,
   },
   {
@@ -276,6 +285,7 @@ export const ESPACIOS: Espacio[] = [
     breve: "Confiar en tu propio criterio.",
     detalle:
       "Reconocer qué alimenta la duda constante, reducir el peso de la comparación y aprender a confiar en tu propio criterio incluso cuando no tengas la certeza o la validación que buscas.",
+    enlace: "Trabajar la inseguridad en terapia",
     destacado: true,
   },
   {

@@ -32,7 +32,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "format-detection", content: "telephone=no" },
       { name: "apple-mobile-web-app-title", content: SITE.shortName },
       { name: "application-name", content: SITE.name },
-      { httpEquiv: "content-language", content: "es-ES" },
+      // Misma etiqueta que el <html lang> del shell: si las dos declaraciones
+      // no coinciden, los rastreadores lo señalan como idioma contradictorio.
+      { httpEquiv: "content-language", content: SITE.lang },
       { name: "geo.region", content: "ES-MD" },
       { name: "geo.placename", content: SITE.contacto.ciudad },
       // Valores por defecto; cada ruta los sobrescribe con `seo()`.
@@ -102,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="es">
+    <html lang={SITE.lang}>
       <head>
         <HeadContent />
       </head>

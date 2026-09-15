@@ -10,7 +10,7 @@ export const Route = createFileRoute("/aviso-legal")({
     seo({
       title: "Aviso legal",
       description:
-        "Datos identificativos del titular, condiciones de uso, propiedad intelectual, exclusión de responsabilidad y legislación aplicable de la web de Orpheus Psicología.",
+        "Datos identificativos del titular, condiciones de uso, propiedad intelectual y legislación aplicable de la web de Orpheus Psicología.",
       path: "/aviso-legal",
       jsonLd: [
         migasSchema([

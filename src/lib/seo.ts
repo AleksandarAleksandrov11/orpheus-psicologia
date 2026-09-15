@@ -8,8 +8,17 @@
 
 import { SITE, esPendiente } from "@/content/site";
 
-export const absolute = (path: string) =>
-  `${SITE.url}${path.startsWith("/") ? path : `/${path}`}`.replace(/\/$/, "") || SITE.url;
+/**
+ * Ruta relativa a URL absoluta. La portada conserva la barra final
+ * («https://dominio/») y el resto de rutas van siempre sin ella, de modo
+ * que la canónica, `og:url`, el hreflang y el mapa del sitio escriben
+ * exactamente la misma cadena para cada página. Una sola variante por
+ * URL evita que los rastreadores vean dos direcciones para lo mismo.
+ */
+export const absolute = (path: string) => {
+  const ruta = path.startsWith("/") ? path : `/${path}`;
+  return ruta === "/" ? `${SITE.url}/` : `${SITE.url}${ruta.replace(/\/+$/, "")}`;
+};
 
 type SeoInput = {
   /** Título propio de la página, sin el nombre de marca. */
@@ -31,6 +40,23 @@ type SeoInput = {
   keywords?: string[];
 };
 
+/**
+ * Google muestra unos 60 caracteres de título y corta el resto. El sufijo
+ * de marca solo se añade si cabe entero: primero «Orpheus Psicología» y,
+ * si no entra, «Orpheus». Cuando ni siquiera eso cabe el título se queda
+ * solo, porque en el resultado de búsqueda vale más leer el titular
+ * completo que una marca partida por la mitad.
+ */
+const LIMITE_TITULO = 60;
+
+function conMarca(title: string) {
+  for (const marca of [SITE.name, SITE.shortName]) {
+    const completo = `${title} | ${marca}`;
+    if (completo.length <= LIMITE_TITULO) return completo;
+  }
+  return title;
+}
+
 export function seo({
   title,
   description,
@@ -45,7 +71,7 @@ export function seo({
   keywords,
 }: SeoInput) {
   const url = absolute(path);
-  const fullTitle = path === "/" ? title : `${title} | ${SITE.name} · ${SITE.psicologa.nombre}`;
+  const fullTitle = conMarca(title);
   const img = image.startsWith("http") ? image : absolute(image);
 
   const meta: Record<string, string>[] = [
@@ -84,10 +110,14 @@ export function seo({
   if (modifiedTime) meta.push({ property: "article:modified_time", content: modifiedTime });
   if (type === "article") meta.push({ property: "article:author", content: SITE.psicologa.nombre });
 
+  // El atributo va en minúscula («hreflang», no «hrefLang»): estas etiquetas
+  // se serializan tal cual se escriben aquí y algunos rastreadores no
+  // reconocen la variante camelCase, con lo que la web se quedaba sin
+  // hreflang autorreferenciado.
   const links: Record<string, string>[] = [
     { rel: "canonical", href: url },
-    { rel: "alternate", hrefLang: "es-ES", href: url },
-    { rel: "alternate", hrefLang: "x-default", href: url },
+    { rel: "alternate", hreflang: "es-ES", href: url },
+    { rel: "alternate", hreflang: "x-default", href: url },
   ];
 
   const scripts = jsonLd.length
@@ -197,7 +227,7 @@ export function negocioSchema() {
       { "@type": "Country", name: "España" },
       { "@type": "City", name: "Madrid" },
     ],
-    availableLanguage: "es",
+    availableLanguage: "es-ES",
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE.contacto.ciudad,

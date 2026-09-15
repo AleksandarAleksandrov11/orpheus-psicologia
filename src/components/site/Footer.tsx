@@ -27,8 +27,8 @@ export function Footer() {
             </span>
           </Link>
           <p className="mt-6 max-w-xs text-[0.96rem] leading-relaxed font-light text-on-dark-muted">
-            Descender para poder elevarse. Una psicología para comprender lo que te pasa,
-            transformar aquello que te limita y construir una relación más amable contigo.
+            Descender para poder elevarse. Psicóloga online en toda España para comprender lo que te
+            pasa, transformar aquello que te limita y construir una relación más amable contigo.
           </p>
           <p className="mt-6 text-[0.89rem] font-light text-on-dark-faint">
             {SITE.psicologa.nombre} · {SITE.psicologa.titulo}

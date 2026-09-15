@@ -62,7 +62,7 @@ function contactoSchema() {
 export const Route = createFileRoute("/contacto")({
   head: () =>
     seo({
-      title: "Contacto",
+      title: "Contacto y primera sesión de terapia",
       description:
         "Escríbeme y te respondo personalmente en un máximo de 48 h laborables. Terapia online en toda España y presencial en Madrid con Melissa González.",
       path: "/contacto",

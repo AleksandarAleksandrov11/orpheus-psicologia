@@ -38,7 +38,7 @@ import texSenderoSm from "@/assets/tex-sendero@sm.webp";
 export const Route = createFileRoute("/servicios")({
   head: () =>
     seo({
-      title: "Terapia individual online",
+      title: "Terapia online individual y tarifas",
       description:
         "Terapia integradora para la autoestima, la autoexigencia, la inseguridad, la ansiedad, el duelo y las relaciones. Online en toda España y presencial en Madrid.",
       path: "/servicios",
