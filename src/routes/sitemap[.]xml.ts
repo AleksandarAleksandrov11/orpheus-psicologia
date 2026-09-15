@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-import { SITE } from "@/content/site";
 import { ARTICULOS } from "@/content/articulos";
+import { absolute } from "@/lib/seo";
 
 /**
  * Mapa del sitio con URL absolutas (una URL relativa en <loc> invalida el
@@ -43,7 +43,10 @@ const ARTICULOS_SITEMAP: Entrada[] = ARTICULOS.map((a) => ({
 const escapar = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 function url(e: Entrada) {
-  const loc = escapar(`${SITE.url}${e.path === "/" ? "/" : e.path}`);
+  // La misma función que escribe las canónicas: si el mapa del sitio y la
+  // etiqueta canónica no coinciden carácter a carácter, los rastreadores ven
+  // dos direcciones distintas para la misma página.
+  const loc = escapar(absolute(e.path));
   return [
     "  <url>",
     `    <loc>${loc}</loc>`,

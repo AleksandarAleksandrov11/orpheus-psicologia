@@ -10,7 +10,7 @@
  * del proyecto: descender para poder elevarse.
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { RECORRIDO } from "@/content/copy";
 import { Reveal } from "./motion";
 import { useReducedMotion, useScrollProgress } from "@/lib/motion";
@@ -93,110 +93,106 @@ export function RecorridoNoLineal() {
   const avance = maximo.current;
 
   return (
-    <div ref={ref} className="relative mt-14 md:mt-20">
-      {/* ── Escritorio: la ola horizontal con las fases repartidas ── */}
-      <div className="relative hidden h-[34rem] lg:block xl:h-[36rem]">
-        <svg
-          viewBox="0 0 1200 400"
-          preserveAspectRatio="none"
-          className="absolute inset-0 h-full w-full"
-          aria-hidden="true"
-          focusable="false"
-        >
-          {/* Trazo fantasma: la ola completa, tenue */}
-          <path
-            d={OLA}
-            fill="none"
-            stroke="var(--color-cedar)"
-            strokeOpacity="0.34"
-            strokeWidth="1.5"
-            strokeDasharray="2 7"
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
-          {/* Trazo que se dibuja con el scroll */}
-          <path
-            ref={pathRef}
-            d={OLA}
-            fill="none"
-            stroke="var(--color-cypress)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-            style={{
-              strokeDasharray: largo || 1,
-              strokeDashoffset: largo ? largo * (1 - avance) : 0,
-              transition: "stroke-dashoffset 0.15s linear",
-            }}
-          />
-        </svg>
+    <div ref={ref} className="relative mt-14 md:mt-20 lg:h-[34rem] xl:h-[36rem]">
+      {/* ── La ola, solo en pantallas anchas ── */}
+      <svg
+        viewBox="0 0 1200 400"
+        preserveAspectRatio="none"
+        className="absolute inset-0 hidden h-full w-full lg:block"
+        aria-hidden="true"
+        focusable="false"
+      >
+        {/* Trazo fantasma: la ola completa, tenue */}
+        <path
+          d={OLA}
+          fill="none"
+          stroke="var(--color-cedar)"
+          strokeOpacity="0.34"
+          strokeWidth="1.5"
+          strokeDasharray="2 7"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+        {/* Trazo que se dibuja con el scroll */}
+        <path
+          ref={pathRef}
+          d={OLA}
+          fill="none"
+          stroke="var(--color-cypress)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+          style={{
+            strokeDasharray: largo || 1,
+            strokeDashoffset: largo ? largo * (1 - avance) : 0,
+            transition: "stroke-dashoffset 0.15s linear",
+          }}
+        />
+      </svg>
 
-        {/* Nodos sobre la cresta o el valle de cada tramo */}
-        {NODOS.map((nodo, i) => {
-          const activo = avance > (i + 0.4) / NODOS.length;
-          return (
+      {/* Nodos sobre la cresta o el valle de cada tramo */}
+      {NODOS.map((nodo, i) => {
+        const activo = avance > (i + 0.4) / NODOS.length;
+        return (
+          <span
+            key={`nodo-${i}`}
+            aria-hidden="true"
+            className={`absolute hidden size-4 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border transition-all duration-700 lg:grid ${
+              activo ? "border-cypress bg-cypress" : "border-cedar/60 bg-bone"
+            }`}
+            style={{ left: `${nodo.x}%`, top: `${nodo.y}%` }}
+          >
             <span
-              key={`nodo-${i}`}
-              aria-hidden="true"
-              className={`absolute grid size-4 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border transition-all duration-700 ${
-                activo ? "border-cypress bg-cypress" : "border-cedar/60 bg-bone"
+              className={`size-1.5 rounded-full bg-bone transition-opacity duration-700 ${
+                activo ? "opacity-100" : "opacity-0"
               }`}
-              style={{ left: `${nodo.x}%`, top: `${nodo.y}%` }}
-            >
-              <span
-                className={`size-1.5 rounded-full bg-bone transition-opacity duration-700 ${
-                  activo ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            </span>
-          );
-        })}
+            />
+          </span>
+        );
+      })}
 
-        {/* Cada fase, por el lado libre de la ola: arriba en las crestas,
-            abajo en los valles. Así el texto nunca cae sobre el trazo. */}
+      {/* Las cuatro fases se escriben UNA sola vez. En móvil son una lista en
+          columna con su conector; a partir de `lg` cada <li> se coloca sobre
+          la cresta o el valle que le toca leyendo --x, --t y --b (ver la regla
+          `.ola-pasos` en styles.css). Antes había dos copias del mismo texto,
+          una por disposición, y los rastreadores las contaban como
+          encabezados y párrafos repetidos dentro de la misma página. */}
+      <Reveal as="ol" className="ola-pasos relative space-y-10">
+        <span
+          aria-hidden="true"
+          className="absolute top-2 bottom-8 left-[0.4375rem] w-px bg-gradient-to-b from-cypress/50 via-cedar/40 to-transparent lg:hidden"
+        />
         {RECORRIDO.pasos.map((paso, i) => {
           const nodo = NODOS[i];
           const activo = avance > (i + 0.4) / NODOS.length;
           return (
-            <div
+            <li
               key={paso.n}
-              className={`absolute w-[15.5rem] -translate-x-1/2 text-center transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] xl:w-[17rem] ${
-                activo ? "translate-y-0 opacity-100" : "translate-y-2 opacity-50"
-              }`}
+              className="relative pl-10"
               style={
-                nodo.arriba
-                  ? { left: `${nodo.x}%`, bottom: `${100 - nodo.y + 5}%` }
-                  : { left: `${nodo.x}%`, top: `${nodo.y + 5}%` }
+                {
+                  "--x": `${nodo.x}%`,
+                  "--t": nodo.arriba ? "auto" : `${nodo.y + 5}%`,
+                  "--b": nodo.arriba ? `${100 - nodo.y + 5}%` : "auto",
+                  "--opacidad": activo ? 1 : 0.5,
+                } as CSSProperties
               }
             >
+              <span
+                aria-hidden="true"
+                className="absolute top-2 left-0 grid size-3.5 place-items-center rounded-full border border-cypress bg-cypress lg:hidden"
+              >
+                <span className="size-1.5 rounded-full bg-bone" />
+              </span>
               <p className="eyebrow text-olive">{paso.n}</p>
               <h3 className="display-sm mt-2.5">{paso.t}</h3>
-              <p className="prose-body mt-2.5 text-[1.01rem] leading-[1.65]">{paso.d}</p>
-            </div>
+              <p className="prose-body mt-2.5 text-[1.05rem] lg:text-[1.01rem] lg:leading-[1.65]">
+                {paso.d}
+              </p>
+            </li>
           );
         })}
-      </div>
-
-      {/* ── Móvil y tableta: columna con conector ── */}
-      <ol className="relative space-y-10 lg:hidden">
-        <span
-          aria-hidden="true"
-          className="absolute top-2 bottom-8 left-[0.4375rem] w-px bg-gradient-to-b from-cypress/50 via-cedar/40 to-transparent"
-        />
-        {RECORRIDO.pasos.map((paso, i) => (
-          <Reveal as="li" key={paso.n} delay={i * 90} className="relative pl-10">
-            <span
-              aria-hidden="true"
-              className="absolute top-2 left-0 grid size-3.5 place-items-center rounded-full border border-cypress bg-cypress"
-            >
-              <span className="size-1.5 rounded-full bg-bone" />
-            </span>
-            <p className="eyebrow text-olive">{paso.n}</p>
-            <h3 className="display-sm mt-2.5">{paso.t}</h3>
-            <p className="prose-body mt-2.5 text-[1.05rem]">{paso.d}</p>
-          </Reveal>
-        ))}
-      </ol>
+      </Reveal>
     </div>
   );
 }

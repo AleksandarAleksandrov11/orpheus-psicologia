@@ -55,7 +55,7 @@ function servicioEmpresasSchema() {
 export const Route = createFileRoute("/empresas")({
   head: () =>
     seo({
-      title: "Bienestar emocional para empresas y equipos",
+      title: "Bienestar emocional para empresas",
       description:
         "Psicoterapia como beneficio social: sesiones de concienciación y terapia individual subvencionada. Calcula el coste para tu equipo con el simulador.",
       path: "/empresas",

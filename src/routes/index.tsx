@@ -32,9 +32,9 @@ import retrato from "@/assets/melissa-retrato.webp";
 export const Route = createFileRoute("/")({
   head: () =>
     seo({
-      title: "Psicóloga online especializada en autoestima y autoexigencia | Orpheus Psicología",
+      title: "Psicóloga online para la autoestima",
       description:
-        "No necesitas exigirte más para sentirte suficiente. Terapia integradora online en toda España para la autoestima, la autoexigencia, la inseguridad y la ansiedad.",
+        "No necesitas exigirte más para sentirte suficiente. Terapia online en toda España para la autoestima, la autoexigencia y la inseguridad.",
       path: "/",
       image: "/og/og-default.jpg",
       imageAlt: "Orpheus Psicología: no necesitas exigirte más para sentirte suficiente",
@@ -280,7 +280,7 @@ function Inicio() {
                   hash={e.slug}
                   className="link-draw relative mt-8 self-start text-[0.96rem] text-aloe"
                 >
-                  Trabajar esto en terapia
+                  {e.enlace ?? `Trabajar ${e.titulo.toLowerCase()} en terapia`}
                 </Link>
               </Reveal>
             ))}

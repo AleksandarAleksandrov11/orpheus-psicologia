@@ -5,7 +5,7 @@
  */
 export function renderErrorPage(): string {
   return `<!doctype html>
-<html lang="es">
+<html lang="es-ES">
   <head>
     <meta charset="utf-8" />
     <title>Esta página no ha cargado · Orpheus Psicología</title>

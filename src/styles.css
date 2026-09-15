@@ -659,6 +659,41 @@
   will-change: transform;
 }
 
+/* Recorrido en ola: las cuatro fases se escriben una sola vez en el HTML.
+   En móvil son una lista en columna corriente; a partir de `lg` cada <li>
+   se coloca sobre la cresta o el valle que le toca con las variables que
+   le pasa el componente:
+     --x  posición horizontal del nodo, en % de la caja
+     --t  distancia desde arriba (o `auto` si la fase va sobre la cresta)
+     --b  distancia desde abajo  (o `auto` si la fase va bajo el valle)
+     --opacidad  1 cuando el trazo ya ha llegado a ese nodo, 0.5 antes
+   Se centra con `left: calc(--x - media caja)` y no con `translateX`,
+   porque la animación de entrada deja `transform: none` al terminar y se
+   llevaría por delante cualquier desplazamiento. */
+@media (width >= 64rem) {
+  .ola-pasos {
+    height: 100%;
+  }
+  .ola-pasos > li {
+    position: absolute;
+    left: calc(var(--x) - 7.75rem);
+    top: var(--t);
+    bottom: var(--b);
+    width: 15.5rem;
+    padding-left: 0;
+    text-align: center;
+    opacity: var(--opacidad, 1);
+    transition: opacity 0.8s var(--ease-orpheus);
+  }
+}
+
+@media (width >= 80rem) {
+  .ola-pasos > li {
+    left: calc(var(--x) - 8.5rem);
+    width: 17rem;
+  }
+}
+
 /* La cinta de reseñas se para mientras se lee: al pasar el ratón o al entrar
    el foco en algo de dentro. Va como regla propia y no como variante suelta
    para que quede junto a la cinta que gobierna. */

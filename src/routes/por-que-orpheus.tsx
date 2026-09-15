@@ -16,7 +16,7 @@ import texRaicesSm from "@/assets/tex-raices@sm.webp";
 export const Route = createFileRoute("/por-que-orpheus")({
   head: () =>
     seo({
-      title: "Por qué Orpheus",
+      title: "Por qué Orpheus: el mito de Orfeo",
       description:
         "De dónde viene el nombre: el mito de Orfeo, el descenso y el regreso. La idea que sostiene esta forma de entender la psicoterapia.",
       path: "/por-que-orpheus",

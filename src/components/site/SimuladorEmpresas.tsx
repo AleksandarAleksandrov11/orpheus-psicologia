@@ -386,7 +386,7 @@ export function SimuladorEmpresas() {
 
           <Paso
             n="3"
-            titulo="Sesiones de concienciación"
+            titulo="Concienciación en salud mental"
             sub={`Cuatro horas en grupo sobre salud mental. ${euros(PRECIO_CONCIENCIACION, 0)} por sesión, hasta ${MAX_PERSONAS_POR_SESION} personas.`}
           >
             <div className="grid gap-6 sm:grid-cols-2">

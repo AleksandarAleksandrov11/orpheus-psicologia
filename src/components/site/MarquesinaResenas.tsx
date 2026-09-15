@@ -11,12 +11,19 @@
  * se calcula a partir del número de tarjetas para que el paso sea el
  * mismo haya nueve reseñas o treinta.
  *
+ * La segunda copia solo se monta en el navegador. El HTML que se sirve
+ * lleva las reseñas una única vez: cuando iban las dos desde el servidor,
+ * los rastreadores encontraban cada reseña repetida dentro de la misma
+ * página y la contaban como texto duplicado. La cinta arranca justo
+ * cuando la copia ya está puesta, así que el bucle nunca se ve a medias.
+ *
  * Detalles de comportamiento: se detiene al pasar el ratón o al dar el
  * foco a un enlace de dentro, la copia duplicada queda fuera del árbol
  * de accesibilidad y, con `prefers-reduced-motion`, la cinta se para y
  * la fila pasa a moverse a mano.
  */
 
+import { useEffect, useState } from "react";
 import { BadgeCheck } from "lucide-react";
 
 import { RESENAS_PUBLICADAS, TOTAL_RESENAS, mesDeResena, type Resena } from "@/content/resenas";
@@ -29,10 +36,15 @@ const SEGUNDOS_POR_TARJETA = 8;
 
 export function MarquesinaResenas() {
   const resenas = RESENAS_PUBLICADAS;
-  if (!resenas.length) return null;
+  // Falso en el primer pintado (servidor y cliente coinciden) y verdadero
+  // en cuanto hidrata: es lo que mantiene una sola copia en el HTML.
+  const [duplicada, setDuplicada] = useState(false);
+  useEffect(() => setDuplicada(true), []);
 
   const hayGoogle = !esPendiente(SITE.social.googleReviews);
   const duracion = resenas.length * SEGUNDOS_POR_TARJETA;
+
+  if (!resenas.length) return null;
 
   return (
     <section
@@ -67,13 +79,19 @@ export function MarquesinaResenas() {
           delay={120}
           className="marquee-pausable mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_5%,#000_95%,transparent)] motion-reduce:overflow-x-auto motion-reduce:[mask-image:none]"
         >
-          <div className="marquee-track py-1" style={{ animationDuration: `${duracion}s` }}>
+          <div
+            className="marquee-track py-1"
+            style={{
+              animationDuration: `${duracion}s`,
+              animationPlayState: duplicada ? "running" : "paused",
+            }}
+          >
             {resenas.map((r, i) => (
               <TarjetaResena key={`a-${r.nombre}-${i}`} resena={r} />
             ))}
-            {resenas.map((r, i) => (
-              <TarjetaResena key={`b-${r.nombre}-${i}`} resena={r} copia />
-            ))}
+            {duplicada
+              ? resenas.map((r, i) => <TarjetaResena key={`b-${r.nombre}-${i}`} resena={r} copia />)
+              : null}
           </div>
         </Reveal>
 

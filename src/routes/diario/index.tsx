@@ -43,7 +43,7 @@ function blogSchema() {
 export const Route = createFileRoute("/diario/")({
   head: () =>
     seo({
-      title: "Diario",
+      title: "Diario: artículos de psicología",
       description: DESCRIPCION,
       path: "/diario",
       image: "/og/og-diario.jpg",

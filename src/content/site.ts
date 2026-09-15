@@ -21,7 +21,8 @@ export const SITE = {
   name: "Orpheus Psicología",
   shortName: "Orpheus",
   locale: "es_ES",
-  lang: "es",
+  /** Etiqueta BCP 47. Debe coincidir con el <html lang> y con content-language. */
+  lang: "es-ES",
   country: "ES",
 
   /** Profesional */

@@ -123,7 +123,7 @@ export const ARTICULOS: Articulo[] = [
   },
   {
     slug: "sentir-comprender-elegir",
-    titulo: "Sentir, comprender, elegir: otra forma de entender las emociones",
+    titulo: "Sentir, comprender, elegir: otra forma de ver las emociones",
     tituloCorto: "Sentir, comprender, elegir",
     descripcion:
       "Las emociones no son un problema que resolver, sino información. Los tres pasos que devuelven la capacidad de elegir cómo responder a lo que sientes.",
