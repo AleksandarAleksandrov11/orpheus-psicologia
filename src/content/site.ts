@@ -13,10 +13,18 @@
 export const PENDIENTE = (etiqueta: string) => `[falta ${etiqueta}]`;
 
 export const SITE = {
-  /** Dominio canónico, sin barra final. Configurable en Vercel con VITE_SITE_URL. */
+  /**
+   * Dominio canónico, sin barra final. Configurable en Vercel con VITE_SITE_URL.
+   *
+   * Va con «www» porque es la forma que sirve el contenido: el dominio desnudo
+   * responde 308 y redirige aquí. Una canónica que apunta a una URL que
+   * redirige es una canónica que Google descarta, y acababa eligiendo él la
+   * dirección buena. Lo mismo valía para og:url, el hreflang, robots.txt y el
+   * mapa del sitio, que salen todos de aquí.
+   */
   url:
     (import.meta.env?.VITE_SITE_URL as string | undefined)?.replace(/\/$/, "") ??
-    "https://orpheuspsicologia.com",
+    "https://www.orpheuspsicologia.com",
 
   name: "Orpheus Psicología",
   shortName: "Orpheus",

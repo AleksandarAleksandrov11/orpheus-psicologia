@@ -3,6 +3,8 @@
  * Es HTML autocontenido (sin CSS ni JS externos) porque el fallo puede
  * haber ocurrido antes de que se cargue nada del sitio.
  */
+import { SITE } from "@/content/site";
+
 export function renderErrorPage(): string {
   return `<!doctype html>
 <html lang="es-ES">
@@ -72,7 +74,7 @@ export function renderErrorPage(): string {
       </div>
       <p class="contacto">
         Si el problema continúa, escríbeme a
-        <a href="mailto:hola@orpheuspsicologia.com">hola@orpheuspsicologia.com</a>.
+        <a href="mailto:${SITE.contacto.email}">${SITE.contacto.email}</a>.
       </p>
     </div>
   </body>
