@@ -5,7 +5,7 @@ import { Layout } from "@/components/site/Layout";
 import { LineasReveladas, Parallax, Reveal } from "@/components/site/motion";
 import { BotonEnlace, BotonExterno, Cita, Lira, Migas } from "@/components/site/ui";
 import { CTA_INTERMEDIO, RECONOCES } from "@/content/copy";
-import { RESENAS_PUBLICADAS, TOTAL_RESENAS, mesDeResena, type Resena } from "@/content/resenas";
+import { RESENAS_PUBLICADAS, TOTAL_EN_GOOGLE, mesDeResena, type Resena } from "@/content/resenas";
 import { SITE, esPendiente } from "@/content/site";
 import { migasSchema, seo } from "@/lib/seo";
 
@@ -86,7 +86,7 @@ function Resenas() {
                     strokeWidth={1.6}
                     aria-hidden="true"
                   />
-                  {TOTAL_RESENAS} reseñas verificadas en Google
+                  {TOTAL_EN_GOOGLE} valoraciones verificadas en Google
                 </p>
               </Reveal>
             ) : (

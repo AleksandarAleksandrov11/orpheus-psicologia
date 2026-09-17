@@ -26,7 +26,7 @@
 import { useEffect, useState } from "react";
 import { BadgeCheck } from "lucide-react";
 
-import { RESENAS_PUBLICADAS, TOTAL_RESENAS, mesDeResena, type Resena } from "@/content/resenas";
+import { RESENAS_PUBLICADAS, mesDeResena, type Resena } from "@/content/resenas";
 import { SITE, esPendiente } from "@/content/site";
 import { Antetitulo, BotonEnlace, BotonExterno } from "./ui";
 import { Reveal } from "./motion";
@@ -97,7 +97,7 @@ export function MarquesinaResenas() {
 
         <Reveal delay={200} className="shell mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
           <BotonEnlace to="/testimonios" variante="outline">
-            Leer las {TOTAL_RESENAS} reseñas
+            Leer todas las reseñas
           </BotonEnlace>
           {/* Cypress y no ink-faint: sobre la banda sage el gris claro se
               quedaba en 4,35:1. */}

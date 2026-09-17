@@ -150,6 +150,17 @@ export const RESENAS_GOOGLE: Resena[] = [
     destacada: true,
   },
   {
+    // Valoración de cinco estrellas sin reseña escrita: cuenta en el total
+    // de la ficha de Google pero no puede pintarse como tarjeta, porque no
+    // hay nada que citar. De ahí `publicar: false`.
+    texto: "",
+    nombre: "Estibaliz Sanjuán Viciana",
+    fecha: "2025-11-01",
+    estrellas: 5,
+    verificada: true,
+    publicar: false,
+  },
+  {
     texto:
       "Nuestra experiencia con el equipo de Orpheus ha sido muy enriquecedora para nuestra empresa. Creemos que toda pequeña (y gran) empresa debería realizar este tipo de consultoría para poder mejorar y crecer. Nos han ayudado a visibilizar aquello que había que mejorar y nos han dado pautas y estrategias para abarcar nuestro sector con eficacia y profesionalidad. Todo ello de una manera dinámica, fluida y adaptada a nuestras posibilidades.",
     nombre: "Sara Saiz Llata",
@@ -185,8 +196,19 @@ export const RESENAS_EMPRESA: Resena[] = RESENAS_PUBLICADAS.filter((r) => r.empr
 
 export const HAY_RESENAS_VERIFICADAS = RESENAS_PUBLICADAS.some((r) => r.verificada);
 
-/** Número de reseñas publicadas. Es un recuento real, no una media inventada. */
+/**
+ * Tarjetas que se pintan en la web: las que tienen texto que reproducir.
+ * Es un recuento real, no una media inventada.
+ */
 export const TOTAL_RESENAS = RESENAS_PUBLICADAS.length;
+
+/**
+ * Valoraciones de la ficha de Google, incluidas las que puntúan sin escribir
+ * nada. Es el número que se ve en Google, y por eso es el que acompaña a
+ * «verificadas en Google»: decir uno menor haría que los dos no cuadraran
+ * para quien abra la ficha.
+ */
+export const TOTAL_EN_GOOGLE = [...RESENAS_GOOGLE, ...RESENAS].filter((r) => r.verificada).length;
 
 const MESES = [
   "enero",
