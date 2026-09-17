@@ -260,7 +260,7 @@ function Contacto() {
             />
 
             <p className="lede anim-fade-up mt-8 max-w-2xl" style={{ animationDelay: "0.55s" }}>
-              Cuéntame qué te trae y decidimos juntos el siguiente paso. Respondo yo misma.
+              Cuéntame qué te trae y te acompaño en lo que necesites. Respondo yo misma.
             </p>
           </div>
         </div>

@@ -16,7 +16,7 @@ export const HERO = {
   /** Primera línea del titular que va en cursiva. */
   cursiva: 2,
   entradilla:
-    "Psicóloga online para la autoestima y la autoexigencia. Comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
+    "Psicóloga online especializada en autoestima y autoexigencia. Te acompaño a comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
   ctaPrincipal: { label: "Reservar una primera sesión", to: "/contacto" },
   ctaSecundario: { label: "Ver servicios", to: "/servicios" },
   sellos: ["Terapia integradora", "Online en toda España", "Espacio sin juicio"],
@@ -507,6 +507,33 @@ export const FRECUENCIA = {
     { t: "Quincenal", d: "Fase de trabajo. Hay margen para practicar entre sesiones." },
     { t: "Mensual", d: "Solo en la fase final, cuando ya afianzas los cambios por tu cuenta." },
     { t: "Alta", d: "Te llevas contigo lo aprendido. La puerta queda abierta." },
+  ],
+} as const;
+
+/* ══════════════════════════════════════════════════════════════════
+   LA PRIMERA SESIÓN
+   Lo que más frena a quien duda: no saber qué va a pasar al entrar.
+   ══════════════════════════════════════════════════════════════════ */
+
+export const PRIMERA_SESION = {
+  eyebrow: "Antes de reservar",
+  titulo: "¿Cómo es la primera sesión?",
+  pasos: [
+    {
+      n: "01",
+      t: "Nos conocemos",
+      d: "Me cuentas qué está ocurriendo y qué te gustaría trabajar.",
+    },
+    {
+      n: "02",
+      t: "Entendemos qué necesitas",
+      d: "Exploramos qué está manteniendo el malestar y qué necesitas en este momento.",
+    },
+    {
+      n: "03",
+      t: "Decidimos cómo trabajar",
+      d: "Si sentimos que tiene sentido, comenzamos a construir tu proceso terapéutico.",
+    },
   ],
 } as const;
 

@@ -125,6 +125,14 @@ export const RESENAS_GOOGLE: Resena[] = [
     publicar: true,
   },
   {
+    texto:
+      "Ha sido un placer contactar con Melissa, un trato amigable desde el principio, pero también profesional y serio. He aprendido muchísimo a través de ejercicios y reflexiones. No puedo hacer más que recomendarla y mandarle un saludo.",
+    nombre: "Patry C",
+    fecha: "2026-09-08",
+    verificada: true,
+    publicar: true,
+  },
+  {
     texto: "Simplemente perfecto.",
     nombre: "Carolina García Alonso",
     fecha: "2026-09-04",

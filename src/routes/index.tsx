@@ -22,6 +22,7 @@ import {
   MITO,
   RECONOCES,
   RECORRIDO,
+  PRIMERA_SESION,
   VALORES,
 } from "@/content/copy";
 import { SITE } from "@/content/site";
@@ -275,11 +276,11 @@ function Inicio() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="display-sm relative mt-8 text-on-dark">{e.titulo}</h3>
-                <p className="cita-menor relative mt-4 text-[1.3rem] leading-snug text-aloe">
+                {/* Solo el gancho. El desarrollo entero vive en /servicios y
+                    antes se repetía palabra por palabra en las dos páginas, así
+                    que pinchar el enlace no llevaba a ninguna parte nueva. */}
+                <p className="cita-menor relative mt-4 flex-1 text-[1.3rem] leading-snug text-aloe">
                   {e.breve}
-                </p>
-                <p className="relative mt-6 flex-1 text-[1.07rem] leading-[1.75] font-light text-on-dark-muted">
-                  {e.detalle}
                 </p>
                 <Link
                   to="/servicios"
@@ -402,9 +403,51 @@ function Inicio() {
       {/* ═══════════════════ RESEÑAS ═══════════════════ */}
       <MarquesinaResenas />
 
+      {/* ═══════════════════ LA PRIMERA SESIÓN ═══════════════════ */}
+      <PrimeraSesion />
+
       {/* ═══════════════════ CTA FINAL ═══════════════════ */}
       <CtaFinal />
     </Layout>
+  );
+}
+
+/**
+ * Qué pasa exactamente al reservar. Va pegado al cierre porque es la última
+ * duda que queda por resolver antes de pulsar el botón: no saber qué va a
+ * ocurrir al entrar es lo que más frena a quien está pensándoselo.
+ */
+function PrimeraSesion() {
+  return (
+    <section className="section-y border-t border-rule bg-linen" aria-labelledby="primera-titulo">
+      <div className="shell">
+        <div className="max-w-3xl">
+          <Reveal>
+            <Antetitulo>{PRIMERA_SESION.eyebrow}</Antetitulo>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 id="primera-titulo" className="display-md mt-6">
+              ¿Cómo es la <em className="italic">primera sesión</em>?
+            </h2>
+          </Reveal>
+        </div>
+
+        <ol className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-rule bg-rule md:mt-16 lg:grid-cols-3">
+          {PRIMERA_SESION.pasos.map((paso, i) => (
+            <Reveal
+              as="li"
+              key={paso.n}
+              delay={i * 110}
+              className="flex flex-col bg-bone p-8 md:p-10"
+            >
+              <span className="eyebrow text-olive tabular-nums">{paso.n}</span>
+              <h3 className="display-sm mt-6">{paso.t}</h3>
+              <p className="prose-body mt-3.5 text-[1.03rem]">{paso.d}</p>
+            </Reveal>
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 }
 
