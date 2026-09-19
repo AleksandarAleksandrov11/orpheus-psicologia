@@ -81,7 +81,7 @@ function Preguntas() {
 
             <Reveal delay={260} variant="blur">
               <div className="rounded-2xl border border-rule bg-linen/80 p-7 backdrop-blur-sm md:p-9">
-                <p className="eyebrow text-ink-faint">Tu duda no está aquí</p>
+                <p className="eyebrow text-ink-faint">Si tu duda no está aquí</p>
                 <p className="mt-5 text-[1.07rem] leading-relaxed font-light text-ink-muted">
                   Escríbeme y te respondo yo misma. {SITE.contacto.respuesta}
                 </p>

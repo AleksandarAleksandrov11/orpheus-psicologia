@@ -128,7 +128,7 @@ export const NAV = [
   {
     to: "/servicios",
     label: "Servicios",
-    descripcion: "Terapia individual y acompañamiento a equipos",
+    descripcion: "Terapia individual, online y presencial",
     hijos: [
       {
         to: "/servicios",
@@ -140,12 +140,14 @@ export const NAV = [
         label: "Para empresas",
         descripcion: "Bienestar emocional en entornos de trabajo",
       },
-      {
-        to: "/preguntas-frecuentes",
-        label: "Preguntas frecuentes",
-        descripcion: "Las dudas de siempre, respondidas",
-      },
     ],
+  },
+  // Las preguntas frecuentes van sueltas y no colgando de Servicios: se
+  // consultan antes de decidir nada, no después de elegir un servicio.
+  {
+    to: "/preguntas-frecuentes",
+    label: "Preguntas frecuentes",
+    descripcion: "Las dudas de siempre, respondidas",
   },
   { to: "/diario", label: "Diario", descripcion: "Artículos para comprenderte mejor" },
   { to: "/testimonios", label: "Reseñas", descripcion: "Quienes han caminado este proceso" },

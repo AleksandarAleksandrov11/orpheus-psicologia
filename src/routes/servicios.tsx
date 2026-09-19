@@ -391,7 +391,7 @@ function Servicios() {
                   as="article"
                   key={s.slug}
                   delay={i * 90}
-                  className={`relative flex flex-col py-9 md:px-9 md:py-12 ${
+                  className={`relative flex flex-col py-9 text-center md:px-9 md:py-12 md:text-left ${
                     destacada ? "rounded-2xl bg-linen px-6 md:px-10 md:py-14" : ""
                   } ${i > 0 && !destacada ? "border-t border-rule md:border-t-0" : ""}`}
                 >
@@ -406,7 +406,7 @@ function Servicios() {
                   <h3 className="display-sm mt-5">{s.titulo}</h3>
 
                   {MOSTRAR_PRECIOS && s.precio ? (
-                    <p className="mt-5 flex items-baseline gap-3">
+                    <p className="mt-5 flex items-baseline justify-center gap-3 md:justify-start">
                       <span className="font-display text-[2.6rem] leading-none text-cypress md:text-[3.1rem]">
                         {s.precio}
                       </span>
@@ -414,7 +414,7 @@ function Servicios() {
                     </p>
                   ) : null}
 
-                  <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[0.96rem] font-light text-ink-faint">
+                  <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[0.96rem] font-light text-ink-faint md:justify-start">
                     <span className="flex items-center gap-2">
                       <Clock className="size-3.5" strokeWidth={1.6} aria-hidden="true" />
                       {s.duracion}
@@ -427,7 +427,7 @@ function Servicios() {
                   <p className="prose-body mt-5 text-[1.07rem]">{s.resumen}</p>
 
                   <p className="eyebrow mt-8 text-ink-faint">Incluye</p>
-                  <ul className="mt-4 flex-1 space-y-3">
+                  <ul className="mx-auto mt-4 w-fit flex-1 space-y-3 text-left md:mx-0 md:w-auto">
                     {s.incluye.map((item) => (
                       <li key={item} className="flex gap-3 text-[1.03rem] font-light text-ink">
                         <Check
