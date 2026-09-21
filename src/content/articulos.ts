@@ -33,6 +33,52 @@ export type Articulo = {
 
 export const ARTICULOS: Articulo[] = [
   {
+    slug: "el-descanso-no-se-gana",
+    titulo: "El descanso no se gana, se necesita",
+    tituloCorto: "El descanso no se gana",
+    descripcion:
+      "Por qué el descanso se vive como un premio que hay que merecer, de dónde viene la culpa de parar y qué cambia cuando dejas de tratarlo como una recompensa.",
+    entradilla:
+      "«Es que no he hecho nada especial hoy, no sé por qué estoy tan cansada.» Es una de las frases que más se repite en consulta.",
+    categoria: "Autoexigencia",
+    fecha: "2026-09-21",
+    imagen: "bosque",
+    alt: "Bosque de coníferas visto desde el aire, con un camino que lo cruza en curva",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "Detrás de ella casi siempre hay la misma idea equivocada: que el descanso es un premio que hay que merecer, y no una necesidad que hay que atender.",
+      },
+      { tipo: "cita", texto: "El cansancio mental no se ve, pero cansa igual." },
+      { tipo: "h2", texto: "Por qué cuesta tanto parar" },
+      {
+        tipo: "p",
+        texto:
+          "Cuando el día se ha ido en controlar, revisar y anticipar, el cuerpo llega igual de agotado que si hubiera corrido una maratón. Pero como no hay nada «que mostrar», la mente lo descarta.",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "Descansar porque toca cierra el día.",
+          "Descansar porque lo he ganado lo deja siempre pendiente.",
+          "El primero regula. El segundo, exige.",
+        ],
+      },
+      { tipo: "h2", texto: "Perder el tiempo, o recuperarlo" },
+      {
+        tipo: "p",
+        texto:
+          "Nadie pregunta si «se ha ganado» respirar. El descanso funciona igual: no depende de lo que hayas producido, depende de lo que necesitas para seguir funcionando bien. Parar sin motivo no es flojera, es mantenimiento.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Que hoy no tengas nada especial que contar no significa que no haya pasado nada. Significa que, quizás por primera vez en mucho tiempo, no hiciste nada por demostrar algo. Y eso también es un logro.",
+      },
+    ],
+  },
+  {
     slug: "cuando-la-autoexigencia-se-disfraza-de-responsabilidad",
     titulo: "Cuando la autoexigencia se disfraza de responsabilidad",
     tituloCorto: "La autoexigencia disfrazada",
