@@ -72,9 +72,14 @@ function Inicio() {
         {/* En móvil manda el retrato: primero la foto y el titular justo
             debajo. En escritorio vuelve el orden de siempre. */}
         <div className="relative z-10 shell grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
-          <div className="order-2 flex flex-col lg:order-1 lg:block">
-            <p className="eyebrow anim-fade order-2 mt-6 flex items-center gap-3 text-olive lg:order-none lg:mt-0">
-              <span aria-hidden="true" className="inline-block h-px w-8 bg-olive/50" />
+          {/* En móvil la columna va centrada bajo el retrato, que también
+              está centrado; alineada a la izquierda quedaba descolgada de
+              la foto. A partir de lg vuelve el hero a dos columnas. */}
+          <div className="order-2 flex flex-col text-center lg:order-1 lg:block lg:text-left">
+            <p className="eyebrow anim-fade order-2 mt-6 flex items-center justify-center gap-3 text-olive lg:order-none lg:mt-0 lg:justify-start">
+              {/* El filete solo acompaña cuando el antetítulo va alineado a la
+                  izquierda: centrado se queda descolgado en un extremo. */}
+              <span aria-hidden="true" className="hidden h-px w-8 bg-olive/50 lg:inline-block" />
               {HERO.eyebrow}
             </p>
 
@@ -86,14 +91,14 @@ function Inicio() {
             />
 
             <p
-              className="lede anim-fade-up d-5 order-3 mt-8 max-w-xl lg:order-none"
+              className="lede anim-fade-up d-5 order-3 mx-auto mt-8 max-w-xl lg:order-none lg:mx-0"
               style={{ animationDelay: "0.55s" }}
             >
               {HERO.entradilla}
             </p>
 
             <div
-              className="anim-fade-up order-4 mt-10 flex flex-wrap gap-3 lg:order-none"
+              className="anim-fade-up order-4 mt-10 flex flex-wrap justify-center gap-3 lg:order-none lg:justify-start"
               style={{ animationDelay: "0.68s" }}
             >
               <BotonEnlace to={HERO.ctaPrincipal.to}>{HERO.ctaPrincipal.label}</BotonEnlace>
@@ -103,7 +108,7 @@ function Inicio() {
             </div>
 
             <ul
-              className="anim-fade order-5 mt-12 flex flex-wrap items-center gap-x-5 gap-y-3 lg:order-none"
+              className="anim-fade order-5 mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 lg:order-none lg:justify-start"
               style={{ animationDelay: "0.85s" }}
             >
               {HERO.sellos.map((s) => (
