@@ -126,6 +126,16 @@ export const RESENAS_GOOGLE: Resena[] = [
   },
   {
     texto:
+      "Melissa, solo darte las gracias por lo bien que me has cuidado y tratado. Me has hecho sentir muy bien y, aunque haya sido por videollamada, todo ha sido genial. Gracias por este año y medio de terapia porque me has ayudado muchísimo. Un beso, y te recomendaría a todo el mundo que lo necesite. Una gran psicóloga. ¡Gracias!",
+    nombre: "Jorge Orgaz Villares",
+    contexto: "Proceso de año y medio, online",
+    fecha: "2026-09-22",
+    estrellas: 5,
+    verificada: true,
+    publicar: true,
+  },
+  {
+    texto:
       "Ha sido un placer contactar con Melissa, un trato amigable desde el principio, pero también profesional y serio. He aprendido muchísimo a través de ejercicios y reflexiones. No puedo hacer más que recomendarla y mandarle un saludo.",
     nombre: "Patry C",
     fecha: "2026-09-08",

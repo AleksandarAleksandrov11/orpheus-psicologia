@@ -26,12 +26,62 @@ export type Articulo = {
   categoria: string;
   fecha: string;
   actualizado?: string;
-  imagen: "niebla" | "bosque" | "sendero" | "montanas" | "raices";
+  imagen: "niebla" | "bosque" | "sendero" | "montanas" | "raices" | "lago";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "cuando-nada-te-parece-suficientemente-bien",
+    titulo: "Cuando nada te parece «suficientemente bien»",
+    tituloCorto: "Suficientemente bien",
+    descripcion:
+      "Revisar sin fin no es cuidar un trabajo: es buscar una certeza que ninguna revisión da. Cómo distinguir cuidar de controlar y aprender a soltar antes.",
+    entradilla:
+      "Revisar un mensaje cinco veces antes de enviarlo. Volver a mirar el informe aunque ya esté cerrado. Dudar de una decisión que ya está tomada.",
+    categoria: "Autoexigencia",
+    fecha: "2026-09-28",
+    imagen: "lago",
+    alt: "Lago en calma al amanecer con la niebla posada sobre el agua y la orilla arbolada al fondo",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "Repasar es sano. Repasar sin fin, no. Cuando la revisión no busca mejorar algo sino calmar una duda que nunca se calma del todo, deja de ser cuidado y pasa a ser control.",
+      },
+      {
+        tipo: "cita",
+        texto:
+          "Lo perfecto no existe. Lo que existe es el momento en que decides que ya es suficiente.",
+      },
+      { tipo: "h2", texto: "La diferencia entre cuidar y controlar" },
+      {
+        tipo: "lista",
+        items: [
+          "Cuidar un trabajo es revisarlo una vez con calma.",
+          "Controlarlo es revisarlo cinco veces con ansiedad.",
+          "Uno busca calidad. El otro busca seguridad, y nunca la encuentra ahí.",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "El error no está en querer hacerlo bien. Está en necesitar la certeza absoluta de que no hay ningún fallo, algo que ninguna revisión, por exhaustiva que sea, puede garantizar.",
+      },
+      { tipo: "h2", texto: "Soltar antes de terminar de convencerte" },
+      {
+        tipo: "p",
+        texto:
+          "La mente autoexigente pide una señal clara de «ya está bien» antes de soltar. Esa señal no llega nunca desde fuera, porque el problema no es el trabajo: es la tolerancia a la incertidumbre. Aprender a decir «esto ya es suficiente» sin sentir el cien por cien de la certeza es, en realidad, el verdadero ejercicio.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Nadie recuerda el detalle que revisaste ocho veces. Todos recuerdan si el trabajo estaba hecho a tiempo, y hecho con cuidado. Suficientemente bien casi siempre es, sencillamente, bien.",
+      },
+    ],
+  },
   {
     slug: "el-descanso-no-se-gana",
     titulo: "El descanso no se gana, se necesita",
