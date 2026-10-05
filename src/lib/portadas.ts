@@ -18,6 +18,8 @@ import texRaices from "@/assets/tex-raices.webp";
 import texRaicesSm from "@/assets/tex-raices@sm.webp";
 import texLago from "@/assets/tex-lago.webp";
 import texLagoSm from "@/assets/tex-lago@sm.webp";
+import texArbol from "@/assets/tex-arbol.webp";
+import texArbolSm from "@/assets/tex-arbol@sm.webp";
 
 export type Portada = { src: string; sm: string; w: number; h: number; wSm: number };
 
@@ -30,6 +32,9 @@ export const PORTADAS: Record<Articulo["imagen"], Portada> = {
   // «Harrisville Pond misty morning», de Matt Hecht, dominio público (CC0 1.0),
   // vía rawpixel. Virada al verde de marca para que conviva con las otras cinco.
   lago: { src: texLago, sm: texLagoSm, w: 1024, h: 683, wSm: 640 },
+  // Fotografía de dominio público (CC0 1.0) vía rawpixel. Virada al verde de
+  // marca igual que las demás: venía casi blanca, de escarcha.
+  arbol: { src: texArbol, sm: texArbolSm, w: 1024, h: 685, wSm: 640 },
 };
 
 export const srcSetPortada = (p: Portada) => `${p.sm} ${p.wSm}w, ${p.src} ${p.w}w`;

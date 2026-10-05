@@ -26,12 +26,58 @@ export type Articulo = {
   categoria: string;
   fecha: string;
   actualizado?: string;
-  imagen: "niebla" | "bosque" | "sendero" | "montanas" | "raices" | "lago";
+  imagen: "niebla" | "bosque" | "sendero" | "montanas" | "raices" | "lago" | "arbol";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "compararte-no-te-informa-te-resta",
+    titulo: "Compararte no te informa, te resta",
+    tituloCorto: "Compararte te resta",
+    descripcion:
+      "Por qué la comparación nunca llega con datos sino con una sentencia, cómo se descarta el elogio propio y qué significa volver a medirte con tu propia vara.",
+    entradilla:
+      "Mirar lo que hacen los demás para saber si vas bien es humano. El problema es cuando esa mirada se convierte en la única vara con la que te mides.",
+    categoria: "Autoestima",
+    fecha: "2026-10-05",
+    imagen: "arbol",
+    alt: "Árbol solo en un campo cubierto de escarcha, con la niebla difuminando la arboleda del fondo",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "En consulta aparece casi siempre igual: la comparación no llega con datos, llega con una sentencia. No importa cuánto se avance; siempre hay alguien un paso más allá, y ese paso basta para sentir que no es suficiente.",
+      },
+      { tipo: "cita", texto: "No estás corriendo la misma carrera que nadie más." },
+      { tipo: "h2", texto: "Elogio recibido, elogio descartado" },
+      {
+        tipo: "lista",
+        items: [
+          "«Qué bien te ha quedado» se convierte en «no fue para tanto».",
+          "Un logro propio se minimiza en segundos.",
+          "El logro ajeno, en cambio, se magnifica al instante.",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Esta asimetría no es casualidad ni modestia: es una forma entrenada de invalidarse. Cuando el propio criterio nunca es suficiente para reconocer algo bien hecho, el problema no está en lo que se hace, sino en quién decide si vale.",
+      },
+      { tipo: "h2", texto: "Volver a tu propia vara" },
+      {
+        tipo: "p",
+        texto:
+          "Compararse da información falsa, porque compara el resultado final de otro con el proceso interno propio (dudas, esfuerzo y todo incluido). La autoestima sólida no se construye ganándole a nadie: se construye mirando el propio progreso, con su propia vara, sin traducción a la de al lado.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Cargar con una exigencia que nadie más ve no te hace más fuerte, te aísla más. Bajar el listón no es conformismo: es, muchas veces, el primer paso real hacia sentirte suficiente.",
+      },
+    ],
+  },
   {
     slug: "cuando-nada-te-parece-suficientemente-bien",
     titulo: "Cuando nada te parece «suficientemente bien»",

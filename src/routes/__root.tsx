@@ -183,7 +183,12 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+/**
+ * TanStack tipa `error` como `unknown`: puede llegar cualquier cosa lanzada,
+ * no solo un Error. Se acepta tal cual y solo se registra en consola, que es
+ * lo único que se hace con él.
+ */
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   return (

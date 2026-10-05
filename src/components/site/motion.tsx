@@ -22,14 +22,7 @@ import {
 import { useReducedMotion } from "@/lib/motion";
 
 export type RevealVariant =
-  | "up"
-  | "down"
-  | "left"
-  | "right"
-  | "scale"
-  | "blur"
-  | "curtain"
-  | "mask";
+  "up" | "down" | "left" | "right" | "scale" | "blur" | "curtain" | "mask";
 
 /* ── <Reveal> ───────────────────────────────────────────────────── */
 

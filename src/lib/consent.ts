@@ -30,8 +30,7 @@ export type Consentimiento = {
 };
 
 export type EstadoConsentimiento =
-  | { estado: "pendiente" }
-  | { estado: "decidido"; valor: Consentimiento };
+  { estado: "pendiente" } | { estado: "decidido"; valor: Consentimiento };
 
 const hayVentana = () => typeof window !== "undefined";
 
