@@ -567,7 +567,10 @@ export function SimuladorEmpresas() {
               flecha={false}
             >
               <Download className="size-4" strokeWidth={1.6} aria-hidden="true" />
-              {EMPRESAS.dosier.etiqueta}
+              {/* El encabezado de la página ya ofrece el dosier con el mismo
+                  rótulo. Aquí, al pie del simulador, se nombra lo que contiene
+                  para que los dos enlaces no suenen idénticos. */}
+              Dosier con la propuesta completa
             </BotonExterno>
           </div>
         </div>

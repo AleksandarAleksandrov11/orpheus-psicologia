@@ -300,7 +300,10 @@ function Servicios() {
                     to="/contacto"
                     className="link-draw mt-6 self-start text-[0.99rem] text-aloe"
                   >
-                    Trabajar esto en terapia
+                    {/* Cada área nombra la suya: tres enlaces idénticos al mismo
+                        destino no se distinguen leídos en voz alta ni en el
+                        informe de enlaces internos. */}
+                    {e.enlace ?? `Trabajar ${e.titulo.toLowerCase()} en terapia`}
                   </Link>
                 </div>
               </Reveal>
@@ -442,7 +445,12 @@ function Servicios() {
 
                   <div className="mt-9 border-t border-rule pt-6">
                     <Link to="/contacto" className="link-draw text-[0.99rem] text-cypress">
-                      {s.slug === "primera-sesion" ? "Reservar esta sesión" : "Reservar"}
+                      {/* «Reservar» a secas, repetido en dos de las tres tarjetas,
+                          no decía qué se reserva: leído por un lector de
+                          pantalla, fuera de contexto, no significaba nada. Cada
+                          una nombra ahora lo suyo, con artículo, para no chocar
+                          tampoco con el botón de reserva de la cabecera. */}
+                      {s.enlace}
                     </Link>
                   </div>
                 </Reveal>
@@ -454,7 +462,10 @@ function Servicios() {
             delay={140}
             className="mt-12 grid gap-8 md:grid-cols-[auto_1fr] md:items-start md:gap-12"
           >
-            <BotonEnlace to="/contacto">Reservar una primera sesión</BotonEnlace>
+            {/* El mismo rótulo que el botón del encabezado de la página hacía
+                que dos enlaces distintos sonaran igual. Aquí, junto a las
+                condiciones de pago y cancelación, el paso natural es escribir. */}
+            <BotonEnlace to="/contacto">Escríbeme para reservar</BotonEnlace>
             <ul className="space-y-2.5">
               {TARIFAS_NOTAS.map((n) => (
                 <li

@@ -427,6 +427,7 @@ export const MOSTRAR_PRECIOS = true;
 export const SESIONES = [
   {
     slug: "primera-sesion",
+    enlace: "Reservar la primera sesión",
     titulo: "Primera sesión",
     etiqueta: "Punto de partida",
     duracion: "60 minutos",
@@ -444,6 +445,7 @@ export const SESIONES = [
   },
   {
     slug: "sesion-individual",
+    enlace: "Reservar una sesión individual",
     titulo: "Sesión individual",
     etiqueta: "Acompañamiento",
     duracion: "50 a 60 minutos",
@@ -462,6 +464,7 @@ export const SESIONES = [
   },
   {
     slug: "bono-4-sesiones",
+    enlace: "Reservar el bono de 4 sesiones",
     titulo: "Bono de 4 sesiones",
     etiqueta: "Continuidad",
     duracion: "4 × 50 a 60 minutos",
@@ -660,6 +663,13 @@ export const FAQ = [
 export const CTA_FINAL = {
   eyebrow: "Empezar",
   titulo: "No tienes que tenerlo todo claro para empezar.",
+  /**
+   * El cierre no tenía más que el titular y un botón. Esta línea lo remata y,
+   * de paso, devuelve al cuerpo de la portada las palabras del H1: sin ellas
+   * el titular principal no se sostenía en ningún otro sitio de la página.
+   */
+  texto:
+    "No hace falta que lo tengas claro, ni que sepas explicarlo bien. Solo que dejes de exigirte resolverlo por tu cuenta.",
   boton: "Escríbeme por WhatsApp",
 } as const;
 

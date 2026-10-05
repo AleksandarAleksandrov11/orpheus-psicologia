@@ -482,6 +482,9 @@ export function CtaFinal() {
           <h2 id="cta-final-titulo" className="display-lg mx-auto mt-7 max-w-3xl text-on-dark">
             No tienes que tenerlo todo <em className="italic">claro</em> para empezar.
           </h2>
+          <p className="mx-auto mt-7 max-w-xl text-[1.1rem] leading-relaxed font-light text-on-dark-muted">
+            {CTA_FINAL.texto}
+          </p>
           {/* El botón sale de la web y abre un canal directo: va a WhatsApp,
               no a otra sección. */}
           <div className="mt-11 flex flex-wrap justify-center gap-3">
