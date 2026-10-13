@@ -26,12 +26,172 @@ export type Articulo = {
   categoria: string;
   fecha: string;
   actualizado?: string;
-  imagen: "niebla" | "bosque" | "sendero" | "montanas" | "raices" | "lago" | "arbol";
+  imagen: "niebla" | "bosque" | "sendero" | "montanas" | "raices" | "lago" | "arbol" | "mar";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "por-que-nunca-siento-que-es-suficiente",
+    titulo: "¿Por qué nunca siento que es suficiente?",
+    tituloCorto: "Nunca es suficiente",
+    descripcion:
+      "Haces muchas cosas y aun así terminas el día sintiendo que no fue bastante. Por qué la autoexigencia funciona como una meta móvil y cómo se trabaja en consulta.",
+    entradilla:
+      "Hay una sensación especialmente agotadora que aparece mucho en personas autoexigentes: hacer muchas cosas y, aun así, terminar el día con la impresión de no haber hecho suficiente.",
+    categoria: "Autoexigencia",
+    fecha: "2026-10-13",
+    imagen: "mar",
+    alt: "Mar en calma bajo un cielo claro, con una baliza lejana en el horizonte y una boya solitaria",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "No necesariamente porque hayan hecho poco. De hecho, muchas veces ocurre justo lo contrario. Han trabajado, han respondido mensajes, han cuidado de alguien, han hecho ejercicio, han resuelto varios asuntos pendientes… pero al final del día su cabeza no hace un recuento de todo lo que sí han hecho. Hace inventario de lo que falta.",
+      },
+      { tipo: "p", texto: "Y entonces aparece ese pensamiento tan conocido:" },
+      { tipo: "cita", texto: "«Debería haber hecho más»." },
+      {
+        tipo: "p",
+        texto:
+          "Y cuando el criterio de «suficiente» nunca está claro, la autoexigencia puede funcionar como una especie de meta móvil. Cuando alcanzas algo, deja de ser suficiente.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Si hoy has trabajado ocho horas, quizá mañana pienses que podrías haber aprovechado mejor la tarde. Si terminas un proyecto, enseguida aparece el siguiente. Si alguien reconoce tu trabajo, tú encuentras aquello que podrías haber mejorado.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "El problema no es tener objetivos. El problema aparece cuando tu bienestar depende de alcanzar constantemente el siguiente. Porque entonces nunca llegas del todo.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Desde fuera puede parecer ambición, responsabilidad o ganas de mejorar. Por dentro puede sentirse como una carrera en la que no existe una línea de meta.",
+      },
+      { tipo: "h2", texto: "¿Qué tiene que ver esto con la autoestima?" },
+      {
+        tipo: "p",
+        texto:
+          "Mucho. Cuando nuestra valoración personal está demasiado vinculada al rendimiento, empezamos a construir una especie de ecuación:",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "Si hago mucho → valgo.",
+          "Si lo hago bien → valgo.",
+          "Si fallo → algo falla en mí.",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y cuanto más depende nuestra autoestima de lo que conseguimos, más difícil resulta tolerar los momentos en los que no producimos, no destacamos o simplemente no estamos en nuestro mejor momento.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Por eso algunas personas pueden sentirse muy competentes en su trabajo y, al mismo tiempo, profundamente inseguras. No es una contradicción. Puedes saber que eres capaz y seguir sintiendo que tienes que demostrarlo constantemente.",
+      },
+      { tipo: "h2", texto: "El problema de minimizar lo que sí haces" },
+      {
+        tipo: "p",
+        texto: "Hay otra pieza importante: la dificultad para reconocer los propios logros.",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "«Bueno, tampoco era para tanto».",
+          "«Cualquiera podría haberlo hecho».",
+          "«He tenido suerte».",
+          "«Sí, pero podría haberlo hecho mejor».",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Cuando recibes un reconocimiento y automáticamente buscas la explicación que lo invalida, estás perdiendo una parte importante de la información sobre ti. No se trata de obligarte a pensar que todo lo haces maravillosamente. Se trata de poder hacer una valoración más completa.",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "También cuenta lo que haces bien.",
+          "También cuenta el esfuerzo.",
+          "También cuenta haberlo intentado aunque el resultado no haya sido perfecto.",
+        ],
+      },
+      { tipo: "h2", texto: "Algunas preguntas que pueden ayudarte" },
+      {
+        tipo: "p",
+        texto:
+          "Cuando aparezca esa sensación de no haber hecho suficiente, en lugar de responder inmediatamente haciendo más, prueba a detenerte y preguntarte:",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "¿Qué esperaba de mí hoy?",
+          "¿Ese estándar era realista?",
+          "¿Estoy valorando únicamente lo que falta?",
+          "¿Consideraría insuficiente el mismo esfuerzo si lo hubiera hecho otra persona?",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Esta última pregunta puede ser especialmente reveladora. Porque muchas veces no nos tratamos con el mismo criterio que utilizaríamos con alguien a quien queremos.",
+      },
+      { tipo: "h2", texto: "Cómo lo trabajamos en consulta" },
+      {
+        tipo: "p",
+        texto:
+          "En consulta, no se trata simplemente de decirte que bajes el ritmo o que seas menos exigente. La autoexigencia suele haber cumplido una función: ayudarte a sentir seguridad, evitar críticas, mantener el control o demostrar que vales. Por eso, antes de intentar cambiarla, necesitamos comprender qué miedo aparece cuando no haces más.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Trabajamos en identificar los pensamientos y reglas internas que mantienen este ciclo, como «si descanso, soy irresponsable» o «si no lo hago perfecto, decepcionaré a los demás». Después, revisamos si esas exigencias son realistas, aprendemos a diferenciar responsabilidad de sobrecarga y practicamos formas más equilibradas de evaluar el propio esfuerzo.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "También puede ser útil registrar al final del día no solo las tareas pendientes, sino aquello que has sostenido, resuelto, aprendido o intentado. No como una nueva obligación, sino como una manera de entrenar a tu atención para que incluya la información que la autoexigencia suele dejar fuera.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y, poco a poco, vamos incorporando algo que para muchas personas resulta difícil: descansar antes de llegar al agotamiento total, poner límites sin justificarse en exceso y aceptar que hacer algo suficientemente bien también puede ser una forma de hacerlo bien.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Además, aprendemos a entender cuándo es suficiente. Trabajar la autoexigencia no significa dejar de tener objetivos ni conformarte con cualquier cosa. Significa poder esforzarte sin convertir cada resultado en una medida de tu valor. Y, sobre todo, aprender a identificar cuándo has llegado.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Porque quizá una de las preguntas más importantes no sea «¿Qué más puedo hacer?», sino:",
+      },
+      { tipo: "cita", texto: "«¿Cómo sabría que hoy ya ha sido suficiente?»" },
+      {
+        tipo: "p",
+        texto:
+          "Si no existe una respuesta para esa pregunta, quizá el problema no sea que estés haciendo demasiado poco. Quizá llevas demasiado tiempo viviendo con un estándar que nunca te permite llegar.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y si esta sensación se repite, afecta a tu descanso, a tus relaciones o te mantiene en un estado constante de culpa y tensión, puede ser una señal de que necesitas acompañamiento psicológico. No porque haya nada defectuoso en ti, sino porque no tienes por qué seguir sosteniendo a solas una forma de exigirte que te está dejando sin espacio para vivir.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "A veces, el objetivo no es hacer menos por obligación, sino dejar de sentir que tienes que ganarte el derecho a descansar, a equivocarte o a sentir que vales.",
+      },
+    ],
+  },
   {
     slug: "compararte-no-te-informa-te-resta",
     titulo: "Compararte no te informa, te resta",
