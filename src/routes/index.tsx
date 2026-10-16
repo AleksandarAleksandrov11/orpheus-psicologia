@@ -122,8 +122,14 @@ function Inicio() {
 
           {/* Retrato vertical con las esquinas muy redondeadas: la foto
               sentada no cabe en un círculo sin perder los hombros. */}
-          <div className="order-1 relative mx-auto w-full max-w-[18rem] sm:max-w-[22rem] lg:order-2 lg:max-w-[28rem]">
-            <div className="anim-fade relative aspect-[4/5]" style={{ animationDelay: "0.35s" }}>
+          {/* En móvil el contenedor se disuelve (contents) para que la foto
+              y la tarjeta del mito sean piezas sueltas de la rejilla: la
+              foto arriba y la tarjeta al final, debajo del titular. */}
+          <div className="contents lg:relative lg:order-2 lg:mx-auto lg:block lg:w-full lg:max-w-[28rem]">
+            <div
+              className="anim-fade relative order-1 mx-auto aspect-[4/5] w-full max-w-[18rem] sm:max-w-[22rem] lg:max-w-none"
+              style={{ animationDelay: "0.35s" }}
+            >
               <span
                 aria-hidden="true"
                 className="anim-breathe absolute inset-[-8%] rounded-[3rem] bg-aloe/45 blur-2xl"
@@ -150,12 +156,12 @@ function Inicio() {
             </div>
 
             {/* La frase del mito, que es la puerta a Por qué Orpheus. En
-                escritorio se apoya en la esquina del retrato; en móvil baja
-                debajo, porque encima tapaba la fotografía y empujaba el
-                titular fuera de la primera pantalla. */}
+                escritorio se apoya en la esquina del retrato; en móvil va
+                al final del hero, después del titular y los botones, para no
+                quitarle protagonismo a la frase principal. */}
             <Reveal
               delay={400}
-              className="relative mx-auto mt-6 max-w-[20rem] rounded-2xl border border-rule bg-linen/95 p-4 backdrop-blur-sm sm:max-w-[22rem] lg:absolute lg:-bottom-4 lg:-left-8 lg:mt-0 lg:max-w-[15.5rem] lg:p-5"
+              className="relative order-3 mx-auto w-full max-w-[20rem] rounded-2xl border border-rule bg-linen/95 p-4 backdrop-blur-sm sm:max-w-[22rem] lg:absolute lg:-bottom-4 lg:-left-8 lg:mt-0 lg:max-w-[15.5rem] lg:p-5"
             >
               <span className="flex items-center gap-2.5">
                 <Lira className="h-5 w-5 shrink-0 text-olive" trazo={3} />
