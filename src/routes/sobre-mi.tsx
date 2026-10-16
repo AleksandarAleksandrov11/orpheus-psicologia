@@ -10,8 +10,8 @@ import { SITE, esPendiente } from "@/content/site";
 import { migasSchema, personaSchema, seo } from "@/lib/seo";
 import { CtaFinal } from "./index";
 
-import melissa1 from "@/assets/melissa-1.webp";
-import melissa2 from "@/assets/melissa-2.webp";
+import melissaSobreMi from "@/assets/melissa-sobre-mi.webp";
+import melissaTrabajo from "@/assets/melissa-trabajo.webp";
 
 export const Route = createFileRoute("/sobre-mi")({
   head: () =>
@@ -122,11 +122,11 @@ function SobreMi() {
                 />
                 <Parallax amount={-22}>
                   <Figura
-                    src={melissa2}
+                    src={melissaSobreMi}
                     alt="Melissa González, psicóloga general sanitaria y fundadora de Orpheus Psicología"
                     ratio="4 / 5"
-                    width={900}
-                    height={993}
+                    width={960}
+                    height={1200}
                     eager
                     className="arch anim-fade relative"
                   />
@@ -299,11 +299,11 @@ function SobreMi() {
                   className="absolute inset-[-4%] rounded-full border border-cedar/45"
                 />
                 <Figura
-                  src={melissa1}
-                  alt="Melissa González, psicóloga general sanitaria en Madrid"
+                  src={melissaTrabajo}
+                  alt="Melissa González, psicóloga general sanitaria en Madrid, trabajando con su tableta"
                   ratio="1 / 1"
-                  width={785}
-                  height={791}
+                  width={800}
+                  height={800}
                   className="rounded-full"
                   imgClassName="scale-[1.04]"
                 />

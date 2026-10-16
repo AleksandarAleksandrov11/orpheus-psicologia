@@ -18,7 +18,7 @@ import { PORTADAS, fechaLarga, srcSetPortada } from "@/lib/portadas";
 import { articuloSchema, migasSchema, seo } from "@/lib/seo";
 
 import { CtaFinal } from "../index";
-import retrato from "@/assets/melissa-retrato.webp";
+import retrato from "@/assets/melissa-avatar.webp";
 
 const contarPalabras = (a: Articulo) =>
   a.bloques.reduce(
@@ -258,8 +258,8 @@ function ArticuloPagina() {
               <img
                 src={retrato}
                 alt={`Retrato de ${SITE.psicologa.nombre}`}
-                width={788}
-                height={788}
+                width={240}
+                height={240}
                 loading="lazy"
                 className="size-20 shrink-0 rounded-full bg-paper object-cover"
               />

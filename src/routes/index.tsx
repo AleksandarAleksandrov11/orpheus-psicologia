@@ -28,8 +28,8 @@ import {
 import { SITE } from "@/content/site";
 import { seo } from "@/lib/seo";
 
-import retrato from "@/assets/melissa-retrato.webp";
-import retratoSm from "@/assets/melissa-retrato@sm.webp";
+import retrato from "@/assets/melissa-inicio.webp";
+import retratoSm from "@/assets/melissa-inicio@sm.webp";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -120,31 +120,32 @@ function Inicio() {
             </ul>
           </div>
 
-          {/* Retrato circular recortado sobre el fondo */}
-          <div className="order-1 relative mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:order-2 lg:max-w-none">
-            <div className="anim-fade relative aspect-square" style={{ animationDelay: "0.35s" }}>
+          {/* Retrato vertical con las esquinas muy redondeadas: la foto
+              sentada no cabe en un círculo sin perder los hombros. */}
+          <div className="order-1 relative mx-auto w-full max-w-[18rem] sm:max-w-[22rem] lg:order-2 lg:max-w-[28rem]">
+            <div className="anim-fade relative aspect-[4/5]" style={{ animationDelay: "0.35s" }}>
               <span
                 aria-hidden="true"
-                className="anim-breathe absolute inset-[-8%] rounded-full bg-aloe/45 blur-2xl"
+                className="anim-breathe absolute inset-[-8%] rounded-[3rem] bg-aloe/45 blur-2xl"
               />
               <span
                 aria-hidden="true"
-                className="absolute inset-[-3%] rounded-full border border-cedar/35"
+                className="absolute inset-[-3%] rounded-[2.6rem] border border-cedar/35"
               />
               {/* Dos tamaños: en un móvil sin pantalla de alta densidad el
-                  retrato se ve a 352 px y servirle los 788 px del original
+                  retrato se ve a 288 px y servirle los 960 px del original
                   era mandar el doble de píxeles de los que se pintan. */}
               <img
                 src={retrato}
-                srcSet={`${retratoSm} 420w, ${retrato} 788w`}
-                sizes="(min-width: 1024px) 30rem, (min-width: 640px) 26rem, 22rem"
+                srcSet={`${retratoSm} 480w, ${retrato} 960w`}
+                sizes="(min-width: 1024px) 28rem, (min-width: 640px) 22rem, 18rem"
                 alt="Melissa González, psicóloga general sanitaria y fundadora de Orpheus Psicología"
-                width={788}
-                height={788}
+                width={960}
+                height={1200}
                 loading="eager"
                 fetchPriority="high"
                 decoding="sync"
-                className="relative h-full w-full rounded-full object-cover"
+                className="relative h-full w-full rounded-[2rem] object-cover"
               />
             </div>
 

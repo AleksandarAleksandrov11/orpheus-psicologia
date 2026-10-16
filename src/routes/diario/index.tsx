@@ -11,7 +11,7 @@ import { absolute, migasSchema, seo } from "@/lib/seo";
 
 import { CtaFinal } from "../index";
 
-import retrato from "@/assets/melissa-retrato.webp";
+import retrato from "@/assets/melissa-avatar.webp";
 
 const CATEGORIAS = Array.from(new Set(ARTICULOS_RECIENTES.map((a) => a.categoria)));
 
@@ -269,8 +269,8 @@ function Diario() {
               <img
                 src={retrato}
                 alt={`${SITE.psicologa.nombre}, ${SITE.psicologa.titulo}`}
-                width={788}
-                height={788}
+                width={240}
+                height={240}
                 loading="lazy"
                 className="h-32 w-32 rounded-full border border-on-dark/25 object-cover md:h-44 md:w-44"
               />
