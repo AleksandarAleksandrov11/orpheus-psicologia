@@ -22,6 +22,8 @@ import texArbol from "@/assets/tex-arbol.webp";
 import texArbolSm from "@/assets/tex-arbol@sm.webp";
 import texMar from "@/assets/tex-mar.webp";
 import texMarSm from "@/assets/tex-mar@sm.webp";
+import texPiedras from "@/assets/tex-piedras.webp";
+import texPiedrasSm from "@/assets/tex-piedras@sm.webp";
 
 export type Portada = { src: string; sm: string; w: number; h: number; wSm: number };
 
@@ -40,6 +42,9 @@ export const PORTADAS: Record<Articulo["imagen"], Portada> = {
   // «Calm tranquil sea horizon Butjadingen», dominio público (CC0 1.0) vía
   // rawpixel. Virada al verde de marca; venía casi sin contraste.
   mar: { src: texMar, sm: texMarSm, w: 1024, h: 681, wSm: 640 },
+  // «Balancing stones», dominio público (CC0 1.0) vía rawpixel. Virada al
+  // verde de marca; el bosque del fondo ya venía en esa gama.
+  piedras: { src: texPiedras, sm: texPiedrasSm, w: 1024, h: 680, wSm: 640 },
 };
 
 export const srcSetPortada = (p: Portada) => `${p.sm} ${p.wSm}w, ${p.src} ${p.w}w`;

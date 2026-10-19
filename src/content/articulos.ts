@@ -26,12 +26,158 @@ export type Articulo = {
   categoria: string;
   fecha: string;
   actualizado?: string;
-  imagen: "niebla" | "bosque" | "sendero" | "montanas" | "raices" | "lago" | "arbol" | "mar";
+  imagen:
+    "niebla" | "bosque" | "sendero" | "montanas" | "raices" | "lago" | "arbol" | "mar" | "piedras";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "cuando-la-responsabilidad-se-convierte-en-perfeccionismo",
+    titulo: "¿Cuándo la responsabilidad se convierte en perfeccionismo?",
+    tituloCorto: "Responsabilidad o perfeccionismo",
+    descripcion:
+      "Ser responsable no es un problema. Cuándo hacer las cosas bien pasa a ser una obligación, cómo se disfraza el perfeccionismo y qué precio pagas por exigirte.",
+    entradilla:
+      "Ser responsable, comprometida y cuidadosa no es un problema. De hecho, son cualidades que pueden ayudarte mucho en diferentes áreas de tu vida.",
+    categoria: "Autoexigencia",
+    fecha: "2026-10-19",
+    imagen: "piedras",
+    alt: "Torre de piedras apiladas en equilibrio sobre una roca con musgo, con un bosque desenfocado al fondo",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "La dificultad aparece cuando hacer las cosas bien deja de ser una elección y empieza a sentirse como una obligación constante.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Cuando equivocarte no solo significa que algo ha salido mal, sino que activa pensamientos sobre quién eres tú:",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "«No debería haberme equivocado».",
+          "«Debería haberlo previsto».",
+          "«Si lo hago mal, pensarán que no soy suficientemente buena».",
+        ],
+      },
+      {
+        tipo: "p",
+        texto: "Ahí podemos estar acercándonos al perfeccionismo.",
+      },
+      { tipo: "h2", texto: "El perfeccionismo no siempre se ve como perfeccionismo" },
+      {
+        tipo: "p",
+        texto:
+          "A veces pensamos en una persona perfeccionista como alguien obsesionado con que todo esté impecable. Pero no siempre funciona así.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Puede aparecer como revisar varias veces un correo antes de enviarlo, darle vueltas durante horas a una conversación, posponer algo porque todavía no sabes hacerlo suficientemente bien o necesitar estar completamente preparada antes de empezar.",
+      },
+      {
+        tipo: "p",
+        texto: "También puede aparecer como una enorme dificultad para delegar.",
+      },
+      { tipo: "cita", texto: "«Si lo hago yo, sé que quedará bien»." },
+      {
+        tipo: "p",
+        texto: "Y, poco a poco, acabas sosteniendo más de lo que realmente puedes sostener.",
+      },
+      { tipo: "h2", texto: "La diferencia está en lo que ocurre cuando no cumples el estándar" },
+      {
+        tipo: "p",
+        texto:
+          "Una persona puede querer hacer un buen trabajo y cometer un error. Le puede molestar. Puede intentar corregirlo. Y continuar.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "En el perfeccionismo problemático, el error suele adquirir un significado mayor. No es simplemente «Esto me ha salido mal». Puede convertirse en:",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "«Soy un desastre».",
+          "«No estoy preparada».",
+          "«Los demás se van a dar cuenta».",
+          "«No puedo permitirme volver a equivocarme».",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Por eso el perfeccionismo está relacionado con la autoestima: porque el resultado de lo que haces empieza a influir demasiado en cómo te valoras.",
+      },
+      { tipo: "h2", texto: "Y aquí aparece una paradoja" },
+      {
+        tipo: "p",
+        texto: "El perfeccionismo pretende protegerte del error.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Pero precisamente ese miedo puede hacer que vivas con más ansiedad, que tardes mucho más en terminar las cosas, que evites determinadas situaciones o que tengas dificultades para disfrutar de aquello que haces.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Incluso puede hacer que postergues. Si para empezar necesitas saber que vas a hacerlo bien, cualquier tarea nueva puede convertirse en una amenaza. Y cuanto más importante sea para ti hacerlo bien, más difícil puede resultar simplemente empezar.",
+      },
+      { tipo: "h2", texto: "¿Cómo saber si tu exigencia está yendo demasiado lejos?" },
+      {
+        tipo: "p",
+        texto:
+          "Una pregunta útil no es solamente cuánto te exiges, sino qué precio estás pagando por esa exigencia. Pregúntate:",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "¿Puedo terminar algo aunque no esté perfecto?",
+          "¿Me permito equivocarme sin castigarme durante horas?",
+          "¿Puedo recibir una crítica sin interpretarla como una valoración de mi persona?",
+          "¿Delego o siento que tengo que hacerlo todo yo?",
+          "¿Estoy disfrutando de lo que hago o estoy constantemente evaluándolo?",
+          "¿Cuánto tiempo dedico a revisar cosas que probablemente ya están suficientemente bien?",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Si muchas respuestas apuntan hacia la vigilancia, el miedo o la dificultad para parar, quizá no necesites aprender a exigirte mejor. Quizá necesites aprender a relacionarte de otra manera con el error.",
+      },
+      { tipo: "h2", texto: "Hacerlo bien no debería exigirte estar bien contigo" },
+      {
+        tipo: "p",
+        texto:
+          "Reducir el perfeccionismo no significa dejar de cuidar lo que haces. Significa poder decir:",
+      },
+      {
+        tipo: "cita",
+        texto:
+          "«Quiero hacerlo bien, pero no necesito hacerlo perfecto para estar tranquila conmigo».",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Puedes ser responsable y tener límites. Puedes ser ambiciosa y equivocarte. Puedes querer mejorar y reconocer que hoy ya has hecho un buen trabajo.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y puedes cometer un error sin convertirlo automáticamente en una conclusión sobre tu valor.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Porque hacer las cosas bien puede ser una forma de compromiso. Pero necesitar hacerlas perfectas para sentirte suficiente es otra cosa.",
+      },
+    ],
+  },
   {
     slug: "por-que-nunca-siento-que-es-suficiente",
     titulo: "¿Por qué nunca siento que es suficiente?",
