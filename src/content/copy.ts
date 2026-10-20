@@ -11,15 +11,21 @@
    ══════════════════════════════════════════════════════════════════ */
 
 export const HERO = {
-  eyebrow: "Melissa González · Psicóloga General Sanitaria",
   titulo: ["No necesitas", "exigirte más", "para sentirte", "suficiente."],
   /** Primera línea del titular que va en cursiva. */
   cursiva: 2,
+  /** Presentación con nombre, justo bajo el titular y en la tipografía de los titulares. */
+  presentacion: {
+    nombre: "Melissa González",
+    perfil: "psicóloga general sanitaria especializada en autoestima y autoexigencia.",
+  },
+  /** «Online» va en su propia línea, separado de la presentación. */
+  modalidad: "Terapia online en toda España",
   entradilla:
-    "Psicóloga online especializada en autoestima y autoexigencia. Te acompaño a comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
+    "Te acompaño a comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
   ctaPrincipal: { label: "Reservar una primera sesión", to: "/contacto" },
   ctaSecundario: { label: "Ver servicios", to: "/servicios" },
-  sellos: ["Terapia integradora", "Online en toda España", "Espacio sin juicio"],
+  sellos: ["Terapia integradora", "Espacio sin juicio"],
 } as const;
 
 /** Frase alternativa propuesta por la clienta, usada como cierre del hero. */

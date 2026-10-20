@@ -131,12 +131,6 @@ function SobreMi() {
                     className="arch anim-fade relative"
                   />
                 </Parallax>
-                <span
-                  aria-hidden="true"
-                  className="eyebrow absolute top-1/2 -left-10 hidden -translate-y-1/2 -rotate-90 whitespace-nowrap text-ink-faint lg:block"
-                >
-                  Orpheus · Psicología
-                </span>
               </div>
 
               {/* La reserva, pegada al retrato */}

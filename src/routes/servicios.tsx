@@ -3,7 +3,7 @@ import { Check, Clock, Video } from "lucide-react";
 
 import { Layout } from "@/components/site/Layout";
 import { LineasReveladas, Parallax, Reveal } from "@/components/site/motion";
-import { RecorridoNoLineal } from "@/components/site/Recorrido";
+import { DiagramaExpectativaRealidad, RecorridoNoLineal } from "@/components/site/Recorrido";
 import {
   Antetitulo,
   BotonEnlace,
@@ -605,11 +605,24 @@ function Servicios() {
       >
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 shell section-y">
-          <TituloSeccion antetitulo={RECORRIDO.eyebrow} centrado className="mx-auto">
+          <TituloSeccion
+            antetitulo={RECORRIDO.eyebrow}
+            descripcion={RECORRIDO.intro}
+            centrado
+            className="mx-auto"
+          >
             <span id="recorrido-titulo">
               La terapia no es una <em className="italic">línea recta</em>.
             </span>
           </TituloSeccion>
+
+          {/* Vino desde Inicio: lo que se espera de la terapia frente a cómo
+              suele ser en realidad, antes de las cuatro etapas. */}
+          <Reveal delay={160} variant="mask" className="mx-auto mt-12 max-w-2xl md:mt-16">
+            <div className="rounded-2xl border border-rule bg-linen/70 p-6 md:p-8">
+              <DiagramaExpectativaRealidad />
+            </div>
+          </Reveal>
 
           <RecorridoNoLineal />
 

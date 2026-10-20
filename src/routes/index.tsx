@@ -7,21 +7,19 @@ import {
   Antetitulo,
   BotonEnlace,
   BotonExterno,
-  Cita,
+  Figura,
   Lira,
   TituloSeccion,
 } from "@/components/site/ui";
-import { DiagramaExpectativaRealidad, RecorridoNoLineal } from "@/components/site/Recorrido";
 import { MarquesinaResenas } from "@/components/site/MarquesinaResenas";
 import {
   CTA_FINAL,
   ENGRANAJE,
   ESPACIOS,
   HERO,
+  HISTORIA,
   MARQUESINA,
-  MITO,
   RECONOCES,
-  RECORRIDO,
   PRIMERA_SESION,
   VALORES,
 } from "@/content/copy";
@@ -30,6 +28,7 @@ import { seo } from "@/lib/seo";
 
 import retrato from "@/assets/melissa-inicio.webp";
 import retratoSm from "@/assets/melissa-inicio@sm.webp";
+import melissaSofa from "@/assets/melissa-sobre-mi.webp";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -76,23 +75,38 @@ function Inicio() {
               está centrado; alineada a la izquierda quedaba descolgada de
               la foto. A partir de lg vuelve el hero a dos columnas. */}
           <div className="order-2 flex flex-col text-center lg:order-1 lg:block lg:text-left">
-            <p className="eyebrow anim-fade order-2 mt-6 flex items-center justify-center gap-3 text-olive lg:order-none lg:mt-0 lg:justify-start">
-              {/* El filete solo acompaña cuando el antetítulo va alineado a la
-                  izquierda: centrado se queda descolgado en un extremo. */}
-              <span aria-hidden="true" className="hidden h-px w-8 bg-olive/50 lg:inline-block" />
-              {HERO.eyebrow}
-            </p>
-
             <LineasReveladas
               lineas={HERO.titulo}
               cursiva={HERO.cursiva}
               delay={120}
-              className="display-xl order-1 text-ink lg:order-none lg:mt-7"
+              className="display-xl order-1 text-ink lg:order-none"
             />
 
+            {/* El nombre, con la tipografía de los titulares: es lo primero
+                que tiene que quedar claro al entrar, quién está detrás. */}
+            <div
+              className="anim-fade-up order-2 mt-8 lg:order-none lg:mt-10"
+              style={{ animationDelay: "0.45s" }}
+            >
+              <p className="font-display text-[1.95rem] leading-[1.15] text-ink md:text-[2.4rem]">
+                Soy <em className="italic">{HERO.presentacion.nombre}</em>,
+              </p>
+              <p className="mx-auto mt-2 max-w-md font-display text-[1.22rem] leading-snug text-cypress md:text-[1.4rem] lg:mx-0">
+                {HERO.presentacion.perfil}
+              </p>
+            </div>
+
             <p
-              className="lede anim-fade-up d-5 order-3 mx-auto mt-8 max-w-xl lg:order-none lg:mx-0"
+              className="eyebrow anim-fade order-3 mt-7 flex items-center justify-center gap-3 text-olive lg:order-none lg:justify-start"
               style={{ animationDelay: "0.55s" }}
+            >
+              <span aria-hidden="true" className="hidden h-px w-8 bg-olive/50 lg:inline-block" />
+              {HERO.modalidad}
+            </p>
+
+            <p
+              className="lede anim-fade-up order-3 mx-auto mt-5 max-w-xl lg:order-none lg:mx-0"
+              style={{ animationDelay: "0.62s" }}
             >
               {HERO.entradilla}
             </p>
@@ -122,14 +136,8 @@ function Inicio() {
 
           {/* Retrato vertical con las esquinas muy redondeadas: la foto
               sentada no cabe en un círculo sin perder los hombros. */}
-          {/* En móvil el contenedor se disuelve (contents) para que la foto
-              y la tarjeta del mito sean piezas sueltas de la rejilla: la
-              foto arriba y la tarjeta al final, debajo del titular. */}
-          <div className="contents lg:relative lg:order-2 lg:mx-auto lg:block lg:w-full lg:max-w-[28rem]">
-            <div
-              className="anim-fade relative order-1 mx-auto aspect-[4/5] w-full max-w-[18rem] sm:max-w-[22rem] lg:max-w-none"
-              style={{ animationDelay: "0.35s" }}
-            >
+          <div className="order-1 relative mx-auto w-full max-w-[18rem] sm:max-w-[22rem] lg:order-2 lg:max-w-[28rem]">
+            <div className="anim-fade relative aspect-[4/5]" style={{ animationDelay: "0.35s" }}>
               <span
                 aria-hidden="true"
                 className="anim-breathe absolute inset-[-8%] rounded-[3rem] bg-aloe/45 blur-2xl"
@@ -154,25 +162,6 @@ function Inicio() {
                 className="relative h-full w-full rounded-[2rem] object-cover"
               />
             </div>
-
-            {/* La frase del mito, que es la puerta a Por qué Orpheus. En
-                escritorio se apoya en la esquina del retrato; en móvil va
-                al final del hero, después del titular y los botones, para no
-                quitarle protagonismo a la frase principal. */}
-            <Reveal
-              delay={400}
-              className="relative order-3 mx-auto w-full max-w-[20rem] rounded-2xl border border-rule bg-linen/95 p-4 backdrop-blur-sm sm:max-w-[22rem] lg:absolute lg:-bottom-4 lg:-left-8 lg:mt-0 lg:max-w-[15.5rem] lg:p-5"
-            >
-              <span className="flex items-center gap-2.5">
-                <Lira className="h-5 w-5 shrink-0 text-olive" trazo={3} />
-                <Link to="/por-que-orpheus" className="link-draw text-[0.85rem] text-olive">
-                  Por qué Orpheus
-                </Link>
-              </span>
-              <p className="cita-menor mt-2.5 text-[1.15rem] leading-snug text-cypress lg:mt-3 lg:text-[1.2rem]">
-                {MITO.titulo}
-              </p>
-            </Reveal>
           </div>
         </div>
 
@@ -246,6 +235,9 @@ function Inicio() {
           </ul>
         </div>
       </section>
+
+      {/* ═══════════════════ SOBRE MÍ (RESUMEN) ═══════════════════ */}
+      <SobreMiResumen />
 
       {/* ═══════════════════ ESPACIOS DE TRABAJO ═══════════════════ */}
       <section
@@ -336,42 +328,6 @@ function Inicio() {
         </div>
       </section>
 
-      {/* ═══════════════════ ¿CÓMO TRABAJAREMOS? ═══════════════════ */}
-      <section className="relative overflow-hidden" aria-labelledby="recorrido-titulo">
-        <div className="relative z-10 shell section-y">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
-            <div>
-              <Reveal>
-                <Antetitulo>{RECORRIDO.eyebrow}</Antetitulo>
-              </Reveal>
-              <Reveal delay={80}>
-                <h2 id="recorrido-titulo" className="display-md mt-6">
-                  La terapia no es una <em className="italic">línea recta</em>.
-                </h2>
-              </Reveal>
-              <Reveal delay={160}>
-                <p className="prose-body mt-7 max-w-lg">{RECORRIDO.intro}</p>
-              </Reveal>
-            </div>
-
-            <Reveal delay={220} variant="mask">
-              <div className="rounded-2xl border border-rule bg-linen/70 p-6 md:p-8">
-                <DiagramaExpectativaRealidad />
-              </div>
-            </Reveal>
-          </div>
-
-          <RecorridoNoLineal />
-
-          <Reveal delay={100} className="mt-11 md:mt-20">
-            <hr className="rule-fade" />
-            <Cita className="mt-12 max-w-3xl" tamano="sm">
-              {RECORRIDO.cita}
-            </Cita>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ═══════════════════ LO QUE ENCONTRARÁS EN ESTE LUGAR ═══════════════════ */}
       <section className="section-y border-t border-rule" aria-labelledby="valores-titulo">
         <div className="shell">
@@ -421,6 +377,59 @@ function Inicio() {
       {/* ═══════════════════ CTA FINAL ═══════════════════ */}
       <CtaFinal />
     </Layout>
+  );
+}
+
+/**
+ * Quién soy, a qué me dedico y cómo acompaño, en corto. Es el arranque de
+ * Sobre mí con su misma foto, para que quien entra sepa enseguida quién hay
+ * detrás antes de seguir con el enfoque.
+ */
+function SobreMiResumen() {
+  return (
+    <section className="section-y relative" aria-labelledby="sobre-mi-resumen-titulo">
+      <div className="shell grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <Reveal variant="scale" className="relative mx-auto w-full max-w-[21rem] lg:max-w-[26rem]">
+          <span
+            aria-hidden="true"
+            className="arch absolute inset-0 translate-x-4 translate-y-5 border border-cedar/45"
+          />
+          <Figura
+            src={melissaSofa}
+            alt="Melissa González en su consulta, sentada en un sofá verde con una taza"
+            ratio="4 / 5"
+            width={960}
+            height={1200}
+            className="arch relative"
+          />
+        </Reveal>
+
+        <div>
+          <Reveal>
+            <Antetitulo>Sobre mí</Antetitulo>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 id="sobre-mi-resumen-titulo" className="display-md mt-6">
+              Descubrí la psicología buscando <em className="italic">entenderme</em>.
+            </h2>
+          </Reveal>
+          <Reveal delay={160}>
+            <p className="prose-body mt-7 max-w-xl">{HISTORIA.parrafos[0]}</p>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="prose-body mt-5 max-w-xl">{HISTORIA.parrafos[6]}</p>
+          </Reveal>
+          <Reveal delay={240}>
+            <p className="prose-body mt-5 max-w-xl">{HISTORIA.parrafos[7]}</p>
+          </Reveal>
+          <Reveal delay={300} className="mt-9">
+            <BotonEnlace to="/sobre-mi" variante="outline">
+              Conocer mi historia
+            </BotonEnlace>
+          </Reveal>
+        </div>
+      </div>
+    </section>
   );
 }
 
