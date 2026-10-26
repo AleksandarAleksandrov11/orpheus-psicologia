@@ -116,7 +116,7 @@ export function Nav() {
             <Marca />
           </Link>
 
-          <nav aria-label="Navegación principal" className="hidden items-center gap-7 lg:flex">
+          <nav aria-label="Navegación principal" className="hidden items-center gap-4 lg:flex xl:gap-7">
             {enlacesEscritorio.map((l) =>
               "hijos" in l ? (
                 <div
@@ -130,7 +130,7 @@ export function Nav() {
                     onClick={alInicio(l.to)}
                     onFocus={() => abrir(l.to)}
                     aria-expanded={abierto === l.to}
-                    className="link-draw flex items-center gap-1.5 py-2 text-[0.84rem] font-light tracking-[0.06em] text-ink/80 transition-colors duration-400 hover:text-cypress"
+                    className="link-draw flex items-center gap-1.5 py-2 text-[0.84rem] font-light tracking-[0.04em] whitespace-nowrap xl:tracking-[0.06em] text-ink/80 transition-colors duration-400 hover:text-cypress"
                     activeProps={{ className: "text-cypress" }}
                   >
                     {l.label}
@@ -176,7 +176,7 @@ export function Nav() {
                   to={l.to}
                   onClick={alInicio(l.to)}
                   onMouseEnter={cerrarConMargen}
-                  className="link-draw py-2 text-[0.84rem] font-light tracking-[0.06em] text-ink/80 transition-colors duration-400 hover:text-cypress"
+                  className="link-draw py-2 text-[0.84rem] font-light tracking-[0.04em] whitespace-nowrap text-ink/80 xl:tracking-[0.06em] transition-colors duration-400 hover:text-cypress"
                   activeProps={{ className: "text-cypress" }}
                   activeOptions={{ exact: l.to === "/" }}
                 >

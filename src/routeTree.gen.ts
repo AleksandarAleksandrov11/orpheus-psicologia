@@ -20,6 +20,7 @@ import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frec
 import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreMiRouteImport } from './routes/sobre-mi'
+import { Route as TarifasRouteImport } from './routes/tarifas'
 import { Route as TestimoniosRouteImport } from './routes/testimonios'
 import { Route as DiarioIndexRouteImport } from './routes/diario/index'
 import { Route as DiarioSlugRouteImport } from './routes/diario/$slug'
@@ -79,6 +80,11 @@ const SobreMiRoute = SobreMiRouteImport.update({
   path: '/sobre-mi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TarifasRoute = TarifasRouteImport.update({
+  id: '/tarifas',
+  path: '/tarifas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TestimoniosRoute = TestimoniosRouteImport.update({
   id: '/testimonios',
   path: '/testimonios',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/servicios': typeof ServiciosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
+  '/tarifas': typeof TarifasRoute
   '/testimonios': typeof TestimoniosRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario/': typeof DiarioIndexRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/servicios': typeof ServiciosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
+  '/tarifas': typeof TarifasRoute
   '/testimonios': typeof TestimoniosRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario': typeof DiarioIndexRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/servicios': typeof ServiciosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
+  '/tarifas': typeof TarifasRoute
   '/testimonios': typeof TestimoniosRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario/': typeof DiarioIndexRoute
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-mi'
+    | '/tarifas'
     | '/testimonios'
     | '/diario/$slug'
     | '/diario/'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-mi'
+    | '/tarifas'
     | '/testimonios'
     | '/diario/$slug'
     | '/diario'
@@ -190,6 +201,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-mi'
+    | '/tarifas'
     | '/testimonios'
     | '/diario/$slug'
     | '/diario/'
@@ -207,6 +219,7 @@ export interface RootRouteChildren {
   ServiciosRoute: typeof ServiciosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreMiRoute: typeof SobreMiRoute
+  TarifasRoute: typeof TarifasRoute
   TestimoniosRoute: typeof TestimoniosRoute
   DiarioSlugRoute: typeof DiarioSlugRoute
   DiarioIndexRoute: typeof DiarioIndexRoute
@@ -291,6 +304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreMiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tarifas': {
+      id: '/tarifas'
+      path: '/tarifas'
+      fullPath: '/tarifas'
+      preLoaderRoute: typeof TarifasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/testimonios': {
       id: '/testimonios'
       path: '/testimonios'
@@ -327,6 +347,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServiciosRoute: ServiciosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreMiRoute: SobreMiRoute,
+  TarifasRoute: TarifasRoute,
   TestimoniosRoute: TestimoniosRoute,
   DiarioSlugRoute: DiarioSlugRoute,
   DiarioIndexRoute: DiarioIndexRoute,

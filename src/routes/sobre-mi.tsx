@@ -81,9 +81,9 @@ function SobreMi() {
 
           <div className="grid items-center gap-14 lg:grid-cols-[1.06fr_0.94fr] lg:gap-20">
             <div>
-              <p className="eyebrow anim-fade flex items-center gap-3 text-[0.88rem] tracking-[0.17em] text-cypress">
-                <span aria-hidden="true" className="inline-block h-px w-8 bg-cypress/50" />
-                {SITE.psicologa.nombre} · {SITE.psicologa.titulo}
+              <p className="eyebrow anim-fade flex items-center gap-3 text-olive">
+                <span aria-hidden="true" className="inline-block h-px w-8 bg-olive/50" />
+                Sobre mí
               </p>
 
               <h1
@@ -94,7 +94,24 @@ function SobreMi() {
                 Descubrí la psicología buscando <em className="italic">entenderme</em>.
               </h1>
 
-              <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.3s" }}>
+              {/* El nombre, bien visible y en la tipografía de los titulares;
+                  en un antetítulo pequeño pasaba desapercibido. */}
+              <p
+                className="anim-fade-up mt-9 font-display text-[1.75rem] leading-[1.2] text-ink md:text-[2.2rem]"
+                style={{ animationDelay: "0.24s" }}
+              >
+                Soy <em className="italic">{SITE.psicologa.nombre}</em>, psicóloga general
+                sanitaria.
+              </p>
+
+              <p className="lede anim-fade-up mt-5 max-w-xl" style={{ animationDelay: "0.3s" }}>
+                {HISTORIA.presentacion}
+              </p>
+
+              <p
+                className="prose-body anim-fade-up mt-6 max-w-xl"
+                style={{ animationDelay: "0.38s" }}
+              >
                 {HISTORIA.parrafos[0]}
               </p>
 

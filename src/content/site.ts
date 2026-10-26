@@ -142,6 +142,8 @@ export const NAV = [
       },
     ],
   },
+  // Las tarifas, en una pestaña propia: dentro de Servicios no se veían.
+  { to: "/tarifas", label: "Tarifas", descripcion: "Precios de las sesiones y del bono" },
   // Las preguntas frecuentes van sueltas y no colgando de Servicios: se
   // consultan antes de decidir nada, no después de elegir un servicio.
   {
@@ -165,6 +167,7 @@ export const NAV_PLANO = [
   { to: "/por-que-orpheus", label: "Por qué Orpheus" },
   { to: "/servicios", label: "Terapia individual" },
   { to: "/empresas", label: "Para empresas" },
+  { to: "/tarifas", label: "Tarifas" },
   { to: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
   { to: "/diario", label: "Diario" },
   { to: "/testimonios", label: "Reseñas" },

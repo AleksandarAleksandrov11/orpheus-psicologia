@@ -14,18 +14,18 @@ export const HERO = {
   titulo: ["No necesitas", "exigirte más", "para sentirte", "suficiente."],
   /** Primera línea del titular que va en cursiva. */
   cursiva: 2,
-  /** Presentación con nombre, justo bajo el titular y en la tipografía de los titulares. */
+  subtitulo:
+    "Aprende a relacionarte contigo sin tanta presión, culpa ni necesidad de hacerlo todo bien.",
+  /** Presentación con nombre, en la tipografía de los titulares. */
   presentacion: {
     nombre: "Melissa González",
-    perfil: "psicóloga general sanitaria especializada en autoestima y autoexigencia.",
+    perfil: "psicóloga general sanitaria.",
   },
-  /** «Online» va en su propia línea, separado de la presentación. */
-  modalidad: "Terapia online en toda España",
   entradilla:
-    "Te acompaño a comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
-  ctaPrincipal: { label: "Reservar una primera sesión", to: "/contacto" },
-  ctaSecundario: { label: "Ver servicios", to: "/servicios" },
-  sellos: ["Terapia integradora", "Espacio sin juicio"],
+    "Acompaño a personas que viven atrapadas en la autoexigencia, la inseguridad o la dificultad para reconocer su propio valor.",
+  ctaPrincipal: { label: "Reservar primera sesión", to: "/contacto" },
+  ctaSecundario: { label: "Conocer mi forma de trabajar", to: "/servicios" },
+  sellos: ["Terapia online en toda España", "Enfoque integrador", "Espacio sin juicio"],
 } as const;
 
 /** Frase alternativa propuesta por la clienta, usada como cierre del hero. */
@@ -212,6 +212,8 @@ export type Espacio = {
   slug: string;
   titulo: string;
   breve: string;
+  /** Texto de la caja verde en Inicio, más desarrollado que el breve. */
+  inicio?: string;
   detalle: string;
   /** Áreas principales del nicho: encabezan la sección. */
   destacado?: boolean;
@@ -229,6 +231,8 @@ export const ESPACIOS: Espacio[] = [
     slug: "autoestima",
     titulo: "Autoestima",
     breve: "Construir una relación sólida y coherente contigo.",
+    inicio:
+      "Construir una valoración de ti misma que no dependa constantemente de la aprobación externa o de tus resultados.",
     detalle:
       "Trabajaremos en tu autoconcepto y autoconocimiento para construir una imagen sólida y realista de ti. El objetivo es que aprendas a valorarte sin depender de la valoración externa o del rendimiento, pudiendo sostenerte incluso cuando dudes.",
     enlace: "Trabajar la autoestima en terapia",
@@ -238,6 +242,8 @@ export const ESPACIOS: Espacio[] = [
     slug: "autoexigencia",
     titulo: "Autoexigencia y perfeccionismo",
     breve: "Bajar la presión sin perder tus valores.",
+    inicio:
+      "Reducir la presión interna, aprender a tolerar los errores y descansar sin sentir que siempre deberías estar haciendo algo más.",
     detalle:
       "Identificar de dónde viene la autoexigencia, trabajar la culpa social al descanso y redefinir el éxito desde tu propio criterio y no desde expectativas externas.",
     enlace: "Trabajar la autoexigencia en terapia",
@@ -287,8 +293,10 @@ export const ESPACIOS: Espacio[] = [
   },
   {
     slug: "inseguridad",
-    titulo: "Inseguridad",
+    titulo: "Inseguridad y dificultad para confiar en ti",
     breve: "Confiar en tu propio criterio.",
+    inicio:
+      "Comprender tus dudas, reducir la comparación y aprender a tomar decisiones con mayor seguridad, confiando en tu propio criterio.",
     detalle:
       "Reconocer qué alimenta la duda constante, reducir el peso de la comparación y aprender a confiar en tu propio criterio incluso cuando no tengas la certeza o la validación que buscas.",
     enlace: "Trabajar la inseguridad en terapia",
@@ -353,6 +361,8 @@ export const ENFOQUE = {
 export const HISTORIA = {
   eyebrow: "Mi historia",
   titulo: "Descubrí la psicología buscando entenderme.",
+  presentacion:
+    "Te ayudo a comprender lo que te pasa, transformar aquello que te limita y construir una relación más amable contigo.",
   parrafos: [
     "Durante años viví bajo una autoexigencia silenciosa que confundía con responsabilidad. Me exigía ser perfecta, me hablaba con dureza y, aunque desde fuera mi vida podía parecer estable, por dentro muchas veces me sentía perdida.",
     "Había una parte de mí que dudaba constantemente de su propio valor y que repetía, casi en silencio: «no puedo».",
@@ -457,7 +467,7 @@ export const SESIONES = [
     duracion: "50 a 60 minutos",
     canal: "Online, por videollamada cifrada",
     precio: "65 €",
-    nota: "Se abona en consulta",
+    nota: "por sesión",
     resumen:
       "Trabajamos aquello que te trajo a terapia y aquello que pueda aparecer por el camino, con la misma profundidad, estés donde estés en tu proceso.",
     incluye: [
@@ -465,6 +475,7 @@ export const SESIONES = [
       "Revisión de objetivos a lo largo del proceso",
       "Un trabajo personal guiado, no una lista de técnicas",
       "Sesión a sesión, sin permanencia",
+      "Para frecuencia quincenal, mensual u otra periodicidad",
     ],
     destacado: true,
   },
@@ -478,11 +489,11 @@ export const SESIONES = [
     precio: "240 €",
     nota: "60 € por sesión",
     resumen:
-      "El mismo proceso y el mismo trabajo, con la continuidad ya decidida. Para cuando sabes que quieres seguir y prefieres reservarte el camino.",
+      "El mismo proceso y el mismo trabajo, con la continuidad ya decidida. Exclusivo para procesos terapéuticos con frecuencia semanal.",
     incluye: [
       "El mismo plan terapéutico y la misma revisión de objetivos",
       "Cuatro sesiones a 60 € cada una, en un solo pago",
-      "Se usan a tu ritmo, sin caducidad marcada",
+      "Exclusivo para procesos con frecuencia semanal",
       "Se renueva tantas veces como quieras",
     ],
   },
@@ -494,7 +505,7 @@ export const SESIONES = [
  * mismo trabajo y cambia solo la forma de reservarlo y pagarlo.
  */
 export const TARIFAS_ACLARACION =
-  "La sesión individual y el bono no son dos terapias distintas: son la misma, con el mismo plan y la misma revisión de objetivos. Lo único que cambia es si reservas sesión a sesión o dejas ya reservado el camino.";
+  "La sesión individual y el bono no son dos terapias distintas: son la misma, con el mismo plan y la misma revisión de objetivos. El bono es exclusivo para procesos con frecuencia semanal; con cualquier otro ritmo, las sesiones se abonan a precio de sesión individual.";
 
 /** Política de cancelación, literal. Se usa en tarifas y en las FAQ. */
 export const CANCELACION =
@@ -502,6 +513,7 @@ export const CANCELACION =
 
 /** Notas al pie del bloque de tarifas. */
 export const TARIFAS_NOTAS = [
+  "Las sesiones con frecuencia quincenal, mensual u otra periodicidad se abonan a precio de sesión individual.",
   "Si prefieres terapia presencial en Madrid, escríbeme y vemos las opciones disponibles.",
   CANCELACION,
 ] as const;
@@ -626,7 +638,7 @@ export const FAQ = [
   },
   {
     q: "¿Cuánto cuesta una sesión?",
-    a: "Los precios están publicados en la página de servicios.",
+    a: "La primera sesión cuesta 50 €, la sesión individual 65 € y el bono de 4 sesiones 240 € (60 € por sesión), exclusivo para procesos con frecuencia semanal. Las sesiones quincenales, mensuales o con otra periodicidad se abonan a precio de sesión individual. Tienes todos los detalles en la página de tarifas.",
   },
   {
     q: "¿Cuánto dura un proceso terapéutico?",

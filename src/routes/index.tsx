@@ -82,11 +82,18 @@ function Inicio() {
               className="display-xl order-1 text-ink lg:order-none"
             />
 
+            <p
+              className="lede anim-fade-up order-2 mx-auto mt-7 max-w-xl text-cypress lg:order-none lg:mx-0"
+              style={{ animationDelay: "0.4s" }}
+            >
+              {HERO.subtitulo}
+            </p>
+
             {/* El nombre, con la tipografía de los titulares: es lo primero
                 que tiene que quedar claro al entrar, quién está detrás. */}
             <div
-              className="anim-fade-up order-2 mt-8 lg:order-none lg:mt-10"
-              style={{ animationDelay: "0.45s" }}
+              className="anim-fade-up order-3 mt-9 lg:order-none lg:mt-10"
+              style={{ animationDelay: "0.5s" }}
             >
               <p className="font-display text-[1.95rem] leading-[1.15] text-ink md:text-[2.4rem]">
                 Soy <em className="italic">{HERO.presentacion.nombre}</em>,
@@ -97,16 +104,8 @@ function Inicio() {
             </div>
 
             <p
-              className="eyebrow anim-fade order-3 mt-7 flex items-center justify-center gap-3 text-olive lg:order-none lg:justify-start"
-              style={{ animationDelay: "0.55s" }}
-            >
-              <span aria-hidden="true" className="hidden h-px w-8 bg-olive/50 lg:inline-block" />
-              {HERO.modalidad}
-            </p>
-
-            <p
-              className="lede anim-fade-up order-3 mx-auto mt-5 max-w-xl lg:order-none lg:mx-0"
-              style={{ animationDelay: "0.62s" }}
+              className="prose-body anim-fade-up order-3 mx-auto mt-4 max-w-xl lg:order-none lg:mx-0"
+              style={{ animationDelay: "0.6s" }}
             >
               {HERO.entradilla}
             </p>
@@ -283,8 +282,10 @@ function Inicio() {
                 {/* Solo el gancho. El desarrollo entero vive en /servicios y
                     antes se repetía palabra por palabra en las dos páginas, así
                     que pinchar el enlace no llevaba a ninguna parte nueva. */}
-                <p className="cita-menor relative mt-4 flex-1 text-[1.3rem] leading-snug text-aloe">
-                  {e.breve}
+                {/* Misma letra que los textos de fuera de las cajas, un punto
+                    más grande para que se lea bien sobre el verde. */}
+                <p className="relative mt-5 flex-1 text-[1.17rem] leading-[1.72] font-light text-on-dark md:text-[1.22rem]">
+                  {e.inicio ?? e.breve}
                 </p>
                 <Link
                   to="/servicios"

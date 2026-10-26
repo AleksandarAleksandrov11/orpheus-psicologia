@@ -341,7 +341,7 @@ export function tarifasSchema(
     "@context": "https://schema.org",
     "@type": "OfferCatalog",
     name: "Tarifas de terapia individual",
-    url: absolute("/servicios#modalidades"),
+    url: absolute("/tarifas"),
     provider: { "@id": ID.organizacion },
     itemListElement: conPrecio.map((s, i) => ({
       "@type": "Offer",
