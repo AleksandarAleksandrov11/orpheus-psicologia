@@ -24,6 +24,8 @@ import texMar from "@/assets/tex-mar.webp";
 import texMarSm from "@/assets/tex-mar@sm.webp";
 import texPiedras from "@/assets/tex-piedras.webp";
 import texPiedrasSm from "@/assets/tex-piedras@sm.webp";
+import texHoja from "@/assets/tex-hoja.webp";
+import texHojaSm from "@/assets/tex-hoja@sm.webp";
 
 export type Portada = { src: string; sm: string; w: number; h: number; wSm: number };
 
@@ -45,6 +47,9 @@ export const PORTADAS: Record<Articulo["imagen"], Portada> = {
   // «Balancing stones», dominio público (CC0 1.0) vía rawpixel. Virada al
   // verde de marca; el bosque del fondo ya venía en esa gama.
   piedras: { src: texPiedras, sm: texPiedrasSm, w: 1024, h: 680, wSm: 640 },
+  // «Single Green Leaf Water», dominio público (CC0 1.0) vía rawpixel. Virada
+  // al verde de marca; calidad alta para que el degradado del agua no haga bandas.
+  hoja: { src: texHoja, sm: texHojaSm, w: 1024, h: 727, wSm: 640 },
 };
 
 export const srcSetPortada = (p: Portada) => `${p.sm} ${p.wSm}w, ${p.src} ${p.w}w`;

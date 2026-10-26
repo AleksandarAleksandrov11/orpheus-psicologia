@@ -43,7 +43,7 @@ export const Route = createFileRoute("/diario/$slug")({
       });
     }
     return seo({
-      title: a.titulo,
+      title: a.tituloSeo ?? a.titulo,
       description: a.descripcion,
       path: `/diario/${a.slug}`,
       image: "/og/og-diario.jpg",

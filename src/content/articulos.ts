@@ -21,18 +21,178 @@ export type Articulo = {
   titulo: string;
   /** Título alternativo, más corto, para tarjetas y navegación. */
   tituloCorto?: string;
+  /** Título para la pestaña y Google cuando el titular pasa de 60 caracteres. */
+  tituloSeo?: string;
   descripcion: string;
   entradilla: string;
   categoria: string;
   fecha: string;
   actualizado?: string;
   imagen:
-    "niebla" | "bosque" | "sendero" | "montanas" | "raices" | "lago" | "arbol" | "mar" | "piedras";
+    | "niebla"
+    | "bosque"
+    | "sendero"
+    | "montanas"
+    | "raices"
+    | "lago"
+    | "arbol"
+    | "mar"
+    | "piedras"
+    | "hoja";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "no-tienes-que-poder-con-todo",
+    titulo: "No tienes que poder con todo: autoestima, límites y necesidad de control",
+    tituloCorto: "No tienes que poder con todo",
+    tituloSeo: "No tienes que poder con todo: autoestima y límites",
+    descripcion:
+      "Si siempre eres quien resuelve, pedir ayuda puede costar más que seguir cargando. Qué tiene que ver con la autoestima y cómo empezar a poner límites.",
+    entradilla:
+      "Hay personas que se han acostumbrado tanto a ser las que resuelven que pedir ayuda les resulta casi más incómodo que seguir cargando.",
+    categoria: "Autoestima",
+    fecha: "2026-10-26",
+    imagen: "hoja",
+    alt: "Una hoja pequeña flotando sobre agua en calma",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "Son las que organizan, anticipan, recuerdan, hacen seguimiento, solucionan problemas y suelen saber qué necesita cada persona de su alrededor.",
+      },
+      {
+        tipo: "p",
+        texto: "Y muchas veces reciben un mensaje que parece positivo:",
+      },
+      { tipo: "cita", texto: "«Es que tú puedes con todo»." },
+      {
+        tipo: "p",
+        texto:
+          "El problema es que, cuando escuchas eso durante mucho tiempo, puedes terminar creyendo que deberías poder con todo.",
+      },
+      { tipo: "h2", texto: "La capacidad también puede convertirse en una exigencia" },
+      {
+        tipo: "p",
+        texto:
+          "Ser una persona resolutiva tiene muchas ventajas. Pero existe una diferencia entre ser capaz de hacer algo y sentir que tienes que hacerlo tú.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Cuando esta segunda idea aparece, puede resultar difícil delegar, pedir ayuda o incluso reconocer que estás cansada.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "No porque no necesites apoyo. Sino porque has aprendido a asociar la autonomía con no necesitarlo.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y aquí aparece una paradoja: cuanto más intentas demostrar que puedes sola, menos espacio queda para que otras personas puedan acompañarte.",
+      },
+      { tipo: "h2", texto: "¿Qué relación tiene esto con la autoestima?" },
+      {
+        tipo: "p",
+        texto: "A veces construimos nuestra autoestima alrededor de determinadas cualidades:",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "«Soy válida porque soy responsable».",
+          "«Soy valiosa porque soy fuerte».",
+          "«Soy buena porque estoy disponible».",
+          "«Soy capaz porque siempre encuentro una solución».",
+        ],
+      },
+      {
+        tipo: "p",
+        texto: "El problema es que todas esas cualidades dependen de que puedas seguir cumpliendo.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "¿Qué ocurre el día que no puedes? ¿Qué pasa cuando necesitas que alguien te cuide a ti? ¿Qué ocurre cuando tienes que decir que no?",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Si tu valoración personal depende demasiado de ser la persona que siempre puede, tus propios límites pueden empezar a parecerte defectos.",
+      },
+      { tipo: "h2", texto: "Poner límites no es dejar de cuidar a los demás" },
+      {
+        tipo: "p",
+        texto:
+          "Existe una idea bastante extendida de que poner límites consiste en decir que no más a menudo. Pero es algo más amplio.",
+      },
+      {
+        tipo: "p",
+        texto: "También significa poder reconocer qué puedes asumir y qué no.",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "Poder pedir ayuda antes de llegar al límite.",
+          "Poder expresar una necesidad sin sentir que estás molestando.",
+          "Poder aceptar que alguien haga las cosas de una manera diferente a la tuya.",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y, en algunos casos, tolerar que otra persona pueda sentirse decepcionada contigo sin correr inmediatamente a solucionarlo.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Porque los límites no solo protegen tu tiempo. También te permiten construir relaciones en las que no tienes que desaparecer para que todo funcione.",
+      },
+      { tipo: "h2", texto: "Una pequeña práctica para empezar a observarlo" },
+      {
+        tipo: "p",
+        texto:
+          "Durante una semana, fíjate en las veces que dices «sí» automáticamente. No necesitas cambiar nada todavía. Solo observa.",
+      },
+      {
+        tipo: "p",
+        texto: "Cuando aparezca un «sí», pregúntate:",
+      },
+      {
+        tipo: "lista",
+        items: [
+          "¿Quiero hacerlo o siento que debería?",
+          "¿Tengo realmente capacidad para asumirlo?",
+          "¿Qué creo que ocurriría si dijera que no?",
+          "¿Estoy evitando que alguien se enfade, se decepcione o tenga que hacerse cargo de algo?",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Estas preguntas pueden ayudarte a detectar cuánto de lo que haces nace de una elección y cuánto de una necesidad de cumplir.",
+      },
+      { tipo: "h2", texto: "No necesitas demostrar constantemente que puedes" },
+      {
+        tipo: "p",
+        texto:
+          "Hay una forma de fortaleza que no consiste en aguantar más. Consiste en poder reconocer tus límites sin sentir que eso disminuye tu valor.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Puedes ser una persona capaz y necesitar ayuda. Puedes ser responsable y decir que no. Puedes cuidar a los demás y cuidarte a ti.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y quizá una autoestima más estable tenga menos que ver con pensar «puedo con todo» y mucho más con saber:",
+      },
+      { tipo: "cita", texto: "«No tengo que poder con todo para seguir confiando en mí»." },
+    ],
+  },
   {
     slug: "cuando-la-responsabilidad-se-convierte-en-perfeccionismo",
     titulo: "¿Cuándo la responsabilidad se convierte en perfeccionismo?",
