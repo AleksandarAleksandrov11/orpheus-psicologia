@@ -125,7 +125,13 @@ export function Footer() {
       <div className="relative z-10 border-t border-on-dark/12">
         <div className="shell flex flex-col gap-4 py-7 text-[0.72rem] font-light text-on-dark-faint md:flex-row md:items-center md:justify-between">
           <p>
-            © {anio} {SITE.psicologa.nombre} · {SITE.name}
+            © {anio} {SITE.psicologa.nombre} · {SITE.name} · Web creada por{" "}
+            <a
+              href="https://www.aasmarketing.com/"
+              className="link-draw transition-colors duration-400 hover:text-on-dark"
+            >
+              AAS Marketing
+            </a>
           </p>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {LEGAL_NAV.map((l) => (
