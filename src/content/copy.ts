@@ -434,78 +434,39 @@ export const ESPACIO_SEGURO = {
 /**
  * Tarifas.
  * ------------------------------------------------------------------
- * Son las mismas que Melissa publica hoy en su web: primera sesión a
- * precio reducido, sesión suelta y bono de cuatro sesiones. La web se
- * dirige a la terapia online; la presencial se valora caso por caso.
+ * Melissa unificó precios en un servicio único: la sesión individual,
+ * con la misma tarifa desde la primera sesión. Es también lo que cobra
+ * en presencial. La web se dirige a la terapia online.
  */
 export const MOSTRAR_PRECIOS = true;
 
+/** Introducción del bloque «Servicios y tarifas», literal. */
+export const TARIFAS_INTRO =
+  "La consulta trabaja principalmente online, acompañándote estés donde estés. Un espacio profesional para comprender lo que estás viviendo y trabajar sobre aquello que necesitas.";
+
 export const SESIONES = [
-  {
-    slug: "primera-sesion",
-    enlace: "Reservar la primera sesión",
-    titulo: "Primera sesión",
-    etiqueta: "Punto de partida",
-    duracion: "60 minutos",
-    canal: "Online",
-    precio: "50 €",
-    nota: "Precio reducido",
-    resumen:
-      "Un espacio para conocernos, contarme qué te trae y decidir si quieres empezar. Sin compromiso de continuidad.",
-    incluye: [
-      "Exploración de tu motivo de consulta",
-      "Contexto de tu historia y tu momento vital",
-      "Propuesta de trabajo y frecuencia orientativa",
-      "Espacio para tus dudas sobre el proceso",
-    ],
-  },
   {
     slug: "sesion-individual",
     enlace: "Reservar una sesión individual",
     titulo: "Sesión individual",
     etiqueta: "Acompañamiento",
-    duracion: "50 a 60 minutos",
-    canal: "Online, por videollamada cifrada",
+    duracion: "50 minutos",
+    canal: "Online · Videollamada cifrada",
     precio: "65 €",
-    nota: "por sesión",
     resumen:
-      "Trabajamos aquello que te trajo a terapia y aquello que pueda aparecer por el camino, con la misma profundidad, estés donde estés en tu proceso.",
+      "Un espacio de trabajo terapéutico individualizado, adaptado a tus necesidades y a los objetivos de tu proceso.",
     incluye: [
-      "Plan terapéutico adaptado a ti",
-      "Revisión de objetivos a lo largo del proceso",
-      "Un trabajo personal guiado, no una lista de técnicas",
-      "Sesión a sesión, sin permanencia",
-      "Para frecuencia quincenal, mensual u otra periodicidad",
+      "Exploración de tus necesidades y objetivos.",
+      "Plan terapéutico adaptado a ti.",
+      "Trabajo psicológico guiado.",
+      "Revisión de objetivos y evolución.",
     ],
-    destacado: true,
-  },
-  {
-    slug: "bono-4-sesiones",
-    enlace: "Reservar el bono de 4 sesiones",
-    titulo: "Bono de 4 sesiones",
-    etiqueta: "Continuidad",
-    duracion: "4 × 50 a 60 minutos",
-    canal: "Online, en un solo pago",
-    precio: "240 €",
-    nota: "60 € por sesión",
-    resumen:
-      "El mismo proceso y el mismo trabajo, con la continuidad ya decidida. Exclusivo para procesos terapéuticos con frecuencia semanal.",
-    incluye: [
-      "El mismo plan terapéutico y la misma revisión de objetivos",
-      "Cuatro sesiones a 60 € cada una, en un solo pago",
-      "Exclusivo para procesos con frecuencia semanal",
-      "Se renueva tantas veces como quieras",
+    notas: [
+      "La primera sesión y las sesiones posteriores mantienen la misma tarifa.",
+      "La frecuencia de las sesiones se acuerda conjuntamente y se adapta a tu proceso.",
     ],
   },
 ] as const;
-
-/**
- * Aclaración sobre las dos formas de la misma terapia. Melissa no quería que
- * la sesión suelta y el bono se leyeran como dos procesos distintos: es el
- * mismo trabajo y cambia solo la forma de reservarlo y pagarlo.
- */
-export const TARIFAS_ACLARACION =
-  "La sesión individual y el bono no son dos terapias distintas: son la misma, con el mismo plan y la misma revisión de objetivos. El bono es exclusivo para procesos con frecuencia semanal; con cualquier otro ritmo, las sesiones se abonan a precio de sesión individual.";
 
 /** Política de cancelación, literal. Se usa en tarifas y en las FAQ. */
 export const CANCELACION =
@@ -513,7 +474,6 @@ export const CANCELACION =
 
 /** Notas al pie del bloque de tarifas. */
 export const TARIFAS_NOTAS = [
-  "Las sesiones con frecuencia quincenal, mensual u otra periodicidad se abonan a precio de sesión individual.",
   "Si prefieres terapia presencial en Madrid, escríbeme y vemos las opciones disponibles.",
   CANCELACION,
 ] as const;
@@ -638,7 +598,7 @@ export const FAQ = [
   },
   {
     q: "¿Cuánto cuesta una sesión?",
-    a: "La primera sesión cuesta 50 €, la sesión individual 65 € y el bono de 4 sesiones 240 € (60 € por sesión), exclusivo para procesos con frecuencia semanal. Las sesiones quincenales, mensuales o con otra periodicidad se abonan a precio de sesión individual. Tienes todos los detalles en la página de tarifas.",
+    a: "Cada sesión individual cuesta 65 € y dura 50 minutos, online por videollamada cifrada. La primera sesión y las sesiones posteriores mantienen la misma tarifa, y la frecuencia se acuerda conjuntamente según tu proceso. Tienes todos los detalles en la página de tarifas.",
   },
   {
     q: "¿Cuánto dura un proceso terapéutico?",

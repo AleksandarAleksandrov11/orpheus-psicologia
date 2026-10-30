@@ -143,7 +143,7 @@ export const NAV = [
     ],
   },
   // Las tarifas, en una pestaña propia: dentro de Servicios no se veían.
-  { to: "/tarifas", label: "Tarifas", descripcion: "Precios de las sesiones y del bono" },
+  { to: "/tarifas", label: "Tarifas", descripcion: "Precio de la sesión individual" },
   // Las preguntas frecuentes van sueltas y no colgando de Servicios: se
   // consultan antes de decidir nada, no después de elegir un servicio.
   {

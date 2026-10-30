@@ -21,6 +21,7 @@ import {
   FAQ,
   FRECUENCIA,
   RECORRIDO,
+  TARIFAS_INTRO,
 } from "@/content/copy";
 import { migasSchema, seo, servicioSchema } from "@/lib/seo";
 
@@ -367,11 +368,7 @@ function Servicios() {
               </Reveal>
             </div>
             <Reveal delay={160}>
-              <p className="prose-body">
-                La consulta trabaja sobre todo online, en toda España. La primera sesión no
-                compromete a nada más que a conocernos: a partir de ahí decidimos contigo el
-                formato, la frecuencia y hacia dónde vamos.
-              </p>
+              <p className="prose-body">{TARIFAS_INTRO}</p>
             </Reveal>
           </div>
 

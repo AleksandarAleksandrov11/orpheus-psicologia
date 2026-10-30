@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { LineasReveladas, Parallax, Reveal } from "@/components/site/motion";
 import { TarifasTarjetas } from "@/components/site/TarifasTarjetas";
-import { Antetitulo, BotonEnlace, Migas } from "@/components/site/ui";
-import { FRECUENCIA, MOSTRAR_PRECIOS, SESIONES } from "@/content/copy";
+import { BotonEnlace, Migas } from "@/components/site/ui";
+import { FRECUENCIA, MOSTRAR_PRECIOS, SESIONES, TARIFAS_INTRO } from "@/content/copy";
 import { SITE } from "@/content/site";
 import { migasSchema, seo, tarifasSchema } from "@/lib/seo";
 
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/tarifas")({
     seo({
       title: "Tarifas de terapia online",
       description:
-        "Primera sesión 50 €, sesión individual 65 € y bono de 4 sesiones 240 € para procesos semanales. Terapia online en toda España con Melissa González.",
+        "Sesión individual de 65 €, 50 minutos online por videollamada cifrada. La primera sesión y las siguientes tienen la misma tarifa. Con Melissa González.",
       path: "/tarifas",
       image: "/og/og-servicios.jpg",
       imageAlt: "Orpheus Psicología: tarifas de terapia online",
@@ -27,7 +27,6 @@ export const Route = createFileRoute("/tarifas")({
         "precio psicóloga online",
         "tarifas terapia online",
         "precio sesión psicología",
-        "bono sesiones psicología",
         "psicóloga online España",
       ],
       jsonLd: [
@@ -64,16 +63,14 @@ function Tarifas() {
               </p>
 
               <LineasReveladas
-                lineas={["Tarifas de", "terapia online."]}
+                lineas={["Servicios", "y tarifas."]}
                 cursiva={1}
                 delay={120}
                 className="display-xl mt-7 text-ink"
               />
 
               <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
-                La primera sesión es para conocernos, sin compromiso de continuidad. A partir de ahí
-                puedes seguir sesión a sesión o, si el proceso es semanal, con el bono de cuatro
-                sesiones.
+                {TARIFAS_INTRO}
               </p>
             </div>
 
@@ -104,14 +101,9 @@ function Tarifas() {
       >
         <div className="grain absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 shell section-y">
-          <Reveal>
-            <Antetitulo>Modalidades</Antetitulo>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 id="tarifas-titulo" className="display-md mt-6">
-              Sesiones y <em className="italic">precios</em>.
-            </h2>
-          </Reveal>
+          <h2 id="tarifas-titulo" className="sr-only">
+            Tarifa de la sesión individual
+          </h2>
 
           <TarifasTarjetas />
         </div>

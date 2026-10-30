@@ -23,6 +23,8 @@ export type Articulo = {
   tituloCorto?: string;
   /** Título para la pestaña y Google cuando el titular pasa de 60 caracteres. */
   tituloSeo?: string;
+  /** Minutos de lectura indicados por la autora; si falta, se calculan. */
+  lectura?: number;
   descripcion: string;
   entradilla: string;
   categoria: string;
@@ -38,12 +40,65 @@ export type Articulo = {
     | "arbol"
     | "mar"
     | "piedras"
-    | "hoja";
+    | "hoja"
+    | "pluma";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "truco-o-trato-acuerdos-silenciosos-contigo",
+    titulo: "Truco o trato: los acuerdos silenciosos que haces contigo",
+    tituloCorto: "Truco o trato",
+    descripcion:
+      "«Cuando termine esto, descansaré.» Los tratos silenciosos que haces contigo para merecer el descanso, por qué casi nunca se cumplen y cómo empezar a mirarlos.",
+    entradilla:
+      "«Cuando termine esto, descansaré.» ¿Alguna vez te has preguntado quién puso esa condición?",
+    categoria: "Autoexigencia",
+    fecha: "2026-10-30",
+    lectura: 3,
+    imagen: "pluma",
+    alt: "Una pluma blanca apoyada sobre un fondo oscuro",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "Estos días se oye por todas partes lo de «¿truco o trato?». Y me ha hecho pensar en los tratos que muchas personas hacemos durante todo el año, casi sin darnos cuenta, con nosotras mismas.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "«Cuando termine este proyecto, descansaré.» «Cuando esté más tranquila, me permitiré disfrutar.» «Hoy no he hecho gran cosa, así que no me merezco el plan del fin de semana.» Si alguna te suena, no estás sola. Es algo que escucho mucho en consulta, y suele venir de un lugar comprensible: en algún momento aprendimos que el descanso, el cariño o la tranquilidad llegaban después de esforzarnos.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Lo difícil de estos acuerdos es que casi nunca se cumplen del todo. Terminas el proyecto y aparece otro. Llegas a la meta y descubres que se ha movido un poco más allá. Y el permiso para parar, el que estabas esperando, sigue sin llegar.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Con el tiempo pasa algo más sutil: sin darte cuenta, tu valor empieza a medirse en lo que produces. Y entonces un día flojo ya no es solo un día flojo. Se vive como una prueba de que algo en ti falla. Por eso cuesta tanto parar sin sentir culpa.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Quizá, más que romper el trato de golpe, te ayude mirarlo con curiosidad. ¿Qué me estoy exigiendo ganar antes de permitirme parar? ¿De dónde viene esa condición? ¿Quién me enseñó que descansar había que merecerlo?",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y después, si te apetece, probar algo pequeño: diez minutos de parar sin haberlo «merecido». Un café sentada, un paseo, no hacer nada. Es posible que aparezca incomodidad, y no significa que lo estés haciendo mal. Muchas veces es la señal de cuánto tiempo llevaba ese trato mandando.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "El descanso, el disfrute y el cariño hacia una misma no tendrían por qué ser un premio. Pueden ser, simplemente, parte de tu vida. Y el mejor trato que puedes hacer contigo no es el que te exige más, sino el que dice:",
+      },
+      { tipo: "cita", texto: "Hoy me trato como trataría a alguien a quien quiero." },
+    ],
+  },
   {
     slug: "no-tienes-que-poder-con-todo",
     titulo: "No tienes que poder con todo: autoestima, límites y necesidad de control",
@@ -941,6 +996,7 @@ export const ARTICULOS: Articulo[] = [
 const PPM = 200;
 
 export function tiempoLectura(a: Articulo): number {
+  if (a.lectura) return a.lectura;
   const palabras = a.bloques.reduce((n, b) => {
     const t = b.tipo === "lista" ? b.items.join(" ") : b.texto;
     return n + t.trim().split(/\s+/).length;
