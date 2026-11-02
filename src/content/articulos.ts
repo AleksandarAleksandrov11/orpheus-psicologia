@@ -41,12 +41,64 @@ export type Articulo = {
     | "mar"
     | "piedras"
     | "hoja"
-    | "pluma";
+    | "pluma"
+    | "diente";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "por-que-te-cuesta-aceptar-un-cumplido",
+    titulo: "Por qué te cuesta tanto aceptar un cumplido",
+    tituloCorto: "Aceptar un cumplido",
+    descripcion:
+      "Alguien te dice algo bonito y, sin pensarlo, lo esquivas. Por qué el cumplido choca con la imagen que tienes de ti y cómo empezar a dejar que entre.",
+    entradilla:
+      "Alguien te dice algo bonito y, sin pensarlo, lo esquivas. Merece la pena preguntarse por qué.",
+    categoria: "Autoestima",
+    fecha: "2026-11-02",
+    lectura: 3,
+    imagen: "diente",
+    alt: "Un diente de león solitario sobre un fondo desenfocado",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "«Qué bien te ha salido esto.» «Uy, qué va, si es una tontería.» ¿Te suena? Alguien te dice algo amable y, casi antes de escucharlo, ya lo has apartado: le quitas importancia, lo devuelves, cambias de tema o lo explicas con un «ha sido suerte» o «me han ayudado».",
+      },
+      {
+        tipo: "p",
+        texto:
+          "No es falsa modestia ni mala educación. Muchas veces es algo mucho más humano: el cumplido choca con la imagen que tienes de ti. Si por dentro llevas la idea de que no eres para tanto, escuchar lo contrario resulta extraño, incluso incómodo. Es como si te dieran algo que no sabes dónde guardar.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "En consulta veo a personas que se esfuerzan muchísimo y que, cuando alguien lo reconoce, sienten vergüenza o desconfianza. A veces hay una duda silenciosa detrás: «si supiera cómo soy de verdad, no lo diría». Ahí la inseguridad hace su trabajo: deja pasar solo lo que confirma lo que ya piensas de ti.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y hay algo más. Aceptar un halago también puede traer presión por estar a la altura. Si dices «gracias, me ha salido bien», quizá sientas que la próxima vez tendrás que repetirlo. Quitarle peso protege, de alguna manera, de esa expectativa.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Entenderlo cambia la mirada. No hay nada raro en ti por esquivar cumplidos: lo hacías por una buena razón, aunque ahora quizá ya no te sirva tanto.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Si quieres empezar a trabajarlo, no hace falta que te lo creas todo de golpe. Puedes probar algo más sencillo: responder solo «gracias». Sin explicación, sin devolución. Notar qué pasa en el cuerpo en esos segundos incómodos y dejar que el cumplido exista un rato, aunque todavía no lo creas del todo.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "La autoestima no se construye con frases bonitas que otros te dicen. Pero muchas veces empieza por permitir que alguna entre.",
+      },
+    ],
+  },
   {
     slug: "truco-o-trato-acuerdos-silenciosos-contigo",
     titulo: "Truco o trato: los acuerdos silenciosos que haces contigo",

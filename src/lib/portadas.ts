@@ -28,6 +28,8 @@ import texHoja from "@/assets/tex-hoja.webp";
 import texHojaSm from "@/assets/tex-hoja@sm.webp";
 import texPluma from "@/assets/tex-pluma.webp";
 import texPlumaSm from "@/assets/tex-pluma@sm.webp";
+import texDiente from "@/assets/tex-diente.webp";
+import texDienteSm from "@/assets/tex-diente@sm.webp";
 
 export type Portada = { src: string; sm: string; w: number; h: number; wSm: number };
 
@@ -55,6 +57,9 @@ export const PORTADAS: Record<Articulo["imagen"], Portada> = {
   // «Free close white feather image», dominio público (CC0 1.0) vía rawpixel.
   // Virada al verde de marca.
   pluma: { src: texPluma, sm: texPlumaSm, w: 1024, h: 589, wSm: 640 },
+  // «Dandelion with a natural background», dominio público (CC0 1.0) vía
+  // rawpixel. Virada al verde de marca; calidad alta por el fondo desenfocado.
+  diente: { src: texDiente, sm: texDienteSm, w: 1024, h: 683, wSm: 640 },
 };
 
 export const srcSetPortada = (p: Portada) => `${p.sm} ${p.wSm}w, ${p.src} ${p.w}w`;
