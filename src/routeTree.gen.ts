@@ -21,7 +21,9 @@ import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreMiRouteImport } from './routes/sobre-mi'
 import { Route as TarifasRouteImport } from './routes/tarifas'
+import { Route as TestAutoexigenciaRouteImport } from './routes/test-autoexigencia'
 import { Route as TestimoniosRouteImport } from './routes/testimonios'
+import { Route as ApiTestAutoexigenciaRouteImport } from './routes/api.test-autoexigencia'
 import { Route as DiarioIndexRouteImport } from './routes/diario/index'
 import { Route as DiarioSlugRouteImport } from './routes/diario/$slug'
 
@@ -85,9 +87,19 @@ const TarifasRoute = TarifasRouteImport.update({
   path: '/tarifas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestAutoexigenciaRoute = TestAutoexigenciaRouteImport.update({
+  id: '/test-autoexigencia',
+  path: '/test-autoexigencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TestimoniosRoute = TestimoniosRouteImport.update({
   id: '/testimonios',
   path: '/testimonios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTestAutoexigenciaRoute = ApiTestAutoexigenciaRouteImport.update({
+  id: '/api/test-autoexigencia',
+  path: '/api/test-autoexigencia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiarioIndexRoute = DiarioIndexRouteImport.update({
@@ -114,7 +126,9 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
   '/tarifas': typeof TarifasRoute
+  '/test-autoexigencia': typeof TestAutoexigenciaRoute
   '/testimonios': typeof TestimoniosRoute
+  '/api/test-autoexigencia': typeof ApiTestAutoexigenciaRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario/': typeof DiarioIndexRoute
 }
@@ -131,7 +145,9 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
   '/tarifas': typeof TarifasRoute
+  '/test-autoexigencia': typeof TestAutoexigenciaRoute
   '/testimonios': typeof TestimoniosRoute
+  '/api/test-autoexigencia': typeof ApiTestAutoexigenciaRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario': typeof DiarioIndexRoute
 }
@@ -149,7 +165,9 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-mi': typeof SobreMiRoute
   '/tarifas': typeof TarifasRoute
+  '/test-autoexigencia': typeof TestAutoexigenciaRoute
   '/testimonios': typeof TestimoniosRoute
+  '/api/test-autoexigencia': typeof ApiTestAutoexigenciaRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario/': typeof DiarioIndexRoute
 }
@@ -168,7 +186,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre-mi'
     | '/tarifas'
+    | '/test-autoexigencia'
     | '/testimonios'
+    | '/api/test-autoexigencia'
     | '/diario/$slug'
     | '/diario/'
   fileRoutesByTo: FileRoutesByTo
@@ -185,7 +205,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre-mi'
     | '/tarifas'
+    | '/test-autoexigencia'
     | '/testimonios'
+    | '/api/test-autoexigencia'
     | '/diario/$slug'
     | '/diario'
   id:
@@ -202,7 +224,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre-mi'
     | '/tarifas'
+    | '/test-autoexigencia'
     | '/testimonios'
+    | '/api/test-autoexigencia'
     | '/diario/$slug'
     | '/diario/'
   fileRoutesById: FileRoutesById
@@ -220,7 +244,9 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreMiRoute: typeof SobreMiRoute
   TarifasRoute: typeof TarifasRoute
+  TestAutoexigenciaRoute: typeof TestAutoexigenciaRoute
   TestimoniosRoute: typeof TestimoniosRoute
+  ApiTestAutoexigenciaRoute: typeof ApiTestAutoexigenciaRoute
   DiarioSlugRoute: typeof DiarioSlugRoute
   DiarioIndexRoute: typeof DiarioIndexRoute
 }
@@ -311,11 +337,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TarifasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/test-autoexigencia': {
+      id: '/test-autoexigencia'
+      path: '/test-autoexigencia'
+      fullPath: '/test-autoexigencia'
+      preLoaderRoute: typeof TestAutoexigenciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/testimonios': {
       id: '/testimonios'
       path: '/testimonios'
       fullPath: '/testimonios'
       preLoaderRoute: typeof TestimoniosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/test-autoexigencia': {
+      id: '/api/test-autoexigencia'
+      path: '/api/test-autoexigencia'
+      fullPath: '/api/test-autoexigencia'
+      preLoaderRoute: typeof ApiTestAutoexigenciaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/diario/': {
@@ -348,7 +388,9 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreMiRoute: SobreMiRoute,
   TarifasRoute: TarifasRoute,
+  TestAutoexigenciaRoute: TestAutoexigenciaRoute,
   TestimoniosRoute: TestimoniosRoute,
+  ApiTestAutoexigenciaRoute: ApiTestAutoexigenciaRoute,
   DiarioSlugRoute: DiarioSlugRoute,
   DiarioIndexRoute: DiarioIndexRoute,
 }
