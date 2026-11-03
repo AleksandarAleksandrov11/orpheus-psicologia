@@ -84,6 +84,24 @@ function Privacidad() {
             que se describe más abajo. Te recomendamos no detallar información clínica sensible en
             un primer correo: basta con indicar el motivo general de la consulta.
           </p>
+          <h3>A través del test de autoexigencia</h3>
+          <ul>
+            <li>Nombre, si decides facilitarlo.</li>
+            <li>Dirección de correo electrónico.</li>
+            <li>
+              Tus respuestas a las veinte afirmaciones del test y la puntuación que se calcula a
+              partir de ellas.
+            </li>
+            <li>
+              Si marcas la casilla opcional, tu voluntad de recibir artículos y novedades por
+              correo.
+            </li>
+          </ul>
+          <p>
+            Tus respuestas pueden revelar información relativa a tu salud, por lo que se tratan como
+            una categoría especial de datos (art. 9 RGPD) y solo se utilizan con tu consentimiento
+            expreso.
+          </p>
           <h3>En el marco del proceso terapéutico</h3>
           <p>
             Si llegamos a iniciar un proceso, se generará documentación clínica (historia clínica)
@@ -107,6 +125,14 @@ function Privacidad() {
         <ul>
           <li>Responder a tu consulta y facilitarte la información que solicitas.</li>
           <li>Gestionar la agenda y la cita de una primera sesión.</li>
+          <li>
+            Mostrarte el resultado del test de autoexigencia y permitir que la psicóloga revise tus
+            respuestas y, si lo considera oportuno, se ponga en contacto contigo para comentarlas.
+          </li>
+          <li>
+            Enviarte artículos y novedades por correo electrónico, solo si marcas la casilla
+            opcional del test.
+          </li>
           <li>
             Prestar asistencia psicológica y llevar la documentación clínica asociada, si llegas a
             iniciar un proceso terapéutico.
@@ -138,6 +164,20 @@ function Privacidad() {
                   <td>
                     Consentimiento que prestas al enviar el formulario (art. 6.1.a RGPD) y medidas
                     precontractuales a petición tuya (art. 6.1.b)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Test de autoexigencia: recepción y revisión de tus respuestas</td>
+                  <td>
+                    Consentimiento explícito que prestas al marcar la casilla correspondiente antes
+                    de enviarlo (art. 6.1.a y, para los datos de salud, art. 9.2.a RGPD)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Envío de artículos y novedades por correo</td>
+                  <td>
+                    Tu consentimiento, que es opcional, independiente del test y revocable en
+                    cualquier momento (art. 6.1.a RGPD y art. 21 de la Ley 34/2002)
                   </td>
                 </tr>
                 <tr>
@@ -174,6 +214,14 @@ function Privacidad() {
           <li>
             <strong>Consultas que no derivan en un proceso:</strong> hasta un año desde la última
             comunicación, salvo que solicites antes su supresión.
+          </li>
+          <li>
+            <strong>Respuestas al test de autoexigencia:</strong> hasta un año desde su recepción,
+            salvo que solicites antes su supresión. Esta web no guarda las respuestas: solo existen
+            en el correo que recibe la psicóloga.
+          </li>
+          <li>
+            <strong>Suscripción a novedades:</strong> hasta que retires tu consentimiento.
           </li>
           <li>
             <strong>Documentación clínica:</strong> como mínimo cinco años desde la fecha del alta
@@ -214,15 +262,27 @@ function Privacidad() {
               <tbody>
                 <tr>
                   <td>Vercel Inc.</td>
-                  <td>Alojamiento del sitio web y analítica agregada</td>
+                  <td>
+                    Alojamiento del sitio web, analítica agregada y ejecución del envío del test
+                  </td>
                   <td>
                     EE. UU. y UE. Transferencias amparadas por cláusulas contractuales tipo de la
                     Comisión Europea y por el Data Privacy Framework
                   </td>
                 </tr>
                 <tr>
+                  <td>Resend, Inc.</td>
+                  <td>Envío por correo electrónico de las respuestas del test a la psicóloga</td>
+                  <td>
+                    EE. UU. Transferencias amparadas por cláusulas contractuales tipo de la Comisión
+                    Europea y por el Data Privacy Framework
+                  </td>
+                </tr>
+                <tr>
                   <td>Proveedor de correo electrónico</td>
-                  <td>Recepción y custodia de los mensajes de contacto</td>
+                  <td>
+                    Recepción y custodia de los mensajes de contacto y de las respuestas del test
+                  </td>
                   <td>Unión Europea o país con garantías adecuadas</td>
                 </tr>
                 <tr>
@@ -329,11 +389,12 @@ function Privacidad() {
       titulo: "Menores de edad",
       contenido: (
         <p>
-          El formulario de contacto está dirigido a personas mayores de 14 años. Para el tratamiento
-          de datos de menores de esa edad es necesario el consentimiento de quien ostente la patria
-          potestad o la tutela, conforme al artículo 7 de la LOPDGDD. En la atención a adolescentes,
-          la información y el consentimiento se recaban de las figuras de referencia en los términos
-          previstos en la Ley 41/2002.
+          El test de autoexigencia está dirigido a personas adultas. El formulario de contacto está
+          dirigido a personas mayores de 14 años. Para el tratamiento de datos de menores de esa
+          edad es necesario el consentimiento de quien ostente la patria potestad o la tutela,
+          conforme al artículo 7 de la LOPDGDD. En la atención a adolescentes, la información y el
+          consentimiento se recaban de las figuras de referencia en los términos previstos en la Ley
+          41/2002.
         </p>
       ),
     },

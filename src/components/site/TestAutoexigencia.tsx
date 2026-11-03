@@ -33,10 +33,10 @@ export function TestAutoexigencia() {
   );
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
-  const [consentimiento, setConsentimiento] = useState(false);
+  const [conf, setConf] = useState({ legal: false, orientativo: false, salud: false });
   const [novedades, setNovedades] = useState(false);
   const [trampa, setTrampa] = useState("");
-  const [errores, setErrores] = useState<{ email?: string; consentimiento?: string }>({});
+  const [errores, setErrores] = useState<{ email?: string; confirmaciones?: string }>({});
   const [errorEnvio, setErrorEnvio] = useState("");
   const [enviando, setEnviando] = useState(false);
   const foco = useRef<HTMLLegendElement>(null);
@@ -65,8 +65,8 @@ export function TestAutoexigencia() {
     e.preventDefault();
     const nuevos: typeof errores = {};
     if (!EMAIL.test(email.trim())) nuevos.email = "Escribe un correo electrónico válido.";
-    if (!consentimiento)
-      nuevos.consentimiento = "Necesito tu consentimiento para poder recibir tus respuestas.";
+    if (!conf.legal || !conf.orientativo || !conf.salud)
+      nuevos.confirmaciones = "Para enviar el test tienes que marcar las tres confirmaciones.";
     setErrores(nuevos);
     setErrorEnvio("");
     if (Object.keys(nuevos).length) return;
@@ -81,6 +81,8 @@ export function TestAutoexigencia() {
           email: email.trim(),
           respuestas,
           consentimiento: true,
+          legal: true,
+          orientativo: true,
           novedades,
           web: trampa,
         }),
@@ -278,65 +280,105 @@ export function TestAutoexigencia() {
             />
           </div>
 
-          <div
+          {/* Tres confirmaciones obligatorias, cada una con su casilla: leer lo
+              legal, entender que el test es orientativo y consentir de forma
+              expresa el tratamiento de unos datos que pueden ser de salud. */}
+          <fieldset
             className={`mt-9 rounded-2xl border p-6 md:p-7 ${
-              errores.consentimiento ? "border-destructive/50 bg-paper" : "border-rule bg-paper/60"
+              errores.confirmaciones ? "border-destructive/50 bg-paper" : "border-rule bg-paper/60"
             }`}
+            aria-describedby={errores.confirmaciones ? "test-confirmaciones-error" : undefined}
           >
-            <div className="flex items-start gap-3.5">
-              <input
-                id="test-consentimiento"
-                type="checkbox"
-                required
-                className="mt-1 size-4 shrink-0 accent-moss"
-                checked={consentimiento}
-                onChange={(e) => setConsentimiento(e.target.checked)}
-                aria-invalid={errores.consentimiento ? true : undefined}
-                aria-describedby="test-consentimiento-ayuda"
-              />
-              <div>
-                <label
-                  htmlFor="test-consentimiento"
-                  className="block cursor-pointer text-[0.99rem] leading-relaxed font-light text-ink"
-                >
-                  He leído la política de privacidad y consiento expresamente el tratamiento de mis
-                  respuestas, que pueden revelar información sobre mi salud, para recibir mi
-                  resultado y para que la psicóloga pueda revisarlas.
-                  <span aria-hidden="true" className="ml-1 text-olive">
-                    *
-                  </span>
-                </label>
-                <p
-                  id="test-consentimiento-ayuda"
-                  className="mt-2.5 text-[0.89rem] leading-relaxed font-light text-ink-faint"
-                >
-                  Responsable: {SITE.titular.nombre}. Puedes retirar el consentimiento cuando
-                  quieras escribiendo a {SITE.privacidad.email}. Todo el detalle está en la{" "}
+            <legend className="eyebrow px-2 text-ink-faint">
+              Antes de enviar
+              <span aria-hidden="true" className="ml-1 text-olive">
+                *
+              </span>
+            </legend>
+
+            <div className="grid gap-5">
+              <label className="flex cursor-pointer items-start gap-3.5 text-[0.99rem] leading-relaxed font-light text-ink">
+                <input
+                  type="checkbox"
+                  required
+                  className="mt-1 size-4 shrink-0 accent-moss"
+                  checked={conf.legal}
+                  onChange={(e) => setConf((c) => ({ ...c, legal: e.target.checked }))}
+                />
+                <span>
+                  He leído y acepto la{" "}
                   <Link
                     to="/politica-de-privacidad"
                     target="_blank"
                     className="link-draw text-cypress"
                   >
                     política de privacidad
+                  </Link>{" "}
+                  y el{" "}
+                  <Link to="/aviso-legal" target="_blank" className="link-draw text-cypress">
+                    aviso legal
                   </Link>
                   .
+                </span>
+              </label>
+
+              <label className="flex cursor-pointer items-start gap-3.5 text-[0.99rem] leading-relaxed font-light text-ink">
+                <input
+                  type="checkbox"
+                  required
+                  className="mt-1 size-4 shrink-0 accent-moss"
+                  checked={conf.orientativo}
+                  onChange={(e) => setConf((c) => ({ ...c, orientativo: e.target.checked }))}
+                />
+                <span>
+                  Entiendo que este test es orientativo: no es un diagnóstico, no sustituye una
+                  valoración profesional y no sirve en una urgencia. Si estoy en una situación de
+                  riesgo, llamaré al 112 o al 024 (línea de atención a la conducta suicida, gratuita
+                  y abierta las 24 horas).
+                </span>
+              </label>
+
+              <div>
+                <label className="flex cursor-pointer items-start gap-3.5 text-[0.99rem] leading-relaxed font-light text-ink">
+                  <input
+                    type="checkbox"
+                    required
+                    className="mt-1 size-4 shrink-0 accent-moss"
+                    checked={conf.salud}
+                    onChange={(e) => setConf((c) => ({ ...c, salud: e.target.checked }))}
+                    aria-describedby="test-salud-ayuda"
+                  />
+                  <span>
+                    Consiento expresamente el tratamiento de mis respuestas, que pueden revelar
+                    información sobre mi salud, para ver mi resultado y para que la psicóloga pueda
+                    revisarlas.
+                  </span>
+                </label>
+                <p
+                  id="test-salud-ayuda"
+                  className="mt-2.5 pl-[1.875rem] text-[0.89rem] leading-relaxed font-light text-ink-faint"
+                >
+                  Responsable: {SITE.titular.nombre}. Puedes retirar el consentimiento cuando
+                  quieras escribiendo a {SITE.privacidad.email}.
                 </p>
               </div>
             </div>
-            {errores.consentimiento ? (
+
+            {errores.confirmaciones ? (
               <p
+                id="test-confirmaciones-error"
                 role="alert"
-                className="mt-3 flex items-start gap-1.5 text-[0.86rem] text-destructive"
+                className="mt-5 flex items-start gap-1.5 text-[0.86rem] text-destructive"
               >
                 <TriangleAlert
                   className="mt-0.5 size-3.5 shrink-0"
                   strokeWidth={1.7}
                   aria-hidden="true"
                 />
-                {errores.consentimiento}
+                {errores.confirmaciones}
               </p>
             ) : null}
-          </div>
+          </fieldset>
 
           <div className="mt-5 flex items-start gap-3.5 px-1">
             <input
@@ -417,7 +459,8 @@ export function TestAutoexigencia() {
 
           <p className="mt-9 max-w-2xl text-[0.93rem] leading-relaxed font-light text-ink-faint">
             Esta interpretación es orientativa y no es un diagnóstico. Una puntuación baja tampoco
-            descarta dificultades que merezcan atención.
+            descarta dificultades que merezcan atención. Si estás pasando por un momento de crisis o
+            te sientes en peligro, llama al 112 o al 024, que atiende las 24 horas y es gratuito.
           </p>
           <p className="prose-body mt-6 max-w-2xl">
             Si al responder has reconocido situaciones que te generan malestar, puedes ver cómo

@@ -186,6 +186,15 @@ function AvisoLegal() {
               gratuita, confidencial y disponible las 24 horas).
             </strong>
           </p>
+          <h3>El test de autoexigencia</h3>
+          <p>
+            El test de autoexigencia es una herramienta de autoconocimiento de carácter divulgativo.{" "}
+            <strong>No es una prueba diagnóstica ni está validada psicométricamente</strong>, y su
+            resultado es orientativo: una puntuación baja no descarta dificultades que merezcan
+            atención, ni una alta confirma ninguna. En ningún caso sustituye una valoración
+            profesional. El tratamiento de los datos que se facilitan al enviarlo se explica en la{" "}
+            <a href="/politica-de-privacidad">política de privacidad</a>.
+          </p>
           <h3>Disponibilidad del servicio</h3>
           <p>
             La titular no garantiza la ausencia de interrupciones o errores en el acceso al sitio,

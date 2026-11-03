@@ -140,6 +140,11 @@ export const NAV = [
         label: "Para empresas",
         descripcion: "Bienestar emocional en entornos de trabajo",
       },
+      {
+        to: "/test-autoexigencia",
+        label: "Test de autoexigencia",
+        descripcion: "Veinte preguntas para explorar cuánto te exiges",
+      },
     ],
   },
   // Las tarifas, en una pestaña propia: dentro de Servicios no se veían.
@@ -167,6 +172,7 @@ export const NAV_PLANO = [
   { to: "/por-que-orpheus", label: "Por qué Orpheus" },
   { to: "/servicios", label: "Terapia individual" },
   { to: "/empresas", label: "Para empresas" },
+  { to: "/test-autoexigencia", label: "Test de autoexigencia" },
   { to: "/tarifas", label: "Tarifas" },
   { to: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
   { to: "/diario", label: "Diario" },
@@ -181,4 +187,4 @@ export const LEGAL_NAV = [
 ] as const satisfies readonly NavLink[];
 
 /** Fecha de última revisión de los textos legales (formato ISO). */
-export const LEGAL_ACTUALIZADO = "2026-09-06";
+export const LEGAL_ACTUALIZADO = "2026-11-03";

@@ -19,6 +19,7 @@ Datos básicos:
 - [Preguntas frecuentes](https://www.orpheuspsicologia.com/preguntas-frecuentes): duración del proceso, frecuencia, terapia online, confidencialidad y cuestiones prácticas.
 - [Reseñas](https://www.orpheuspsicologia.com/testimonios): valoraciones verificadas en Google.
 - [Para empresas](https://www.orpheuspsicologia.com/empresas): sesiones de concienciación en salud mental y psicoterapia individual subvencionada por la empresa, con facturación a empresa.
+- [Test de autoexigencia](https://www.orpheuspsicologia.com/test-autoexigencia): veinte preguntas de autoconocimiento con una puntuación orientativa por ámbitos. No es un diagnóstico.
 - [Contacto](https://www.orpheuspsicologia.com/contacto): formas de reservar la primera sesión.
 
 ## Áreas de trabajo

@@ -20,7 +20,7 @@ import {
  *
  * Variables de entorno (Vercel → Settings → Environment Variables):
  *   RESEND_API_KEY   obligatoria; sin ella el endpoint responde 503
- *   TEST_MAIL_TO     destinatario; por defecto, el correo de contacto
+ *   TEST_MAIL_TO     destinatario; por defecto, DESTINO_PROVISIONAL (ver abajo)
  *   TEST_MAIL_FROM   remitente; por defecto el de pruebas de Resend, que solo
  *                    entrega al correo con el que se abrió la cuenta de Resend
  *   RESEND_API_URL   solo para pruebas en local
@@ -29,6 +29,15 @@ import {
  * preguntas de `test-autoexigencia.ts` y las cifras recibidas, que además se
  * revalidan y se vuelven a sumar.
  */
+
+/**
+ * DESTINATARIO PROVISIONAL, solo mientras se prueba el test.
+ * Cambiarlo por `SITE.contacto.email` (el correo de Melissa) antes de dar
+ * difusión al test: hasta entonces las respuestas de cualquier persona que lo
+ * rellene llegan aquí. También se puede cambiar sin tocar el código con la
+ * variable de entorno TEST_MAIL_TO.
+ */
+const DESTINO_PROVISIONAL = "aaswebmarketing@gmail.com";
 
 const MAX_BYTES = 8_000;
 const EMAIL = /^[^\s@<>",;]+@[^\s@<>",;]+\.[^\s@<>",;]+$/;
@@ -106,6 +115,8 @@ function redactar(datos: {
     `Nombre: ${datos.nombre || "(no indicado)"}`,
     `Correo: ${datos.email}`,
     `Acepta recibir novedades por correo: ${datos.novedades ? "sí" : "no"}`,
+    "Confirmaciones marcadas antes de enviar: política de privacidad y aviso legal leídos,",
+    "test entendido como orientativo, y consentimiento expreso para tratar las respuestas.",
     "",
     `PUNTUACIÓN: ${total} / ${TOTAL_PREGUNTAS * 4}`,
     `Nivel: ${nivel.titulo}`,
@@ -155,6 +166,8 @@ export const Route = createFileRoute("/api/test-autoexigencia")({
           email.length > 254 ||
           !EMAIL.test(email) ||
           cuerpo.consentimiento !== true ||
+          cuerpo.legal !== true ||
+          cuerpo.orientativo !== true ||
           typeof cuerpo.novedades !== "boolean" ||
           !respuestasValidas(cuerpo.respuestas)
         ) {
@@ -182,7 +195,7 @@ export const Route = createFileRoute("/api/test-autoexigencia")({
               headers: { Authorization: `Bearer ${clave}`, "Content-Type": "application/json" },
               body: JSON.stringify({
                 from: process.env.TEST_MAIL_FROM || "Orpheus Psicología <onboarding@resend.dev>",
-                to: [process.env.TEST_MAIL_TO || SITE.contacto.email],
+                to: [process.env.TEST_MAIL_TO || DESTINO_PROVISIONAL],
                 reply_to: email,
                 subject: `Test de autoexigencia: ${total}/${TOTAL_PREGUNTAS * 4}`,
                 text: texto,

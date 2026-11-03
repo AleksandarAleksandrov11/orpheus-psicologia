@@ -7,21 +7,16 @@ import { Migas } from "@/components/site/ui";
 import { migasSchema, seo } from "@/lib/seo";
 
 /**
- * Test de autoexigencia.
- *
- * Mientras no esté lanzado va con `noindex`, sin enlace en el menú y fuera del
- * mapa del sitio. Para lanzarlo: configurar RESEND_API_KEY en Vercel (ver
- * `api.test-autoexigencia.ts`), añadir el tratamiento a la política de
- * privacidad, quitar `noindex` aquí y sumar la ruta al mapa del sitio y al menú.
+ * Test de autoexigencia. Las respuestas se envían por correo con el endpoint
+ * `api.test-autoexigencia.ts`, que necesita RESEND_API_KEY en Vercel.
  */
 export const Route = createFileRoute("/test-autoexigencia")({
   head: () =>
     seo({
-      title: "Test de autoexigencia",
+      title: "Test de autoexigencia online",
       description:
         "Veinte preguntas para explorar cómo influye la autoexigencia en tu descanso, tus relaciones y la forma en que te valoras. Orientativo, no es un diagnóstico.",
       path: "/test-autoexigencia",
-      noindex: true,
       jsonLd: [
         migasSchema([
           { nombre: "Inicio", path: "/" },
@@ -59,7 +54,8 @@ function Test() {
             />
             <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
               A veces nos acostumbramos tanto a exigirnos que dejamos de darnos cuenta de cuánto nos
-              cuesta. Explora cómo puede estar influyendo en distintas áreas de tu vida.
+              cuesta. ¿Te exiges demasiado? Explora cómo puede estar influyendo en distintas áreas
+              de tu vida.
             </p>
           </div>
 

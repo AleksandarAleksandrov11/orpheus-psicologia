@@ -23,6 +23,7 @@ const PAGINAS: Entrada[] = [
   { path: "/sobre-mi", changefreq: "monthly", priority: "0.9", lastmod: HOY },
   { path: "/servicios", changefreq: "monthly", priority: "0.9", lastmod: HOY },
   { path: "/tarifas", changefreq: "monthly", priority: "0.8", lastmod: HOY },
+  { path: "/test-autoexigencia", changefreq: "monthly", priority: "0.7", lastmod: HOY },
   { path: "/empresas", changefreq: "monthly", priority: "0.8", lastmod: HOY },
   { path: "/preguntas-frecuentes", changefreq: "monthly", priority: "0.7", lastmod: HOY },
   { path: "/por-que-orpheus", changefreq: "yearly", priority: "0.6", lastmod: HOY },
