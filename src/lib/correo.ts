@@ -1,7 +1,7 @@
 import { SITE } from "@/content/site";
 
 /**
- * Envío de correo desde el servidor (hoy, solo el test de autoexigencia).
+ * Envío de correo desde el servidor: formulario de contacto y test de autoexigencia.
  * ------------------------------------------------------------------
  * Nada se guarda: lo que llega se redacta, se manda y se olvida.
  *
@@ -10,8 +10,11 @@ import { SITE } from "@/content/site";
  *
  *   A) Gmail por SMTP, sin servicios de terceros. No hace falta cuenta nueva,
  *      solo una «contraseña de aplicación» de la cuenta que envía (Google →
- *      Seguridad → Verificación en dos pasos → Contraseñas de aplicaciones):
- *        SMTP_USER   la cuenta que envía, p. ej. aaswebmarketing@gmail.com
+ *      Seguridad → Verificación en dos pasos → Contraseñas de aplicaciones).
+ *      Cuidado: esa contraseña da acceso al correo de esa cuenta, y Gmail guarda
+ *      en «Enviados» una copia de cada mensaje; por eso conviene una cuenta
+ *      que solo sirva para enviar:
+ *        SMTP_USER   la cuenta que envía, p. ej. orpheuspsicologia@gmail.com
  *        SMTP_PASS   la contraseña de aplicación (16 letras), nunca la normal
  *        SMTP_HOST / SMTP_PORT / SMTP_SECURE   opcionales; por defecto Gmail,
  *                    465 y conexión cifrada
@@ -19,8 +22,8 @@ import { SITE } from "@/content/site";
  *        RESEND_API_KEY   (si existe, tiene preferencia sobre el SMTP)
  *
  * Comunes:
- *   MAIL_TO     destinatario (también vale TEST_MAIL_TO); por defecto,
- *               DESTINO_PROVISIONAL
+ *   MAIL_TO     destinatario (también vale TEST_MAIL_TO); por defecto, el
+ *               correo de contacto de Melissa (`SITE.contacto.email`)
  *   MAIL_FROM   remitente (también vale TEST_MAIL_FROM). Con Gmail el remitente
  *               real es siempre SMTP_USER; con Resend, por defecto el de
  *               pruebas, que solo entrega al correo con el que se abrió la cuenta
@@ -28,15 +31,6 @@ import { SITE } from "@/content/site";
  *
  * Sin ninguna de las dos, los endpoints responden 503.
  */
-
-/**
- * DESTINATARIO PROVISIONAL, solo mientras se prueba.
- * Cambiarlo por `SITE.contacto.email` (el correo de Melissa) antes de dar
- * difusión: hasta entonces, lo que escriba cualquier persona en el formulario
- * de contacto o en el test llega aquí. También se puede cambiar sin tocar el
- * código con la variable de entorno MAIL_TO.
- */
-export const DESTINO_PROVISIONAL = "aaswebmarketing@gmail.com";
 
 export const EMAIL = /^[^\s@<>",;]+@[^\s@<>",;]+\.[^\s@<>",;]+$/;
 
@@ -97,6 +91,16 @@ export const limpiar = (s: string, max: number) =>
     .trim()
     .slice(0, max);
 
+/** Como `limpiar`, pero conserva los saltos de línea (para un mensaje largo). */
+export const limpiarMultilinea = (s: string, max: number) =>
+  s
+    .replace(/\r\n?/g, "\n")
+    // eslint-disable-next-line no-control-regex
+    .replace(/[\u0000-\u0009\u000b-\u001f\u007f]/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim()
+    .slice(0, max);
+
 export const correoConfigurado = () =>
   Boolean(process.env.RESEND_API_KEY || (process.env.SMTP_USER && process.env.SMTP_PASS));
 
@@ -109,7 +113,8 @@ export const fechaActual = () =>
 
 type Correo = { asunto: string; texto: string; responderA: string; etiqueta: string };
 
-const destinatario = () => process.env.MAIL_TO || process.env.TEST_MAIL_TO || DESTINO_PROVISIONAL;
+/** Todo llega al correo de Melissa; MAIL_TO solo sirve para desviarlo en pruebas. */
+const destinatario = () => process.env.MAIL_TO || process.env.TEST_MAIL_TO || SITE.contacto.email;
 
 async function porResend(c: Correo, clave: string): Promise<boolean> {
   const respuesta = await fetch(process.env.RESEND_API_URL || "https://api.resend.com/emails", {

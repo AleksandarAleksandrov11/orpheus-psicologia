@@ -160,10 +160,35 @@ function validar(d: Datos): Partial<Record<Clave, string>> {
   return errores;
 }
 
+/** Alternativa si el envío automático falla: abre el correo de la persona con todo redactado. */
+function componerMailto(d: Datos): string {
+  const espacio = ESPACIOS.find((e) => e.slug === d.motivo);
+  const motivo = espacio ? espacio.titulo : d.motivo === "otro" ? "Otro" : "Sin especificar";
+  const modalidad = MODALIDADES.find((m) => m.valor === d.modalidad)?.etiqueta ?? "Sin especificar";
+
+  const asunto = `Primer contacto de ${d.nombre.trim()}`;
+  const ficha = [
+    `Nombre: ${d.nombre.trim()}`,
+    `Email: ${d.email.trim()}`,
+    ...(d.telefono.trim() ? [`Teléfono: ${d.telefono.trim()}`] : []),
+    `Motivo de consulta: ${motivo}`,
+    `Modalidad preferida: ${modalidad}`,
+  ];
+  const cuerpo = [
+    ficha.join("\n"),
+    `Mensaje:\n${d.mensaje.trim() || "(sin mensaje)"}`,
+    "He leído la política de privacidad y consiento el tratamiento de mis datos para responder a esta consulta.",
+  ].join("\n\n");
+
+  return `mailto:${SITE.contacto.email}?subject=${encodeURIComponent(
+    asunto,
+  )}&body=${encodeURIComponent(cuerpo)}`;
+}
+
 /**
- * El envío abre WhatsApp con el mensaje ya escrito, sin emojis y solo con los
- * datos que la persona ha rellenado. No sale nada hasta que pulsa «enviar»
- * dentro de WhatsApp, y desde su propio teléfono.
+ * Alternativa opcional al correo: abre WhatsApp con el mismo mensaje ya escrito,
+ * sin emojis y solo con los datos rellenados. No sale nada hasta que la persona
+ * pulsa «enviar» dentro de WhatsApp, desde su propio teléfono.
  */
 function componerWhatsApp(d: Datos): string {
   const espacio = ESPACIOS.find((e) => e.slug === d.motivo);
@@ -201,8 +226,10 @@ function componerWhatsApp(d: Datos): string {
 function Contacto() {
   const [datos, setDatos] = useState<Datos>(INICIAL);
   const [errores, setErrores] = useState<Partial<Record<Clave, string>>>({});
-  const [enlace, setEnlace] = useState("");
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [errorEnvio, setErrorEnvio] = useState("");
+  const [trampa, setTrampa] = useState("");
 
   const hayTelefono = !esPendiente(SITE.contacto.telefono);
   const hayDireccion = !esPendiente(SITE.contacto.direccion);
@@ -218,10 +245,11 @@ function Contacto() {
     });
   };
 
-  const enviar = (evento: FormEvent<HTMLFormElement>) => {
+  const enviar = async (evento: FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
     const nuevos = validar(datos);
     setErrores(nuevos);
+    setErrorEnvio("");
 
     const primerFallo = ORDEN_CAMPOS.find((c) => nuevos[c]);
     if (primerFallo) {
@@ -229,11 +257,36 @@ function Contacto() {
       return;
     }
 
-    const href = componerWhatsApp(datos);
-    setEnlace(href);
-    setEnviado(true);
-    // Si el navegador bloquea la ventana, el botón del panel hace lo mismo.
-    window.open(href, "_blank", "noopener");
+    setEnviando(true);
+    try {
+      const respuesta = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: datos.nombre.trim(),
+          email: datos.email.trim(),
+          telefono: datos.telefono.trim(),
+          motivo: datos.motivo,
+          modalidad: datos.modalidad,
+          mensaje: datos.mensaje.trim(),
+          consentimiento: datos.consentimiento,
+          web: trampa,
+        }),
+      });
+      if (!respuesta.ok) {
+        setErrorEnvio(
+          respuesta.status === 429
+            ? "Has enviado varios mensajes seguidos. Espera un rato y vuelve a intentarlo."
+            : "No he podido enviar tu mensaje desde aquí.",
+        );
+        return;
+      }
+      setEnviado(true);
+    } catch {
+      setErrorEnvio("No he podido enviar tu mensaje desde aquí.");
+    } finally {
+      setEnviando(false);
+    }
   };
 
   const describir = (clave: Clave, ayuda?: string) => {
@@ -300,27 +353,29 @@ function Contacto() {
                     role="status"
                     className="mt-6 font-display text-[1.6rem] leading-tight text-ink md:text-[1.9rem]"
                   >
-                    Tu mensaje está preparado.
+                    Tu mensaje ha llegado.
                   </h3>
                   <p className="mt-4 max-w-md text-[1.02rem] leading-relaxed font-light text-ink-muted">
-                    Se ha abierto WhatsApp con tu mensaje escrito. Solo queda que pulses enviar
-                    desde ahí. {SITE.contacto.respuesta}
+                    Gracias por escribirme. {SITE.contacto.respuesta}
                   </p>
-                  <div className="mt-8 flex flex-wrap gap-3">
+                  <p className="mt-5 text-[0.96rem] font-light text-ink-muted">
+                    ¿Prefieres seguir por WhatsApp?{" "}
                     <a
-                      href={enlace}
+                      href={componerWhatsApp(datos)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-base btn-fill btn-solid"
+                      className="link-draw text-cypress"
                     >
-                      <span className="relative z-10">Abrir WhatsApp otra vez</span>
+                      Abrir WhatsApp con tu mensaje
                     </a>
+                    .
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-3">
                     <Boton
                       type="button"
                       variante="outline"
                       onClick={() => {
                         setEnviado(false);
-                        setEnlace("");
                         setDatos(INICIAL);
                       }}
                     >
@@ -328,7 +383,7 @@ function Contacto() {
                     </Boton>
                   </div>
                   <p className="mt-6 text-[0.89rem] font-light text-ink-faint">
-                    ¿Prefieres el correo? Escríbeme a{" "}
+                    ¿Prefieres escribirme tú? Mi correo es{" "}
                     <a href={`mailto:${SITE.contacto.email}`} className="link-draw text-cypress">
                       {SITE.contacto.email}
                     </a>
@@ -447,7 +502,6 @@ function Contacto() {
                       id="campo-mensaje"
                       name="mensaje"
                       rows={5}
-                      maxLength={2000}
                       className="field resize-none"
                       placeholder="Llevo un tiempo sintiendo que…"
                       value={datos.mensaje}
@@ -455,6 +509,22 @@ function Contacto() {
                       aria-describedby="campo-mensaje-ayuda"
                     />
                   </Campo>
+
+                  {/* Campo trampa para robots: una persona no lo ve ni lo rellena. */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -left-[10000px] size-px overflow-hidden"
+                  >
+                    <label htmlFor="campo-web">No rellenar</label>
+                    <input
+                      id="campo-web"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={trampa}
+                      onChange={(e) => setTrampa(e.target.value)}
+                    />
+                  </div>
 
                   {/* Consentimiento RGPD — requisito legal, no adorno */}
                   <div
@@ -491,11 +561,11 @@ function Contacto() {
                           id="campo-consentimiento-ayuda"
                           className="mt-2.5 text-[0.89rem] leading-relaxed font-light text-ink-faint"
                         >
-                          Al enviar se abre WhatsApp con tu mensaje escrito; no sale nada hasta que
-                          pulses enviar desde ahí. Responsable: {SITE.titular.nombre}. Tus datos no
-                          se ceden a terceros ni se usan para enviar comunicaciones comerciales, y
-                          puedes retirar el consentimiento cuando quieras escribiendo a{" "}
-                          {SITE.privacidad.email}. Todo el detalle está en la{" "}
+                          El mensaje se envía por correo electrónico a la psicóloga. Responsable:{" "}
+                          {SITE.titular.nombre}. Tus datos no se ceden a terceros ni se usan para
+                          enviar comunicaciones comerciales, y puedes retirar el consentimiento
+                          cuando quieras escribiendo a {SITE.privacidad.email}. Todo el detalle está
+                          en la{" "}
                           <Link to="/politica-de-privacidad" className="link-draw text-cypress">
                             política de privacidad
                           </Link>
@@ -519,8 +589,8 @@ function Contacto() {
                   </div>
 
                   <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
-                    <Boton type="submit" flecha>
-                      Enviar por WhatsApp
+                    <Boton type="submit" flecha disabled={enviando}>
+                      {enviando ? "Enviando…" : "Enviar mensaje"}
                     </Boton>
                     <p className="text-[0.89rem] font-light text-ink-faint">
                       Los campos con <span className="text-olive">*</span> son obligatorios.
@@ -533,6 +603,19 @@ function Contacto() {
                   >
                     {hayErrores ? "Revisa los campos marcados antes de enviar." : ""}
                   </p>
+
+                  {errorEnvio ? (
+                    <p
+                      role="alert"
+                      className="mt-4 text-[0.96rem] leading-relaxed text-destructive"
+                    >
+                      {errorEnvio} Puedes{" "}
+                      <a href={componerMailto(datos)} className="link-draw text-cypress">
+                        abrir tu correo con el mensaje ya redactado
+                      </a>{" "}
+                      o escribirme a {SITE.contacto.email}.
+                    </p>
+                  ) : null}
                 </form>
               )}
             </div>

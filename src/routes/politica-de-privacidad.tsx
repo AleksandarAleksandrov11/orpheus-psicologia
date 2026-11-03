@@ -69,9 +69,10 @@ function Privacidad() {
         <>
           <h3>A través del formulario de contacto</h3>
           <p>
-            El formulario no envía nada por sí mismo: al completarlo se abre WhatsApp con el mensaje
-            ya redactado, y solo llega a la psicóloga si pulsas enviar desde tu propia aplicación.
-            Los datos son estos:
+            Al enviar el formulario, tu mensaje llega por correo electrónico a la psicóloga. Si lo
+            prefieres, también puedes continuar la conversación por WhatsApp, un canal que solo se
+            usa si tú decides abrirlo y enviar el mensaje desde tu propia aplicación. Los datos son
+            estos:
           </p>
           <ul>
             <li>Nombre y apellidos.</li>
@@ -268,7 +269,8 @@ function Privacidad() {
                 <tr>
                   <td>Vercel Inc.</td>
                   <td>
-                    Alojamiento del sitio web, analítica agregada y ejecución del envío del test
+                    Alojamiento del sitio web, analítica agregada y ejecución del envío del
+                    formulario y del test
                   </td>
                   <td>
                     EE. UU. y UE. Transferencias amparadas por cláusulas contractuales tipo de la
@@ -276,25 +278,21 @@ function Privacidad() {
                   </td>
                 </tr>
                 <tr>
-                  <td>Resend, Inc.</td>
-                  <td>Envío por correo electrónico a la psicóloga de las respuestas del test</td>
+                  <td>Google Ireland Ltd. (Gmail)</td>
                   <td>
-                    EE. UU. Transferencias amparadas por cláusulas contractuales tipo de la Comisión
-                    Europea y por el Data Privacy Framework
+                    Envío, recepción y custodia del correo electrónico: mensajes del formulario de
+                    contacto y respuestas del test
                   </td>
-                </tr>
-                <tr>
-                  <td>Proveedor de correo electrónico</td>
                   <td>
-                    Recepción y custodia de los mensajes de contacto y de las respuestas del test
+                    UE y EE. UU. Transferencias amparadas por cláusulas contractuales tipo de la
+                    Comisión Europea y por el Data Privacy Framework
                   </td>
-                  <td>Unión Europea o país con garantías adecuadas</td>
                 </tr>
                 <tr>
                   <td>WhatsApp (Meta Platforms Ireland Ltd.)</td>
                   <td>
-                    Mensajería con la que decides enviar tu consulta desde el formulario de
-                    contacto, y en la que se recibe y se responde
+                    Mensajería opcional para continuar tu consulta, solo si decides abrirla y enviar
+                    el mensaje desde tu aplicación
                   </td>
                   <td>
                     Servicio que utilizas por tu iniciativa, con sus propias condiciones y su
