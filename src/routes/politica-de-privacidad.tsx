@@ -272,7 +272,10 @@ function Privacidad() {
                 </tr>
                 <tr>
                   <td>Resend, Inc.</td>
-                  <td>Envío por correo electrónico de las respuestas del test a la psicóloga</td>
+                  <td>
+                    Envío por correo electrónico a la psicóloga de los mensajes del formulario de
+                    contacto y de las respuestas del test
+                  </td>
                   <td>
                     EE. UU. Transferencias amparadas por cláusulas contractuales tipo de la Comisión
                     Europea y por el Data Privacy Framework

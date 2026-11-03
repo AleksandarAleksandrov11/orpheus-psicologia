@@ -160,7 +160,7 @@ function validar(d: Datos): Partial<Record<Clave, string>> {
   return errores;
 }
 
-/** Como no hay servidor, el envío abre el cliente de correo con todo redactado. */
+/** Alternativa si el envío automático falla: abre el correo de la persona con todo redactado. */
 function componerMailto(d: Datos): string {
   const espacio = ESPACIOS.find((e) => e.slug === d.motivo);
   const motivo = espacio ? espacio.titulo : d.motivo === "otro" ? "Otro" : "Sin especificar";
@@ -192,8 +192,10 @@ function componerMailto(d: Datos): string {
 function Contacto() {
   const [datos, setDatos] = useState<Datos>(INICIAL);
   const [errores, setErrores] = useState<Partial<Record<Clave, string>>>({});
-  const [enlace, setEnlace] = useState("");
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [errorEnvio, setErrorEnvio] = useState("");
+  const [trampa, setTrampa] = useState("");
 
   const hayTelefono = !esPendiente(SITE.contacto.telefono);
   const hayDireccion = !esPendiente(SITE.contacto.direccion);
@@ -209,10 +211,11 @@ function Contacto() {
     });
   };
 
-  const enviar = (evento: FormEvent<HTMLFormElement>) => {
+  const enviar = async (evento: FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
     const nuevos = validar(datos);
     setErrores(nuevos);
+    setErrorEnvio("");
 
     const primerFallo = ORDEN_CAMPOS.find((c) => nuevos[c]);
     if (primerFallo) {
@@ -220,10 +223,36 @@ function Contacto() {
       return;
     }
 
-    const href = componerMailto(datos);
-    setEnlace(href);
-    setEnviado(true);
-    window.location.href = href;
+    setEnviando(true);
+    try {
+      const respuesta = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: datos.nombre.trim(),
+          email: datos.email.trim(),
+          telefono: datos.telefono.trim(),
+          motivo: datos.motivo,
+          modalidad: datos.modalidad,
+          mensaje: datos.mensaje.trim(),
+          consentimiento: datos.consentimiento,
+          web: trampa,
+        }),
+      });
+      if (!respuesta.ok) {
+        setErrorEnvio(
+          respuesta.status === 429
+            ? "Has enviado varios mensajes seguidos. Espera un rato y vuelve a intentarlo."
+            : "No he podido enviar tu mensaje desde aquí.",
+        );
+        return;
+      }
+      setEnviado(true);
+    } catch {
+      setErrorEnvio("No he podido enviar tu mensaje desde aquí.");
+    } finally {
+      setEnviando(false);
+    }
   };
 
   const describir = (clave: Clave, ayuda?: string) => {
@@ -286,23 +315,21 @@ function Contacto() {
                   <span className="grid size-11 place-items-center rounded-full bg-moss text-bone">
                     <Check className="size-5" strokeWidth={1.7} aria-hidden="true" />
                   </span>
-                  <h3 className="mt-6 font-display text-[1.6rem] leading-tight text-ink md:text-[1.9rem]">
-                    Tu mensaje está redactado.
+                  <h3
+                    role="status"
+                    className="mt-6 font-display text-[1.6rem] leading-tight text-ink md:text-[1.9rem]"
+                  >
+                    Tu mensaje ha llegado.
                   </h3>
                   <p className="mt-4 max-w-md text-[1.02rem] leading-relaxed font-light text-ink-muted">
-                    Se ha abierto tu programa de correo con todos los datos preparados. Solo queda
-                    que lo envíes desde ahí. {SITE.contacto.respuesta}
+                    Gracias por escribirme. {SITE.contacto.respuesta}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <a href={enlace} className="btn-base btn-fill btn-solid">
-                      <span className="relative z-10">Abrir el correo otra vez</span>
-                    </a>
                     <Boton
                       type="button"
                       variante="outline"
                       onClick={() => {
                         setEnviado(false);
-                        setEnlace("");
                         setDatos(INICIAL);
                       }}
                     >
@@ -310,7 +337,7 @@ function Contacto() {
                     </Boton>
                   </div>
                   <p className="mt-6 text-[0.89rem] font-light text-ink-faint">
-                    ¿No se ha abierto nada? Escríbeme directamente a{" "}
+                    ¿Prefieres escribirme tú? Mi correo es{" "}
                     <a href={`mailto:${SITE.contacto.email}`} className="link-draw text-cypress">
                       {SITE.contacto.email}
                     </a>
@@ -437,6 +464,22 @@ function Contacto() {
                     />
                   </Campo>
 
+                  {/* Campo trampa para robots: una persona no lo ve ni lo rellena. */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -left-[10000px] size-px overflow-hidden"
+                  >
+                    <label htmlFor="campo-web">No rellenar</label>
+                    <input
+                      id="campo-web"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={trampa}
+                      onChange={(e) => setTrampa(e.target.value)}
+                    />
+                  </div>
+
                   {/* Consentimiento RGPD — requisito legal, no adorno */}
                   <div
                     className={`mt-9 rounded-2xl border p-6 transition-colors duration-500 md:p-7 ${
@@ -499,8 +542,8 @@ function Contacto() {
                   </div>
 
                   <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
-                    <Boton type="submit" flecha>
-                      Enviar mensaje
+                    <Boton type="submit" flecha disabled={enviando}>
+                      {enviando ? "Enviando…" : "Enviar mensaje"}
                     </Boton>
                     <p className="text-[0.89rem] font-light text-ink-faint">
                       Los campos con <span className="text-olive">*</span> son obligatorios.
@@ -513,6 +556,19 @@ function Contacto() {
                   >
                     {hayErrores ? "Revisa los campos marcados antes de enviar." : ""}
                   </p>
+
+                  {errorEnvio ? (
+                    <p
+                      role="alert"
+                      className="mt-4 text-[0.96rem] leading-relaxed text-destructive"
+                    >
+                      {errorEnvio} Puedes{" "}
+                      <a href={componerMailto(datos)} className="link-draw text-cypress">
+                        abrir tu correo con el mensaje ya redactado
+                      </a>{" "}
+                      o escribirme a {SITE.contacto.email}.
+                    </p>
+                  ) : null}
                 </form>
               )}
             </div>

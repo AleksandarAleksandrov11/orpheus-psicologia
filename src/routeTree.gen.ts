@@ -23,6 +23,7 @@ import { Route as SobreMiRouteImport } from './routes/sobre-mi'
 import { Route as TarifasRouteImport } from './routes/tarifas'
 import { Route as TestAutoexigenciaRouteImport } from './routes/test-autoexigencia'
 import { Route as TestimoniosRouteImport } from './routes/testimonios'
+import { Route as ApiContactoRouteImport } from './routes/api.contacto'
 import { Route as ApiTestAutoexigenciaRouteImport } from './routes/api.test-autoexigencia'
 import { Route as DiarioIndexRouteImport } from './routes/diario/index'
 import { Route as DiarioSlugRouteImport } from './routes/diario/$slug'
@@ -97,6 +98,11 @@ const TestimoniosRoute = TestimoniosRouteImport.update({
   path: '/testimonios',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiContactoRoute = ApiContactoRouteImport.update({
+  id: '/api/contacto',
+  path: '/api/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiTestAutoexigenciaRoute = ApiTestAutoexigenciaRouteImport.update({
   id: '/api/test-autoexigencia',
   path: '/api/test-autoexigencia',
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/tarifas': typeof TarifasRoute
   '/test-autoexigencia': typeof TestAutoexigenciaRoute
   '/testimonios': typeof TestimoniosRoute
+  '/api/contacto': typeof ApiContactoRoute
   '/api/test-autoexigencia': typeof ApiTestAutoexigenciaRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario/': typeof DiarioIndexRoute
@@ -147,6 +154,7 @@ export interface FileRoutesByTo {
   '/tarifas': typeof TarifasRoute
   '/test-autoexigencia': typeof TestAutoexigenciaRoute
   '/testimonios': typeof TestimoniosRoute
+  '/api/contacto': typeof ApiContactoRoute
   '/api/test-autoexigencia': typeof ApiTestAutoexigenciaRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario': typeof DiarioIndexRoute
@@ -167,6 +175,7 @@ export interface FileRoutesById {
   '/tarifas': typeof TarifasRoute
   '/test-autoexigencia': typeof TestAutoexigenciaRoute
   '/testimonios': typeof TestimoniosRoute
+  '/api/contacto': typeof ApiContactoRoute
   '/api/test-autoexigencia': typeof ApiTestAutoexigenciaRoute
   '/diario/$slug': typeof DiarioSlugRoute
   '/diario/': typeof DiarioIndexRoute
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/tarifas'
     | '/test-autoexigencia'
     | '/testimonios'
+    | '/api/contacto'
     | '/api/test-autoexigencia'
     | '/diario/$slug'
     | '/diario/'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/tarifas'
     | '/test-autoexigencia'
     | '/testimonios'
+    | '/api/contacto'
     | '/api/test-autoexigencia'
     | '/diario/$slug'
     | '/diario'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/tarifas'
     | '/test-autoexigencia'
     | '/testimonios'
+    | '/api/contacto'
     | '/api/test-autoexigencia'
     | '/diario/$slug'
     | '/diario/'
@@ -246,6 +258,7 @@ export interface RootRouteChildren {
   TarifasRoute: typeof TarifasRoute
   TestAutoexigenciaRoute: typeof TestAutoexigenciaRoute
   TestimoniosRoute: typeof TestimoniosRoute
+  ApiContactoRoute: typeof ApiContactoRoute
   ApiTestAutoexigenciaRoute: typeof ApiTestAutoexigenciaRoute
   DiarioSlugRoute: typeof DiarioSlugRoute
   DiarioIndexRoute: typeof DiarioIndexRoute
@@ -351,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimoniosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/contacto': {
+      id: '/api/contacto'
+      path: '/api/contacto'
+      fullPath: '/api/contacto'
+      preLoaderRoute: typeof ApiContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/test-autoexigencia': {
       id: '/api/test-autoexigencia'
       path: '/api/test-autoexigencia'
@@ -390,6 +410,7 @@ const rootRouteChildren: RootRouteChildren = {
   TarifasRoute: TarifasRoute,
   TestAutoexigenciaRoute: TestAutoexigenciaRoute,
   TestimoniosRoute: TestimoniosRoute,
+  ApiContactoRoute: ApiContactoRoute,
   ApiTestAutoexigenciaRoute: ApiTestAutoexigenciaRoute,
   DiarioSlugRoute: DiarioSlugRoute,
   DiarioIndexRoute: DiarioIndexRoute,

@@ -1,7 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-import { SITE } from "@/content/site";
+import {
+  correoConfigurado,
+  crearLimitador,
+  EMAIL,
+  enviarCorreo,
+  fechaActual,
+  ipDe,
+  json,
+  limpiar,
+  origenPermitido,
+} from "@/lib/correo";
 import {
   OPCIONES,
   PREGUNTAS,
@@ -11,89 +21,18 @@ import {
 } from "@/content/test-autoexigencia";
 
 /**
- * Recibe el test de autoexigencia y se lo manda por correo a Melissa.
- * ------------------------------------------------------------------
- * No guarda nada: ni base de datos ni registro. Las respuestas existen en
- * esta petición, en el correo y en el buzón de destino. Si el envío falla se
- * le dice a la persona que lo reintente (sus respuestas siguen en pantalla),
- * así que tampoco queda una copia «por si acaso» en el servidor.
- *
- * Variables de entorno (Vercel → Settings → Environment Variables):
- *   RESEND_API_KEY   obligatoria; sin ella el endpoint responde 503
- *   TEST_MAIL_TO     destinatario; por defecto, DESTINO_PROVISIONAL (ver abajo)
- *   TEST_MAIL_FROM   remitente; por defecto el de pruebas de Resend, que solo
- *                    entrega al correo con el que se abrió la cuenta de Resend
- *   RESEND_API_URL   solo para pruebas en local
+ * Recibe el test de autoexigencia y lo manda por correo (ver `lib/correo.ts`
+ * para el destinatario y las variables de entorno). No guarda nada: si el envío
+ * falla se le pide a la persona que reintente, y sus respuestas siguen en
+ * pantalla, así que tampoco queda una copia «por si acaso» en el servidor.
  *
  * El texto del correo no viaja desde el navegador: se redacta aquí con las
  * preguntas de `test-autoexigencia.ts` y las cifras recibidas, que además se
  * revalidan y se vuelven a sumar.
  */
 
-/**
- * DESTINATARIO PROVISIONAL, solo mientras se prueba el test.
- * Cambiarlo por `SITE.contacto.email` (el correo de Melissa) antes de dar
- * difusión al test: hasta entonces las respuestas de cualquier persona que lo
- * rellene llegan aquí. También se puede cambiar sin tocar el código con la
- * variable de entorno TEST_MAIL_TO.
- */
-const DESTINO_PROVISIONAL = "aaswebmarketing@gmail.com";
-
 const MAX_BYTES = 8_000;
-const EMAIL = /^[^\s@<>",;]+@[^\s@<>",;]+\.[^\s@<>",;]+$/;
-
-/** Orígenes desde los que se acepta el formulario. */
-function origenPermitido(origen: string | null): boolean {
-  if (!origen) return false;
-  const web = new URL(SITE.url).host.replace(/^www\./, "");
-  try {
-    const host = new URL(origen).host;
-    return host.replace(/^www\./, "") === web || host.startsWith("localhost:");
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Límite de envíos por IP. Vive en la memoria de la instancia, así que en un
- * entorno sin servidor es un freno a la ráfaga, no un muro: basta para que un
- * script no llene el buzón de Melissa de un tirón.
- */
-const VENTANA_MS = 60 * 60 * 1000;
-const MAX_ENVIOS = 5;
-const envios = new Map<string, number[]>();
-
-function demasiadosEnvios(ip: string): boolean {
-  const ahora = Date.now();
-  const recientes = (envios.get(ip) ?? []).filter((t) => ahora - t < VENTANA_MS);
-  if (recientes.length >= MAX_ENVIOS) {
-    envios.set(ip, recientes);
-    return true;
-  }
-  recientes.push(ahora);
-  envios.set(ip, recientes);
-  if (envios.size > 5_000) {
-    for (const [clave, marcas] of envios) {
-      if (marcas.every((t) => ahora - t >= VENTANA_MS)) envios.delete(clave);
-    }
-  }
-  return false;
-}
-
-const json = (cuerpo: unknown, status = 200) =>
-  new Response(JSON.stringify(cuerpo), {
-    status,
-    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
-  });
-
-/** Sin saltos de línea ni caracteres de control: el texto va a un correo. */
-const limpiar = (s: string, max: number) =>
-  s
-    // eslint-disable-next-line no-control-regex
-    .replace(/[\u0000-\u001f\u007f]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, max);
+const demasiadosEnvios = crearLimitador(5, 60 * 60 * 1000);
 
 function redactar(datos: {
   nombre: string;
@@ -102,11 +41,7 @@ function redactar(datos: {
   novedades: boolean;
 }) {
   const { total, nivel, ambitos } = calcular(datos.respuestas);
-  const fecha = new Intl.DateTimeFormat("es-ES", {
-    dateStyle: "full",
-    timeStyle: "short",
-    timeZone: "Europe/Madrid",
-  }).format(new Date());
+  const fecha = fechaActual();
 
   const lineas = [
     "Nuevo test de autoexigencia",
@@ -144,8 +79,7 @@ export const Route = createFileRoute("/api/test-autoexigencia")({
           return json({ error: "origen" }, 403);
         }
 
-        const clave = process.env.RESEND_API_KEY;
-        if (!clave) return json({ error: "no-configurado" }, 503);
+        if (!correoConfigurado()) return json({ error: "no-configurado" }, 503);
 
         const crudo = await request.text();
         if (crudo.length > MAX_BYTES) return json({ error: "demasiado-grande" }, 413);
@@ -174,11 +108,7 @@ export const Route = createFileRoute("/api/test-autoexigencia")({
           return json({ error: "datos" }, 400);
         }
 
-        const ip =
-          request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-          request.headers.get("x-real-ip") ||
-          "desconocida";
-        if (demasiadosEnvios(ip)) return json({ error: "limite" }, 429);
+        if (demasiadosEnvios(ipDe(request))) return json({ error: "limite" }, 429);
 
         const { total, texto } = redactar({
           nombre,
@@ -187,30 +117,13 @@ export const Route = createFileRoute("/api/test-autoexigencia")({
           novedades: cuerpo.novedades,
         });
 
-        try {
-          const respuesta = await fetch(
-            process.env.RESEND_API_URL || "https://api.resend.com/emails",
-            {
-              method: "POST",
-              headers: { Authorization: `Bearer ${clave}`, "Content-Type": "application/json" },
-              body: JSON.stringify({
-                from: process.env.TEST_MAIL_FROM || "Orpheus Psicología <onboarding@resend.dev>",
-                to: [process.env.TEST_MAIL_TO || DESTINO_PROVISIONAL],
-                reply_to: email,
-                subject: `Test de autoexigencia: ${total}/${TOTAL_PREGUNTAS * 4}`,
-                text: texto,
-              }),
-            },
-          );
-          if (!respuesta.ok) {
-            // Solo el estado: ni el cuerpo de la petición ni datos de la persona.
-            console.error("test-autoexigencia: el proveedor de correo respondió", respuesta.status);
-            return json({ error: "envio" }, 502);
-          }
-        } catch {
-          console.error("test-autoexigencia: no se pudo contactar con el proveedor de correo");
-          return json({ error: "envio" }, 502);
-        }
+        const estado = await enviarCorreo({
+          asunto: `Test de autoexigencia: ${total}/${TOTAL_PREGUNTAS * 4}`,
+          texto,
+          responderA: email,
+          etiqueta: "test-autoexigencia",
+        });
+        if (estado !== "ok") return json({ error: "envio" }, 502);
 
         return json({ ok: true });
       },
