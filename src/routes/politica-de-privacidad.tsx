@@ -68,6 +68,11 @@ function Privacidad() {
       contenido: (
         <>
           <h3>A través del formulario de contacto</h3>
+          <p>
+            El formulario no envía nada por sí mismo: al completarlo se abre WhatsApp con el mensaje
+            ya redactado, y solo llega a la psicóloga si pulsas enviar desde tu propia aplicación.
+            Los datos son estos:
+          </p>
           <ul>
             <li>Nombre y apellidos.</li>
             <li>Dirección de correo electrónico.</li>
@@ -272,10 +277,7 @@ function Privacidad() {
                 </tr>
                 <tr>
                   <td>Resend, Inc.</td>
-                  <td>
-                    Envío por correo electrónico a la psicóloga de los mensajes del formulario de
-                    contacto y de las respuestas del test
-                  </td>
+                  <td>Envío por correo electrónico a la psicóloga de las respuestas del test</td>
                   <td>
                     EE. UU. Transferencias amparadas por cláusulas contractuales tipo de la Comisión
                     Europea y por el Data Privacy Framework
@@ -287,6 +289,17 @@ function Privacidad() {
                     Recepción y custodia de los mensajes de contacto y de las respuestas del test
                   </td>
                   <td>Unión Europea o país con garantías adecuadas</td>
+                </tr>
+                <tr>
+                  <td>WhatsApp (Meta Platforms Ireland Ltd.)</td>
+                  <td>
+                    Mensajería con la que decides enviar tu consulta desde el formulario de
+                    contacto, y en la que se recibe y se responde
+                  </td>
+                  <td>
+                    Servicio que utilizas por tu iniciativa, con sus propias condiciones y su
+                    política de privacidad
+                  </td>
                 </tr>
                 <tr>
                   <td>Plataforma de videollamada</td>

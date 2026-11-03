@@ -1,19 +1,32 @@
 import { SITE } from "@/content/site";
 
 /**
- * Envío de correo desde el servidor, compartido por el formulario de contacto
- * y el test de autoexigencia.
+ * Envío de correo desde el servidor (hoy, solo el test de autoexigencia).
  * ------------------------------------------------------------------
- * Nada se guarda: lo que llega se redacta, se manda con Resend y se olvida.
+ * Nada se guarda: lo que llega se redacta, se manda y se olvida.
  *
- * Variables de entorno (Vercel → Settings → Environment Variables):
- *   RESEND_API_KEY   obligatoria; sin ella los endpoints responden 503
- *   MAIL_TO          destinatario (también vale TEST_MAIL_TO); por defecto,
- *                    DESTINO_PROVISIONAL
- *   MAIL_FROM        remitente (también vale TEST_MAIL_FROM); por defecto el de
- *                    pruebas de Resend, que solo entrega al correo con el que se
- *                    abrió la cuenta de Resend
+ * Hay dos formas de enviar y se elige por las variables de entorno que existan
+ * (Vercel → Settings → Environment Variables):
+ *
+ *   A) Gmail por SMTP, sin servicios de terceros. No hace falta cuenta nueva,
+ *      solo una «contraseña de aplicación» de la cuenta que envía (Google →
+ *      Seguridad → Verificación en dos pasos → Contraseñas de aplicaciones):
+ *        SMTP_USER   la cuenta que envía, p. ej. aaswebmarketing@gmail.com
+ *        SMTP_PASS   la contraseña de aplicación (16 letras), nunca la normal
+ *        SMTP_HOST / SMTP_PORT / SMTP_SECURE   opcionales; por defecto Gmail,
+ *                    465 y conexión cifrada
+ *   B) Resend:
+ *        RESEND_API_KEY   (si existe, tiene preferencia sobre el SMTP)
+ *
+ * Comunes:
+ *   MAIL_TO     destinatario (también vale TEST_MAIL_TO); por defecto,
+ *               DESTINO_PROVISIONAL
+ *   MAIL_FROM   remitente (también vale TEST_MAIL_FROM). Con Gmail el remitente
+ *               real es siempre SMTP_USER; con Resend, por defecto el de
+ *               pruebas, que solo entrega al correo con el que se abrió la cuenta
  *   RESEND_API_URL   solo para pruebas en local
+ *
+ * Sin ninguna de las dos, los endpoints responden 503.
  */
 
 /**
@@ -84,17 +97,8 @@ export const limpiar = (s: string, max: number) =>
     .trim()
     .slice(0, max);
 
-/** Como `limpiar`, pero conserva los saltos de línea (para un mensaje largo). */
-export const limpiarMultilinea = (s: string, max: number) =>
-  s
-    .replace(/\r\n?/g, "\n")
-    // eslint-disable-next-line no-control-regex
-    .replace(/[\u0000-\u0009\u000b-\u001f\u007f]/g, " ")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim()
-    .slice(0, max);
-
-export const correoConfigurado = () => Boolean(process.env.RESEND_API_KEY);
+export const correoConfigurado = () =>
+  Boolean(process.env.RESEND_API_KEY || (process.env.SMTP_USER && process.env.SMTP_PASS));
 
 export const fechaActual = () =>
   new Intl.DateTimeFormat("es-ES", {
@@ -103,39 +107,69 @@ export const fechaActual = () =>
     timeZone: "Europe/Madrid",
   }).format(new Date());
 
-/** «ok» si Resend lo aceptó. Nunca registra el contenido del correo. */
-export async function enviarCorreo(datos: {
-  asunto: string;
-  texto: string;
-  responderA: string;
-  etiqueta: string;
-}): Promise<"ok" | "no-configurado" | "fallo"> {
-  const clave = process.env.RESEND_API_KEY;
-  if (!clave) return "no-configurado";
+type Correo = { asunto: string; texto: string; responderA: string; etiqueta: string };
+
+const destinatario = () => process.env.MAIL_TO || process.env.TEST_MAIL_TO || DESTINO_PROVISIONAL;
+
+async function porResend(c: Correo, clave: string): Promise<boolean> {
+  const respuesta = await fetch(process.env.RESEND_API_URL || "https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${clave}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from:
+        process.env.MAIL_FROM ||
+        process.env.TEST_MAIL_FROM ||
+        "Orpheus Psicología <onboarding@resend.dev>",
+      to: [destinatario()],
+      reply_to: c.responderA,
+      subject: c.asunto,
+      text: c.texto,
+    }),
+  });
+  if (!respuesta.ok) {
+    // Solo el estado: ni el cuerpo de la petición ni datos de la persona.
+    console.error(`${c.etiqueta}: el proveedor de correo respondió`, respuesta.status);
+  }
+  return respuesta.ok;
+}
+
+async function porSmtp(c: Correo, usuario: string, clave: string): Promise<boolean> {
+  // Import dinámico: solo se carga en el servidor y solo si se usa el SMTP.
+  const { default: nodemailer } = await import("nodemailer");
+  const transporte = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.gmail.com",
+    port: Number(process.env.SMTP_PORT) || 465,
+    secure: process.env.SMTP_SECURE !== "false",
+    auth: { user: usuario, pass: clave },
+    connectionTimeout: 10_000,
+    socketTimeout: 15_000,
+  });
+  await transporte.sendMail({
+    // Gmail sustituye el remitente por la cuenta autenticada, así que el nombre
+    // visible es lo único que se controla.
+    from: process.env.MAIL_FROM || process.env.TEST_MAIL_FROM || `Orpheus Psicología <${usuario}>`,
+    to: destinatario(),
+    replyTo: c.responderA,
+    subject: c.asunto,
+    text: c.texto,
+  });
+  return true;
+}
+
+/** «ok» si el proveedor lo aceptó. Nunca registra el contenido del correo. */
+export async function enviarCorreo(c: Correo): Promise<"ok" | "no-configurado" | "fallo"> {
+  const resend = process.env.RESEND_API_KEY;
+  const usuario = process.env.SMTP_USER;
+  const clave = process.env.SMTP_PASS;
+  if (!resend && !(usuario && clave)) return "no-configurado";
 
   try {
-    const respuesta = await fetch(process.env.RESEND_API_URL || "https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${clave}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from:
-          process.env.MAIL_FROM ||
-          process.env.TEST_MAIL_FROM ||
-          "Orpheus Psicología <onboarding@resend.dev>",
-        to: [process.env.MAIL_TO || process.env.TEST_MAIL_TO || DESTINO_PROVISIONAL],
-        reply_to: datos.responderA,
-        subject: datos.asunto,
-        text: datos.texto,
-      }),
-    });
-    if (!respuesta.ok) {
-      // Solo el estado: ni el cuerpo de la petición ni datos de la persona.
-      console.error(`${datos.etiqueta}: el proveedor de correo respondió`, respuesta.status);
-      return "fallo";
-    }
-    return "ok";
-  } catch {
-    console.error(`${datos.etiqueta}: no se pudo contactar con el proveedor de correo`);
+    const enviado = resend ? await porResend(c, resend) : await porSmtp(c, usuario!, clave!);
+    return enviado ? "ok" : "fallo";
+  } catch (error) {
+    // Código y texto técnico del error, sin el correo ni las respuestas.
+    const motivo = error instanceof Error ? error.message.slice(0, 160) : "desconocido";
+    console.error(`${c.etiqueta}: fallo al enviar el correo (${motivo})`);
     return "fallo";
   }
 }
