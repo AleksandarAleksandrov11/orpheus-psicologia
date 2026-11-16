@@ -30,6 +30,8 @@ import texPluma from "@/assets/tex-pluma.webp";
 import texPlumaSm from "@/assets/tex-pluma@sm.webp";
 import texDiente from "@/assets/tex-diente.webp";
 import texDienteSm from "@/assets/tex-diente@sm.webp";
+import texVentana from "@/assets/tex-ventana.webp";
+import texVentanaSm from "@/assets/tex-ventana@sm.webp";
 
 export type Portada = { src: string; sm: string; w: number; h: number; wSm: number };
 
@@ -60,6 +62,9 @@ export const PORTADAS: Record<Articulo["imagen"], Portada> = {
   // «Dandelion with a natural background», dominio público (CC0 1.0) vía
   // rawpixel. Virada al verde de marca; calidad alta por el fondo desenfocado.
   diente: { src: texDiente, sm: texDienteSm, w: 1024, h: 683, wSm: 640 },
+  // «Rain drops on a window», dominio público (CC0 1.0) vía rawpixel. Virada al
+  // verde de marca. Pesa más que las otras por el detalle de las gotas.
+  ventana: { src: texVentana, sm: texVentanaSm, w: 1024, h: 683, wSm: 640 },
 };
 
 export const srcSetPortada = (p: Portada) => `${p.sm} ${p.wSm}w, ${p.src} ${p.w}w`;

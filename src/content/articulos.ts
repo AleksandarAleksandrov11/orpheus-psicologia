@@ -42,12 +42,64 @@ export type Articulo = {
     | "piedras"
     | "hoja"
     | "pluma"
-    | "diente";
+    | "diente"
+    | "ventana";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "conversacion-que-repites-en-tu-cabeza-al-llegar-a-casa",
+    titulo: "Esa conversación que repites en tu cabeza al llegar a casa",
+    tituloCorto: "Repasar la conversación",
+    descripcion:
+      "Revisar lo que dijiste y qué habrán pensado. Por qué repasamos las conversaciones al llegar a casa, por qué no calma y cómo hablarte con más amabilidad.",
+    entradilla:
+      "Revisar lo que dijiste, cómo lo dijiste y qué habrán pensado. A veces el día acaba con una segunda reunión, contigo sola.",
+    categoria: "Inseguridad",
+    fecha: "2026-11-16",
+    lectura: 3,
+    imagen: "ventana",
+    alt: "Gotas de lluvia en una ventana, con una casa desenfocada al otro lado",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "Llegas a casa, te sientas y, de repente, empieza: «¿Por qué dije eso?», «Seguro que sonó raro», «¿Se habrá molestado?». La conversación de hace unas horas vuelve entera, con subtítulos y todo, y la repasas buscando el momento exacto en que lo estropeaste.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Si te pasa, no eres rara. Es una forma muy común de inseguridad social y tiene su lógica: necesitamos sentirnos aceptadas, y la mente intenta protegernos revisando cualquier posible error para que no se repita.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "El problema es que ese repaso casi nunca es justo. Se queda en la frase que no te convenció y olvida todo lo demás. Casi nadie repasa nuestras palabras como lo hacemos nosotras: la mayoría está demasiado ocupada pensando en las suyas. Y además lo hace con una voz más dura que la que usarías con alguien a quien quieres.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Muchas veces, de hecho, no estás analizando lo que pasó, sino respondiendo a lo que temes que pasara: que pensaran mal de ti, que te vieran insegura, que te dejaran de lado. Por eso repasarlo no calma: no hay respuesta que lo cierre.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Quizá te ayude cambiar la pregunta. En lugar de «¿qué hice mal?», probar con «¿qué es lo que temo ahora mismo?». O con: «si esto lo hubiera vivido una amiga, ¿qué le diría?». Suele salir una versión bastante más amable.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "También puede ayudar permitirte un pequeño margen. No todas las conversaciones salen redondas, y no tienen por qué. Una frase torpe no te define, y la mayoría de las personas se quedan con una impresión de ti mucho más generosa que la que tú guardas.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Si este repaso se ha vuelto frecuente y te desgasta, trabajarlo con acompañamiento puede ser un alivio. Hablarte bien después de un encuentro también es una forma de cuidarte.",
+      },
+    ],
+  },
   {
     slug: "por-que-te-cuesta-aceptar-un-cumplido",
     titulo: "Por qué te cuesta tanto aceptar un cumplido",
