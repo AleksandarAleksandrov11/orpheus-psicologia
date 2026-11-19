@@ -116,7 +116,10 @@ export function Nav() {
             <Marca />
           </Link>
 
-          <nav aria-label="Navegación principal" className="hidden items-center gap-4 lg:flex xl:gap-7">
+          <nav
+            aria-label="Navegación principal"
+            className="hidden items-center gap-4 lg:flex xl:gap-7"
+          >
             {enlacesEscritorio.map((l) =>
               "hijos" in l ? (
                 <div
@@ -200,7 +203,7 @@ export function Nav() {
               type="button"
               onClick={() => setMenu((v) => !v)}
               aria-expanded={menu}
-              aria-controls="menu-movil"
+              aria-controls={menu ? "menu-movil" : undefined}
               aria-label={menu ? "Cerrar menú" : "Abrir menú"}
               className="relative z-[80] -mr-1.5 grid size-11 place-items-center rounded-full transition-colors duration-400 hover:bg-paper lg:hidden"
             >
@@ -230,107 +233,110 @@ export function Nav() {
         />
       </header>
 
-      {/* Menú a pantalla completa */}
-      <div
-        id="menu-movil"
-        hidden={!menu}
-        className="fixed inset-0 z-[75] lg:hidden"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menú de navegación"
-      >
-        <div className="aurora-deep grain-dark absolute inset-0" aria-hidden="true" />
-        <div className="on-dark relative z-10 flex h-full flex-col justify-between overflow-y-auto px-6 pt-16 md:pt-24 pb-10">
-          <nav aria-label="Navegación móvil">
-            <ul className="space-y-1">
-              {NAV.map((l, i) => (
-                <li key={l.to} className="overflow-hidden">
-                  <Link
-                    to={l.to}
-                    onClick={alInicio(l.to)}
-                    className="group block border-b border-on-dark/12 py-4"
-                    style={{
-                      animation: menu
-                        ? `orpheus-clip-up 0.85s cubic-bezier(0.22,1,0.36,1) ${120 + i * 55}ms both`
-                        : undefined,
-                    }}
-                  >
-                    <span className="flex items-baseline gap-4">
-                      <span className="eyebrow w-6 shrink-0 text-on-dark-faint">0{i + 1}</span>
-                      <span className="flex-1">
-                        <span className="display-sm block text-on-dark">{l.label}</span>
-                        {l.descripcion ? (
-                          <span className="mt-1 block text-[0.93rem] font-light text-on-dark-muted">
-                            {l.descripcion}
-                          </span>
-                        ) : null}
-                      </span>
-                    </span>
-                  </Link>
-
-                  {"hijos" in l ? (
-                    <ul
-                      className="mb-1 flex flex-wrap gap-x-5 gap-y-2 border-b border-on-dark/12 py-3 pl-10"
+      {/* Menú a pantalla completa. Solo se pinta abierto: cerrado repetía en el HTML
+          todos los enlaces del menú y los datos de contacto, y los rastreadores
+          cuentan cada texto de enlace repetido. */}
+      {menu ? (
+        <div
+          id="menu-movil"
+          className="fixed inset-0 z-[75] lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menú de navegación"
+        >
+          <div className="aurora-deep grain-dark absolute inset-0" aria-hidden="true" />
+          <div className="on-dark relative z-10 flex h-full flex-col justify-between overflow-y-auto px-6 pt-16 md:pt-24 pb-10">
+            <nav aria-label="Navegación móvil">
+              <ul className="space-y-1">
+                {NAV.map((l, i) => (
+                  <li key={l.to} className="overflow-hidden">
+                    <Link
+                      to={l.to}
+                      onClick={alInicio(l.to)}
+                      className="group block border-b border-on-dark/12 py-4"
                       style={{
                         animation: menu
-                          ? `orpheus-fade 0.9s cubic-bezier(0.4,0,0.2,1) ${220 + i * 55}ms both`
+                          ? `orpheus-clip-up 0.85s cubic-bezier(0.22,1,0.36,1) ${120 + i * 55}ms both`
                           : undefined,
                       }}
                     >
-                      {(l.hijos as readonly NavLink[])
-                        .filter((h) => h.to !== l.to)
-                        .map((h) => (
-                          <li key={h.to}>
-                            <Link
-                              to={h.to}
-                              onClick={alInicio(h.to)}
-                              className="text-[0.99rem] font-light text-on-dark-muted transition-colors duration-400 hover:text-on-dark"
-                            >
-                              {h.label}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </nav>
+                      <span className="flex items-baseline gap-4">
+                        <span className="eyebrow w-6 shrink-0 text-on-dark-faint">0{i + 1}</span>
+                        <span className="flex-1">
+                          <span className="display-sm block text-on-dark">{l.label}</span>
+                          {l.descripcion ? (
+                            <span className="mt-1 block text-[0.93rem] font-light text-on-dark-muted">
+                              {l.descripcion}
+                            </span>
+                          ) : null}
+                        </span>
+                      </span>
+                    </Link>
 
-          <div
-            className="mt-10"
-            style={{
-              animation: menu
-                ? "orpheus-fade 0.9s cubic-bezier(0.4,0,0.2,1) 520ms both"
-                : undefined,
-            }}
-          >
-            <Link
-              to="/contacto"
-              className="btn-base btn-fill btn-light w-full"
-              onClick={alInicio("/contacto")}
+                    {"hijos" in l ? (
+                      <ul
+                        className="mb-1 flex flex-wrap gap-x-5 gap-y-2 border-b border-on-dark/12 py-3 pl-10"
+                        style={{
+                          animation: menu
+                            ? `orpheus-fade 0.9s cubic-bezier(0.4,0,0.2,1) ${220 + i * 55}ms both`
+                            : undefined,
+                        }}
+                      >
+                        {(l.hijos as readonly NavLink[])
+                          .filter((h) => h.to !== l.to)
+                          .map((h) => (
+                            <li key={h.to}>
+                              <Link
+                                to={h.to}
+                                onClick={alInicio(h.to)}
+                                className="text-[0.99rem] font-light text-on-dark-muted transition-colors duration-400 hover:text-on-dark"
+                              >
+                                {h.label}
+                              </Link>
+                            </li>
+                          ))}
+                      </ul>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div
+              className="mt-10"
+              style={{
+                animation: menu
+                  ? "orpheus-fade 0.9s cubic-bezier(0.4,0,0.2,1) 520ms both"
+                  : undefined,
+              }}
             >
-              <span className="relative z-10">Reservar primera sesión</span>
-            </Link>
-            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.89rem] font-light text-on-dark-muted">
-              <a href={`mailto:${SITE.contacto.email}`} className="link-undraw">
-                {SITE.contacto.email}
-              </a>
-              <a href={`tel:${SITE.contacto.telefonoHref}`} className="link-undraw">
-                {SITE.contacto.telefono}
-              </a>
-              <a
-                href={SITE.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-undraw"
+              <Link
+                to="/contacto"
+                className="btn-base btn-fill btn-light w-full"
+                onClick={alInicio("/contacto")}
               >
-                {SITE.social.instagramHandle}
-              </a>
+                <span className="relative z-10">Reservar primera sesión</span>
+              </Link>
+              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.89rem] font-light text-on-dark-muted">
+                <a href={`mailto:${SITE.contacto.email}`} className="link-undraw">
+                  {SITE.contacto.email}
+                </a>
+                <a href={`tel:${SITE.contacto.telefonoHref}`} className="link-undraw">
+                  {SITE.contacto.telefono}
+                </a>
+                <a
+                  href={SITE.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-undraw"
+                >
+                  {SITE.social.instagramHandle}
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
 }

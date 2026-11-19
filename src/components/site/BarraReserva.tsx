@@ -97,7 +97,7 @@ export function BarraReserva() {
         >
           <span className="relative z-10 flex items-center gap-2.5">
             <CalendarCheck className="size-4" strokeWidth={1.6} aria-hidden="true" />
-            Reservar primera sesión
+            Pedir mi primera sesión
           </span>
         </Link>
       </div>

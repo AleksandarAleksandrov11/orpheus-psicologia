@@ -44,7 +44,7 @@ export const MITO = {
   titulo: "Descender para poder elevarse.",
   cuerpo: [
     "El nombre viene del mito de Orfeo, quien desciende al inframundo movido por el amor y la necesidad de recuperar a Eurídice.",
-    "Para mí simboliza ese viaje hacia dentro que muchas veces supone un proceso terapéutico: atreverse a mirar lo que duele, atravesar la oscuridad y regresar transformado. No para volver a ser quien eras, sino para encontrarte de una manera más consciente y auténtica.",
+    "Para mí simboliza ese viaje hacia dentro que muchas veces supone un proceso terapéutico: atreverse a mirar lo que duele, atravesar la oscuridad y regresar transformado. No para volver a ser quien eras, sino para encontrarte de una manera más consciente y auténtica. De ahí el nombre: descender, para poder elevarse.",
   ],
   cita: "Para poder transformarnos, primero necesitamos atrevernos a mirarnos.",
 } as const;
@@ -374,6 +374,9 @@ export const HISTORIA = {
     "Creo que una de mis mayores fortalezas como psicóloga es transformar el caos en claridad: ayudarte a poner palabras a aquello que quizá todavía no sabes cómo explicar, comprender de dónde viene y encontrar nuevas formas de afrontarlo.",
   ],
   cita: "La psicología, para mí, es un lugar donde volver a mirarse con respeto.",
+  /** Cierra el relato y retoma el titular de la página. */
+  cierre:
+    "Empecé buscando entenderme a mí misma, y hoy mi trabajo consiste en acompañarte a ti a comprenderte.",
   frase: "«No puedo.»",
 } as const;
 
@@ -528,7 +531,7 @@ export const EMPRESAS = {
   intro:
     "La autoexigencia y el agotamiento no aparecen solo en consulta. También viven en las reuniones, en los correos de las once de la noche y en la sensación de que nunca se ha hecho suficiente. Diseño intervenciones para equipos que quieren cuidar eso de verdad, no solo nombrarlo.",
   entradilla:
-    "Psicoterapia como beneficio social: sesiones de concienciación para todo el equipo y terapia individual subvencionada para quien la necesite.",
+    "Psicoterapia como beneficio social en entornos de trabajo: sesiones de concienciación para todo el equipo y terapia individual subvencionada para quien la necesite.",
   cadaEquipo:
     "Cada equipo tiene su propio desgaste. La intervención se diseña después de escucharlo.",
 

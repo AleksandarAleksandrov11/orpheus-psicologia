@@ -224,7 +224,7 @@ function ArticuloPagina() {
               oscuro
               items={[
                 { nombre: "Inicio", path: "/" },
-                { nombre: "Diario", path: "/diario" },
+                { nombre: "Artículos", path: "/diario" },
                 { nombre: articulo.tituloCorto ?? articulo.titulo },
               ]}
             />

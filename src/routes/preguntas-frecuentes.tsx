@@ -74,8 +74,8 @@ function Preguntas() {
               />
 
               <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
-                Las preguntas que más me llegan antes de reservar una sesión, respondidas sin
-                rodeos.
+                Las preguntas que más me llegan antes de dar el primer paso y reservar una sesión,
+                respondidas sin rodeos.
               </p>
             </div>
 

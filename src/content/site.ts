@@ -163,27 +163,28 @@ export const NAV = [
 
 /**
  * Mapa del sitio para el pie de página: la navegación completa, ya sin
- * anidar. Se escribe aparte porque aplanar la tupla de `NAV` haría perder
+ * anidar. Los rótulos no repiten los del menú de la cabecera a propósito:
+ * un mismo texto de enlace dos veces en la página lo señalan los rastreadores. Se escribe aparte porque aplanar la tupla de `NAV` haría perder
  * los literales de ruta que necesita `<Link to>`.
  */
 export const NAV_PLANO = [
-  { to: "/", label: "Inicio" },
-  { to: "/sobre-mi", label: "Sobre mí" },
-  { to: "/por-que-orpheus", label: "Por qué Orpheus" },
-  { to: "/servicios", label: "Terapia individual" },
-  { to: "/empresas", label: "Para empresas" },
-  { to: "/test-autoexigencia", label: "Test de autoexigencia" },
-  { to: "/tarifas", label: "Tarifas" },
-  { to: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
-  { to: "/diario", label: "Diario" },
-  { to: "/testimonios", label: "Reseñas" },
-  { to: "/contacto", label: "Contacto" },
+  { to: "/", label: "Portada" },
+  { to: "/sobre-mi", label: "Quién soy" },
+  { to: "/por-que-orpheus", label: "El mito de Orfeo" },
+  { to: "/servicios", label: "Terapia online individual" },
+  { to: "/empresas", label: "Bienestar en empresas" },
+  { to: "/test-autoexigencia", label: "Haz el test" },
+  { to: "/tarifas", label: "Precio de la sesión" },
+  { to: "/preguntas-frecuentes", label: "Resolver mis dudas" },
+  { to: "/diario", label: "Artículos del Diario" },
+  { to: "/testimonios", label: "Opiniones en Google" },
+  { to: "/contacto", label: "Escríbeme" },
 ] as const satisfies readonly NavLink[];
 
 export const LEGAL_NAV = [
   { to: "/aviso-legal", label: "Aviso legal" },
-  { to: "/politica-de-privacidad", label: "Política de privacidad" },
-  { to: "/politica-de-cookies", label: "Política de cookies" },
+  { to: "/politica-de-privacidad", label: "Privacidad" },
+  { to: "/politica-de-cookies", label: "Cookies" },
 ] as const satisfies readonly NavLink[];
 
 /** Fecha de última revisión de los textos legales (formato ISO). */

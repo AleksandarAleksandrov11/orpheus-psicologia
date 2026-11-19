@@ -117,9 +117,9 @@ function Servicios() {
               />
 
               <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
-                Aquí no hay una forma correcta de hacerlo. Te acompaño a construir un proceso que
-                tenga sentido para ti, respetando tus tiempos, tus necesidades y todo lo que vaya
-                surgiendo por el camino.
+                Aquí no hay una forma correcta de hacerlo. Te acompaño a comprenderte y a elegirte,
+                construyendo un proceso que tenga sentido para ti, respetando tus tiempos, tus
+                necesidades y todo lo que vaya surgiendo por el camino.
               </p>
 
               <div

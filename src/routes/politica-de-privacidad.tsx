@@ -446,7 +446,7 @@ function Privacidad() {
         antetitulo="Política de privacidad"
         titulo="Qué pasa con tus"
         cursiva="datos."
-        entradilla="Aquí se explica, sin rodeos, qué información se recoge, para qué, durante cuánto tiempo y qué puedes hacer al respecto en cualquier momento."
+        entradilla="Aquí se explica, sin rodeos, qué pasa con tus datos: qué información se recoge, para qué, durante cuánto tiempo y qué puedes hacer al respecto en cualquier momento."
         secciones={secciones}
         pendientes={pendientes}
       />

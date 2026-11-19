@@ -240,7 +240,7 @@ function SobreMi() {
               <Cita tamano="sm">{HISTORIA.cita}</Cita>
             </Reveal>
 
-            {HISTORIA.parrafos.slice(6).map((p, i) => (
+            {[...HISTORIA.parrafos.slice(6), HISTORIA.cierre].map((p, i) => (
               <Reveal key={p.slice(0, 24)} delay={i * 80} className="mt-7">
                 <p className={PARRAFO}>{p}</p>
               </Reveal>

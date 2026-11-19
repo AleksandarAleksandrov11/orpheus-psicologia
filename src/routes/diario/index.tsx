@@ -108,8 +108,8 @@ function Diario() {
           <p className="lede anim-fade-up mt-8 max-w-2xl" style={{ animationDelay: "0.34s" }}>
             Escribo aquí lo que más se repite en consulta: la autoexigencia que se disfraza de
             responsabilidad, las emociones que aprendimos a callar, las etiquetas que acaban
-            decidiendo por nosotros. Son artículos para poner palabras a lo que cuesta explicar, sin
-            recetas ni atajos.
+            decidiendo por nosotros. Son artículos para poner palabras a lo que cuesta explicar y
+            empezar a comprenderte, sin recetas ni atajos.
           </p>
 
           <div

@@ -323,7 +323,8 @@ function Contacto() {
             />
 
             <p className="lede anim-fade-up mt-8 max-w-2xl" style={{ animationDelay: "0.55s" }}>
-              Cuéntame qué te trae y te acompaño en lo que necesites. Respondo yo misma.
+              No hace falta tenerlo claro: cuéntame qué te trae y te acompaño en lo que necesites.
+              Respondo yo misma.
             </p>
           </div>
         </div>
@@ -772,7 +773,7 @@ function Contacto() {
             <p className="max-w-2xl text-[1.02rem] leading-relaxed font-light text-on-dark-faint">
               Si prefieres saltarte el formulario, escribe directamente a{" "}
               <a href={`mailto:${SITE.contacto.email}`} className="link-draw text-on-dark-muted">
-                {SITE.contacto.email}
+                mi correo
               </a>
               . Llega al mismo sitio.
             </p>

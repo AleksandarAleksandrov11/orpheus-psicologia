@@ -421,7 +421,8 @@ export function Migas({
           <li key={item.nombre} className="flex items-center gap-2">
             {item.path ? (
               <Link to={item.path} className="link-draw transition-colors hover:text-olive">
-                {item.nombre}
+                {/* «Inicio» ya es un enlace del menú; aquí, con otro texto. */}
+                {item.path === "/" ? "Página de inicio" : item.nombre}
               </Link>
             ) : (
               <span aria-current="page">{item.nombre}</span>

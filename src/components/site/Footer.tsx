@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Instagram, Linkedin, Mail, Music2, Phone } from "lucide-react";
 import { LEGAL_NAV, NAV_PLANO, SITE, esPendiente } from "@/content/site";
 import { abrirPreferenciasCookies } from "@/lib/consent";
@@ -7,6 +7,9 @@ import { Lira } from "./ui";
 export function Footer() {
   const anio = new Date().getFullYear();
   const colegiadaPendiente = esPendiente(SITE.psicologa.colegiada);
+  // En /contacto la propia página ya enseña correo, teléfono e Instagram con
+  // el mismo texto; repetirlos aquí duplicaba esos enlaces.
+  const enContacto = useRouterState({ select: (s) => s.location.pathname === "/contacto" });
 
   return (
     <footer
@@ -16,16 +19,13 @@ export function Footer() {
       <div className="relative z-10 shell grid gap-10 py-12 md:grid-cols-12 md:gap-12 md:py-20">
         {/* Marca */}
         <div className="md:col-span-5">
-          <Link
-            to="/"
-            aria-label={`Ir al inicio de ${SITE.name}`}
-            className="inline-flex items-center gap-3"
-          >
+          {/* Marca sin enlace: el de la cabecera ya lleva a Inicio con el mismo texto. */}
+          <div className="inline-flex items-center gap-3">
             <Lira className="h-9 w-9 text-on-dark" trazo={2.4} />
             <span className="font-display text-2xl leading-[1.15] text-on-dark">
               Orpheus <span className="text-[0.82em] text-on-dark-muted">Psicología</span>
             </span>
-          </Link>
+          </div>
           <p className="mt-6 max-w-xs text-[0.96rem] leading-relaxed font-light text-on-dark-muted">
             Psicóloga online en toda España para comprender lo que te pasa, transformar aquello que
             te limita y construir una relación más amable contigo.
@@ -62,35 +62,42 @@ export function Footer() {
         <div className="md:col-span-3">
           <h2 className="eyebrow text-on-dark-faint">Contacto</h2>
           <ul className="mt-6 space-y-3.5 text-[1.01rem] font-light text-on-dark-muted">
-            <li>
-              <a
-                href={`mailto:${SITE.contacto.email}`}
-                className="link-draw inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
-              >
-                <Mail className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
-                {SITE.contacto.email}
-              </a>
-            </li>
-            <li>
-              <a
-                href={`tel:${SITE.contacto.telefonoHref}`}
-                className="link-draw inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
-              >
-                <Phone className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
-                {SITE.contacto.telefono}
-              </a>
-            </li>
+            {enContacto ? null : (
+              <>
+                <li>
+                  <a
+                    href={`mailto:${SITE.contacto.email}`}
+                    className="link-draw inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
+                  >
+                    <Mail className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
+                    {SITE.contacto.email}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`tel:${SITE.contacto.telefonoHref}`}
+                    className="link-draw inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
+                  >
+                    <Phone className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
+                    {SITE.contacto.telefono}
+                  </a>
+                </li>
+              </>
+            )}
+
             <li className="flex flex-wrap items-center gap-x-5 gap-y-2.5 pt-1">
-              <a
-                href={SITE.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram de Orpheus Psicología"
-                className="inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
-              >
-                <Instagram className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
-                {SITE.social.instagramHandle}
-              </a>
+              {enContacto ? null : (
+                <a
+                  href={SITE.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram de Orpheus Psicología"
+                  className="inline-flex items-center gap-2.5 transition-colors duration-400 hover:text-on-dark"
+                >
+                  <Instagram className="size-4 shrink-0" strokeWidth={1.4} aria-hidden="true" />
+                  {SITE.social.instagramHandle}
+                </a>
+              )}
               <a
                 href={SITE.social.linkedin}
                 target="_blank"

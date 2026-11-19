@@ -273,7 +273,7 @@ function AvisoLegal() {
         antetitulo="Aviso legal"
         titulo="Quién está detrás de esta"
         cursiva="web."
-        entradilla="Información identificativa, condiciones de uso y responsabilidades, conforme a la Ley 34/2002 de Servicios de la Sociedad de la Información."
+        entradilla="Quién está detrás de esta web: información identificativa, condiciones de uso y responsabilidades, conforme a la Ley 34/2002 de Servicios de la Sociedad de la Información."
         secciones={secciones}
         pendientes={pendientes}
       />

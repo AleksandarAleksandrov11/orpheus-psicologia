@@ -68,6 +68,11 @@ function Resenas() {
                 delay={120}
                 className="display-xl mt-7 text-ink"
               />
+
+              <p className="lede anim-fade-up mt-8 max-w-xl" style={{ animationDelay: "0.55s" }}>
+                Las palabras de quienes han caminado este proceso conmigo, publicadas con su texto
+                literal y verificadas en Google.
+              </p>
             </div>
 
             {hayGoogle ? (

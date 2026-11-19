@@ -114,7 +114,7 @@ function Tarifas() {
         <div className="shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 id="tarifas-dudas-titulo" className="display-sm">
-              ¿Te queda alguna duda?
+              ¿Te queda alguna duda sobre los servicios?
             </h2>
             <p className="prose-body mt-3 max-w-xl">
               Escríbeme y te respondo yo misma. {SITE.contacto.respuesta}
