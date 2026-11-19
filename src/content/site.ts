@@ -187,4 +187,10 @@ export const LEGAL_NAV = [
 ] as const satisfies readonly NavLink[];
 
 /** Fecha de última revisión de los textos legales (formato ISO). */
-export const LEGAL_ACTUALIZADO = "2026-11-03";
+export const LEGAL_ACTUALIZADO = "2026-11-19";
+
+/**
+ * Contenedor de Google Tag Manager, que sirve Google Analytics. Solo se carga
+ * si la persona acepta las cookies analíticas (ver `components/site/Analytics.tsx`).
+ */
+export const GTM_ID = "GTM-TCDNT2PF";

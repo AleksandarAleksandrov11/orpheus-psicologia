@@ -76,9 +76,10 @@ function Cookies() {
               desactivar.
             </li>
             <li>
-              <strong>Analíticas o de medición.</strong> Proporcionan estadísticas agregadas de uso
-              y de velocidad de carga. Requieren tu consentimiento y puedes rechazarlas sin que ello
-              afecte a la navegación.
+              <strong>Analíticas o de medición.</strong> Proporcionan estadísticas de uso y de
+              velocidad de carga. Incluyen Google Analytics, que se carga a través de Google Tag
+              Manager. Requieren tu consentimiento y puedes rechazarlas sin que ello afecte a la
+              navegación.
             </li>
           </ul>
           <p>
@@ -86,13 +87,16 @@ function Cookies() {
               No se utilizan cookies publicitarias, de personalización de anuncios ni de elaboración
               de perfiles.
             </strong>{" "}
-            No hay píxeles de redes sociales, ni etiquetas de terceros con fines comerciales.
+            No hay píxeles de redes sociales ni etiquetas con fines publicitarios. Google Tag
+            Manager y Google Analytics solo se cargan si aceptas la analítica, con el almacenamiento
+            publicitario denegado.
           </p>
           <h3>Tipografías alojadas en el propio servidor</h3>
           <p>
             Las fuentes tipográficas se sirven desde este mismo dominio, no desde Google Fonts. Al
-            visitar la web <strong>no se realiza ninguna petición a servidores de Google</strong>,
-            de modo que tu dirección IP no se transfiere a terceros por ese motivo.
+            visitar la web, y mientras no aceptes la analítica,{" "}
+            <strong>no se realiza ninguna petición a servidores de Google</strong>, de modo que tu
+            dirección IP no se transfiere a terceros por ese motivo.
           </p>
         </>
       ),
@@ -126,6 +130,30 @@ function Cookies() {
                 </td>
                 <td>24 meses</td>
                 <td>Técnica · necesaria</td>
+              </tr>
+              <tr>
+                <td>Google Tag Manager</td>
+                <td>Google Ireland Ltd. y Google LLC</td>
+                <td>
+                  Carga las etiquetas de medición del sitio. No guarda cookies propias, pero{" "}
+                  <strong>solo se activa si aceptas la analítica</strong> y, al hacerlo, tu
+                  navegador se conecta con servidores de Google.
+                </td>
+                <td>No aplica</td>
+                <td>Analítica</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>_ga</code> y <code>_ga_*</code>
+                </td>
+                <td>Google Ireland Ltd. y Google LLC</td>
+                <td>
+                  Google Analytics: distinguen visitas y sesiones para elaborar estadísticas de uso
+                  del sitio (páginas vistas, procedencia, dispositivo y país aproximado). No se usan
+                  con fines publicitarios.
+                </td>
+                <td>Hasta 2 años</td>
+                <td>Analítica</td>
               </tr>
               <tr>
                 <td>Vercel Web Analytics</td>

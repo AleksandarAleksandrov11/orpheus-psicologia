@@ -117,8 +117,11 @@ function Privacidad() {
           </p>
           <h3>Datos de navegación</h3>
           <p>
-            Si aceptas las cookies analíticas se recogen métricas agregadas y anónimas de uso de la
-            web. No permiten identificarte ni elaborar perfiles. El detalle está en la{" "}
+            Si aceptas las cookies analíticas se recogen estadísticas de uso de la web mediante
+            Vercel Analytics y Google Analytics: páginas visitadas, procedencia, tipo de dispositivo
+            y navegador, país aproximado y un identificador de visitante guardado en una cookie. No
+            se usan para identificarte directamente, para publicidad ni para elaborar perfiles. Si
+            no aceptas, no se carga ninguna de estas herramientas. El detalle está en la{" "}
             <a href="/politica-de-cookies">política de cookies</a>.
           </p>
         </>
@@ -145,8 +148,8 @@ function Privacidad() {
           </li>
           <li>Cumplir las obligaciones legales, contables y fiscales que resulten aplicables.</li>
           <li>
-            Analizar de forma agregada el uso de la web para mejorarla, solo si has dado tu
-            consentimiento a las cookies analíticas.
+            Analizar el uso de la web para mejorarla, con herramientas de estadística, solo si has
+            dado tu consentimiento a las cookies analíticas.
           </li>
         </ul>
       ),
@@ -297,6 +300,17 @@ function Privacidad() {
                   <td>
                     Servicio que utilizas por tu iniciativa, con sus propias condiciones y su
                     política de privacidad
+                  </td>
+                </tr>
+                <tr>
+                  <td>Google Ireland Ltd. y Google LLC (Tag Manager y Analytics)</td>
+                  <td>
+                    Estadística de uso de la web, solo si aceptas las cookies analíticas. Sin
+                    consentimiento no se establece ninguna conexión con Google
+                  </td>
+                  <td>
+                    UE y EE. UU. Transferencias amparadas por cláusulas contractuales tipo de la
+                    Comisión Europea y por el Data Privacy Framework
                   </td>
                 </tr>
                 <tr>

@@ -22,7 +22,7 @@ export const CADUCIDAD_MS = 24 * 30 * 24 * 60 * 60 * 1000;
 
 export type Consentimiento = {
   /** Versión del esquema, para poder re-preguntar si cambian las cookies. */
-  v: 1;
+  v: 2;
   /** Marca de tiempo en milisegundos. */
   ts: number;
   /** Cookies analíticas y de medición de rendimiento. */
@@ -40,7 +40,7 @@ export function leerConsentimiento(): EstadoConsentimiento {
     const bruto = window.localStorage.getItem(CLAVE_CONSENTIMIENTO);
     if (!bruto) return { estado: "pendiente" };
     const valor = JSON.parse(bruto) as Consentimiento;
-    if (valor?.v !== 1 || typeof valor.analitica !== "boolean") return { estado: "pendiente" };
+    if (valor?.v !== 2 || typeof valor.analitica !== "boolean") return { estado: "pendiente" };
     if (!Number.isFinite(valor.ts) || Date.now() - valor.ts > CADUCIDAD_MS) {
       return { estado: "pendiente" };
     }
@@ -52,7 +52,7 @@ export function leerConsentimiento(): EstadoConsentimiento {
 }
 
 export function guardarConsentimiento(analitica: boolean): Consentimiento {
-  const valor: Consentimiento = { v: 1, ts: Date.now(), analitica };
+  const valor: Consentimiento = { v: 2, ts: Date.now(), analitica };
   if (hayVentana()) {
     try {
       window.localStorage.setItem(CLAVE_CONSENTIMIENTO, JSON.stringify(valor));
@@ -77,11 +77,11 @@ export function revocarConsentimiento() {
 }
 
 /**
- * Elimina las cookies que no son estrictamente necesarias.
- * Vercel Analytics no usa cookies, pero si en el futuro se añade otra
- * herramienta basta con listar aquí sus prefijos.
+ * Elimina las cookies que no son estrictamente necesarias. Vercel Analytics no
+ * usa cookies; Google Analytics sí (`_ga` y `_ga_<ID>`, que el prefijo `_ga`
+ * cubre). Si se añade otra herramienta basta con listar aquí sus prefijos.
  */
-const PREFIJOS_NO_NECESARIOS = ["_va", "_vercel_insights", "_ga", "_gid", "_gat", "_fbp"];
+const PREFIJOS_NO_NECESARIOS = ["_va", "_vercel_insights", "_ga", "_gid", "_gat", "_gcl", "_fbp"];
 
 export function borrarCookiesDeTerceros() {
   if (!hayVentana() || typeof document === "undefined") return;

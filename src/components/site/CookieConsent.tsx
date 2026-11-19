@@ -131,7 +131,7 @@ export function CookieConsent() {
               />
               <Categoria
                 titulo="Analítica y rendimiento"
-                descripcion="Vercel Analytics y Speed Insights: métricas agregadas y anónimas de visitas y velocidad de carga. No crean perfiles ni identifican a personas."
+                descripcion="Google Analytics (mediante Google Tag Manager), Vercel Analytics y Speed Insights: estadísticas de visitas y de velocidad de carga. Google Analytics usa cookies propias para distinguir visitas. No se emplean para publicidad ni para crear perfiles."
                 activa={analitica}
                 onChange={setAnalitica}
               />
@@ -198,8 +198,8 @@ export function CookieConsent() {
             </p>
             <p className="prose-body mt-3 text-[0.875rem] sm:text-[1.01rem]">
               Uso cookies propias necesarias para que la web funcione y, solo si lo aceptas,
-              analítica anónima para saber qué contenidos resultan útiles. Ninguna cookie sirve para
-              crear perfiles publicitarios.{" "}
+              analítica (Google Analytics y Vercel) para saber qué contenidos resultan útiles.
+              Ninguna cookie sirve para crear perfiles publicitarios.{" "}
               <Link to="/politica-de-cookies" className="link-undraw text-cypress">
                 Leer la política de cookies
               </Link>
