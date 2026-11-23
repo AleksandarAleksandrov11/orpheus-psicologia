@@ -43,12 +43,63 @@ export type Articulo = {
     | "hoja"
     | "pluma"
     | "diente"
-    | "ventana";
+    | "ventana"
+    | "brote";
   alt: string;
   bloques: Bloque[];
 };
 
 export const ARTICULOS: Articulo[] = [
+  {
+    slug: "esperar-a-sentirte-lista",
+    titulo: "Esperar a sentirte lista",
+    descripcion:
+      "Hay cosas que llevas tiempo queriendo empezar. Por qué esperar a sentirte lista es una forma de exigencia y cómo empezar sin que salga perfecto.",
+    entradilla:
+      "Hay cosas que llevas tiempo queriendo empezar. Quizá no te falta capacidad, sino permiso para hacerlas sin que salgan perfectas.",
+    categoria: "Autoexigencia",
+    fecha: "2026-11-23",
+    lectura: 3,
+    imagen: "brote",
+    alt: "Un brote joven con tres hojas creciendo entre musgo",
+    bloques: [
+      {
+        tipo: "p",
+        texto:
+          "«Cuando tenga más tiempo.» «Cuando me sienta más preparada.» «Cuando sepa un poco más.» Hay proyectos, conversaciones o decisiones que se quedan en espera durante meses, a veces años, aguardando ese momento en que por fin nos sintamos listas.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "En consulta lo escucho mucho en personas muy capaces. No les faltan talento ni ganas. Lo que se interpone es una exigencia muy alta sobre cómo debería salir lo que empiezan. Si no va a estar a la altura, mejor no empezarlo todavía.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y tiene su lógica: empezar es exponerse. Mientras algo sigue siendo una idea, es perfecto; cuando se vuelve real, puede salir imperfecto, puede costar, puede mostrar que aún no sabes. Esperar parece una forma de cuidarte de esa incomodidad.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "El coste es silencioso. Mientras esperas, ese «debería estar haciéndolo» se queda contigo, ocupa espacio y, con el tiempo, se convierte en reproche: «otra vez lo he dejado». Y la espera se alimenta justo de eso.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Quizá la pregunta no sea «¿cómo me preparo mejor?», sino «¿qué me da miedo que pase cuando lo haga?». A veces es no estar a la altura, otras que alguien lo juzgue, otras descubrir que te importa más de lo que pensabas. Ponerle nombre suele aflojar bastante.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Y cuando te animes, puede ayudar hacerlo pequeño: una versión de prueba, diez minutos, un borrador que nadie va a ver. No para que salga bien, sino para que salga. Muchas veces la sensación de estar lista llega después de empezar, no antes.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Algo imperfecto y en marcha suele enseñar mucho más que algo perfecto y en pausa. Y tú, que tanto cuidas hacerlo bien, mereces también la experiencia de hacerlo sin que tenga que ser perfecto.",
+      },
+    ],
+  },
   {
     slug: "conversacion-que-repites-en-tu-cabeza-al-llegar-a-casa",
     titulo: "Esa conversación que repites en tu cabeza al llegar a casa",

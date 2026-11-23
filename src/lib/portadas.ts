@@ -32,6 +32,8 @@ import texDiente from "@/assets/tex-diente.webp";
 import texDienteSm from "@/assets/tex-diente@sm.webp";
 import texVentana from "@/assets/tex-ventana.webp";
 import texVentanaSm from "@/assets/tex-ventana@sm.webp";
+import texBrote from "@/assets/tex-brote.webp";
+import texBroteSm from "@/assets/tex-brote@sm.webp";
 
 export type Portada = { src: string; sm: string; w: number; h: number; wSm: number };
 
@@ -65,6 +67,9 @@ export const PORTADAS: Record<Articulo["imagen"], Portada> = {
   // «Rain drops on a window», dominio público (CC0 1.0) vía rawpixel. Virada al
   // verde de marca. Pesa más que las otras por el detalle de las gotas.
   ventana: { src: texVentana, sm: texVentanaSm, w: 1024, h: 683, wSm: 640 },
+  // «Single seedling sprouts grassy field», dominio público (CC0 1.0) vía
+  // rawpixel. Virada al verde de marca.
+  brote: { src: texBrote, sm: texBroteSm, w: 1024, h: 678, wSm: 640 },
 };
 
 export const srcSetPortada = (p: Portada) => `${p.sm} ${p.wSm}w, ${p.src} ${p.w}w`;
